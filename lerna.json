@@ -3,5 +3,13 @@
     "packages/*"
   ],
   "version": "independent",
-  "useNx": true
+  "useNx": true,
+  "command": {
+    "version": {
+      "allowBranch": "main"
+    },
+    "publish": {
+      "allowBranch": "main"
+    }
+  }
 }

@@ -120,4 +120,21 @@ describe('HttpService', () => {
       }
     })
   })
+  describe('setAccessToken', () => {
+    test('authorization header is added after setting access token on service instance', async () => {
+      expect.assertions(2)
+      mock.onGet('/withoutAuthToken').reply((config) => {
+        expect(Object.keys(config.headers)).not.toContain('Authorization')
+        return [200, { users: [{ id: 1, name: 'Jane Smith' }] }]
+      })
+      await httpService.get({ url: '/withoutAuthToken' }, { parseTo })
+
+      mock.onGet('/withAuthToken').reply((config) => {
+        expect(Object.keys(config.headers)).toContain('Authorization')
+        return [200, { users: [{ id: 1, name: 'Jane Smith' }] }]
+      })
+      httpService.setAccessToken('my-token')
+      await httpService.get({ url: '/withAuthToken' }, { parseTo })
+    })
+  })
 })
