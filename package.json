@@ -2,6 +2,7 @@
   "name": "root",
   "private": true,
   "devDependencies": {
+    "@types/node": "^18.0.0",
     "lerna": "^5.1.2",
     "nx": "^14.3.6"
   }
