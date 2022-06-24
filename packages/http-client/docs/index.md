@@ -26,9 +26,13 @@ There are also specialized clients that have the most common interactions with t
 
 ```ts
 import { AlertsClient } from 'http-client'
-const client = AlertsClient('https://api.alerce.online/alerts/v1/')
+import { MyDetectionModel } from './models/my-detection-model
+const client = AlertsClient()
 const alerceId = 'AL123abc'
-const dets = await client.getDetections(alerceId)
+// if MyDetectionModel looks like the API Response, there's no need to pass a parser
+const dets = await client.getDetections(alerceId, MyDetectionModel)
+// optionally use a parser like this
+// client.getDetections(alerceId, MyDetectionModel, myParser)
 console.log(dets)
 ```
 

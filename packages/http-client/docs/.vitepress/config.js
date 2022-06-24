@@ -20,7 +20,7 @@ export default {
         collapsible: true,
         items: [
           { text: 'Examples', link: '/getting-started' },
-          { text: 'API', link: '/getting-started' },
+          { text: 'API', link: '/http-service' },
         ],
       },
       {
