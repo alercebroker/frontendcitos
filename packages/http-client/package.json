@@ -1,6 +1,6 @@
 {
   "name": "@alerce/http-client",
-  "version": "1.0.1-alpha.2",
+  "version": "1.0.1-rc.0",
   "description": "HTTP Client for ALeRCE web apps",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
@@ -60,5 +60,5 @@
     "singleQuote": true,
     "semi": false
   },
-  "gitHead": "e5de1bd7372431df0ac0a60cef95bff8923c3c7e"
+  "gitHead": "a942b09e6ae9a65f23483a322438ba2a7e3fe865"
 }
