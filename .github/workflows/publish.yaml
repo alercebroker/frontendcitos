@@ -25,4 +25,4 @@ jobs:
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor}}@users.noreply.github.com"
           npx lerna version --conventional-commits --conventional-prerelease --preid rc --amend --yes
-          npx lerna publish from-git --amend --registry https://npm.pkg.github.com --yes
+          npx lerna publish from-git --amend --registry https://npm.pkg.github.com/alercebroker --yes
