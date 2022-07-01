@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.1-rc.1](/compare/hunter@0.0.1-rc.0...hunter@0.0.1-rc.1) (2022-07-01)
+
+**Note:** Version bump only for package hunter
+
+
+
+
+
 ## 0.0.1-rc.0 (2022-07-01)
 
 **Note:** Version bump only for package hunter
