@@ -1,6 +1,7 @@
 {
   "name": "explorer",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.2",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
@@ -11,11 +12,11 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "component-library": "^1.0.1-alpha.0",
+    "http-client": "^1.0.1-alpha.0",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
-    "vue-router": "^4.0.15",
-    "component-library": "1.0.0",
-    "http-client": "1.0.0"
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
