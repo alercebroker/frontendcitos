@@ -1,3 +1,7 @@
+/**
+ * @module http-service
+ */
+
 import axios, {
   AxiosError,
   AxiosInstance,
@@ -8,7 +12,10 @@ import axios, {
 import { HttpError } from './error/http-error'
 import { ParseError } from './error/parse-error'
 
-type IHttpRequest = {
+/**
+ * HttpRequest Interface
+ */
+export type IHttpRequest = {
   url: string
   config?: AxiosRequestConfig
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -17,12 +24,21 @@ type IHttpRequest = {
   params?: any
 }
 
+/**
+ * FailableParser type
+ */
 export type FailableParser<T, M> = (_: T) => M
 
-type Parser<T, M> = {
+/**
+ * parser type
+ */
+export type Parser<T, M> = {
   parseTo: FailableParser<T, M>
 }
 
+/**
+ * http service interface
+ */
 export interface IHttpService {
   get<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M>
   post<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M>
@@ -30,10 +46,19 @@ export interface IHttpService {
   delete(request: IHttpRequest): Promise<number>
 }
 
+/**
+ * http service class
+ */
 export class HttpService implements IHttpService {
   protected axiosInstance!: AxiosInstance
   private accessToken: string
 
+  /**
+   * http service constructor
+   * @param baseUrl - base url for axsios instance
+   * @param axiosInstance - optional axios instance to use instead of creating a new one
+   * @param accessToken - token for authentication with the API
+   */
   constructor(
     baseUrl: string,
     axiosInstance?: AxiosInstance,
@@ -58,23 +83,29 @@ export class HttpService implements IHttpService {
   }
 
   /**
-   * Performs a GET http request.
+   * Performs a GET http request and parses the result.
    *
-   * ### Example (es module)
+   * ### Example usage
    * ```js
-   * import { HttpService } from '@alerce/http-client'
-   * let client = HttpService("https://api.alerce.online/alerts/v1/")
-   * const parseTo = (response => {
+   *  import { HttpService } from 'http-client
+   *  const client = HttpService('https://api.alerce.online/alerts/v1/')
+   *  const parseTo = (response) => {
    *    return {
-   *        oid: response.objectId,
-   *        ra: response.meanRa,
-   *        dec: response.meanDec
+   *      oid: response.objectId,
+   *      ra: response.meanRa,
+   *      dec: response.meanDec,
    *    }
-   * })
-   * client.get({url: "/objects" }, {parseTo})
+   *  }
+   *  const filterParams = { ra: 37, dec: -14 }
+   *  const result = await client.get(
+   *    { url: '/objects', config: { params: filterParams } },
+   *    { parseTo }
+   *  )
+   *  console.log(result)
    * ```
    *
-   * @param {url: string, config: AxiosConfig} - an object containing url and axios config for the request.
+   * @param requestObject - an object containing url and axios config for the request.
+   * @param parser - object containing the parser function for the result.
    * @returns the parsed data according to the parseTo function.
    */
   public async get<T, M>(
@@ -85,6 +116,13 @@ export class HttpService implements IHttpService {
     return this._parseFailable<T, M>(response.data, parser.parseTo)
   }
 
+  /**
+   * Performs a POST http request and parses the result.
+   *
+   * @param requestObject - an object containing url and axios config for the request.
+   * @param parser - object containing the parser function for the result.
+   * @returns the parsed data according to the parseTo function.
+   */
   public async post<T, M>(
     { url, data, config }: IHttpRequest,
     parser: Parser<T, M>

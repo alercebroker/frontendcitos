@@ -1,3 +1,7 @@
+/**
+ * @module http-error
+ */
+
 import { HttpStatusCode } from './http-status-code'
 
 interface IHttpError {
@@ -7,6 +11,9 @@ interface IHttpError {
   stack?: string
 }
 
+/**
+ * HttpError class
+ * */
 export class HttpError extends Error implements IHttpError {
   public status: number
   public detail: unknown
