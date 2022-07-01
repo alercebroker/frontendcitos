@@ -13,8 +13,10 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.14.1",
+    "echarts": "^5.3.3",
     "quasar": "^2.7.3",
-    "vue": "^3.2.37"
+    "vue": "^3.2.37",
+    "vue-echarts": "^6.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
