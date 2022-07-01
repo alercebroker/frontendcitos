@@ -101,7 +101,6 @@ export class HttpService implements IHttpService {
    *    { url: '/objects', config: { params: filterParams } },
    *    { parseTo }
    *  )
-   *  console.log(result)
    * ```
    *
    * @param requestObject - an object containing url and axios config for the request.
