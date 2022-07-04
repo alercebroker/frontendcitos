@@ -1,8 +1,10 @@
 import { BAND_MAP, plotOptionsFactory } from "./options";
-import formatTooltip from './formatTooltip';
+import formatTooltip from '../utils/formatTooltip';
+import { pipe } from "ramda";
 
 type PlotDataset = {
   detections: any[];
+  nonDetections: any[];
   bandsEnum: (number | string)[];
 };
 
@@ -21,6 +23,7 @@ function getApparentDatasetDetections(detections: any[]): PlotDataset {
   );
   return {
     detections: filteredDetections,
+    nonDetections: [],
     bandsEnum: Array.from(
       new Set(filteredDetections.map((detection) => detection.fid))
     ),

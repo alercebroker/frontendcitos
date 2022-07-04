@@ -1,17 +1,26 @@
 <template>
-  <div>
-    <v-chart autoresize :option="options"></v-chart>
+  <div id="main-chart">
+    <v-chart autoresize :option="options" style="height: 500px;"></v-chart>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { defineProps, reactive } from "vue";
-import { buildApparentPlotOptions } from "./functional-test";
+import formatTooltip from "./utils/formatTooltip";
+import { apparentPlotOptions } from "./apparent"; 
 
 const props = defineProps({
   detections: { type: Array, required: true },
-  nonDetections: [],
+  nonDetections: { type: Array, required: true },
 });
 
-const options = reactive(buildApparentPlotOptions(props.detections, "#fff"));
+const options = reactive(apparentPlotOptions(props.detections, props.nonDetections)("#fff", formatTooltip));
+console.log(options);
 </script>
+
+<style scoped>
+#main-chart {
+  width: 100%;
+  height: 100%;
+}
+</style>
