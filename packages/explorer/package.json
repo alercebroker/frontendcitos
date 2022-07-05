@@ -1,6 +1,6 @@
 {
   "name": "explorer",
-  "version": "0.0.1-rc.2",
+  "version": "1.0.1-rc.9",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "component-library": "^1.0.1-alpha.0",
-    "http-client": "^1.0.1-rc.6",
+    "http-client": "^1.0.1-rc.9",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
     "vue-router": "^4.0.15"
