@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.1-rc.9 (2022-07-05)
+
+**Note:** Version bump only for package explorer
+
+
+
+
+
 ## [0.0.1-rc.4](https://github.com/alercebroker/frontendcitos/compare/explorer@0.0.1-rc.3...explorer@0.0.1-rc.4) (2022-07-04)
 
 **Note:** Version bump only for package explorer
