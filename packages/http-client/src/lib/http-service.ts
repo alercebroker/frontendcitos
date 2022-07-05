@@ -36,6 +36,8 @@ export type Parser<T, M> = {
   parseTo: FailableParser<T, M>
 }
 
+const test = 'test'
+
 /**
  * http service interface
  */

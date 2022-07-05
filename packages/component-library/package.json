@@ -1,7 +1,11 @@
 {
   "name": "@alercebroker/component-library",
   "version": "1.0.1-rc.0",
-  "repository": "https://github.com/alercebroker/frontendcitos",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alercebroker/frontendcitos.git",
+    "directory": "packages/component-library"
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
