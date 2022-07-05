@@ -1,6 +1,6 @@
 {
   "name": "hunter",
-  "version": "1.0.1-rc.2",
+  "version": "1.0.1-rc.3",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@alercebroker/component-library": "^1.0.1-rc.2",
-    "@alercebroker/http-client": "^1.0.1-rc.2",
+    "@alercebroker/http-client": "^1.0.1-rc.3",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
     "vue-router": "^4.0.15"

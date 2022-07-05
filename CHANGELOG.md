@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-rc.3](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.2...v1.0.1-rc.3) (2022-07-05)
+
+
+### Reverts
+
+* delete var to trigger ci ([30e3358](https://github.com/alercebroker/frontendcitos/commit/30e33584861180391090b6c599a3d758894f8c6d))
+
+
+
+
+
 ## [1.0.1-rc.2](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.1...v1.0.1-rc.2) (2022-07-05)
 
 **Note:** Version bump only for package root
