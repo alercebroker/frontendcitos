@@ -6,7 +6,6 @@ on:
       - closed
     branches:
       - main
-      - feature/trigger-ci
 
 jobs:
   publish:
