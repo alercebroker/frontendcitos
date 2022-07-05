@@ -2,14 +2,20 @@
   "packages": [
     "packages/*"
   ],
-  "version": "1.0.0",
+  "version": "1.0.1-rc.0",
   "useNx": true,
   "command": {
     "version": {
-      "allowBranch": [ "main", "feature/trigger-ci" ]
+      "allowBranch": [
+        "main",
+        "feature/trigger-ci"
+      ]
     },
     "publish": {
-      "allowBranch": [ "main", "feature/trigger-ci" ]
+      "allowBranch": [
+        "main",
+        "feature/trigger-ci"
+      ]
     }
   }
 }
