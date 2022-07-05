@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-rc.1](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.0...v1.0.1-rc.1) (2022-07-05)
+
+
+### Reverts
+
+* delete var to trigger publish ([f459067](https://github.com/alercebroker/frontendcitos/commit/f45906720b1a95146cecf4a8fe1864bf03e56095))
+
+
+
+
+
 ## [1.0.1-rc.0](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.9...v1.0.1-rc.0) (2022-07-05)
 
 
