@@ -1,6 +1,7 @@
 {
   "name": "@alercebroker/component-library",
   "version": "1.0.0",
+  "repository": "https://github.com/alercebroker/frontendcitos",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
