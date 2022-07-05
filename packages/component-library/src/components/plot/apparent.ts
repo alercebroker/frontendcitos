@@ -1,5 +1,6 @@
 import { pipe } from "ramda";
 import {
+  getValidDetections,
   detectionsDataFactory,
   dataFilteringFactory,
   parsePlotData,
@@ -9,47 +10,40 @@ import {
   PlotData,
   BAND_MAP,
 } from "./generic";
+import { renderError } from "./generic/render";
 
-const apparentDetectionsPlot = parsePlotData(
-  "scatter",
-  (data: DetectionsData, band: number | string) => {
-    const { detections } = data;
-    return detections
-      .filter((x) => x.fid === band)
-      .map((x) => [
-        x.mjd,
-        x.mag - x.e_mag,
-        x.mag + x.e_mag,
-      ]);
-  },
-  6,
-  { x: 0, y: 1 }
-);
-
-const apparentErrorPlot = parsePlotData(
-  "scatter",
-  (data: DetectionsData, band: number | string) => {
+const apparentDetectionsPlot = parsePlotData({
+  plotType: "scatter",
+  formatData: (data: DetectionsData, band: number) => {
     const { detections } = data;
     return detections
       .filter((x) => x.fid === band && x.corrected)
       .map((x) => [
         x.mjd,
-        x.magpsf_corr,
-        x.candid,
-        x.sigmapsf_corr_ext,
-        x.isdiffpos,
+        x.mag,
+        x.candid || x.objectid,
+        x.e_mag,
+        x.isdiffpos || x.field,
       ]);
-  }
-);
+  },
+  symbol: (band: number) => (band < 100 ? "circle" : "square"),
+  symbolSize: (band: number) => (band < 100 ? 6 : 3),
+  encode: { x: 0, y: 1 },
+});
 
-function getValidDetections(detections: any[]): any[] {
-  return detections.filter((x) => x.fid === 1 || x.fid === 2);
-}
+const apparentErrorPlot = parsePlotData({
+  plotType: "custom",
+  formatData: (data: DetectionsData, band: number | string) => {
+    const { detections } = data;
+    return detections
+      .filter((x) => x.fid === band && x.corrected)
+      .map((x) => [x.mjd, x.mag - x.e_mag, x.mag + x.e_mag]);
+  },
+  renderItem: renderError,
+});
 
 function getApparentDatasetDetections(detections: any[]): any[] {
-  return detections.filter(
-    (x) => x.magpsf_corr <= 23 && x.sigmapsf_corr_ext < 1
-  );
+  return detections.filter((x) => x.mag <= 23 && x.e_mag < 1);
 }
 
 function createSeries(data: DetectionsData): any[] {
@@ -68,19 +62,25 @@ const apparentFilteredDetections = dataFilteringFactory(
 
 const apparentPlotDataFactory = plotDataCreationFactory(
   createSeries,
-  (data: DetectionsData) => data.bands.map(band => BAND_MAP[band].name),
-)
+  (data: DetectionsData) => data.bands.map((band) => BAND_MAP[band].name)
+);
 
 function apparentPlotOptionsFactory(options: PlotData) {
   return (font: string, tooltipFormatter: (params: any) => any) => {
     const { series, legend } = options;
-    return plotOptionsFactory(series, legend, font, tooltipFormatter);
-  }
+    return plotOptionsFactory(
+      series,
+      legend,
+      font,
+      tooltipFormatter,
+    );
+  };
 }
 
 export const apparentPlotOptions = pipe(
   detectionsDataFactory,
-  //apparentFilteredDetections,
+  validDetections,
+  apparentFilteredDetections,
   apparentPlotDataFactory,
-  apparentPlotOptionsFactory,
+  apparentPlotOptionsFactory
 );

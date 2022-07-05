@@ -1,0 +1,67 @@
+[{
+  "_id": {
+    "$oid": "62b6f5198b6832dcaa6843e2"
+  },
+  "aid": "AL22kmluxywmviydk",
+  "tid": "ZTF",
+  "oid": "ZTF17aaaehte",
+  "mjd": 59742.403819399886,
+  "diffmaglim": 19.36479949951172,
+  "fid": 2,
+  "extra_fields": {}
+},{
+  "_id": {
+    "$oid": "62b6f5198b6832dcaa6843e3"
+  },
+  "aid": "AL22kmluxywmviydk",
+  "tid": "ZTF",
+  "oid": "ZTF17aaaehte",
+  "mjd": 59742.44817129988,
+  "diffmaglim": 19.8612003326416,
+  "fid": 1,
+  "extra_fields": {}
+},{
+  "_id": {
+    "$oid": "62bed1f29abd2e5b4f630693"
+  },
+  "aid": "AL22kmluxywmviydk",
+  "tid": "ZTF",
+  "oid": "ZTF17aaaehte",
+  "mjd": 59755.44856479997,
+  "diffmaglim": 20.641700744628906,
+  "fid": 2,
+  "extra_fields": {}
+},{
+  "_id": {
+    "$oid": "62bed1f29abd2e5b4f630694"
+  },
+  "aid": "AL22kmluxywmviydk",
+  "tid": "ZTF",
+  "oid": "ZTF17aaaehte",
+  "mjd": 59757.38740740018,
+  "diffmaglim": 20.318099975585938,
+  "fid": 1,
+  "extra_fields": {}
+},{
+  "_id": {
+    "$oid": "62bed1f29abd2e5b4f630695"
+  },
+  "aid": "AL22kmluxywmviydk",
+  "tid": "ZTF",
+  "oid": "ZTF17aaaehte",
+  "mjd": 59757.43130790023,
+  "diffmaglim": 20.530899047851562,
+  "fid": 1,
+  "extra_fields": {}
+},{
+  "_id": {
+    "$oid": "62bed1f29abd2e5b4f630696"
+  },
+  "aid": "AL22kmluxywmviydk",
+  "tid": "ZTF",
+  "oid": "ZTF17aaaehte",
+  "mjd": 59761.40203699982,
+  "diffmaglim": 19.915000915527344,
+  "fid": 2,
+  "extra_fields": {}
+}]

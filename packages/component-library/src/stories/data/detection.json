@@ -21,7 +21,7 @@
   "e_ra": 0.5494404435157776,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -76,7 +76,7 @@
   "e_ra": 0.5490445494651794,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -131,7 +131,7 @@
   "e_ra": 0.5487740635871887,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -182,7 +182,7 @@
   "e_ra": 0.5489821434020996,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": null,
   "has_stamp": true,
   "step_id_corr": null,
@@ -235,7 +235,7 @@
   "e_ra": 0.5493987798690796,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -290,7 +290,7 @@
   "e_ra": 0.5495447516441345,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -345,7 +345,7 @@
   "e_ra": 0.5487948656082153,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -396,7 +396,7 @@
   "e_ra": 0.5488156676292419,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -447,7 +447,7 @@
   "e_ra": 0.5490029454231262,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -498,7 +498,7 @@
   "e_ra": 0.5490237474441528,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -553,7 +553,7 @@
   "e_ra": 0.5490862131118774,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -608,7 +608,7 @@
   "e_ra": 0.5488156676292419,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -663,7 +663,7 @@
   "e_ra": 0.5490445494651794,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -714,7 +714,7 @@
   "e_ra": 0.5490029454231262,
   "e_dec": 0.14000000059604645,
   "isdiffpos": 1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -765,7 +765,7 @@
   "e_ra": 0.5490237474441528,
   "e_dec": 0.14000000059604645,
   "isdiffpos": 1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -816,7 +816,7 @@
   "e_ra": 0.5491278767585754,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -867,7 +867,7 @@
   "e_ra": 0.5493153929710388,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -918,7 +918,7 @@
   "e_ra": 0.5488988757133484,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -969,7 +969,7 @@
   "e_ra": 0.5488364696502686,
   "e_dec": 0.14000000059604645,
   "isdiffpos": -1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },
@@ -1020,7 +1020,7 @@
   "e_ra": 0.5490862131118774,
   "e_dec": 0.14000000059604645,
   "isdiffpos": 1,
-  "corrected": false,
+  "corrected": true,
   "parent_candid": {
     "$numberDouble": "NaN"
   },

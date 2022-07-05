@@ -1,80 +1,99 @@
 export class DetectionsData {
-  detections: any[];
-  nonDetections: any[];
-  bands: (number | string)[];
-};
+  constructor(
+    public detections: any[],
+    public nonDetections: any[],
+    public bands: number[]
+  ) {}
+}
 
 export class PlotData {
-  series: any[];
-  legend: any[];
-  font?: string;
-};
+  constructor(
+    public series: any[],
+    public legend: any[],
+    public font?: string
+  ) {}
+}
 
 export const BAND_MAP: any = {
   1: { name: "g", color: "#56E03A" },
   2: { name: "r", color: "#D42F4B" },
-  4: { name: "gg", color: "#56E03A" },
-  5: { name: "rr", color: "#D42F4B" },
+  101: { name: "g DR5", color: "#ADA3A3" },
+  102: { name: "r DR5", color: "#377EB8" },
+  103: { name: "i DR5", color: "#FF7F00" },
+  4: { name: "c", color: "#00FFFF" },
+  5: { name: "o", color: "#FFA500" },
 };
+
+
+export function getValidDetections(detections: any[]): any[] {
+  return detections.filter((x) => Boolean(BAND_MAP[x.fid]));
+}
 
 export function detectionsDataFactory(
   detections: any[],
   nonDetections: any[]
 ): DetectionsData {
-  console.log(
+  return new DetectionsData(
     detections,
     nonDetections,
-    Array.from(new Set(detections.map((d) => d.fid)))
+    Array.from(new Set([...detections, ...nonDetections].map((d) => d.fid)))
   );
-  return {
-    detections,
-    nonDetections,
-    bands: Array.from(new Set(detections.map((d) => d.fid))),
-  };
 }
 
 export function dataFilteringFactory(
   filterDetections: (detections: any[]) => any[],
   filterNonDetections: (nonDetections: any[]) => any[]
 ) {
-  return (data: DetectionsData): DetectionsData => ({
-    detections: filterDetections(data.detections),
-    nonDetections: filterNonDetections(data.nonDetections),
-    bands: data.bands,
-  });
+  return (data: DetectionsData): DetectionsData =>
+    new DetectionsData(
+      filterDetections(data.detections),
+      filterNonDetections(data.nonDetections),
+      data.bands
+    );
 }
 
-export function parsePlotData(
-  plotType: string,
-  formatData: (data: DetectionsData, actualBand?: number | string) => any[],
-  symbolSize?: number,
-  encode?: { x: number; y: number }
-) {
+export function parsePlotData(args: {
+  plotType: string;
+  formatData: (data: DetectionsData, actualBand: number) => any[][];
+  symbolSize?: (band: number) => number;
+  symbol?: (band: number) => string;
+  encode?: { x: number; y: number };
+  renderItem?: (params: any, api: any) => any;
+  nameSuffix?: string;
+  alpha?: boolean;
+}) {
+  const alphaChannel = args.alpha ? '88' : 'FF';
   return (data: DetectionsData): any[] => {
-    const { detections, bands } = data;
-    console.log('parsing', detections);
-    return bands.map((band) => ({
-      name: BAND_MAP[band].name,
-      type: plotType,
-      scale: true,
-      color: BAND_MAP[band].color,
+    const { bands } = data;
+    const {
+      plotType,
+      formatData,
+      symbol,
       symbolSize,
       encode,
+      renderItem,
+      nameSuffix,
+    } = args;
+    return bands.map((band: number) => ({
+      name: (BAND_MAP[band].name + ' ' + (nameSuffix ?? '')).trim(),
+      type: plotType,
+      scale: true,
+      color: BAND_MAP[band].color + alphaChannel,
+      symbol: symbol ? symbol(band) : undefined,
+      symbolSize: symbolSize ? symbolSize(band) : undefined,
+      encode,
       data: formatData(data, band),
+      renderItem,
     }));
   };
 }
 
 export function plotDataCreationFactory(
-  //dunno yet
   parseSeries: (data: DetectionsData) => any[],
   parseLegend: (data: DetectionsData) => any[]
 ) {
   return (data: DetectionsData): PlotData => {
-    return {
-      series: parseSeries(data),
-      legend: parseLegend(data),
-    };
+    return new PlotData(parseSeries(data), parseLegend(data));
   };
 }
 
@@ -82,7 +101,7 @@ export function plotOptionsFactory(
   series: any[],
   legendData: any[],
   textColor: string,
-  tooltipFormatter: (params: any) => any
+  tooltipFormatter: (params: any) => any,
 ) {
   return {
     grid: {
@@ -170,8 +189,8 @@ export function plotOptionsFactory(
         show: false,
       },
       inverse: true,
-      min: (x: any) => x.min - 0.1,
-      max: (x: any) => x.max + 0.1,
+      min: (y: any) => y.min - 0.3,
+      max: (y: any) => y.max + 0.3,
     },
     textStyle: {
       color: textColor,

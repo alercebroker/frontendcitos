@@ -1,20 +1,40 @@
 <template>
-  <div id="main-chart">
-    <v-chart autoresize :option="options" style="height: 500px;"></v-chart>
-  </div>
+  <v-chart v-if="options" autoresize :option="options" style="height: 500px;"></v-chart>
 </template>
 
 <script lang="ts" setup>
-import { defineProps, reactive } from "vue";
+import { defineProps, ref, onMounted } from "vue";
 import formatTooltip from "./utils/formatTooltip";
-import { apparentPlotOptions } from "./apparent"; 
+import { apparentPlotOptions } from "./apparent";
+import { differencePlotOptions } from "./difference";
 
 const props = defineProps({
   detections: { type: Array, required: true },
   nonDetections: { type: Array, required: true },
+  type: { type: String, required: true },
+  period: { type: Number, default: 0 }
 });
+const events = defineEmits(['detectionClick'])
+const options: any = ref(null)
 
-const options = reactive(apparentPlotOptions(props.detections, props.nonDetections)("#fff", formatTooltip));
+onMounted(() => {
+  localOptionsFactory();
+})
+
+function localOptionsFactory() {
+  switch(props.type) {
+    case 'apparent':
+      options.value = apparentPlotOptions(props.detections, props.nonDetections)("#fff", formatTooltip);
+      return;
+    case 'difference':
+      options.value = differencePlotOptions(props.detections, props.nonDetections)("#fff", formatTooltip);
+      return;
+    case 'folded':
+      options.value = null;
+      return;
+  }
+}
+
 console.log(options);
 </script>
 

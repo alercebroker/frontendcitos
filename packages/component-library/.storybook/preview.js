@@ -3,7 +3,9 @@ import "@quasar/extras/material-icons/material-icons.css";
 import "quasar/dist/quasar.css";
 import { app } from "@storybook/vue3";
 import VChart from "vue-echarts";
+
 import "echarts";
+import 'echarts/lib/chart/custom'
 
 app.use(Quasar, { plugins: {} }).component("v-chart", VChart);
 
