@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-rc.0](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.9...v1.0.1-rc.0) (2022-07-05)
+
+
+### Bug Fixes
+
+* version ([de9f1d0](https://github.com/alercebroker/frontendcitos/commit/de9f1d0cc072d416531af3ed979a0a85f795aa12))
+
+
+### Reverts
+
+* Revert "ci: add branch for build process" ([b002417](https://github.com/alercebroker/frontendcitos/commit/b002417c72b8500492529c37a883896d9c966a3e))
+
+
+
+
+
 ## 1.0.1-rc.9 (2022-07-05)
 
 

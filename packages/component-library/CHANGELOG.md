@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-rc.0](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.9...v1.0.1-rc.0) (2022-07-05)
+
+
+### Bug Fixes
+
+* version ([de9f1d0](https://github.com/alercebroker/frontendcitos/commit/de9f1d0cc072d416531af3ed979a0a85f795aa12))
+
+
+
+
+
 ## [1.0.1-rc.0](https://github.com/alercebroker/frontendcitos/compare/@alerce/component-library@1.0.1-alpha.1...@alerce/component-library@1.0.1-rc.0) (2022-07-04)
 
 **Note:** Version bump only for package @alerce/component-library
