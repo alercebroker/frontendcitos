@@ -1,8 +1,8 @@
 {
   "name": "@alercebroker/http-client",
-  "version": "1.0.1-rc.0",
+  "version": "1.0.1-rc.1",
   "description": "HTTP Client for ALeRCE web apps",
-  "repository":"https://github.com/alercebroker/frontendcitos",
+  "repository": "https://github.com/alercebroker/frontendcitos",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
   "module": "build/module/index.js",
