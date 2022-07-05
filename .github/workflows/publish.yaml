@@ -6,13 +6,10 @@ on:
       - closed
     branches:
       - main
-  push:
-    branches:
-      - feature/trigger-ci
 
 jobs:
   publish:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

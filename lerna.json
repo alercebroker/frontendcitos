@@ -6,16 +6,10 @@
   "useNx": true,
   "command": {
     "version": {
-      "allowBranch": [
-        "main",
-        "feature/trigger-ci"
-      ]
+      "allowBranch": "main"
     },
     "publish": {
-      "allowBranch": [
-        "main",
-        "feature/trigger-ci"
-      ]
+      "allowBranch": "main"
     }
   }
 }
