@@ -5,12 +5,13 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "types": ["jest"]
   },
 
   "references": [
     {
       "path": "./tsconfig.config.json"
     }
-  ]
+  ],
 }

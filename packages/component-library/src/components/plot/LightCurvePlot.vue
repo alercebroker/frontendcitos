@@ -36,8 +36,6 @@ function localOptionsFactory() {
       return;
   }
 }
-
-console.log(options);
 </script>
 
 <style scoped>

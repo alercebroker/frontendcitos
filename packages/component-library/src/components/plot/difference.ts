@@ -80,6 +80,7 @@ const differencePlotDataFactory = plotDataCreationFactory(
 );
 
 function differencePlotOptionsFactory(plotData: PlotData) {
+  console.log(plotData);
   return (font: string, tooltipFormatter: (params: any) => any) => {
     const { series, legend } = plotData;
     return plotOptionsFactory(

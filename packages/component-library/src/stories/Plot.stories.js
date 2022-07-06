@@ -2,6 +2,7 @@ import LightCurvePlot from '../components/plot/LightCurvePlot.vue';
 import detections from './data/detection.json';
 import nonDetections from './data/non_detection.json';
 import otherDetections from './data/detections_two.json';
+import { mockDetections, mockNonDetections } from '../components/plot/__tests__/__mocks__';
 
 export default {
   title: 'LightCurvePlot',
@@ -32,8 +33,8 @@ Apparent.args = {
 
 export const Difference = Template.bind({});
 Difference.args = {
-  detections: otherDetections,
-  nonDetections,
+  detections: mockDetections,
+  nonDetections: mockNonDetections,
   type: 'difference',
 }
 

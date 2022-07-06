@@ -76,7 +76,6 @@ function createSeries(data: DetectionsData) {
 function createLegend(data: DetectionsData) {
   return [
     ...data.bands.map(band => BAND_MAP[band].name),
-    ...data.bands.map(band => BAND_MAP[band].name + " detections")
   ]
 }
 
