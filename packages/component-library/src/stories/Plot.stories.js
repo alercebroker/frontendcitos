@@ -1,6 +1,7 @@
 import LightCurvePlot from '../components/plot/LightCurvePlot.vue';
 import detections from './data/detection.json';
-import nonDetections from './data/non_detection.json'
+import nonDetections from './data/non_detection.json';
+import otherDetections from './data/detections_two.json';
 
 export default {
   title: 'LightCurvePlot',
@@ -18,7 +19,8 @@ const Template = (args) => ({
   template: '<light-curve-plot \
                 :type="type" \
                 :detections="detections" \
-                :non-detections="nonDetections" />',
+                :non-detections="nonDetections" \
+                :period="period" />',
 })
 
 export const Apparent = Template.bind({});
@@ -30,7 +32,15 @@ Apparent.args = {
 
 export const Difference = Template.bind({});
 Difference.args = {
-  detections,
+  detections: otherDetections,
   nonDetections,
   type: 'difference',
+}
+
+export const Folded = Template.bind({});
+Folded.args = {
+  detections: otherDetections,
+  nonDetections: [],
+  type: 'folded',
+  period: 2,
 }

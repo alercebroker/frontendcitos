@@ -2,7 +2,8 @@ export class DetectionsData {
   constructor(
     public detections: any[],
     public nonDetections: any[],
-    public bands: number[]
+    public bands: number[],
+    public period: number,
   ) {}
 }
 
@@ -10,7 +11,7 @@ export class PlotData {
   constructor(
     public series: any[],
     public legend: any[],
-    public font?: string
+    public subtitle?: string,
   ) {}
 }
 
@@ -31,12 +32,14 @@ export function getValidDetections(detections: any[]): any[] {
 
 export function detectionsDataFactory(
   detections: any[],
-  nonDetections: any[]
+  nonDetections: any[],
+  period?: number,
 ): DetectionsData {
   return new DetectionsData(
     detections,
     nonDetections,
-    Array.from(new Set([...detections, ...nonDetections].map((d) => d.fid)))
+    Array.from(new Set([...detections, ...nonDetections].map((d) => d.fid))),
+    period ?? 1,
   );
 }
 
@@ -48,7 +51,8 @@ export function dataFilteringFactory(
     new DetectionsData(
       filterDetections(data.detections),
       filterNonDetections(data.nonDetections),
-      data.bands
+      data.bands,
+      data.period,
     );
 }
 
@@ -90,10 +94,14 @@ export function parsePlotData(args: {
 
 export function plotDataCreationFactory(
   parseSeries: (data: DetectionsData) => any[],
-  parseLegend: (data: DetectionsData) => any[]
+  parseLegend: (data: DetectionsData) => any[],
+  addSubtitle?: (data: DetectionsData) => string, 
 ) {
   return (data: DetectionsData): PlotData => {
-    return new PlotData(parseSeries(data), parseLegend(data));
+    let subtitle = '';
+    if (addSubtitle)
+      subtitle = addSubtitle(data);
+    return new PlotData(parseSeries(data), parseLegend(data), subtitle);
   };
 }
 
@@ -102,6 +110,7 @@ export function plotOptionsFactory(
   legendData: any[],
   textColor: string,
   tooltipFormatter: (params: any) => any,
+  subtext?: string,
 ) {
   return {
     grid: {
@@ -110,6 +119,7 @@ export function plotOptionsFactory(
     },
     title: {
       text: "Light Curve",
+      subtext: subtext ?? '',
       left: "center",
       textStyle: {
         fontWeight: "lighter",

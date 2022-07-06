@@ -7,12 +7,13 @@ import { defineProps, ref, onMounted } from "vue";
 import formatTooltip from "./utils/formatTooltip";
 import { apparentPlotOptions } from "./apparent";
 import { differencePlotOptions } from "./difference";
+import { foldedPlotOptions } from "./folded";
 
 const props = defineProps({
   detections: { type: Array, required: true },
   nonDetections: { type: Array, required: true },
   type: { type: String, required: true },
-  period: { type: Number, default: 0 }
+  period: { type: Number, default: 1 }
 });
 const events = defineEmits(['detectionClick'])
 const options: any = ref(null)
@@ -22,15 +23,16 @@ onMounted(() => {
 })
 
 function localOptionsFactory() {
+  const { detections, nonDetections, period } = props;
   switch(props.type) {
     case 'apparent':
-      options.value = apparentPlotOptions(props.detections, props.nonDetections)("#fff", formatTooltip);
+      options.value = apparentPlotOptions(detections, nonDetections)("#fff", formatTooltip);
       return;
     case 'difference':
-      options.value = differencePlotOptions(props.detections, props.nonDetections)("#fff", formatTooltip);
+      options.value = differencePlotOptions(detections, nonDetections)("#fff", formatTooltip);
       return;
     case 'folded':
-      options.value = null;
+      options.value = foldedPlotOptions(detections, nonDetections, period)("#fff", formatTooltip);
       return;
   }
 }
