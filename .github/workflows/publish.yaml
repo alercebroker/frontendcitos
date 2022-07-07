@@ -6,6 +6,8 @@ on:
       - closed
     branches:
       - main
+    paths:
+      - 'packages/**'
 
 jobs:
   publish:
