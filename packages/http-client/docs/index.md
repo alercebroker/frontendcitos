@@ -39,5 +39,3 @@ console.log(dets)
 This specialized clients make the request and parse the result to your defined model using the specified parser. The advantage of using this instead of the HttpService is that the specialized client has a predefined response model (for type safety) and it can make parsing more directly by inferring the attribute names of the model.
 
 This library is supposed to allow you to save some time by having usable defaults and utils, but it won't force you to use it with the limitations of the default configuration.
-
-## References
