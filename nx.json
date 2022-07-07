@@ -18,6 +18,12 @@
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"]
+    },
+    "docs:deploy": {
+      "dependsOn": ["docs:build"]
+    },
+    "deploy": {
+      "dependsOn": ["build"]
     }
   }
 }
