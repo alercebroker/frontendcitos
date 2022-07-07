@@ -55,8 +55,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           token: ${{ secrets.ADMIN_TOKEN }}
+          ref: main
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
@@ -76,7 +76,7 @@ jobs:
           HTTP_CLIENT_BUCKET_NAME: "{{ secrets.HTTP_CLIENT_BUCKET_NAME }}"
           COMPONENT_LIBRARY_BUCKET_NAME: "{{ secrets.COMPONENT_LIBRARY_BUCKET_NAME }}"
         run: |
-          npx lerna run docs:deploy --since ${{ needs.publish.outputs.tag }}
+          npx lerna run docs-deploy --since ${{ needs.publish.outputs.tag }}
 
   deploy-apps:
     if: github.event.pull_request.merged == true
@@ -87,8 +87,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
           token: ${{ secrets.ADMIN_TOKEN }}
+          ref: main
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
