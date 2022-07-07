@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-rc.9](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.8...v1.0.1-rc.9) (2022-07-07)
+
+
+### Bug Fixes
+
+* delete js components ([5cf69e5](https://github.com/alercebroker/frontendcitos/commit/5cf69e5b65fd63002b375917ba32fc3b06ab3e74))
+
+
+
+
+
 ## [1.0.1-rc.8](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.7...v1.0.1-rc.8) (2022-07-07)
 
 **Note:** Version bump only for package root
