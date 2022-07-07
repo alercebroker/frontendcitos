@@ -1,4 +1,4 @@
-name: publish
+name: publish-rc
 
 on:
   pull_request:
@@ -11,6 +11,7 @@ jobs:
   publish:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    environment: staging
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -34,3 +35,18 @@ jobs:
           git config user.email "${{ github.actor}}@users.noreply.github.com"
           npx lerna version --conventional-commits --conventional-prerelease --preid rc --yes
           npx lerna publish from-git --registry https://npm.pkg.github.com --yes
+      - name: Deploy docs
+        env:
+          AWS_ACCESS_KEY_ID: "{{ secrets.AWS_ACCESS_KEY_ID }}"
+          AWS_SECRET_ACCESS_KEY: "{{ secrets.AWS_SECREC_ACCESS_KEY }}"
+          HTTP_CLIENT_BUCKET_NAME: "{{ secrets.HTTP_CLIENT_BUCKET_NAME }}"
+          COMPONENT_LIBRARY_BUCKET_NAME: "{{ secrets.COMPONENT_LIBRARY_BUCKET_NAME }}"
+        run: |
+          npx lerna run docs:deploy --since
+      - name: Deploy apps
+        env:
+          AWS_ACCESS_KEY_ID: "{{ secrets.AWS_ACCESS_KEY_ID }}"
+          AWS_SECRET_ACCESS_KEY: "{{ secrets.AWS_SECREC_ACCESS_KEY }}"
+          EXPLORER_BUCKET_NAME: "{{ secrets.EXPLORER_BUCKET_NAME }}"
+        run: |
+          npx lerna run deploy --since
