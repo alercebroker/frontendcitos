@@ -17,6 +17,7 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          token: ${{ secrets.GITHUB_ADMIN_TOKEN }}
       - name: Set up Node
         uses: actions/setup-node@v3
         with:
@@ -31,8 +32,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_IMAGE_TOKEN }}
         run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor}}@users.noreply.github.com"
+          git config --global user.name "@dirodriguezm"
+          git config --global user.email "dirodriguezm@users.noreply.github.com"
           npx lerna version --conventional-commits --conventional-prerelease --preid rc --yes
           npx lerna publish from-git --registry https://npm.pkg.github.com --yes
       - name: Deploy docs
