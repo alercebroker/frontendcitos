@@ -6,7 +6,7 @@
     "default": {
       "runner": "nx/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "test:unit"]
+        "cacheableOperations": ["docs-build", "build", "test:unit"]
       }
     }
   },
@@ -19,8 +19,8 @@
     "build": {
       "dependsOn": ["^build"]
     },
-    "docs:deploy": {
-      "dependsOn": ["docs:build"]
+    "docs-deploy": {
+      "dependsOn": ["docs-build"]
     },
     "deploy": {
       "dependsOn": ["build"]
