@@ -1,6 +1,6 @@
 {
   "name": "hunter",
-  "version": "1.0.1-rc.5",
+  "version": "1.0.1-rc.6",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -12,8 +12,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@alercebroker/component-library": "^1.0.1-rc.5",
-    "@alercebroker/http-client": "^1.0.1-rc.5",
+    "@alercebroker/component-library": "^1.0.1-rc.6",
+    "@alercebroker/http-client": "^1.0.1-rc.6",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
     "vue-router": "^4.0.15"
