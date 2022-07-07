@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-rc.10](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.9...v1.0.1-rc.10) (2022-07-07)
+
+
+### Bug Fixes
+
+* fixed docs-deploy command ([5c5e2ca](https://github.com/alercebroker/frontendcitos/commit/5c5e2ca12a7a8ef75fedaaf73f53e053ce876e05))
+
+
+
+
+
 ## [1.0.1-rc.9](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.8...v1.0.1-rc.9) (2022-07-07)
 
 
