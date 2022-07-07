@@ -16,7 +16,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "storybook": "start-storybook -p 6006",
     "docs:build": "build-storybook",
-    "docs:deploy": "bash ./scripts/deploy_docs.sh"
+    "docs-deploy": "bash ./scripts/deploy_docs.sh"
   },
   "dependencies": {
     "@quasar/extras": "^1.14.1",
