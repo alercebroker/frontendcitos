@@ -4,8 +4,9 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - 'packages/**'
     paths-ignore:
-      - './.github/workflows/publish.yaml'
       - '**/docs/**'
 
 jobs:
@@ -14,6 +15,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Set up Node
         uses: actions/setup-node@v2
         with:
@@ -26,4 +29,4 @@ jobs:
           npx lerna bootstrap
       - name: Run tests
         run: |
-          npx lerna run test:unit --since origin/main -- --run
+          npx lerna run test:unit --since main -- --run
