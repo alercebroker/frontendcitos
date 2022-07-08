@@ -81,7 +81,7 @@ jobs:
           HTTP_CLIENT_BUCKET_NAME: ${{ secrets.HTTP_CLIENT_BUCKET_NAME }}
           COMPONENT_LIBRARY_BUCKET_NAME: ${{ secrets.COMPONENT_LIBRARY_BUCKET_NAME }}
         run: |
-          npx lerna run docs-deploy --since ${{ needs.publish.outputs.tag }}
+          npx lerna run docs-deploy --since ${{ needs.publish.outputs.previous_tag }}
 
   deploy-apps:
     if: github.event.pull_request.merged == true
@@ -117,4 +117,4 @@ jobs:
         env:
           EXPLORER_BUCKET_NAME: ${{ secrets.EXPLORER_BUCKET_NAME }}
         run: |
-          npx lerna run deploy --since ${{ steps.previoustag.outputs.tag }}
+          npx lerna run deploy --since ${{ needs.publish.outputs.previous_tag }}
