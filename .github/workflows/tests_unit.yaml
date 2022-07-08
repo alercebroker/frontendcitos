@@ -26,4 +26,4 @@ jobs:
           npx lerna bootstrap
       - name: Run tests
         run: |
-          npx lerna run test:unit --since -- --run
+          npx lerna run test:unit --since origin/main -- --run
