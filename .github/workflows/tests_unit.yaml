@@ -6,6 +6,7 @@ on:
       - main
     paths-ignore:
       - '.github/workflows/publish.yaml'
+      - '.github/workflows/publish-release.yaml'
       - '**/docs/**'
 
 jobs:
