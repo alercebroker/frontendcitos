@@ -1,6 +1,6 @@
 {
   "name": "hunter",
-  "version": "1.0.1-rc.15",
+  "version": "1.0.1-rc.16",
   "private": true,
   "scripts": {
     "dev": "vite",
