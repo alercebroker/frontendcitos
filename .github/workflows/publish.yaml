@@ -41,8 +41,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_IMAGE_TOKEN }}
         run: |
-          git config --global user.name "@dirodriguezm"
-          git config --global user.email "dirodriguezm@users.noreply.github.com"
+          git config --global user.name "@alerceadmin"
+          git config --global user.email "alerceadmin@users.noreply.github.com"
           npx lerna version --conventional-commits --conventional-prerelease --preid rc --yes
           npx lerna publish from-git --registry https://npm.pkg.github.com --yes
 
@@ -70,12 +70,12 @@ jobs:
         run: |
           npm ci
           npx lerna bootstrap
-      - name: Configure AWS credentials from Test account
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: Deploy docs
         env:
           HTTP_CLIENT_BUCKET_NAME: ${{ secrets.HTTP_CLIENT_BUCKET_NAME }}
@@ -107,12 +107,12 @@ jobs:
         run: |
           npm ci
           npx lerna bootstrap
-      - name: Configure AWS credentials from Test account
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          aws-region: us-east-1
       - name: Deploy apps
         env:
           EXPLORER_BUCKET_NAME: ${{ secrets.EXPLORER_BUCKET_NAME }}
