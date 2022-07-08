@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-rc.15](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.14...v1.0.1-rc.15) (2022-07-08)
+
+
+### Bug Fixes
+
+* dist path ([05a33c2](https://github.com/alercebroker/frontendcitos/commit/05a33c2795ec9ff7c56e970b600ec7722b68eb7e))
+
+
+
+
+
 ## [1.0.1-rc.14](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.13...v1.0.1-rc.14) (2022-07-08)
 
 **Note:** Version bump only for package explorer
