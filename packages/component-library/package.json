@@ -1,6 +1,6 @@
 {
   "name": "@alercebroker/component-library",
-  "version": "1.0.1-rc.9",
+  "version": "1.0.1-rc.11",
   "repository": {
     "type": "git",
     "url": "https://github.com/alercebroker/frontendcitos.git",
@@ -15,7 +15,7 @@
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "storybook": "start-storybook -p 6006",
-    "docs:build": "build-storybook",
+    "docs-build": "build-storybook",
     "docs-deploy": "bash ./scripts/deploy_docs.sh"
   },
   "dependencies": {
