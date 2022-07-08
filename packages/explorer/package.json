@@ -1,6 +1,6 @@
 {
   "name": "explorer",
-  "version": "1.0.1-rc.11",
+  "version": "1.0.1-rc.12",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -13,7 +13,7 @@
     "deploy": "bash ./scripts/deploy.sh"
   },
   "dependencies": {
-    "@alercebroker/component-library": "^1.0.1-rc.9",
+    "@alercebroker/component-library": "^1.0.1-rc.12",
     "@alercebroker/http-client": "^1.0.1-rc.11",
     "pinia": "^2.0.14",
     "vue": "^3.2.36",
