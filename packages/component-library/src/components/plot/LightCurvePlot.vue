@@ -11,7 +11,7 @@
 <script lang="ts" setup>
 import { defineProps, ref, onMounted, watch, computed } from "vue";
 import formatTooltip from "./utils/formatTooltip";
-import { jdToDate } from "./utils/dates";
+import { jdToDate } from "../../utils/dates";
 import { apparentPlotOptions } from "./apparent";
 import { differencePlotOptions } from "./difference";
 import { foldedPlotOptions } from "./folded";
@@ -24,7 +24,7 @@ const props = defineProps({
   dark: { type: Boolean, default: true },
 });
 const emit = defineEmits(["detectionClick"]);
-const fontColor = computed(() => (props.dark ? "#fff" : "#000"));
+const fontColor = computed((): string => (props.dark ? "#fff" : "#000"));
 const options: any = ref(null);
 
 onMounted(() => {
@@ -55,13 +55,13 @@ function localOptionsFactory() {
   switch (props.type) {
     case "apparent":
       options.value = apparentPlotOptions(detections, nonDetections)(
-        fontColor,
+        fontColor.value,
         formatTooltip
       );
       return;
     case "difference":
       options.value = differencePlotOptions(detections, nonDetections)(
-        fontColor,
+        fontColor.value,
         formatTooltip
       );
       return;
@@ -70,7 +70,7 @@ function localOptionsFactory() {
         detections,
         nonDetections,
         period
-      )(fontColor, formatTooltip);
+      )(fontColor.value, formatTooltip);
       return;
   }
 }

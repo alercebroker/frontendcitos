@@ -1,4 +1,4 @@
-import { jdToDate } from "../../../utils/AstroDates";
+import { jdToDate } from "../../../utils/dates";
 
 function formatTooltip(params: any) {
   const colorSpan = (color: string) =>
