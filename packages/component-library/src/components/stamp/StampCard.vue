@@ -21,6 +21,7 @@
             size="xs"
             class="q-pa-sm q-mr-sm"
             icon="arrow_left"
+            @click="previousDetection"
           >
           </q-btn>
           <q-btn
@@ -29,11 +30,12 @@
             size="xs"
             class="q-pa-sm"
             icon="arrow_right"
+            @click="nextDetection"
           >
           </q-btn>
         </div>
         <div class="col-1">
-          <q-btn size="s" color="primary">AVRO</q-btn>
+          <q-btn size="s" color="primary" @click="onAvroClick">AVRO</q-btn>
         </div>
         <div class="col-1">
           <q-icon name="error" size="2rem">
@@ -52,21 +54,23 @@
         <div class="col-4">
           <generic-card
             title="Science"
-            :candid="data.candid"
+            :viewtype="data.activeTool"
+            :candid="selected.candid"
             :image-url="stampImage('science')"
           />
         </div>
         <div class="col-4">
           <generic-card
             title="Template"
-            :candid="data.candid"
+            :viewtype="data.activeTool"
+            :candid="selected.candid"
             :image-url="stampImage('template')"
           />
         </div>
         <div class="col-4">
           <generic-card
             title="Difference"
-            :candid="data.candid"
+            :candid="selected.candid"
             :image-url="stampImage('difference')"
           />
         </div>
@@ -95,9 +99,10 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, watch } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import { stampUrl } from "../../utils/urls";
 import { jdToDate } from "../../utils/dates";
+import { customIteratorFactory } from "../../utils/array";
 import GenericCard from "./subcomponents/GenericCard.vue";
 
 const tools = [
@@ -115,13 +120,28 @@ const emit = defineEmits(["selectDetection", "toggleFullscreen", "avroClick"]);
 
 const data = reactive({
   isFullscreen: false,
+  selectedIndex: 0,
   activeTool: "crosshair",
-  candid: (props.detections[0] as any).candid,
 });
-const selected = ref(props.detections[0]);
+const selected = computed((): any => props.detections[data.selectedIndex]);
+const iterator = customIteratorFactory(props.detections, data.selectedIndex);
+
+const nextDetection = () => {
+  iterator.next();
+  data.selectedIndex = iterator.current();
+};
+
+const previousDetection = () => {
+  iterator.prev();
+  data.selectedIndex = iterator.current();
+};
 
 function selectTool(toolId: string) {
   data.activeTool = toolId;
+}
+
+function onAvroClick() {
+  emit("avroClick", selected);
 }
 
 function stampImage(type: string) {
@@ -136,7 +156,7 @@ function stampImage(type: string) {
 }
 
 function formatLabel(detection: any) {
-  return jdToDate(detection.mjd).toUTCString().slice(0, -3) + 'UT';
+  return jdToDate(detection.mjd).toUTCString().slice(0, -3) + "UT";
 }
 </script>
 

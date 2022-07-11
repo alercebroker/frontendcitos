@@ -11,7 +11,8 @@ export default {
 const Template = (args) => ({
   components: { StampCard },
   setup: () => ({ ...args }),
-  template: '<stamp-card :image-service-url="imageServiceUrl" \
+  template:
+    '<stamp-card :image-service-url="imageServiceUrl" \
                           :detections="detections" \
                           :object-id="objectId" \
               />',
@@ -19,11 +20,18 @@ const Template = (args) => ({
 
 export const Preview = Template.bind({});
 Preview.args = {
-  imageServiceUrl: 'http://avro.alerce.online/get_stamp',
-  detections: [{
-    "tid": "ztf",
-    "mjd": 58855.54229169991,
-    "candid": "1101542291015015004",
-  }],
-  objectId: "ZTF20aaelulu"
-}
+  imageServiceUrl: "http://avro.alerce.online/get_stamp",
+  detections: [
+    {
+      tid: "ztf",
+      mjd: 58855.54229169991,
+      candid: "1101542291015015004",
+    },
+    {
+      tid: "ztf",
+      mjd: 58859.481250000186,
+      candid: "1105481241015015001",
+    },
+  ],
+  objectId: "ZTF20aaelulu",
+};
