@@ -24,8 +24,6 @@
     "echarts": "^5.3.3",
     "quasar": "^2.7.3",
     "ramda": "^0.28.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "vue": "^3.2.37",
     "vue-echarts": "^6.1.0"
   },
@@ -57,6 +55,8 @@
     "jest-environment-jsdom": "^28.1.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.5.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "sass": "^1.32.12",
     "ts-jest": "^28.0.5",
     "typescript": "~4.7.4",

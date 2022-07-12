@@ -18,6 +18,7 @@ export const mockDetections = [
     fid: 2,
   },
   {
+    //IF THIS DETECTION APPEARS, IT MEANS THAT THE FILTER STEP WENT WRONG
     candid: "EXCLUDED",
     mjd: 60000,
     mag: 100,
