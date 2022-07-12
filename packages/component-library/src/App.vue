@@ -12,7 +12,6 @@
 
     <div class="wrapper"></div>
   </header>
-
   <main></main>
 </template>
 
