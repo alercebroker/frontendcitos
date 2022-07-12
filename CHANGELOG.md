@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.1](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.0...v1.1.0-rc.1) (2022-07-12)
+
+
+### Bug Fixes
+
+* using alt instead of onerror method ([be02be5](https://github.com/alercebroker/frontendcitos/commit/be02be5bbbcd72248356ffa28478501a1144d28e))
+* zoom corrected and select now changes the image ([dfc59bb](https://github.com/alercebroker/frontendcitos/commit/dfc59bbfdbd224d7d10fe77e823d8c8171a0d070))
+
+
+
+
+
 # [1.1.0-rc.0](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.16...v1.1.0-rc.0) (2022-07-12)
 
 
