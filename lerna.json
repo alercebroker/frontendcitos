@@ -2,6 +2,14 @@
   "packages": [
     "packages/*"
   ],
-  "version": "independent",
-  "useNx": true
+  "version": "1.0.1-rc.16",
+  "useNx": true,
+  "command": {
+    "version": {
+      "allowBranch": "main"
+    },
+    "publish": {
+      "allowBranch": "main"
+    }
+  }
 }

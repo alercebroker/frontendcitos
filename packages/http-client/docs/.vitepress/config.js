@@ -2,7 +2,7 @@ export default {
   title: 'Docs',
   description: 'The ALeRCE Typescript Library for HTTP Requests',
   themeConfig: {
-    nav: [{ text: 'Guide', link: '/guide' }],
+    nav: [{ text: 'Guide', link: '/index' }],
 
     sidebar: [
       {
@@ -20,7 +20,7 @@ export default {
         collapsible: true,
         items: [
           { text: 'Examples', link: '/getting-started' },
-          { text: 'API', link: '/getting-started' },
+          { text: 'API', link: '/http-service' },
         ],
       },
       {

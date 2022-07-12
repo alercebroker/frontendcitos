@@ -1,0 +1,121 @@
+name: publish-rc
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+    paths:
+      - 'packages/**'
+
+jobs:
+  publish:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    environment: staging
+    outputs:
+      previous_tag: ${{ steps.previoustag.outputs.tag }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ADMIN_TOKEN }}
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@alercebroker'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - name: Install
+        run: |
+          npm ci
+          npx lerna bootstrap
+      - name: Get Previous tag
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@v1"
+      - name: Version and publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_IMAGE_TOKEN }}
+        run: |
+          git config --global user.name "@alerceadmin"
+          git config --global user.email "alerceadmin@users.noreply.github.com"
+          npx lerna version --conventional-commits --conventional-prerelease --preid rc --yes
+          npx lerna publish from-git --registry https://npm.pkg.github.com --yes
+
+  deploy-docs:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    environment: staging
+    needs: publish
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ADMIN_TOKEN }}
+          ref: main
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@alercebroker'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - name: Install
+        run: |
+          npm ci
+          npx lerna bootstrap
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Deploy docs
+        env:
+          HTTP_CLIENT_BUCKET_NAME: ${{ secrets.HTTP_CLIENT_BUCKET_NAME }}
+          COMPONENT_LIBRARY_BUCKET_NAME: ${{ secrets.COMPONENT_LIBRARY_BUCKET_NAME }}
+        run: |
+          npx lerna run docs-deploy --since ${{ needs.publish.outputs.previous_tag }}
+
+  deploy-apps:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    environment: staging
+    needs: publish
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.ADMIN_TOKEN }}
+          ref: main
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@alercebroker'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - name: Install
+        run: |
+          npm ci
+          npx lerna bootstrap
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Deploy apps
+        env:
+          EXPLORER_BUCKET_NAME: ${{ secrets.EXPLORER_BUCKET_NAME }}
+          HUNTER_BUCKET_NAME: ${{ secrets.HUNTER_BUCKET_NAME }}
+        run: |
+          npx lerna run deploy --since ${{ needs.publish.outputs.previous_tag }}

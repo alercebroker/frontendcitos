@@ -1,22 +1,31 @@
 {
-  "name": "component-library",
-  "version": "1.0.0",
+  "name": "@alercebroker/component-library",
+  "version": "1.0.1-rc.15",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alercebroker/frontendcitos.git",
+    "directory": "packages/component-library"
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
     "test": "jest",
     "preview": "vite preview --port 4173",
+    "test:unit": "",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "docs-build": "build-storybook",
+    "docs-deploy": "bash ./scripts/deploy_docs.sh"
   },
   "dependencies": {
     "@quasar/extras": "^1.14.1",
     "echarts": "^5.3.3",
     "quasar": "^2.7.3",
     "ramda": "^0.28.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "vue": "^3.2.37",
     "vue-echarts": "^6.1.0"
   },
@@ -54,5 +63,6 @@
     "vite": "^2.9.12",
     "vue-loader": "^16.8.3",
     "vue-tsc": "^0.38.1"
-  }
+  },
+  "gitHead": "e5de1bd7372431df0ac0a60cef95bff8923c3c7e"
 }
