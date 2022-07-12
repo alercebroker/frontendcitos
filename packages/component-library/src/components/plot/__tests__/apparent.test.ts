@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { mockDetections, mockNonDetections } from "./__mocks__";
 import { apparentPlotOptions } from "../apparent";
 import { plotOptionsFactory } from "../generic";
@@ -103,7 +104,12 @@ const expectedOptions = plotOptionsFactory(
   () => null
 );
 
-test("Apparent produces correct series", () => {
-  const options = apparentPlotOptions(mockDetections, mockNonDetections)('#fff', () => null)
-  expect(options.series[0].data).toEqual(expectedOptions.series[0].data);
-})
+describe("Apparent produces correct series", () => {
+  it("options", () => {
+    const options = apparentPlotOptions(mockDetections, mockNonDetections)(
+      "#fff",
+      () => null
+    );
+    expect(options.series[0].data).toEqual(expectedOptions.series[0].data);
+  });
+});

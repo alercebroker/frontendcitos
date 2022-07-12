@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { mockDetections } from "./__mocks__";
 import { foldedPlotOptions } from "../folded";
 import { plotOptionsFactory } from "../generic";
@@ -110,7 +111,13 @@ const expectedOptions = plotOptionsFactory(
   "Period: 2 days"
 );
 
-test("Folded produces correct series", () => {
-  const options = foldedPlotOptions(mockDetections, [], 2)("#fff", () => null);
-  expect(options.series[0].data).toEqual(expectedOptions.series[0].data);
+describe("Folded produces correct series", () => {
+  it("options", () => {
+    const options = foldedPlotOptions(
+      mockDetections,
+      [],
+      2
+    )("#fff", () => null);
+    expect(options.series[0].data).toEqual(expectedOptions.series[0].data);
+  });
 });

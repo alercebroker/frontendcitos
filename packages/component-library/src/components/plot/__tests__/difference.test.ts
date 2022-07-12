@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { mockDetections } from "./__mocks__";
 import { differencePlotOptions } from "../difference";
 import { plotOptionsFactory } from "../generic";
@@ -89,7 +90,12 @@ const expectedOptions = plotOptionsFactory(
   () => null
 );
 
-test("Difference produces correct series", () => {
-  const options = differencePlotOptions(mockDetections, [])("fff", () => null);
-  expect(options.series[0].data).toEqual(expectedOptions.series[0].data);
+describe("Difference produces correct series", () => {
+  it("options", () => {
+    const options = differencePlotOptions(mockDetections, [])(
+      "fff",
+      () => null
+    );
+    expect(options.series[0].data).toEqual(expectedOptions.series[0].data);
+  });
 });
