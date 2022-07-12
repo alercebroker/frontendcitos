@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.0](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.16...v1.1.0-rc.0) (2022-07-12)
+
+
+### Features
+
+* dark mode params and onclick event ([34c830f](https://github.com/alercebroker/frontendcitos/commit/34c830fe52bc488a40439a8748935d1f3d0488e5))
+* LightCurvePlot completed ([c5a6b3f](https://github.com/alercebroker/frontendcitos/commit/c5a6b3fad613ad044be806f7de61a335c31268f8))
+* stamps with zoom and crosshair ([613d21d](https://github.com/alercebroker/frontendcitos/commit/613d21d437a7d032ec0f8c0ec9e52f6c4affdc0f))
+
+
+
+
+
 ## [1.0.1-rc.16](https://github.com/alercebroker/frontendcitos/compare/v1.0.1-rc.15...v1.0.1-rc.16) (2022-07-08)
 
 **Note:** Version bump only for package root
