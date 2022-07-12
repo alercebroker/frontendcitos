@@ -9,15 +9,14 @@
     <img
       ref="normalImageRef"
       class="normal"
-      :class="customClasses"
       :src="image"
-      @error="() => this.src='https://via.placeholder.com/300'"
+      alt="https://via.placeholder.com/300"
     />
     <img
       ref="zoomedImageRef"
       class="zoom"
       :src="image"
-      @error="() => this.src='https://via.placeholder.com/300'"
+      alt="https://via.placeholder.com/300"
     />
   </div>
 </template>
@@ -66,18 +65,20 @@ function pageOffset(el: HTMLElement) {
 
 function move(evt: MouseEvent) {
   if (!zoomedImageRef.value || !normalImageRef.value || !imgDiv.value) return;
-  const offset = pageOffset(imgDiv.value)
+  const offset = pageOffset(imgDiv.value);
   const zoomed = zoomedImageRef.value;
   const normal = normalImageRef.value;
-  
+
   const relativeX = evt.clientX - offset.x + window.scrollX;
   const relativeY = evt.clientY - offset.y + window.scrollY;
   const normalFactorX = relativeX / normal.offsetWidth;
   const normalFactorY = relativeY / normal.offsetHeight;
-  const x = normalFactorX * (zoomed.offsetWidth * props.scale - normal.offsetWidth);
-  const y = normalFactorY * (zoomed.offsetHeight * props.scale - normal.offsetHeight);
-  zoomed.style.left = -x + 'px';
-  zoomed.style.top = -y + 'px';
+  const x =
+    normalFactorX * (zoomed.offsetWidth * props.scale - normal.offsetWidth);
+  const y =
+    normalFactorY * (zoomed.offsetHeight * props.scale - normal.offsetHeight);
+  zoomed.style.left = -x + "px";
+  zoomed.style.top = -y + "px";
 }
 </script>
 
