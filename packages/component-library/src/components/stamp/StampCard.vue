@@ -12,6 +12,7 @@
             label="Date"
             map-options
             stack-label
+            @update:model-value="changeSelect"
           />
         </div>
         <div class="col-2 q-mt-xs">
@@ -70,6 +71,7 @@
         <div class="col-4">
           <generic-card
             title="Difference"
+            :viewtype="data.activeTool"
             :candid="selected.candid"
             :image-url="stampImage('difference')"
           />
@@ -99,7 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, reactive, ref, watch } from "vue";
+import { ref, reactive } from "vue";
 import { stampUrl } from "../../utils/urls";
 import { jdToDate } from "../../utils/dates";
 import { customIteratorFactory } from "../../utils/array";
@@ -123,18 +125,24 @@ const data = reactive({
   selectedIndex: 0,
   activeTool: "crosshair",
 });
-const selected = computed((): any => props.detections[data.selectedIndex]);
+const selected: any = ref(props.detections[data.selectedIndex]);
 const iterator = customIteratorFactory(props.detections, data.selectedIndex);
 
-const nextDetection = () => {
+function nextDetection() {
   iterator.next();
   data.selectedIndex = iterator.current();
+  selected.value = props.detections[data.selectedIndex];
 };
 
-const previousDetection = () => {
+function previousDetection() {
   iterator.prev();
   data.selectedIndex = iterator.current();
+  selected.value = props.detections[data.selectedIndex];
 };
+
+function changeSelect(element: any) {
+  data.selectedIndex = iterator.moveTo(element);
+}
 
 function selectTool(toolId: string) {
   data.activeTool = toolId;

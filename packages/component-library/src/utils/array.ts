@@ -10,6 +10,10 @@ export function customIteratorFactory(array: any[], curr = 0) {
     },
     current() {
       return current;
-    }
-  }
+    },
+    moveTo(element: any) {
+      current = array.findIndex((x) => x === element);
+      return current;
+    },
+  };
 }
