@@ -1,0 +1,11 @@
+// Vitest Snapshot v1
+
+exports[`Stamps snapshot > snap 1`] = `
+<q-card-stub
+  bordered="false"
+  data-v-b5e15eb2=""
+  flat="false"
+  square="false"
+  tag="div"
+/>
+`;
