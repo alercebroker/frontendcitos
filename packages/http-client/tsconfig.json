@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "incremental": true,
-    "target": "es2017",
+    "target": "es5",
     "outDir": "build/main",
     "rootDir": "src",
     "moduleResolution": "node",
@@ -16,9 +16,16 @@
     "noFallthroughCasesInSwitch": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "lib": ["es2017"],
-    "types": ["jest", "node"],
+    "lib": ["es6", "dom"],
+    "types": ["reflect-metadata", "jest", "node"],
     "typeRoots": ["node_modules/@types", "src/types"]
+  },
+  "baseUrl": "./src",
+  "paths": {
+    "@/*": ["*"],
+    "@core/*": ["lib/core/*"],
+    "@clients/*": ["lib/clients/*"],
+    "@container/*": ["container/*"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules/**"],
