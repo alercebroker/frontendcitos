@@ -1,10 +1,22 @@
 <template>
   <div id="aladin-lite-div"></div>
 </template>
+<script lang="ts">
+declare const A: any;
+
+function appendScript(lib: string, onload?: () => void) {
+  const externalScript = document.createElement("script");
+  externalScript.setAttribute("src", lib);
+  if (onload) {
+    externalScript.onload = onload;
+  }
+  document.head.appendChild(externalScript);
+}
+</script>
 <script setup lang="ts">
 import { ref, onMounted, reactive, watch } from "vue";
 import { draw } from "./utils/draw";
-import * as A from "@cquiroz/aladin-lite/lib/js/A";
+// import * as A from "@cquiroz/aladin-lite/lib/js/A";
 
 const props = defineProps({
   fieldOfView: { type: Number, default: 0.01 },
@@ -22,18 +34,23 @@ const data = reactive({
 });
 
 onMounted(() => {
-  aladin.value = A.aladin("#aladin-lite-div", {
-    survey: "P/PanSTARRS/DR1/color-z-zg-g",
-    fov: props.fieldOfView,
-    cooFrame: "J2000d",
-    showFov: true,
-    showCoordinates: true,
-  });
-  data.objectSelected = props.objects.find(
-    (obj: any) => obj.oid === props.initObjectId
-  ) as any;
-  updateCatalog(props.objects);
-  aladin.value.view.reticleCanvas.onwheel = onReticleZoom;
+  appendScript(
+    "https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js",
+    () => {
+      aladin.value = A.aladin("#aladin-lite-div", {
+        survey: "P/PanSTARRS/DR1/color-z-zg-g",
+        fov: props.fieldOfView,
+        cooFrame: "J2000d",
+        showFov: true,
+        showCoordinates: true,
+      });
+      data.objectSelected = props.objects.find(
+        (obj: any) => obj.oid === props.initObjectId
+      ) as any;
+      updateCatalog(props.objects);
+      aladin.value.view.reticleCanvas.onwheel = onReticleZoom;
+    }
+  );
 });
 
 function onReticleZoom(event: WheelEvent) {
@@ -89,12 +106,12 @@ function addNearCatalogObjects(coordinates: { ra: number; dec: number }) {
     A.catalogFromSimbad(coordinates, 0.014, { onClick: "showTable" })
   );
 
-  // aladin.value.addCatalog(
-  //   A.catalogFromNED(coordinates, 0.014, {
-  //     onClick: "showTable",
-  //     shape: "plus",
-  //   })
-  // );
+  aladin.value.addCatalog(
+    A.catalogFromNED(coordinates, 0.014, {
+      onClick: "showTable",
+      shape: "plus",
+    })
+  );
 
   aladin.value.addCatalog(
     A.catalogFromVizieR("I/311/hip2", coordinates, 0.014, {
@@ -114,7 +131,7 @@ watch(
 );
 </script>
 
-<style scoped>
+<style>
 @import "https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css";
 
 #aladin-lite-div {
@@ -125,7 +142,7 @@ watch(
   min-height: 600px;
 }
 .aladin-measurement-div {
-  color: black;
+  color: black !important;
   display: block !important;
 }
 .aladin-reticleColor {
