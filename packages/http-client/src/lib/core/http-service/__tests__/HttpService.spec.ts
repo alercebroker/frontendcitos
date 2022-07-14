@@ -1,6 +1,6 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import { container } from '../../../../container/container'
+import { container, loadContainerModules } from '../../../../container/container'
 import { TYPES } from '../../../../container/types'
 import { HttpError } from '../../error/http-error'
 import { isParseError } from '../../error/parse-error'
@@ -45,6 +45,8 @@ class User {
 let httpService: IHttpService = undefined
 let parseTo: FailableParser<userResponse, userType[]>
 
+loadContainerModules()
+
 describe('HttpService', () => {
   beforeEach(() => {
     mock.reset()
@@ -71,10 +73,6 @@ describe('HttpService', () => {
       })
       return userArray
     }
-  })
-
-  afterEach(() => {
-    container.unbindAll()
   })
 
   describe('GET', () => {

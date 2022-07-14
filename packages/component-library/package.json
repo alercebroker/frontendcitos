@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
-    "test": "vitest --environment jsdom",
+    "test": "vitest --environment jsdom --run",
     "preview": "vite preview --port 4173",
     "test:unit": "",
     "build-only": "vite build",
