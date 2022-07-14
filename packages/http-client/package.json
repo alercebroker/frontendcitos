@@ -20,6 +20,7 @@
     "docs-build": "vitepress build docs",
     "docs-serve": "vitepress serve docs",
     "docs-deploy": "bash ./scripts/deploy_docs.sh",
+    "docs-md": "typedoc --plugin typedoc-plugin-markdown --cleanOutputDir false --out docs src",
     "test-unit": "jest",
     "test": "jest",
     "test-cucumber": "cucumber-js",

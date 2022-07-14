@@ -175,7 +175,7 @@ export class HttpService implements IHttpService {
     return response
   }
 
-  private _handleRequest(config: AxiosRequestConfig, accessToken) {
+  private _handleRequest(config: AxiosRequestConfig, accessToken: string) {
     if (accessToken) {
       config.headers = { Authorization: 'Bearer ' + accessToken }
     }

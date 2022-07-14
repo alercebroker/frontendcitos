@@ -13,13 +13,20 @@
 
 ### Interfaces
 
+- [ClientConfig](interfaces/ClientConfig.md)
+- [IAlertsClient](interfaces/IAlertsClient.md)
+- [IHttpError](interfaces/IHttpError.md)
 - [IHttpService](interfaces/IHttpService.md)
+- [singleObjectResponse](interfaces/singleObjectResponse.md)
 
 ### Type Aliases
 
 - [FailableParser](modules.md#failableparser)
 - [IHttpRequest](modules.md#ihttprequest)
+- [ObjectFilters](modules.md#objectfilters)
 - [Parser](modules.md#parser)
+- [listObjectResponse](modules.md#listobjectresponse)
+- [objectListItem](modules.md#objectlistitem)
 
 ### Functions
 
@@ -82,6 +89,34 @@ src/lib/core/http-service/HttpService.ts:19
 
 ___
 
+### ObjectFilters
+
+Ƭ **ObjectFilters**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `aid?` | `string`[] |
+| `count?` | `string` |
+| `dec?` | `number` |
+| `firstmjd?` | `number`[] |
+| `lastmjd?` | `number`[] |
+| `ndet?` | `number`[] |
+| `oid?` | `string`[] |
+| `order_by?` | `string` |
+| `order_mode?` | `string` |
+| `page?` | `number` |
+| `page_size?` | `number` |
+| `ra?` | `number` |
+| `radius?` | `number` |
+
+#### Defined in
+
+src/lib/clients/alerts/AlertsClient.types.ts:4
+
+___
+
 ### Parser
 
 Ƭ **Parser**<`T`, `M`\>: `Object`
@@ -104,6 +139,50 @@ parser type
 #### Defined in
 
 src/lib/core/http-service/HttpService.ts:36
+
+___
+
+### listObjectResponse
+
+Ƭ **listObjectResponse**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `has_next` | `boolean` |
+| `has_prev` | `boolean` |
+| `items` | [`objectListItem`](modules.md#objectlistitem)[] |
+| `next` | `number` |
+| `page` | `number` |
+| `prev` | `number` |
+| `total` | `number` |
+
+#### Defined in
+
+src/lib/clients/alerts/AlertsClient.types.ts:30
+
+___
+
+### objectListItem
+
+Ƭ **objectListItem**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `aid` | `string` |
+| `firstmjd` | `number` |
+| `lastmjd` | `number` |
+| `meandec` | `number` |
+| `meanra` | `number` |
+| `ndet` | `number` |
+| `oid` | `string`[] |
+
+#### Defined in
+
+src/lib/clients/alerts/AlertsClient.types.ts:20
 
 ## Functions
 

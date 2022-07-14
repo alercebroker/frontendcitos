@@ -1,11 +1,11 @@
 import { container } from './container/container'
 import { TYPES } from './container/types'
-import { ClientConfig } from './lib/clients/alerts/AlertsClient'
 import {
   IAlertsClient,
   listObjectResponse,
   ObjectFilters,
   singleObjectResponse,
+  ClientConfig
 } from './lib/clients/alerts/AlertsClient.types'
 import { Parser } from './lib/core/http-service/HttpService'
 import { Newable } from './lib/util.types'

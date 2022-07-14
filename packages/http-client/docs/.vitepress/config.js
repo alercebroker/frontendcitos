@@ -11,9 +11,9 @@ export default {
         items: [
           { text: 'Getting Started', link: '/getting-started' },
           { text: 'Modules', link: '/modules' },
-          { text: 'Base Client', link: '/getting-started' },
-          { text: 'Specialized Clients', link: '/getting-started' },
-          { text: 'Configuration', link: '/getting-started' },
+          { text: 'Base Client', link: '/base-client' },
+          { text: 'Specialized Clients', link: '/specialized-clients' },
+          { text: 'Configuration', link: '/configuration' },
         ],
       },
       {
@@ -22,6 +22,7 @@ export default {
         items: [
           { text: 'Examples', link: '/examples/HttpService' },
           { text: 'API', link: '/classes/HttpService' },
+          { text: 'Error', link: '/classes/HttpError' },
         ],
       },
       {

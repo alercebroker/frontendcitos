@@ -1,6 +1,6 @@
 import { isHttpError } from '../../../core/error/http-error'
 import { isParseError } from '../../../core/error/parse-error'
-import { listObjectResponse, ObjectFilters } from '../AlertsClient.types'
+import { listObjectResponse, ObjectFilters, singleObjectResponse } from '../AlertsClient.types'
 import { Parser } from '../../../core/http-service/HttpService'
 import { AlertsClient } from '../../../..'
 
@@ -143,5 +143,15 @@ export async function exampleQueryObjectsByConesearch(): Promise<listObjectRespo
     // handle different types of exceptions
     // console.error(exception)
     throw exception
+  }
+}
+
+
+export async function exampleQuerySingleObject(): Promise<singleObjectResponse> {
+  const aid = "aid123"
+  try {
+    return await AlertsClient.querySingleObject<singleObjectResponse>(aid)
+  } catch (err) {
+    throw err
   }
 }

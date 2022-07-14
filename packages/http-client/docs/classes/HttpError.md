@@ -12,7 +12,7 @@ HttpError class
 
 ## Implements
 
-- `IHttpError`
+- [`IHttpError`](../interfaces/IHttpError.md)
 
 ## Table of contents
 
@@ -73,7 +73,7 @@ ___
 
 #### Implementation of
 
-IHttpError.message
+[IHttpError](../interfaces/IHttpError.md).[message](../interfaces/IHttpError.md#message)
 
 #### Inherited from
 
@@ -91,7 +91,7 @@ ___
 
 #### Implementation of
 
-IHttpError.name
+[IHttpError](../interfaces/IHttpError.md).[name](../interfaces/IHttpError.md#name)
 
 #### Inherited from
 
@@ -109,7 +109,7 @@ ___
 
 #### Implementation of
 
-IHttpError.stack
+[IHttpError](../interfaces/IHttpError.md).[stack](../interfaces/IHttpError.md#stack)
 
 #### Inherited from
 
@@ -127,7 +127,7 @@ ___
 
 #### Implementation of
 
-IHttpError.status
+[IHttpError](../interfaces/IHttpError.md).[status](../interfaces/IHttpError.md#status)
 
 #### Defined in
 

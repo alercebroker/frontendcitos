@@ -4,7 +4,7 @@
 
 import { HttpStatusCode } from './http-status-code'
 
-interface IHttpError {
+export interface IHttpError {
   status: number
   name: string
   message: string

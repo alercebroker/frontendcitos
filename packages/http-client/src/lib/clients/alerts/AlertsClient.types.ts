@@ -51,3 +51,8 @@ export interface IAlertsClient {
     customModel?: Newable<T>
   ): Promise<T>
 }
+
+export interface ClientConfig {
+  baseUrl?: string
+  accessToken?: string
+}

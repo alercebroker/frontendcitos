@@ -24,17 +24,17 @@
 
 ### create
 
-▸ `Static` **create**(`config`): `IAlertsClient`
+▸ `Static` **create**(`config`): [`IAlertsClient`](../interfaces/IAlertsClient.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `config` | `ClientConfig` |
+| `config` | [`ClientConfig`](../interfaces/ClientConfig.md) |
 
 #### Returns
 
-`IAlertsClient`
+[`IAlertsClient`](../interfaces/IAlertsClient.md)
 
 ___
 
@@ -52,8 +52,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `objectFilters` | `ObjectFilters` |
-| `parser?` | [`Parser`](../modules.md#parser)<`listObjectResponse`, `T`\> |
+| `objectFilters` | [`ObjectFilters`](../modules.md#objectfilters) |
+| `parser?` | [`Parser`](../modules.md#parser)<[`listObjectResponse`](../modules.md#listobjectresponse), `T`\> |
 | `customModel?` | `Newable`<`T`\> |
 
 #### Returns
@@ -77,7 +77,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `aid` | `string` |
-| `parser?` | [`Parser`](../modules.md#parser)<`singleObjectResponse`, `T`\> |
+| `parser?` | [`Parser`](../modules.md#parser)<[`singleObjectResponse`](../interfaces/singleObjectResponse.md), `T`\> |
 | `customModel?` | `Newable`<`T`\> |
 
 #### Returns

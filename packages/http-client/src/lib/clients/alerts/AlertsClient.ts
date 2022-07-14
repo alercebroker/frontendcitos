@@ -4,16 +4,13 @@ import { IHttpService, Parser } from '../../core/http-service/HttpService'
 import { Newable } from '../../util.types'
 
 import {
+  ClientConfig,
   IAlertsClient,
   listObjectResponse,
   ObjectFilters,
   singleObjectResponse,
 } from './AlertsClient.types'
 
-export interface ClientConfig {
-  baseUrl?: string
-  accessToken?: string
-}
 
 @injectable()
 export class AlertsClient implements IAlertsClient {
@@ -55,7 +52,12 @@ export class AlertsClient implements IAlertsClient {
   ): Promise<T> {
     if (!parser) {
       parser = {
-        parseTo: (res: singleObjectResponse): T => new customModel(res),
+        parseTo: (res: singleObjectResponse): T => {
+          if (customModel) {
+            return new customModel(res)
+          }
+          return res as unknown as T
+        }
       }
     }
     return this.httpService.get(

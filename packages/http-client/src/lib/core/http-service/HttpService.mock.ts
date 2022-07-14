@@ -28,7 +28,6 @@ export class HttpServiceObjectMocks implements IHttpService {
         this.accessToken = accessToken
     }
     get<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M> {
-        console.log("GET TYPE", this.testType)
         if (this.testType === 'success') {
             return this.getSuccess<T, M>(request, parser)
         } else if (this.testType === 'clientError') {
