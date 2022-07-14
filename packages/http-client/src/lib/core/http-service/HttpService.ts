@@ -8,9 +8,10 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios'
+import { injectable } from 'inversify'
 
-import { HttpError } from './error/http-error'
-import { ParseError } from './error/parse-error'
+import { HttpError } from '../error/http-error'
+import { ParseError } from '../error/parse-error'
 
 /**
  * HttpRequest Interface
@@ -40,15 +41,22 @@ export type Parser<T, M> = {
  * http service interface
  */
 export interface IHttpService {
+  connect(
+    baseUrl: string,
+    axiosInstance?: AxiosInstance,
+    accessToken?: string
+  ): void
   get<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M>
   post<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M>
   put<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M>
   delete(request: IHttpRequest): Promise<number>
+  setAccessToken(accessToken: string): void
 }
 
 /**
  * http service class
  */
+@injectable()
 export class HttpService implements IHttpService {
   protected axiosInstance!: AxiosInstance
   private accessToken: string
@@ -59,11 +67,7 @@ export class HttpService implements IHttpService {
    * @param axiosInstance - optional axios instance to use instead of creating a new one
    * @param accessToken - token for authentication with the API
    */
-  constructor(
-    baseUrl: string,
-    axiosInstance?: AxiosInstance,
-    accessToken = ''
-  ) {
+  connect(baseUrl: string, axiosInstance?: AxiosInstance, accessToken = '') {
     if (axiosInstance) {
       this.axiosInstance = axiosInstance
     } else {
@@ -171,7 +175,7 @@ export class HttpService implements IHttpService {
     return response
   }
 
-  private _handleRequest(config: AxiosRequestConfig, accessToken) {
+  private _handleRequest(config: AxiosRequestConfig, accessToken: string) {
     if (accessToken) {
       config.headers = { Authorization: 'Bearer ' + accessToken }
     }

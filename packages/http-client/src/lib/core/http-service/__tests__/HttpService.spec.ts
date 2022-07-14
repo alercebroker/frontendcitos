@@ -1,12 +1,18 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
+import { container, loadContainerModules } from '../../../../container/container'
+import { TYPES } from '../../../../container/types'
+import { HttpError } from '../../error/http-error'
+import { isParseError } from '../../error/parse-error'
+import { FailableParser, IHttpService } from '../HttpService'
 
-import { HttpError } from './error/http-error'
-import { isParseError } from './error/parse-error'
-import { FailableParser, HttpService } from './http-service'
 
-const mock = new MockAdapter(axios)
-
+const axiosInstance = axios.create({
+  baseURL: 'test',
+  headers: { 'Content-Type': 'application/json' },
+  withCredentials: true,
+})
+const mock = new MockAdapter(axiosInstance)
 type userResponse = {
   users: userType[]
 }
@@ -36,8 +42,10 @@ class User {
   }
 }
 
-let httpService: HttpService = undefined
+let httpService: IHttpService = undefined
 let parseTo: FailableParser<userResponse, userType[]>
+
+loadContainerModules()
 
 describe('HttpService', () => {
   beforeEach(() => {
@@ -56,7 +64,8 @@ describe('HttpService', () => {
     mock.onGet('/parseError').reply(200, {
       users: [{ id: 1, lastName: 'Smith' }],
     })
-    httpService = new HttpService('baseUrl')
+    httpService = container.get<IHttpService>(TYPES.IHttpService)
+    httpService.connect('baseUrl', axiosInstance)
     parseTo = (rawData: userResponse): userType[] => {
       const userArray = []
       rawData.users.forEach((user) => {
@@ -65,6 +74,7 @@ describe('HttpService', () => {
       return userArray
     }
   })
+
   describe('GET', () => {
     test('get /users should return parsed data', async () => {
       const result = await httpService.get(
