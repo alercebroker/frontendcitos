@@ -1,5 +1,5 @@
 <template>
-  <div id="aladin-div"></div>
+  <div id="aladin-lite-div"></div>
 </template>
 <script setup lang="ts">
 import { ref, onMounted, reactive, watch } from "vue";
@@ -7,7 +7,7 @@ import { draw } from "./utils/draw";
 import * as A from "@cquiroz/aladin-lite/lib/js/A";
 
 const props = defineProps({
-  fieldOfView: { type: Number, default: 0.03 },
+  fieldOfView: { type: Number, default: 0.01 },
   objects: { type: Array, default: () => [] }, //astronomic objects
   circleSize: { type: Number, default: 2 },
   displayClass: { type: String, default: "" },
@@ -17,11 +17,12 @@ const props = defineProps({
 const aladin: any = ref(null);
 const data = reactive({
   objectSelected: {},
-  catalog: [],
+  aladinObjectSelected: null,
+  catalog: { sources: [] },
 });
 
 onMounted(() => {
-  aladin.value = A.aladin("#aladin-div", {
+  aladin.value = A.aladin("#aladin-lite-div", {
     survey: "P/PanSTARRS/DR1/color-z-zg-g",
     fov: props.fieldOfView,
     cooFrame: "J2000d",
@@ -32,7 +33,6 @@ onMounted(() => {
     (obj: any) => obj.oid === props.initObjectId
   ) as any;
   updateCatalog(props.objects);
-  onObjectSelected(data.objectSelected);
   aladin.value.view.reticleCanvas.onwheel = onReticleZoom;
 });
 
@@ -76,6 +76,9 @@ function onObjectSelected(newObject: any) {
     dec: newObject.meandec,
   };
   addNearCatalogObjects(coordinates);
+  data.aladinObjectSelected = data.catalog.sources.find((source: any) => {
+    return source.data.name === newObject.oid;
+  }) as any;
   aladin.value.gotoRaDec(coordinates.ra, coordinates.dec);
 }
 
@@ -86,12 +89,12 @@ function addNearCatalogObjects(coordinates: { ra: number; dec: number }) {
     A.catalogFromSimbad(coordinates, 0.014, { onClick: "showTable" })
   );
 
-  aladin.value.addCatalog(
-    A.catalogFromNED(coordinates, 0.014, {
-      onClick: "showTable",
-      shape: "plus",
-    })
-  );
+  // aladin.value.addCatalog(
+  //   A.catalogFromNED(coordinates, 0.014, {
+  //     onClick: "showTable",
+  //     shape: "plus",
+  //   })
+  // );
 
   aladin.value.addCatalog(
     A.catalogFromVizieR("I/311/hip2", coordinates, 0.014, {
@@ -100,19 +103,30 @@ function addNearCatalogObjects(coordinates: { ra: number; dec: number }) {
   );
 }
 
-watch([data.objectSelected], onObjectSelected);
+watch(() => data.objectSelected, onObjectSelected);
+watch(
+  () => data.aladinObjectSelected,
+  (newASelected: any, currentASelected: any) => {
+    console.info("new aladin object", newASelected);
+    if (newASelected) newASelected.select();
+    if (currentASelected) currentASelected.deselect();
+  }
+);
 </script>
 
 <style scoped>
-#aladin-div {
+@import "https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css";
+
+#aladin-lite-div {
   padding: 0;
   margin: 0;
   height: 100%;
   width: 100%;
-  min-height: 400px;
+  min-height: 600px;
 }
 .aladin-measurement-div {
   color: black;
+  display: block !important;
 }
 .aladin-reticleColor {
   color: black;

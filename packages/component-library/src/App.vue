@@ -1,18 +1,42 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import AladinViewer from "./components/aladin/AladinViewer.vue";
+
+const params = {
+  objects: [
+    {
+      oid: "ZTF20aaelulu",
+      ndethist: "259",
+      ncovhist: 792,
+      mjdstarthist: 58855.45880790008,
+      mjdendhist: 58967.22704860009,
+      corrected: false,
+      stellar: false,
+      ndet: 58,
+      g_r_max: 0.44063377,
+      g_r_max_corr: null,
+      g_r_mean: 0.69992447,
+      g_r_mean_corr: null,
+      firstmjd: 58855.54229169991,
+      lastmjd: 58967.22704860009,
+      deltajd: 111.68475690018386,
+      meanra: 185.72886239827588,
+      meandec: 15.823611163793103,
+      sigmara: 0.000020912251856557,
+      sigmadec: 0.000015130516372812443,
+      step_id_corr: "corr_bulk_0.0.1",
+    },
+  ],
+  initObjectId: "ZTF20aaelulu",
+};
+</script>
 
 <template>
-  <header>
-    <img
-      alt="Vue logo"
-      class="logo"
-      src="./assets/logo.svg"
-      width="125"
-      height="125"
-    />
-
-    <div class="wrapper"></div>
+  <header style="width: 100%; height: 100%; min-width: 1000px;">
+    <aladin-viewer
+      :objects="params.objects"
+      :init-object-id="params.initObjectId"
+    ></aladin-viewer>
   </header>
-  <main></main>
 </template>
 
 <style>
