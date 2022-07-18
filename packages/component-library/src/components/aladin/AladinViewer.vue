@@ -4,17 +4,22 @@
 <script lang="ts">
 declare const A: any;
 
-function appendScript(lib: string, onload?: () => void) {
-  // check if library exists before appending it
-  if (document.querySelectorAll(`script[src="${lib}"]`).length > 0)
-    return onload ? onload() : null;
+function appendScript(lib: string, onload?: () => void): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const resolveFunction = () => {
+      if (onload)
+        onload();
+      resolve();
+    }
+    // check if library exists before appending it
+    if (document.querySelectorAll(`script[src="${lib}"]`).length > 0)
+      return resolveFunction();
 
-  const externalScript = document.createElement("script");
-  externalScript.setAttribute("src", lib);
-  if (onload) {
-    externalScript.onload = onload;
-  }
-  document.head.appendChild(externalScript);
+    const externalScript = document.createElement("script");
+    externalScript.setAttribute("src", lib);
+    externalScript.onload = resolveFunction;
+    document.head.appendChild(externalScript);
+  }) 
 }
 </script>
 <script setup lang="ts">
@@ -37,8 +42,9 @@ const data = reactive({
 });
 const emit = defineEmits(["objectSelected"]);
 
-onMounted(() => {
-  appendScript(
+onMounted(async () => {
+  await appendScript("https://code.jquery.com/jquery-1.12.1.min.js");
+  await appendScript(
     "https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js",
     () => {
       aladin.value = A.aladin("#aladin-lite-div", {

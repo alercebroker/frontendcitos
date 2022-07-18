@@ -20,7 +20,6 @@
     "docs-deploy": "bash ./scripts/deploy_docs.sh"
   },
   "dependencies": {
-    "@cquiroz/aladin-lite": "^0.5.1",
     "@quasar/extras": "^1.14.1",
     "echarts": "^5.3.3",
     "quasar": "^2.7.3",
