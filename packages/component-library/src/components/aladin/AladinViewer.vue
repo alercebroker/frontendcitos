@@ -5,6 +5,10 @@
 declare const A: any;
 
 function appendScript(lib: string, onload?: () => void) {
+  // check if library exists before appending it
+  if (document.querySelectorAll(`script[src="${lib}"]`).length > 0)
+    return onload ? onload() : null;
+
   const externalScript = document.createElement("script");
   externalScript.setAttribute("src", lib);
   if (onload) {
@@ -14,9 +18,8 @@ function appendScript(lib: string, onload?: () => void) {
 }
 </script>
 <script setup lang="ts">
-import { ref, onMounted, reactive, watch } from "vue";
+import { ref, onMounted, reactive, watch, defineEmits } from "vue";
 import { draw } from "./utils/draw";
-// import * as A from "@cquiroz/aladin-lite/lib/js/A";
 
 const props = defineProps({
   fieldOfView: { type: Number, default: 0.01 },
@@ -32,6 +35,7 @@ const data = reactive({
   aladinObjectSelected: null,
   catalog: { sources: [] },
 });
+const emit = defineEmits(["objectSelected"]);
 
 onMounted(() => {
   appendScript(
@@ -44,14 +48,18 @@ onMounted(() => {
         showFov: true,
         showCoordinates: true,
       });
-      data.objectSelected = props.objects.find(
-        (obj: any) => obj.oid === props.initObjectId
-      ) as any;
+      data.objectSelected = findObjectByOid(props.initObjectId);
       updateCatalog(props.objects);
       aladin.value.view.reticleCanvas.onwheel = onReticleZoom;
     }
   );
 });
+
+function findObjectByOid(oid: string) {
+  return props.objects.find(
+    (obj: any) => obj.oid === props.initObjectId
+  ) as any;
+}
 
 function onReticleZoom(event: WheelEvent) {
   event.preventDefault();
@@ -66,6 +74,15 @@ function onReticleZoom(event: WheelEvent) {
   }
   aladin.value.view.setZoomLevel(level);
   return false;
+}
+
+function onObjectClicked(object: any) {
+  if (object) {
+    emit("objectSelected", findObjectByOid(object.data.name));
+    return;
+  }
+  data.objectSelected = null as any;
+  emit("objectSelected", {});
 }
 
 function updateCatalog(objects: any[]) {
@@ -83,6 +100,7 @@ function updateCatalog(objects: any[]) {
   catalog.addSources(sources);
   aladin.value.addCatalog(catalog);
   //onclick
+  aladin.value.on("objectClicked", onObjectClicked);
   data.catalog = catalog;
 }
 

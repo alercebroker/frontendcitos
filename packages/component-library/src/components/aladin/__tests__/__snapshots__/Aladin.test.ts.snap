@@ -1,0 +1,7 @@
+// Vitest Snapshot v1
+
+exports[`Aladin tests > snapshot tests 1`] = `
+<div
+  id="aladin-lite-div"
+/>
+`;
