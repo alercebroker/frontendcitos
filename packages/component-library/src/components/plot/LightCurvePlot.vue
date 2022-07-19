@@ -4,7 +4,7 @@
     autoresize
     :option="options"
     @click="onDetectionClick"
-    style="height: 500px"
+    style="min-height: 200px"
   ></v-chart>
 </template>
 
