@@ -8,4 +8,8 @@ import { RouterView } from "vue-router";
   </main>
 </template>
 
-<style></style>
+<style lang="css">
+.body--light {
+  background: #f5f5f5;
+}
+</style>

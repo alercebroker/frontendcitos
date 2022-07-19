@@ -10,6 +10,7 @@
       "@ui/*": ["./src/ui/*"],
       "@app/*": ["./src/app/*"],
       "@common/*": ["./src/common/*"]
-    }
+    },
+    "experimentalDecorators": true
   }
 }

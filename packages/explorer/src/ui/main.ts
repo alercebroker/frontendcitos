@@ -15,10 +15,9 @@ app.use(createPinia())
 app.use(router)
 app.use(Quasar, {
     plugins: {
-        Dark
     },
 })
-Dark.set(true)
+Dark.set(false)
 
 
 app.mount('#app')

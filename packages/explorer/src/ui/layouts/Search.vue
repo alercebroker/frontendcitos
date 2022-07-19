@@ -4,8 +4,8 @@ import { RouterView } from "vue-router";
 <template>
   <q-layout>
     <q-header>
-      <div class="row no-shadow justify-end">
-        <q-toolbar class="bg-dark col-4">
+      <div class="row no-shadow justify-end toolbar-space">
+        <q-toolbar class="col-4 bg-primary">
           <q-avatar>
             <img
               src="https://alerce-static.s3.amazonaws.com/logos/footerAlerceWhite.png"
@@ -25,6 +25,6 @@ import { RouterView } from "vue-router";
 </template>
 
 <style scoped lang="sass">
-div
-  background-color: $dark-page
+.toolbar-space
+    background-color: $light-page
 </style>
