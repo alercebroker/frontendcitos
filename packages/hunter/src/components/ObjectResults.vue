@@ -1,57 +1,70 @@
 <template>
   <div id="results">
     <div class="row">
+      <div class="col-6"><FirstDetection v-bind="dummySelectedObject" /></div>
       <div class="col-6">
-        <q-card align="center" class="q-ma-sm">
-          <q-card-section>
-            <div class="text-h5">
-              ZTF12354
-            </div>
-            <div class="text-subtitle1">
-              (First detection info.)
-            </div>
-          </q-card-section>
-          <q-card-section>
-            <div class="row">
-              <div class="col">
-                <div class="text-subtitle2">
-                  RA: 123253
-                </div>
-                <div class="text-subtitle2">
-                  DEC: 123253
-                </div>
-              </div>
-              <div class="col">
-                <div class="text-subtitle2">
-                  MJD: 9837459834
-                </div>
-                <div class="text-subtitle2">
-                  Number of detections: 69
-                </div>
-              </div>
-            </div>
-          </q-card-section>
-          <q-card-actions align="around">
-            <q-btn>NED</q-btn>
-            <q-btn>TNS</q-btn>
-            <q-btn>SIMBAD</q-btn>
-          </q-card-actions>
+        <q-card flat bordered class="q-ma-sm" style="height: 100%">
+          <LightCurvePlot
+            type="apparent"
+            :detections="detections"
+            :non-detections="[]"
+          />
         </q-card>
       </div>
-      <div class="col-6">
-        <LightCurvePlot
-          type="apparent"
-          :detections="detections"
-          :non-detections="[]"
-        />
-      </div>
+    </div>
+    <div class="row">
+      <q-card flat bordered class="q-ma-sm q-mt-md col-9">
+        <q-card-content>
+          <StampComponent
+            image-service-url="http://avro.alerce.online/get_stamp"
+            :detections="dummyStampDetections"
+            object-id="ZTF20aaelulu"
+          />
+        </q-card-content>
+      </q-card>
+      <q-card flat bordered class="col-3">
+        <CelestialView />
+      </q-card>
+    </div>
+    <div class="row">
+      <q-card>
+        <q-card-content>
+          Ayy lmao
+        </q-card-content>
+      </q-card>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import LightCurvePlot from "@alercebroker/component-library/src/components/plot/LightCurvePlot.vue"
+import LightCurvePlot from "@alercebroker/component-library/src/components/plot/LightCurvePlot.vue";
+import StampComponent from "@alercebroker/component-library/src/components/stamp/StampCard.vue";
+import FirstDetection from "./subcomponents/FirstDetection.vue";
+import CelestialView from "./CelestialView.vue";
+
+//deletos from here
 import detections from "@alercebroker/component-library/src/stories/data/detection.json";
+
+const dummySelectedObject = {
+  oid: "ZTF123545",
+  ra: 1231,
+  dec: 3213,
+  mjd: 55000.2389,
+  detectionsQuantity: 69,
+};
+const dummyStampDetections = [
+  {
+    tid: "ztf",
+    mjd: 58855.54229169991,
+    candid: "1101542291015015004",
+  },
+  {
+    tid: "ztf",
+    mjd: 58859.481250000186,
+    candid: "1105481241015015001",
+  },
+];
+//to here
 </script>
 
 <style scoped>

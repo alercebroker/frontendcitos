@@ -16,6 +16,7 @@
     "@alercebroker/component-library": "^1.1.0-rc.3",
     "@alercebroker/http-client": "^1.1.0-rc.2",
     "@quasar/extras": "^1.14.3",
+    "d3-celestial": "0.6.11",
     "echarts": "^5.3.3",
     "pinia": "^2.0.14",
     "quasar": "^2.7.5",

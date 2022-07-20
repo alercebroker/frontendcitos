@@ -36,7 +36,7 @@
           </q-btn>
         </div>
         <div class="col-1">
-          <q-btn size="s" color="primary" @click="onAvroClick">AVRO</q-btn>
+          <q-btn size="md" color="primary" @click="onAvroClick">AVRO</q-btn>
         </div>
         <div class="col-1">
           <q-icon name="error" size="2rem">

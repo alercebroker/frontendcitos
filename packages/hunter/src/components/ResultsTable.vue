@@ -1,5 +1,5 @@
 <template>
-  <q-card flat class="q-ma-sm">
+  <q-card flat bordered class="q-ma-sm">
     <div v-for="object in objects" :key="object.name">
       <q-card class="q-ma-xs">
         <q-card-section class="row">
