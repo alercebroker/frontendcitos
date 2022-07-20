@@ -7,10 +7,9 @@ declare const A: any;
 function appendScript(lib: string, onload?: () => void): Promise<void> {
   return new Promise((resolve, reject) => {
     const resolveFunction = () => {
-      if (onload)
-        onload();
+      if (onload) onload();
       resolve();
-    }
+    };
     // check if library exists before appending it
     if (document.querySelectorAll(`script[src="${lib}"]`).length > 0)
       return resolveFunction();
@@ -19,7 +18,7 @@ function appendScript(lib: string, onload?: () => void): Promise<void> {
     externalScript.setAttribute("src", lib);
     externalScript.onload = resolveFunction;
     document.head.appendChild(externalScript);
-  }) 
+  });
 }
 </script>
 <script setup lang="ts">
@@ -163,7 +162,6 @@ watch(
   margin: 0;
   height: 100%;
   width: 100%;
-  min-height: 600px;
 }
 .aladin-measurement-div {
   color: black !important;

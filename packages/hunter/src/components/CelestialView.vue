@@ -1,6 +1,4 @@
 <script lang="ts">
-import { Celestial } from "d3-celestial";
-import "d3-celestial/celestial";
 </script>
 
 <script setup lang="ts">
@@ -14,7 +12,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-@import "d3-celestial/celestial.css";
 </style>
 
 <template>

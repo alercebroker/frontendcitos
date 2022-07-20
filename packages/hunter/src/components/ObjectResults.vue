@@ -12,24 +12,23 @@
         </q-card>
       </div>
     </div>
-    <div class="row">
+    <div class="row justify-center">
       <q-card flat bordered class="q-ma-sm q-mt-md col-9">
         <q-card-content>
           <StampComponent
             image-service-url="http://avro.alerce.online/get_stamp"
             :detections="dummyStampDetections"
             object-id="ZTF20aaelulu"
+            hide-tools="true"
           />
         </q-card-content>
       </q-card>
-      <q-card flat bordered class="col-3">
-        <CelestialView />
-      </q-card>
+      <q-card flat bordered class="col-3"> </q-card>
     </div>
-    <div class="row">
-      <q-card>
-        <q-card-content>
-          Ayy lmao
+    <div class="row" style="height: 33vh">
+      <q-card class="col-12" style="width: 100%">
+        <q-card-content horizontal>
+          <AladinViewer :objects="dummyAladin" init-object-id="ZTF20aaelulu" />
         </q-card-content>
       </q-card>
     </div>
@@ -39,8 +38,9 @@
 <script setup lang="ts">
 import LightCurvePlot from "@alercebroker/component-library/src/components/plot/LightCurvePlot.vue";
 import StampComponent from "@alercebroker/component-library/src/components/stamp/StampCard.vue";
+import AladinViewer from "@alercebroker/component-library/src/components/aladin/AladinViewer.vue";
+
 import FirstDetection from "./subcomponents/FirstDetection.vue";
-import CelestialView from "./CelestialView.vue";
 
 //deletos from here
 import detections from "@alercebroker/component-library/src/stories/data/detection.json";
@@ -62,6 +62,13 @@ const dummyStampDetections = [
     tid: "ztf",
     mjd: 58859.481250000186,
     candid: "1105481241015015001",
+  },
+];
+const dummyAladin = [
+  {
+    oid: "ZTF20aaelulu",
+    meanra: 185.72886239827588,
+    meandec: 15.823611163793103,
   },
 ];
 //to here
