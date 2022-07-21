@@ -7,10 +7,7 @@ export interface Callbacks {
   respondWithParseError(error: ParseError): void;
   respondWithAppError?(error: Error): void;
 }
-export abstract class UseCase {
-  private service: unknown;
-  constructor(service: unknown) {
-    this.service = service;
-  }
-  abstract execute(params: unknown, callbacks: Callbacks): void;
+
+export interface UseCase {
+  execute(params: unknown, callbacks: Callbacks): void;
 }

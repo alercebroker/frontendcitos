@@ -11,7 +11,7 @@ export class ObjectEntity extends Entity<ObjectModel> implements IObject {
   }
 
   getCoordinatesHms() {
-    return { ra: this.props.ra, dec: this.props.dec };
+    return { ra: this.props.ra.toString(), dec: this.props.dec.toString() };
   }
 
   getFirstUTCDate(): Date {

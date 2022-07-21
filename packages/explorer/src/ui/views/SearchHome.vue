@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { parsedSearch } from "./parsers/parsedSearch";
-import type { SearchInput } from "./parsers/SearchParser.types";
+import { storeProvider } from "@/ui/stores/search/storeProvider";
+import type { SearchInput } from "@/ui/stores/search/types";
+
+const searchStore = storeProvider();
 
 const searchInput: SearchInput = reactive({
   ndet: {
@@ -18,6 +20,7 @@ const searchInput: SearchInput = reactive({
     radius: null,
   },
 });
+
 const tab = ref("general");
 </script>
 
@@ -152,7 +155,7 @@ const tab = ref("general");
     </div>
     <div class="row justify-center q-ml-xl q-mr-xl">
       <div
-        v-for="query in searchStore.$searchInput.premadeQueries"
+        v-for="query in searchStore.premadeQueries"
         :key="query.title"
         class="col-lg-3 col-md-6 col-sm-12 fast-query q-ml-md q-mr-md"
       >
@@ -166,7 +169,12 @@ const tab = ref("general");
           </q-card-section>
 
           <q-card-actions>
-            <q-btn flat label="Search" @click="parsedSearch(searchInput)" />
+            <q-btn
+              data-test="search"
+              flat
+              label="Search"
+              @click="searchStore.search(searchInput)"
+            />
             <q-btn flat label="Fill Parameters" />
           </q-card-actions>
         </q-card>
