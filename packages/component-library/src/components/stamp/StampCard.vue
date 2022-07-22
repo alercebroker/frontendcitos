@@ -1,6 +1,6 @@
 <template>
   <q-card>
-    <q-card-section style="padding: 0">
+    <q-card-section style="padding: 0" v-if="!hideTools">
       <div class="row justify-center">
         <div class="col-6">
           <q-select
@@ -36,7 +36,7 @@
           </q-btn>
         </div>
         <div class="col-1">
-          <q-btn size="s" color="primary" @click="onAvroClick">AVRO</q-btn>
+          <q-btn size="md" color="primary" @click="onAvroClick">AVRO</q-btn>
         </div>
         <div class="col-1">
           <q-icon name="error" size="2rem">
@@ -79,7 +79,7 @@
       </div>
     </q-card-section>
     <q-separator></q-separator>
-    <q-card-section>
+    <q-card-section v-if="!hideTools">
       <div class="row justify-center">
         <q-icon
           v-for="tool in tools"
@@ -116,6 +116,7 @@ const props = defineProps({
   detections: { type: Array, required: true },
   imageServiceUrl: { type: String, required: true },
   objectId: { type: String, required: true },
+  hideTools: { type: Boolean, default: false },
 });
 
 const emit = defineEmits(["selectDetection", "toggleFullscreen", "avroClick"]);

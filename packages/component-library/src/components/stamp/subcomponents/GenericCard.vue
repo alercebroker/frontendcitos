@@ -10,8 +10,9 @@
           outline
           color="primary"
           icon="cloud_download"
+          size="sm"
           :href="data.imageDownload"
-          >Download</q-btn
+          ></q-btn
         >
       </div>
     </q-card-section>
@@ -58,5 +59,9 @@ const data = reactive({
 
 .card-header {
   padding: 0 1rem;
+}
+
+.card-image {
+  padding-top: 0;
 }
 </style>
