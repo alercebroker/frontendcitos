@@ -1,1 +1,1 @@
-declare module 'd3-celestial'
+declare module "d3-celestial";

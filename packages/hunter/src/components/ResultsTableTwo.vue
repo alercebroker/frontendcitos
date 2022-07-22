@@ -42,7 +42,7 @@ const columns = [
     name: "status",
     label: "Status",
     field: "status",
-    align: "center"
+    align: "center",
   },
 ];
 const objects2 = [

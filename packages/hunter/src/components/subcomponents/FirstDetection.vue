@@ -12,7 +12,9 @@
         </div>
         <div class="col">
           <div class="text-subtitle2">MJD: {{ mjd }}</div>
-          <div class="text-subtitle2">Number of detections: {{ detectionsQuantity }}</div>
+          <div class="text-subtitle2">
+            Number of detections: {{ detectionsQuantity }}
+          </div>
         </div>
       </div>
     </q-card-section>
@@ -25,11 +27,12 @@
 </template>
 
 <script setup lang="ts">
+import { defineProps } from "vue";
 const props = defineProps({
   oid: { type: String, required: true },
   ra: { type: Number, required: true },
   dec: { type: Number, required: true },
   mjd: { type: Number, required: true },
-  detectionsQuantity: { type: Number, required: true }
-})
+  detectionsQuantity: { type: Number, required: true },
+});
 </script>
