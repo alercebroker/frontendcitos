@@ -1,21 +1,23 @@
 <template>
-  <div id="aladin-lite-div"></div>
+  <div :id="props.divId"></div>
 </template>
 <script lang="ts">
 declare const A: any;
 
 function appendScript(lib: string, onload?: () => void): Promise<void> {
   return new Promise((resolve, reject) => {
-    const resolveFunction = () => {
+    function resolveFunction() {
       if (onload) onload();
       resolve();
     };
     // check if library exists before appending it
-    if (document.querySelectorAll(`script[src="${lib}"]`).length > 0)
+    if (document.querySelectorAll(`script[src="${lib}"]`).length > 0){
       return resolveFunction();
+    }
 
     const externalScript = document.createElement("script");
     externalScript.setAttribute("src", lib);
+    externalScript.async = false;
     externalScript.onload = resolveFunction;
     document.head.appendChild(externalScript);
   });
@@ -26,6 +28,7 @@ import { ref, onMounted, reactive, watch, defineEmits } from "vue";
 import { draw } from "./utils/draw";
 
 const props = defineProps({
+  divId: { type: String, default: "aladin-lite-div" },
   fieldOfView: { type: Number, default: 0.01 },
   objects: { type: Array, default: () => [] }, //astronomic objects
   circleSize: { type: Number, default: 2 },
@@ -39,23 +42,27 @@ const data = reactive({
   aladinObjectSelected: null,
   catalog: { sources: [] },
 });
-const emit = defineEmits(["objectSelected"]);
+const emit = defineEmits(["objectSelected", "mounted"]);
 
 onMounted(async () => {
   await appendScript("https://code.jquery.com/jquery-1.12.1.min.js");
   await appendScript(
-    "https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.js",
-    () => {
-      aladin.value = A.aladin("#aladin-lite-div", {
-        survey: "P/PanSTARRS/DR1/color-z-zg-g",
-        fov: props.fieldOfView,
-        cooFrame: "J2000d",
-        showFov: true,
-        showCoordinates: true,
+    "https://aladin.cds.unistra.fr/AladinLite/api/v3/latest/aladin.js",
+    function() {
+      A.init.then(() => {
+        aladin.value = A.aladin("#" + props.divId, {
+          survey: "P/PanSTARRS/DR1/color-z-zg-g",
+          fov: props.fieldOfView,
+          cooFrame: "J2000d",
+          showFov: true,
+          showCoordinates: true,
+        });
+        data.objectSelected = findObjectByOid(props.initObjectId);
+        updateCatalog(props.objects);
+        aladin.value.setProjection("AIT");
+        aladin.value.view.reticleCache.onwheel = onReticleZoom;
+        emit("mounted");
       });
-      data.objectSelected = findObjectByOid(props.initObjectId);
-      updateCatalog(props.objects);
-      aladin.value.view.reticleCanvas.onwheel = onReticleZoom;
     }
   );
 });
@@ -110,7 +117,6 @@ function updateCatalog(objects: any[]) {
 }
 
 function onObjectSelected(newObject: any) {
-  console.info("new object selected", newObject);
   const coordinates = {
     ra: newObject.meanra,
     dec: newObject.meandec,
@@ -147,7 +153,6 @@ watch(() => data.objectSelected, onObjectSelected);
 watch(
   () => data.aladinObjectSelected,
   (newASelected: any, currentASelected: any) => {
-    console.info("new aladin object", newASelected);
     if (newASelected) newASelected.select();
     if (currentASelected) currentASelected.deselect();
   }
@@ -155,8 +160,9 @@ watch(
 </script>
 
 <style>
+/*
 @import "https://aladin.u-strasbg.fr/AladinLite/api/v2/latest/aladin.min.css";
-
+*/
 #aladin-lite-div {
   padding: 0;
   margin: 0;

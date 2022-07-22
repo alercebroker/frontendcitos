@@ -1,5 +1,5 @@
 <template>
-  <q-card flat bordered class="q-ma-sm">
+  <q-card flat bordered>
     <q-card-section class="row">
       <div class="col q-mr-sm">
         <q-select v-model="model" :options="options" label="Classifier" />

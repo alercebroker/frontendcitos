@@ -1,5 +1,5 @@
 <template>
-  <q-card flat bordered align="center" class="q-ma-sm" style="height: 100%">
+  <q-card flat bordered align="center" class="" style="height: 100%">
     <q-card-section>
       <div class="text-h5">{{ oid }}</div>
       <div class="text-subtitle1">(First detection info.)</div>
