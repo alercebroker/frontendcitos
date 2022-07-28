@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.3](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.2...v1.1.0-rc.3) (2022-07-18)
+
+
+### Features
+
+* aladin component ([ebdee79](https://github.com/alercebroker/frontendcitos/commit/ebdee7949255a6a7a013c1d06bb0cee001446cfa))
+
+
+
+
+
+# [1.1.0-rc.2](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.1...v1.1.0-rc.2) (2022-07-14)
+
+
+### Bug Fixes
+
+* tests ([98fb2a2](https://github.com/alercebroker/frontendcitos/commit/98fb2a29a8f624dc84e938cbfc6211522430830b))
+
+
+
+
+
 # [1.1.0-rc.1](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.0...v1.1.0-rc.1) (2022-07-12)
 
 
