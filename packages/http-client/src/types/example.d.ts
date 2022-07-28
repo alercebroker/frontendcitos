@@ -1,5 +1,5 @@
-declare module 'module-name' {
+import * as lib from '../index'
+declare module '@alercebroker/http-client' {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const whatever: any
-  export = whatever
+  export = lib
 }

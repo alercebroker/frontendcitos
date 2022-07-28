@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { reactive, ref } from "vue";
-import { storeProvider } from "@/ui/stores/search/storeProvider";
-import type { SearchInput } from "@/ui/stores/search/types";
+import { type SearchInput, useSearchStore } from "@/ui/stores/search";
 
-const searchStore = storeProvider();
+const searchStore = useSearchStore();
 
 const searchInput: SearchInput = reactive({
   ndet: {
