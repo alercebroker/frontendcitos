@@ -3,7 +3,10 @@ import type {
   ObjectListEntity,
   ObjectListFilters,
 } from "@/domain/objects/entities";
-import type { HttpError, ParseError } from "@alercebroker/http-client";
+import type {
+  HttpError,
+  ParseError,
+} from "@alercebroker/http-client/build/main/types";
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import { parseInput, parseInputReverse } from "./parseInput";
@@ -38,28 +41,14 @@ export const searchStore = (
       dec: -999,
       radius: -999,
     });
-    const premadeQueries = ref<PremadeQuery>([
+    const premadeQueries = ref<PremadeQuery[]>([
       {
         title: "Query Title 1",
         category: "Query Category",
         description: "Query Description",
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
-        filters: {
-          aid: [],
-          oid: [],
-          ndet: {
-            min: -999,
-            max: -999,
-          },
-          firstmjd: {
-            min: -999,
-            max: -999,
-          },
-          ra: -999,
-          dec: -999,
-          radius: -999,
-        },
+        filters: {},
       },
       {
         title: "Query Title 2",
@@ -67,21 +56,7 @@ export const searchStore = (
         description: "Query Description",
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
-        filters: {
-          aid: [],
-          oid: [],
-          ndet: {
-            min: -999,
-            max: -999,
-          },
-          firstmjd: {
-            min: -999,
-            max: -999,
-          },
-          ra: -999,
-          dec: -999,
-          radius: -999,
-        },
+        filters: {},
       },
       {
         title: "Query Title 3",
@@ -89,21 +64,7 @@ export const searchStore = (
         description: "Query Description",
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
-        filters: {
-          aid: [],
-          oid: [],
-          ndet: {
-            min: -999,
-            max: -999,
-          },
-          firstmjd: {
-            min: -999,
-            max: -999,
-          },
-          ra: -999,
-          dec: -999,
-          radius: -999,
-        },
+        filters: {},
       },
       {
         title: "Query Title 4",
@@ -111,29 +72,15 @@ export const searchStore = (
         description: "Query Description",
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
-        filters: {
-          aid: [],
-          oid: [],
-          ndet: {
-            min: -999,
-            max: -999,
-          },
-          firstmjd: {
-            min: -999,
-            max: -999,
-          },
-          ra: -999,
-          dec: -999,
-          radius: -999,
-        },
+        filters: {},
       },
     ]);
     const results = ref<ObjectListEntity>({
       total: 0,
       page: 1,
-      next: "",
+      next: 2,
       hasNext: false,
-      prev: "",
+      prev: 0,
       hasPrev: false,
       items: [],
     });
