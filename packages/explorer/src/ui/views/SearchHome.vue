@@ -50,6 +50,7 @@ const tab = ref("general");
                 <q-tab-panels v-model="tab" animated>
                   <q-tab-panel name="general">
                     <q-input
+                      data-test="aid"
                       v-model="searchInput.aid"
                       label="ALeRCE ID"
                       debounce="500"
@@ -57,6 +58,7 @@ const tab = ref("general");
                       outlined
                     />
                     <q-input
+                      data-test="oid"
                       class="q-mt-md"
                       v-model="searchInput.oid"
                       label="Object ID"
@@ -66,6 +68,7 @@ const tab = ref("general");
                     />
                     <p class="q-mt-lg q-mb-lg">Number of detections</p>
                     <q-range
+                      data-test="ndet"
                       v-model="searchInput.ndet"
                       :min="0"
                       :max="50"
@@ -78,6 +81,7 @@ const tab = ref("general");
                     <div class="row items-center justify-center">
                       <div class="col-md-12 col-lg-6">
                         <q-date
+                          data-test="firstmjdDate"
                           v-model="searchInput.firstmjdDate"
                           range
                           minimal
@@ -86,6 +90,7 @@ const tab = ref("general");
                       </div>
                       <div class="col-md-12 col-lg-4">
                         <q-input
+                          data-test="firstmjdFrom"
                           v-model.number="searchInput.firstmjd.from"
                           type="number"
                           label="Firstmjd From"
@@ -93,6 +98,7 @@ const tab = ref("general");
                           outlined
                         />
                         <q-input
+                          data-test="firstmjdTo"
                           class="q-mt-md"
                           v-model.number="searchInput.firstmjd.to"
                           type="number"
@@ -109,6 +115,7 @@ const tab = ref("general");
                     <div class="row justify-center">
                       <div class="col q-mr-md">
                         <q-input
+                          data-test="ra"
                           v-model="searchInput.coordinates.ra"
                           type="number"
                           label="RA"
@@ -118,6 +125,7 @@ const tab = ref("general");
                       </div>
                       <div class="col q-mr-md">
                         <q-input
+                          data-test="dec"
                           v-model="searchInput.coordinates.dec"
                           type="number"
                           label="Dec"
@@ -127,6 +135,7 @@ const tab = ref("general");
                       </div>
                       <div class="col">
                         <q-input
+                          data-test="radius"
                           v-model="searchInput.coordinates.radius"
                           type="number"
                           label="Radius"
