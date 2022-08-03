@@ -1,5 +1,5 @@
 import { mjdToGreg } from "@/domain/objects/entities";
-import { objectRepository } from "../adapters/objectRepository";
+import { objectRepository } from "@/app/object/adapters";
 import { convertMjdUseCase } from "./convertMjd";
 import { getObjectListUseCase } from "./getObjectList";
 
