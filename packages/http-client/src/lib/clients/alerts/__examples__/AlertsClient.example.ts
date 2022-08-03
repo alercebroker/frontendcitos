@@ -1,7 +1,11 @@
 import { isHttpError } from '../../../core/error/http-error'
 import { isParseError } from '../../../core/error/parse-error'
-import { listObjectResponse, ObjectFilters, singleObjectResponse } from '../AlertsClient.types'
-import { Parser } from '../../../core/http-service/HttpService'
+import {
+  listObjectResponse,
+  ObjectFilters,
+  singleObjectResponse,
+} from '../AlertsClient.types'
+import { Parser } from '../../../core/http-service/HttpService.types'
 import { AlertsClient } from '../../../..'
 
 /**
@@ -32,7 +36,7 @@ const myCustomParser: Parser<listObjectResponse, MyCustomObject> = {
 
 export async function exampleQueryObjectsByAid(): Promise<listObjectResponse> {
   const filters: ObjectFilters = {
-    aid: ["aid123"],
+    aid: ['aid123'],
   }
   try {
     // We avoid using a parser and receive the default api response object
@@ -70,7 +74,10 @@ export async function exampleQueryObjectsWithParser(): Promise<MyCustomObject> {
     aid: [],
   }
   try {
-    const result = await AlertsClient.queryObjects<MyCustomObject>(filters, myCustomParser)
+    const result = await AlertsClient.queryObjects<MyCustomObject>(
+      filters,
+      myCustomParser
+    )
     // do something with result
     return result
   } catch (exception) {
@@ -80,13 +87,16 @@ export async function exampleQueryObjectsWithParser(): Promise<MyCustomObject> {
   }
 }
 
-
 export async function exampleCustomObjectWithClass(): Promise<MyCustomClass> {
   const filters: ObjectFilters = {
     aid: [],
   }
   try {
-    const result = await AlertsClient.queryObjects<MyCustomClass>(filters, null, MyCustomClass)
+    const result = await AlertsClient.queryObjects<MyCustomClass>(
+      filters,
+      null,
+      MyCustomClass
+    )
     // do something with result
     return result
   } catch (exception) {
@@ -114,7 +124,7 @@ export async function exampleCustomObjectWithoutParser(): Promise<listObjectResp
 export async function exampleQueryObjectsByDate(): Promise<listObjectResponse> {
   const filters: ObjectFilters = {
     firstmjd: [59000, 59030],
-    lastmjd: [59100]
+    lastmjd: [59100],
   }
   try {
     // We avoid using a parser and receive the default api response object
@@ -132,7 +142,7 @@ export async function exampleQueryObjectsByConesearch(): Promise<listObjectRespo
   const filters: ObjectFilters = {
     ra: 100,
     dec: 90,
-    radius: 3
+    radius: 3,
   }
   try {
     // We avoid using a parser and receive the default api response object
@@ -146,9 +156,8 @@ export async function exampleQueryObjectsByConesearch(): Promise<listObjectRespo
   }
 }
 
-
 export async function exampleQuerySingleObject(): Promise<singleObjectResponse> {
-  const aid = "aid123"
+  const aid = 'aid123'
   try {
     return await AlertsClient.querySingleObject<singleObjectResponse>(aid)
   } catch (err) {

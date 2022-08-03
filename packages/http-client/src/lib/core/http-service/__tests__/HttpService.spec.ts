@@ -1,11 +1,13 @@
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
-import { container, loadContainerModules } from '../../../../container/container'
+import {
+  container,
+  loadContainerModules,
+} from '../../../../container/container'
 import { TYPES } from '../../../../container/types'
 import { HttpError } from '../../error/http-error'
 import { isParseError } from '../../error/parse-error'
-import { FailableParser, IHttpService } from '../HttpService'
-
+import { FailableParser, IHttpService } from '../HttpService.types'
 
 const axiosInstance = axios.create({
   baseURL: 'test',

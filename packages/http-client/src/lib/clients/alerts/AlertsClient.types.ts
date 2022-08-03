@@ -1,4 +1,4 @@
-import { Parser } from '../../core/http-service/HttpService'
+import { Parser } from '../../core/http-service/HttpService.types'
 import { Newable } from '../../util.types'
 
 export type ObjectFilters = {
@@ -37,7 +37,7 @@ export type listObjectResponse = {
   items: objectListItem[]
 }
 
-export interface singleObjectResponse extends objectListItem { }
+export interface singleObjectResponse extends objectListItem {}
 
 export interface IAlertsClient {
   queryObjects<T>(
