@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import IndexView from "./views/IndexView.vue";
+import IndexView from "./ui/views/IndexView.vue";
 </script>
 
 <template>

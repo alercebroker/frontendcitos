@@ -1,10 +1,10 @@
 <template>
   <div id="results">
     <div class="row">
-      <div class="col-5 q-pa-xs">
+      <div class="col-6 q-pa-xs">
         <FirstDetection v-bind="dummySelectedObject" />
       </div>
-      <div class="col-7 q-pa-xs">
+      <div class="col-6 q-pa-xs">
         <q-card flat bordered class="">
           <q-card-content>
             <LightCurvePlot
@@ -15,25 +15,26 @@
           </q-card-content>
           <q-card-actions align="center">
             <q-radio
+              size="xs"
               v-model="plotType"
               val="difference"
               label="Difference"
             ></q-radio>
             <q-radio
+              size="xs"
               v-model="plotType"
               val="apparent"
               label="Apparent"
             ></q-radio>
-            <q-radio v-model="plotType" val="folded" label="Folded"></q-radio>
           </q-card-actions>
         </q-card>
       </div>
     </div>
     <div class="row">
-      <div class="col-8 q-pa-xs">
+      <div class="col-12 q-pa-xs">
         <q-card flat bordered>
           <q-card-content>
-            <StampComponent
+            <StampCard
               image-service-url="http://avro.alerce.online/get_stamp"
               :detections="dummyStampDetections"
               object-id="ZTF20aaelulu"
@@ -42,30 +43,26 @@
           </q-card-content>
         </q-card>
       </div>
-      <div class="col-4 q-pa-xs">
-        <q-card flat bordered style="height: 100%">
-          <q-card-content>
+    </div>
+    <div class="row q-pa-xs">
+      <div class="col-7 q-pa-xs" style="height: 33vh">
+        <q-card class="col-8" style="height: 100%">
+          <q-card-content horizontal>
             <AladinViewer
               :objects="dummyAladin"
               init-object-id="ZTF20aaelulu"
-              :field-of-view="360"
-              @mounted="() => (firstMounted = true)"
+              div-id="aladin-two"
             />
           </q-card-content>
         </q-card>
       </div>
-    </div>
-    <div class="row q-pa-xs" style="height: 33vh">
-      <q-card class="col-12" style="width: 100%">
-        <q-card-content horizontal>
-          <AladinViewer
-            v-if="firstMounted"
-            :objects="dummyAladin"
-            init-object-id="ZTF20aaelulu"
-            div-id="aladin-two"
-          />
-        </q-card-content>
-      </q-card>
+      <div class="col-5 q-pa-xs">
+        <q-card flat bordered style="height: 100%">
+          <q-card-content class="q-pa-sm">
+            <CelestialView :object-selected="dummySelectedObject" />
+          </q-card-content>
+        </q-card>
+      </div>
     </div>
   </div>
 </template>
@@ -73,8 +70,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import LightCurvePlot from "@alercebroker/component-library/src/components/plot/LightCurvePlot.vue";
-import StampComponent from "@alercebroker/component-library/src/components/stamp/StampCard.vue";
+import StampCard from "@alercebroker/component-library/src/components/stamp/StampCard.vue";
 import AladinViewer from "@alercebroker/component-library/src/components/aladin/AladinViewer.vue";
+import CelestialView from "./CelestialView.vue";
 
 import FirstDetection from "./subcomponents/FirstDetection.vue";
 
@@ -90,6 +88,7 @@ const plotOptions = [
 ];
 
 const dummySelectedObject = {
+  candid: "123345467",
   oid: "ZTF123545",
   ra: 1231,
   dec: 3213,

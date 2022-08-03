@@ -1,5 +1,6 @@
 const config = {
-  width: 310,
+  width: 330,
+  height: 300,
   controls: false,
   datapath: "https://ofrohn.github.io/data/",
   planets: {

@@ -1,14 +1,14 @@
 <template>
   <div class="row">
-    <div class="col-4">
+    <div class="col-5">
       <div class="q-pa-xs">
         <SearchComponent />
       </div>
       <div class="q-pa-xs">
-        <ResultsTable />
+        <ResultsTableTwo />
       </div>
     </div>
-    <div class="col-8">
+    <div class="col-7">
       <ObjectResults />
     </div>
   </div>
