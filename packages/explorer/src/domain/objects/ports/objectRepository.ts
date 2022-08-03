@@ -1,4 +1,7 @@
-import type { HttpError, ParseError } from "@alercebroker/http-client";
+import type {
+  HttpError,
+  ParseError,
+} from "@alercebroker/http-client/build/main/types";
 import type { Result } from "neverthrow";
 import type {
   ObjectEntity,
@@ -9,6 +12,6 @@ import type {
 export interface ObjectRepository {
   getObjects(
     filters: ObjectListFilters
-  ): Result<ObjectListEntity, HttpError | ParseError>;
-  getObject(id: string): ObjectEntity;
+  ): Promise<Result<ObjectListEntity, HttpError | ParseError>>;
+  getObject(id: string): Promise<Result<ObjectEntity, HttpError | ParseError>>;
 }
