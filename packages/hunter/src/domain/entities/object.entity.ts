@@ -8,6 +8,10 @@ export type ObjectEntity = {
   lastmjd: number;
   firstGreg: string;
   lastGreg: string;
-  raHms: string;
   firstDetection: DetectionEntity | null;
 };
+
+export function mjdToGreg(mjdDate: number): string {
+  const date = (mjdDate - 40587) * 86400000;
+  return new Date(date).toDateString();
+}

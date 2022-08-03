@@ -8,6 +8,6 @@ import { Result } from "neverthrow";
 export interface ObjectRespository {
   getObjects(
     filters: ObjectFilter
-  ): Result<PaginatedList<ObjectEntity>, ParseError | HttpError>;
-  getObject(id: string): Result<ObjectEntity, ParseError | HttpError>;
+  ): Promise<Result<PaginatedList<ObjectEntity>, ParseError | HttpError>>;
+  getObject(id: string): Promise<Result<ObjectEntity, ParseError | HttpError>>;
 }

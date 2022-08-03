@@ -3,7 +3,7 @@ export type PaginatedList<T> = {
   page: number;
   hasNext: boolean;
   hasPrev: boolean;
-  next: string;
-  prev: string;
+  next: number;
+  prev: number;
   items: T[];
 };

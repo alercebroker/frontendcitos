@@ -1,5 +1,5 @@
 export type ObjectFilter = {
-  firstmjd?: number;
-  lastmjd?: number;
+  firstmjd?: number[];
+  lastmjd?: number[];
   report?: string;
 }
