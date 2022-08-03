@@ -7,4 +7,5 @@ export type ObjectEntity = {
   firstGreg: string;
   lastGreg: string;
   raHms: string;
+  decHms: string;
 };
