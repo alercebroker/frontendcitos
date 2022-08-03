@@ -1,5 +1,6 @@
 import type { MjdToGreg } from "../ports";
 
 export const mjdToGreg: MjdToGreg = (mjd: number): string => {
-  throw new Error("Method not implemented");
+  const date = (mjd - 40587) * 86400000;
+  return new Date(date).toDateString();
 };
