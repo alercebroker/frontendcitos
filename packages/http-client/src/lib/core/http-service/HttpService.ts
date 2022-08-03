@@ -1,7 +1,3 @@
-/**
- * @module http-service
- */
-
 import axios, {
   AxiosError,
   AxiosInstance,
@@ -12,46 +8,12 @@ import { injectable } from 'inversify'
 
 import { HttpError } from '../error/http-error'
 import { ParseError } from '../error/parse-error'
-
-/**
- * HttpRequest Interface
- */
-export type IHttpRequest = {
-  url: string
-  config?: AxiosRequestConfig
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data?: any
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  params?: any
-}
-
-/**
- * FailableParser type
- */
-export type FailableParser<T, M> = (_: T) => M
-
-/**
- * parser type
- */
-export type Parser<T, M> = {
-  parseTo: FailableParser<T, M>
-}
-
-/**
- * http service interface
- */
-export interface IHttpService {
-  connect(
-    baseUrl: string,
-    axiosInstance?: AxiosInstance,
-    accessToken?: string
-  ): void
-  get<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M>
-  post<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M>
-  put<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M>
-  delete(request: IHttpRequest): Promise<number>
-  setAccessToken(accessToken: string): void
-}
+import {
+  FailableParser,
+  IHttpRequest,
+  IHttpService,
+  Parser,
+} from './HttpService.types'
 
 /**
  * http service class
@@ -146,6 +108,7 @@ export class HttpService implements IHttpService {
     const response = await this.axiosInstance.put<T>(url, data, config)
     return this._parseFailable<T, M>(response.data, parser.parseTo)
   }
+
   private _parseFailable<T, M>(data: T, parser: FailableParser<T, M>): M {
     try {
       return parser(data)

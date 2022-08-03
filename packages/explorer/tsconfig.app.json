@@ -6,7 +6,11 @@
     "composite": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
-    }
+      "@/*": ["./src/*"],
+      "@ui/*": ["./src/ui/*"],
+      "@app/*": ["./src/app/*"],
+      "@common/*": ["./src/common/*"]
+    },
+    "experimentalDecorators": true
   }
 }

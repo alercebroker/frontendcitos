@@ -26,7 +26,7 @@
       "dependsOn": ["build"]
     },
     "test": {
-      "dependsOn": ["^test"]
+      "dependsOn": ["^test", "^build"]
     }
   }
 }
