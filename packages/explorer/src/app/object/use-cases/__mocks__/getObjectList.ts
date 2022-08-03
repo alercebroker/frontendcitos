@@ -19,9 +19,9 @@ export const getObjectListUseCase = (
       callbacks.handleSuccess({
         total: 1,
         page: 1,
-        next: "next",
+        next: 2,
         hasNext: false,
-        prev: "prev",
+        prev: 0,
         hasPrev: false,
         items: [
           {
