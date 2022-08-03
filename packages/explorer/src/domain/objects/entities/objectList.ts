@@ -5,7 +5,7 @@ export type ObjectListEntity = {
   page: number;
   hasNext: boolean;
   hasPrev: boolean;
-  next: string;
-  prev: string;
+  next: number;
+  prev: number;
   items: ObjectEntity[];
 };
