@@ -5,11 +5,11 @@ import { isHttpError, isParseError } from "@alercebroker/http-client";
 export const getObjectListUseCase = (
   repository: ObjectRepository
 ): Command => ({
-  execute: <ObjectListFilters>(
+  execute: async <ObjectListFilters>(
     callbacks: Callbacks,
     payload: ObjectListFilters
   ) => {
-    const result = repository.getObjects(payload);
+    const result = await repository.getObjects(payload);
     result.map((objectListEntity) => {
       callbacks.handleSuccess(objectListEntity);
     });
