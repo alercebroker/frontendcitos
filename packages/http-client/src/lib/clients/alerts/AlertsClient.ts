@@ -1,7 +1,8 @@
 import { inject, injectable } from 'inversify'
 import { TYPES } from '../../../container/types'
-import { IHttpService, Parser } from '../../core/http-service/HttpService'
+import { IHttpService, Parser } from '../../core/http-service/HttpService.types'
 import { Newable } from '../../util.types'
+import qs from 'qs'
 
 import {
   ClientConfig,
@@ -10,7 +11,6 @@ import {
   ObjectFilters,
   singleObjectResponse,
 } from './AlertsClient.types'
-
 
 @injectable()
 export class AlertsClient implements IAlertsClient {
@@ -36,11 +36,28 @@ export class AlertsClient implements IAlertsClient {
             return new customModel(res)
           }
           return res as unknown as T
-        }
+        },
       }
     }
     return this.httpService.get<listObjectResponse, T>(
-      { url: '/objects', config: { params: objectFilters } },
+      {
+        url: '/objects',
+        config: {
+          params: objectFilters,
+          paramsSerializer: (params) => {
+            return qs.stringify(params, {
+              arrayFormat: 'repeat',
+              skipNulls: true,
+              filter: (_, value) => {
+                if (value === '') {
+                  return
+                }
+                return value
+              },
+            })
+          },
+        },
+      },
       parser
     )
   }
@@ -57,7 +74,7 @@ export class AlertsClient implements IAlertsClient {
             return new customModel(res)
           }
           return res as unknown as T
-        }
+        },
       }
     }
     return this.httpService.get(
