@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.5](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.4...v1.1.0-rc.5) (2022-08-04)
+
+
+### Features
+
+* **http-client:** add PaginatedListEntity type ([55764b6](https://github.com/alercebroker/frontendcitos/commit/55764b66b9dbdfd1a5481c3331891909e4eaaa59))
+
+
+
+
+
 # [1.1.0-rc.4](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.3...v1.1.0-rc.4) (2022-08-04)
 
 
