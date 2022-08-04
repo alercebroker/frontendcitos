@@ -1,11 +1,11 @@
 import type {
   ObjectEntity,
-  ObjectListEntity,
   ObjectListFilters,
 } from "@/domain/objects/entities";
 import { isHttpError, isParseError } from "@alercebroker/http-client";
 import type {
   HttpError,
+  PaginatedListEntity,
   ParseError,
 } from "@alercebroker/http-client/build/main/types";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -25,18 +25,18 @@ describe("Successful Search", () => {
     const filters: ObjectListFilters = {
       aid: ["abc"],
     };
-    let result: ObjectListEntity = {
+    let result: PaginatedListEntity<ObjectEntity> = {
       total: 0,
-      next: "",
+      next: 1,
       hasNext: false,
-      prev: "",
+      prev: 0,
       hasPrev: false,
       page: 0,
       items: [] as ObjectEntity[],
     };
     await getObjectListUseCase.execute(
       {
-        handleSuccess: (data: ObjectListEntity) => {
+        handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
           result = data;
         },
         handleGenericError: (_) => {},

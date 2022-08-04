@@ -1,10 +1,11 @@
 import type { Command } from "@/common/use-case";
 import type {
-  ObjectListEntity,
+  ObjectEntity,
   ObjectListFilters,
 } from "@/domain/objects/entities";
 import type {
   HttpError,
+  PaginatedListEntity,
   ParseError,
 } from "@alercebroker/http-client/build/main/types";
 import { defineStore } from "pinia";
@@ -80,7 +81,7 @@ export const searchStore = (
       },
     ]);
 
-    const results = ref<ObjectListEntity>({
+    const results = ref<PaginatedListEntity<ObjectEntity>>({
       total: 0,
       page: 1,
       next: 2,
@@ -110,7 +111,7 @@ export const searchStore = (
       filters.value = parsedFilters;
       searchObjectsUseCase.execute(
         {
-          handleSuccess: (data: ObjectListEntity) => {
+          handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
             results.value = data;
           },
           handleGenericError: (error: Error) => {
