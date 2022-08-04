@@ -1,10 +1,11 @@
 import type { Command } from "@/common/use-case";
 import type {
-  ObjectListEntity,
+  ObjectEntity,
   ObjectListFilters,
 } from "@/domain/objects/entities";
 import type {
   HttpError,
+  PaginatedListEntity,
   ParseError,
 } from "@alercebroker/http-client/build/main/types";
 import { defineStore } from "pinia";
@@ -80,7 +81,7 @@ export const searchStore = (
       },
     ]);
 
-    const results = ref<ObjectListEntity>({
+    const results = ref<PaginatedListEntity<ObjectEntity>>({
       total: 0,
       page: 1,
       next: 2,
@@ -110,20 +111,22 @@ export const searchStore = (
       filters.value = parsedFilters;
       searchObjectsUseCase.execute(
         {
-          handleSuccess: (data: ObjectListEntity) => {
+          handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
             results.value = data;
           },
-          handleGenericError: (error: Error) => {
-            errors.value.generic = error;
-          },
-          handleHttpClientError: (error: HttpError) => {
-            errors.value.client = error;
-          },
-          handleHttpServerError: (error: HttpError) => {
-            errors.value.server = error;
-          },
-          handleParseError: (error: ParseError) => {
-            errors.value.parse = error;
+          handleError: {
+            handleGenericError: (error: Error) => {
+              errors.value.generic = error;
+            },
+            handleHttpClientError: (error: HttpError) => {
+              errors.value.client = error;
+            },
+            handleHttpServerError: (error: HttpError) => {
+              errors.value.server = error;
+            },
+            handleParseError: (error: ParseError) => {
+              errors.value.parse = error;
+            },
           },
         },
         parsedFilters
@@ -137,8 +140,10 @@ export const searchStore = (
           handleSuccess: (mjd: number) => {
             result = mjd;
           },
-          handleGenericError: (error) => {
-            errors.value.generic = error;
+          handleError: {
+            handleGenericError: (error) => {
+              errors.value.generic = error;
+            },
           },
         },
         gregDate
@@ -153,8 +158,10 @@ export const searchStore = (
           handleSuccess: (greg: string) => {
             result = greg;
           },
-          handleGenericError: (error) => {
-            errors.value.generic = error;
+          handleError: {
+            handleGenericError: (error) => {
+              errors.value.generic = error;
+            },
           },
         },
         mjd
