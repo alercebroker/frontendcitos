@@ -6,6 +6,7 @@ import qs from 'qs'
 
 import {
   ClientConfig,
+  DetectionItem,
   IAlertsClient,
   listObjectResponse,
   ObjectFilters,
@@ -79,6 +80,25 @@ export class AlertsClient implements IAlertsClient {
     }
     return this.httpService.get(
       { url: '/object', config: { params: { aid } } },
+      parser
+    )
+  }
+
+  queryDetections<T>(
+    aid: string,
+    parser?: Parser<DetectionItem[], T>,
+    customModel?: Newable<T>
+  ): Promise<T> {
+    if (!parser) {
+      parser = {
+        parseTo: (res: DetectionItem[]): T =>
+          customModel ? new customModel(res) : (res as unknown as T),
+      }
+    }
+    return this.httpService.get<DetectionItem[], T>(
+      {
+        url: `/object/${aid}/detections`,
+      },
       parser
     )
   }
