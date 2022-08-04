@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.7](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.6...v1.1.0-rc.7) (2022-08-04)
+
+
+### Features
+
+* **detections:** added the queryDetection use case for AlertsClient ([d3c71a3](https://github.com/alercebroker/frontendcitos/commit/d3c71a385bc994c9d4834ad71c280cfe26aaa182))
+
+
+
+
+
 # [1.1.0-rc.6](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.5...v1.1.0-rc.6) (2022-08-04)
 
 **Note:** Version bump only for package root

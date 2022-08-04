@@ -1,6 +1,6 @@
 {
   "name": "explorer",
-  "version": "1.1.0-rc.6",
+  "version": "1.1.0-rc.7",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@alercebroker/component-library": "^1.1.0-rc.3",
-    "@alercebroker/http-client": "^1.1.0-rc.5",
+    "@alercebroker/http-client": "^1.1.0-rc.7",
     "@quasar/extras": "^1.14.3",
     "neverthrow": "^4.4.2",
     "pinia": "^2.0.14",
