@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.4](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.3...v1.1.0-rc.4) (2022-08-04)
+
+
+### Bug Fixes
+
+* change import ([8789ecb](https://github.com/alercebroker/frontendcitos/commit/8789ecbdbba9a4bfa8f413c43d040ea6c15b48b4))
+* fix premade query state ([fcf32e2](https://github.com/alercebroker/frontendcitos/commit/fcf32e258f1abd3f27e77c943be027813bdfc5b9))
+* new directory structure ([7c65c53](https://github.com/alercebroker/frontendcitos/commit/7c65c5384db0f12b39a0634b226660d7f64c5336))
+* repository now returns promise ([3503894](https://github.com/alercebroker/frontendcitos/commit/35038942e1877492c6736aace83f0e2acbd2b9ac))
+* simplify entity according to api response ([ef415ab](https://github.com/alercebroker/frontendcitos/commit/ef415ab37ea12bac11b51627d191440ce1bc2bbd))
+
+
+### Features
+
+* add dec in hms format ([934aa3e](https://github.com/alercebroker/frontendcitos/commit/934aa3ef7010a03be9433aa9a1a37846efed7359))
+* added validation and integration tests ([0fadc81](https://github.com/alercebroker/frontendcitos/commit/0fadc813ff8f33d019667685e8573a3f5398db0e))
+* **explorer:** add DI, SearchStore with factory ([9e2a919](https://github.com/alercebroker/frontendcitos/commit/9e2a9194ebff7195fed68b682a92bc41dcb2073b))
+* **explorer:** added home search view ([3162af6](https://github.com/alercebroker/frontendcitos/commit/3162af6b7eeee885f3c92b00c2e26d5be1213a79))
+* implement method ([07411ff](https://github.com/alercebroker/frontendcitos/commit/07411ff9dae21506fbced3a7a7abcf71e9137882))
+* implement method ([2ac9698](https://github.com/alercebroker/frontendcitos/commit/2ac9698baca00045907a151ae22c58c42caba97f))
+* implementation of object repository ([a3162b4](https://github.com/alercebroker/frontendcitos/commit/a3162b449037d256041e645ccb1c99add99efec5))
+* object repository returns Promise<Result> ([5d5ce19](https://github.com/alercebroker/frontendcitos/commit/5d5ce1957d826b4efb71dfe2f7f6e2a243279fe8))
+
+
+
+
+
 # [1.1.0-rc.3](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.2...v1.1.0-rc.3) (2022-07-18)
 
 **Note:** Version bump only for package explorer
