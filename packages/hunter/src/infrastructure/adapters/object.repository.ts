@@ -2,14 +2,14 @@ import { ObjectFilter } from "@/domain/entities/filters/object.filters";
 import { ObjectEntity, mjdToGreg } from "@/domain/entities/object.entity";
 import { PaginatedList } from "@/domain/entities/paginatedlist.entity";
 import { ObjectRespository } from "@/domain/ports/objects";
-import {
+import type {
   listObjectResponse,
   objectListItem,
   Parser,
   HttpError,
   ParseError,
-  AlertsClient,
-} from "@alercebroker/http-client";
+} from "@alercebroker/http-client/src/types";
+import { AlertsClient } from "@alercebroker/http-client";
 
 import { err, ok, Result } from "neverthrow";
 
@@ -51,7 +51,7 @@ async function getObjects(
     );
     return ok(result);
   } catch (error) {
-    //u wot m8 (can this be other type)
+    //u wot m8 (can this be other type?)
     if (error instanceof Error) {
       return err(error);
     }
