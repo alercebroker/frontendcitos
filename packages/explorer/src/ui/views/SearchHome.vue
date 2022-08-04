@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from "vue";
+import { reactive, ref, watch } from "vue";
 import { type SearchInput, useSearchStore } from "@/ui/stores/search";
 
 const searchStore = useSearchStore();
@@ -21,6 +21,30 @@ const searchInput: SearchInput = reactive({
 });
 
 const tab = ref("general");
+
+watch(
+  () => searchInput.firstmjdDate,
+  (newDate) => {
+    searchInput.firstmjd.from = searchStore.convertGregToMjd(
+      newDate.from as string
+    );
+    searchInput.firstmjd.to = searchStore.convertGregToMjd(
+      newDate.to as string
+    );
+  }
+);
+
+watch(
+  () => searchInput.firstmjd,
+  (newMjd) => {
+    searchInput.firstmjdDate.from = searchStore.convertMjdToGreg(
+      newMjd.from as number
+    );
+    searchInput.firstmjdDate.to = searchStore.convertMjdToGreg(
+      newMjd.to as number
+    );
+  }
+);
 </script>
 
 <template>
@@ -39,7 +63,12 @@ const tab = ref("general");
             <div class="text-h6 text-center">Search Objects</div>
             <q-tabs v-model="tab" inline-label>
               <q-tab name="general" icon="search" label="General Filters" />
-              <q-tab name="date" icon="calendar_month" label="Date Filters" />
+              <q-tab
+                data-test="date-tab"
+                name="date"
+                icon="calendar_month"
+                label="Date Filters"
+              />
               <q-tab name="conesearch" icon="gps_fixed" label="Conesearch" />
             </q-tabs>
           </q-card-section>
@@ -149,10 +178,12 @@ const tab = ref("general");
               </div>
               <div class="col-4 q-mt-md">
                 <q-btn
+                  data-test="button-search"
                   class="full-width"
                   color="primary"
                   label="Search"
                   size="xl"
+                  @click="searchStore.search(searchInput)"
                 />
                 <q-btn class="full-width q-mt-xl" label="Clear" outline />
               </div>
@@ -178,7 +209,7 @@ const tab = ref("general");
 
           <q-card-actions>
             <q-btn
-              data-test="search"
+              data-test="premade-search"
               flat
               label="Search"
               @click="searchStore.search(searchInput)"
