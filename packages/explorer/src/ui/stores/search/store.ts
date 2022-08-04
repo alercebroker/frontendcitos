@@ -114,17 +114,19 @@ export const searchStore = (
           handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
             results.value = data;
           },
-          handleGenericError: (error: Error) => {
-            errors.value.generic = error;
-          },
-          handleHttpClientError: (error: HttpError) => {
-            errors.value.client = error;
-          },
-          handleHttpServerError: (error: HttpError) => {
-            errors.value.server = error;
-          },
-          handleParseError: (error: ParseError) => {
-            errors.value.parse = error;
+          handleError: {
+            handleGenericError: (error: Error) => {
+              errors.value.generic = error;
+            },
+            handleHttpClientError: (error: HttpError) => {
+              errors.value.client = error;
+            },
+            handleHttpServerError: (error: HttpError) => {
+              errors.value.server = error;
+            },
+            handleParseError: (error: ParseError) => {
+              errors.value.parse = error;
+            },
           },
         },
         parsedFilters
@@ -138,8 +140,10 @@ export const searchStore = (
           handleSuccess: (mjd: number) => {
             result = mjd;
           },
-          handleGenericError: (error) => {
-            errors.value.generic = error;
+          handleError: {
+            handleGenericError: (error) => {
+              errors.value.generic = error;
+            },
           },
         },
         gregDate
@@ -154,8 +158,10 @@ export const searchStore = (
           handleSuccess: (greg: string) => {
             result = greg;
           },
-          handleGenericError: (error) => {
-            errors.value.generic = error;
+          handleError: {
+            handleGenericError: (error) => {
+              errors.value.generic = error;
+            },
           },
         },
         mjd
