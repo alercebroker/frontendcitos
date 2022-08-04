@@ -37,6 +37,15 @@ export type listObjectResponse = {
   items: objectListItem[]
 }
 
+export type DetectionItem = {
+  mjd: number;
+  candid: string;
+  magpsf: number;
+  fid: number;
+  ra: number;
+  dec: number;
+}
+
 export interface singleObjectResponse extends objectListItem {}
 
 export interface IAlertsClient {
@@ -48,6 +57,11 @@ export interface IAlertsClient {
   querySingleObject<T>(
     aid: string,
     parser?: Parser<singleObjectResponse, T>,
+    customModel?: Newable<T>
+  ): Promise<T>
+  queryDetections<T>(
+    aid: string,
+    parser?: Parser<DetectionItem[], T>,
     customModel?: Newable<T>
   ): Promise<T>
 }
