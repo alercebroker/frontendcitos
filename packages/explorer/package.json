@@ -9,7 +9,7 @@
     "test": "vitest --environment jsdom --run",
     "test-watch": "vitest --environment jsdom --watch --ui",
     "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "type-check": "vue-tsc --noEmit -p tsconfig.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "deploy": "bash ./scripts/deploy.sh"
   },
