@@ -92,12 +92,23 @@ export class HttpServiceObjectMocks implements IHttpService {
     if (request.url.match(/object\/\w+\/detections/)) {
       const res: DetectionItem[] = [
         {
+          aid: 'AID321',
+          oid: 'ZTF4629',
+          tid: 'ZTF',
           mjd: 55050,
-          candid: "candid",
-          magpsf: 20.9,
+          candid: 'candid',
           fid: 2,
+          isdiffpos: -1,
+          mag: 20.9,
+          e_mag: 0.01,
           ra: 17,
-          dec: 55
+          dec: 55,
+          rb: 55.55,
+          rbversion: 'v1',
+          has_stamp: false,
+          corrected: true,
+          step_id_corr: 'asd',
+          parent_candid: 'pcandid',
         }
       ]
       return new Promise((resolve) => {
