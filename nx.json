@@ -17,7 +17,10 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "^build:module"]
+    },
+    "build-only": {
+      "dependsOn": ["^build", "^build:module"]
     },
     "docs-deploy": {
       "dependsOn": ["docs-build"]
