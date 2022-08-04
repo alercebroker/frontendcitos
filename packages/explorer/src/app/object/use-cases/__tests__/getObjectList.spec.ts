@@ -39,7 +39,9 @@ describe("Successful Search", () => {
         handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
           result = data;
         },
-        handleGenericError: (_) => {},
+        handleError: {
+          handleGenericError: (_) => {},
+        },
       },
       filters
     );
@@ -57,9 +59,11 @@ describe("HttpError", () => {
     await getObjectListUseCase.execute(
       {
         handleSuccess: (_) => {},
-        handleGenericError: (_) => {},
-        handleHttpClientError: (error: HttpError) => {
-          result = error;
+        handleError: {
+          handleGenericError: (_) => {},
+          handleHttpClientError: (error: HttpError) => {
+            result = error;
+          },
         },
       },
       filters
@@ -76,9 +80,11 @@ describe("HttpError", () => {
     await getObjectListUseCase.execute(
       {
         handleSuccess: (_) => {},
-        handleGenericError: (_) => {},
-        handleHttpServerError: (error: HttpError) => {
-          result = error;
+        handleError: {
+          handleGenericError: (_) => {},
+          handleHttpServerError: (error: HttpError) => {
+            result = error;
+          },
         },
       },
       filters
@@ -97,9 +103,11 @@ describe("ParseError", () => {
     await getObjectListUseCase.execute(
       {
         handleSuccess: (_) => {},
-        handleGenericError: (_) => {},
-        handleParseError: (error: ParseError) => {
-          result = error;
+        handleError: {
+          handleGenericError: (_) => {},
+          handleParseError: (error: ParseError) => {
+            result = error;
+          },
         },
       },
       filters
