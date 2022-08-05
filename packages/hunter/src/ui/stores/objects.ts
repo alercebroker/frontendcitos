@@ -12,6 +12,7 @@ export const objectStoreFactory = (searchObjectsUseCase: Command) => {
       firstmjd: [],
       lastmjd: [],
       report: "Supernova",
+      telescope: "ZTF",
       magnitude: {
         min: 0,
         max: 500,

@@ -1,4 +1,5 @@
-import type { HttpError, ParseError } from "@alercebroker/http-client";
+import type { HttpError, ParseError } from "@alercebroker/http-client/build/main/types";
+
 
 export type ErrorCallbacks = {
   handleGenericError: (error: Error) => void;

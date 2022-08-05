@@ -2,7 +2,6 @@ import type { Callbacks, Command } from "@/application/common";
 import { CompleteObjectFilter } from "../common/types";
 import type { ObjectRespository } from "@/domain/ports/objects";
 import { isParseError, isHttpError } from "@alercebroker/http-client";
-import { PaginatedList } from "@/domain/entities/paginatedlist.entity";
 import { ObjectEntity } from "@/domain/entities/object.entity";
 
 async function completeObjectsWithFirstDetection(

@@ -2,7 +2,7 @@ import { ObjectFilter } from "../entities/filters/object.filters";
 import { ObjectEntity } from "../entities/object.entity";
 import { PaginatedList } from "../entities/paginatedlist.entity";
 
-import { HttpError, ParseError } from "@alercebroker/http-client";
+import type { HttpError, ParseError } from "@alercebroker/http-client/build/main/types";
 import { Result } from "neverthrow";
 import { DetectionEntity } from "../entities/detection.entity";
 
