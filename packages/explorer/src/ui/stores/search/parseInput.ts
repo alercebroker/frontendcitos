@@ -35,8 +35,10 @@ function convertMjd(
       handleSuccess: (date: string) => {
         firstmjdDate.from = date;
       },
-      handleGenericError: (_) => {
-        firstmjdDate.from = null;
+      handleError: {
+        handleGenericError: (_) => {
+          firstmjdDate.from = null;
+        },
       },
     },
     firstmjd.from
@@ -46,8 +48,10 @@ function convertMjd(
       handleSuccess: (date: string) => {
         firstmjdDate.to = date;
       },
-      handleGenericError: (_) => {
-        firstmjdDate.to = null;
+      handleError: {
+        handleGenericError: (_) => {
+          firstmjdDate.to = null;
+        },
       },
     },
     firstmjd.to

@@ -1,7 +1,7 @@
 export type DetectionEntity = {
   mjd: number;
   candid: string;
-  magpsf: number;
+  mag: number;
   fid: number;
   ra: number;
   dec: number;

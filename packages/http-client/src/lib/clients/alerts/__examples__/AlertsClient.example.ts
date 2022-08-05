@@ -1,6 +1,7 @@
 import { isHttpError } from '../../../core/error/http-error'
 import { isParseError } from '../../../core/error/parse-error'
 import {
+  DetectionItem,
   listObjectResponse,
   ObjectFilters,
   singleObjectResponse,
@@ -160,6 +161,15 @@ export async function exampleQuerySingleObject(): Promise<singleObjectResponse> 
   const aid = 'aid123'
   try {
     return await AlertsClient.querySingleObject<singleObjectResponse>(aid)
+  } catch (err) {
+    throw err
+  }
+}
+
+export async function exampleQueryObjectDetections(): Promise<DetectionItem[]> {
+  const aid = 'AID321'
+  try {
+    return AlertsClient.queryDetections<DetectionItem[]>(aid)
   } catch (err) {
     throw err
   }

@@ -7,7 +7,7 @@ export const convertMjdUseCase = (mjdToGregFn: MjdToGreg): Command => ({
       const result = mjdToGregFn(payload);
       callbacks.handleSuccess(result);
     } catch (e) {
-      callbacks.handleGenericError(e as Error);
+      callbacks.handleError.handleGenericError(e as Error);
     }
   },
 });

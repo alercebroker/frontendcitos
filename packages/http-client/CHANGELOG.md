@@ -3,6 +3,41 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.7](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.6...v1.1.0-rc.7) (2022-08-04)
+
+
+### Features
+
+* **detections:** added the queryDetection use case for AlertsClient ([d3c71a3](https://github.com/alercebroker/frontendcitos/commit/d3c71a385bc994c9d4834ad71c280cfe26aaa182))
+
+
+
+
+
+# [1.1.0-rc.5](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.4...v1.1.0-rc.5) (2022-08-04)
+
+
+### Features
+
+* **http-client:** add PaginatedListEntity type ([55764b6](https://github.com/alercebroker/frontendcitos/commit/55764b66b9dbdfd1a5481c3331891909e4eaaa59))
+
+
+
+
+
+# [1.1.0-rc.4](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.3...v1.1.0-rc.4) (2022-08-04)
+
+
+### Features
+
+* add querystring parsing ([93d4035](https://github.com/alercebroker/frontendcitos/commit/93d403500d9d385fb9bd304ec9ac785a75ef40b9))
+* refactor exported modules ([801e1d3](https://github.com/alercebroker/frontendcitos/commit/801e1d315bd010eac185ec3accd212feba7734e7))
+* types export ([dbe0007](https://github.com/alercebroker/frontendcitos/commit/dbe000730826c72da493eab970e3835973cc9f5f))
+
+
+
+
+
 # [1.1.0-rc.2](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.1...v1.1.0-rc.2) (2022-07-14)
 
 

@@ -17,7 +17,7 @@ describe("Search", () => {
     const wrapper = mount(SearchHome);
     const store = useSearchStore();
     expect(wrapper).toBeTruthy();
-    const btn = wrapper.get('[data-test="search"]');
+    const btn = wrapper.get('[data-test="premade-search"]');
     await btn.trigger("click");
     expect(store.results.items.length).toBe(1);
     expect(store.results.items[0].aid).toBe("aid");

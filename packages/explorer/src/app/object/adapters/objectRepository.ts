@@ -2,7 +2,6 @@ import {
   raToHms,
   mjdToGreg,
   type ObjectEntity,
-  type ObjectListEntity,
   type ObjectListFilters,
   decToHms,
 } from "@/domain/objects/entities";
@@ -18,6 +17,7 @@ import type {
   Parser,
   HttpError,
   ParseError,
+  PaginatedListEntity,
 } from "@alercebroker/http-client/build/main/types";
 import { err, ok, type Result } from "neverthrow";
 
@@ -26,9 +26,14 @@ export const objectRepository: ObjectRepository = {
   getObjects,
 };
 
-export const objectListParser: Parser<listObjectResponse, ObjectListEntity> = {
-  parseTo: (response: listObjectResponse): ObjectListEntity => {
-    const result: ObjectListEntity = {
+export const objectListParser: Parser<
+  listObjectResponse,
+  PaginatedListEntity<ObjectEntity>
+> = {
+  parseTo: (
+    response: listObjectResponse
+  ): PaginatedListEntity<ObjectEntity> => {
+    const result: PaginatedListEntity<ObjectEntity> = {
       total: response.total,
       page: response.page,
       next: response.next,
@@ -60,12 +65,11 @@ function parseItems(items: objectListItem[]): ObjectEntity[] {
 
 async function getObjects(
   filters: ObjectListFilters
-): Promise<Result<ObjectListEntity, ParseError | HttpError>> {
+): Promise<Result<PaginatedListEntity<ObjectEntity>, ParseError | HttpError>> {
   try {
-    const result = await AlertsClient.queryObjects<ObjectListEntity>(
-      filters,
-      objectListParser
-    );
+    const result = await AlertsClient.queryObjects<
+      PaginatedListEntity<ObjectEntity>
+    >(filters, objectListParser);
     return ok(result);
   } catch (error) {
     if (error instanceof Error) {

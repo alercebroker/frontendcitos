@@ -5,8 +5,9 @@ import { PaginatedList } from "@/domain/entities/paginatedlist.entity";
 import { defineStore } from "pinia";
 import { ref, reactive } from "vue";
 
-export const objectStore = (searchObjectsUseCase: Command) => {
+export const objectStoreFactory = (searchObjectsUseCase: Command) => {
   return defineStore("objects", () => {
+    //is this even necesary?
     const filters = reactive<CompleteObjectFilter>({
       firstmjd: [],
       lastmjd: [],

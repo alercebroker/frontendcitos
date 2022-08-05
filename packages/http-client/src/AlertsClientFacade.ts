@@ -6,6 +6,7 @@ import {
   ObjectFilters,
   singleObjectResponse,
   ClientConfig,
+  DetectionItem,
 } from './lib/clients/alerts/AlertsClient.types'
 import { Parser } from './lib/core/http-service/HttpService.types'
 import { Newable } from './lib/util.types'
@@ -39,6 +40,17 @@ export class AlertsClientFacade {
     const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
     const result = client.querySingleObject(aid, parser, customModel)
     return result
+  }
+  public static queryDetections<T>(
+    aid: string,
+    parser?: Parser<DetectionItem[], T>,
+    customModel?: Newable<T>,
+    config?: ClientConfig,
+  ): Promise<T> {
+    if (config)
+      container.rebind<ClientConfig>(TYPES.ClientConfig).toConstantValue(config)
+    const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
+    return client.queryDetections(aid, parser, customModel);
   }
   public static getClientConfig(): ClientConfig {
     return container.get<ClientConfig>(TYPES.ClientConfig)

@@ -12,6 +12,7 @@ import type {
 import { AlertsClient } from "@alercebroker/http-client";
 
 import { err, ok, Result } from "neverthrow";
+import { DetectionEntity } from "@/domain/entities/detection.entity";
 
 function parseItems(items: objectListItem[]): ObjectEntity[] {
   return items.map((item) => ({
@@ -51,7 +52,6 @@ async function getObjects(
     );
     return ok(result);
   } catch (error) {
-    //u wot m8 (can this be other type?)
     if (error instanceof Error) {
       return err(error);
     }
@@ -59,8 +59,21 @@ async function getObjects(
   }
 }
 
+async function getDetections(
+  aid: string
+): Promise<Result<DetectionEntity[], ParseError | HttpError>> {
+  try {
+    const result = await AlertsClient.queryDetections<DetectionEntity[]>(aid);
+    return ok(result);
+  } catch (error) {
+    if (error instanceof Error) return err(error);
+    throw error;
+  }
+}
+
 export const objectRepository: ObjectRespository = {
   getObjects,
+  getDetections,
   getObject: function (
     id: string
   ): Promise<Result<ObjectEntity, ParseError | HttpError>> {
