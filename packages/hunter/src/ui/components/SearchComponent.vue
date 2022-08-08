@@ -51,8 +51,12 @@ const { telescope, firstmjd, lastmjd, report, magnitude } = toRefs(data);
 
 const telescopeOptions = ["ZTF", "ATLAS"];
 const reportOptions = ["Supernova", "Bogus", "None", "Other"];
-const date = ref("Last 24 hours");
-const dateOptions = ["Last 24 hours", "Last 48 hours", "Last week", "Custom"];
+const date = ref({ label: "Last 24 hours", diff: 1 });
+const dateOptions = [
+  { label: "Last 24 hours", diff: 1 },
+  { label: "Last 48 hours", diff: 2 },
+  { label: "Last week", diff: 7 },
+];
 
 function _checkData() {
   console.log(data);
@@ -60,22 +64,13 @@ function _checkData() {
 
 watch(
   date,
-  (newDate) => {
+  (newDate: { label: string; diff: number }) => {
     console.log(newDate);
     const now = new Date();
+    const since = new Date(now);
+    since.setDate(since.getDate() - newDate.diff);
+    data.firstmjd = [gregorianToMjd(since.toUTCString())];
     data.lastmjd = [gregorianToMjd(now.toUTCString())];
-    switch (newDate) {
-      case "Last 24 hours":
-        now.setDate(now.getDate() - 1);
-        break;
-      case "Last 48 hours":
-        now.setDate(now.getDate() - 2);
-        break;
-      case "Last week":
-        now.setDate(now.getDate() - 7);
-        break;
-    }
-    data.firstmjd = [gregorianToMjd(now.toUTCString())];
   },
   {
     immediate: true,
