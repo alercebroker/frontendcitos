@@ -11,7 +11,7 @@ async function completeObjectsWithFirstDetection(
   function completeObject(object: ObjectEntity): Promise<ObjectEntity> {
     return new Promise((resolve) => {
       repository.getDetections(object.aid).then((result) => {
-        let resultUnwrapped = result.unwrapOr([]);
+        const resultUnwrapped = result.unwrapOr([]);
         const objectCompleted = Object.assign({}, object);
         objectCompleted.firstDetection = resultUnwrapped.length
           ? resultUnwrapped[0]
@@ -29,9 +29,17 @@ export const getObjectsListUseCase = (
   execute: async (callbacks: Callbacks, payload: CompleteObjectFilter) => {
     const result = await repository.getObjects(payload);
     result.map(async (objectListEntity) => {
-      objectListEntity.items = await completeObjectsWithFirstDetection(
-        repository,
-        objectListEntity.items
+      // this kind of filtering will bug for sure
+      objectListEntity.items = (
+        await completeObjectsWithFirstDetection(
+          repository,
+          objectListEntity.items
+        )
+      ).filter(
+        (object) =>
+          object.firstDetection &&
+          object.firstDetection.mag >= payload.magnitude.min &&
+          object.firstDetection.mag <= payload.magnitude.max
       );
       callbacks.handleSuccess(objectListEntity);
     });

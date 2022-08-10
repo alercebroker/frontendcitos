@@ -11,6 +11,7 @@ jest.doMock("@alercebroker/http-client", () => {
 });
 
 import { objectRepository } from "../object.repository";
+// so http-client is the mockAlertsModule to this point
 import { AlertsClient } from "@alercebroker/http-client";
 import { HttpError } from "@alercebroker/http-client/src/types";
 

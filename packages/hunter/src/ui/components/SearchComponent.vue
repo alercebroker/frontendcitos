@@ -26,15 +26,20 @@
       </div>
     </q-card-section>
     <q-card-actions>
-      <q-btn outline class="full-width" @click="_checkData">Search</q-btn>
+      <q-btn outline class="full-width" @click="searchByFilter(data)"
+        >Search</q-btn
+      >
     </q-card-actions>
   </q-card>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, toRefs, watch } from "vue";
+import { useObjectStore } from "../stores";
 import { CompleteObjectFilter } from "@/application/common/types.js";
-import { gregorianToMjd, mjdToDate } from "@/application/common/utils";
+import { gregorianToMjd } from "@/application/common/utils";
+
+const { searchByFilter } = useObjectStore();
 
 const data = reactive<CompleteObjectFilter>({
   telescope: "ZTF",
@@ -57,10 +62,6 @@ const dateOptions = [
   { label: "Last 48 hours", diff: 2 },
   { label: "Last week", diff: 7 },
 ];
-
-function _checkData() {
-  console.log(data);
-}
 
 watch(
   date,

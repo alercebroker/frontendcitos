@@ -1,45 +1,69 @@
 <template>
-  <q-card flat bordered>
-    <div v-for="object in objects" :key="object.name">
-      <q-card class="q-ma-xs">
-        <q-card-section class="row">
-          <div class="col-4">
-            <div class="text-subtitle1">
-              {{ object.name }}
-            </div>
-            <div class="text-caption">21/07/22 15:55:50 UT</div>
-          </div>
-          <div class="col-3 row items-center q-pl-sm">
-            <div class="text-caption">#Obs: 4</div>
-            <div class="text-caption">Reported: TOM</div>
-          </div>
-          <div class="col-5 self-center" align="right">
-            <div class="text-subtitle1 q-mr-sm" style="display: inline">
-              0.78
-            </div>
-            <q-btn flat size="sm" icon="star"></q-btn>
-            <q-btn flat size="sm" icon="done"></q-btn>
-            <q-btn flat size="sm" icon="clear"></q-btn>
-          </div>
-        </q-card-section>
-      </q-card>
-    </div>
+  <q-card id="object-list" flat bordered>
+    <q-table
+      title="Objects"
+      :rows="objects"
+      :columns="columns"
+      row-key="name"
+      @row-click="onRowClicked"
+    >
+      <template v-slot:body-cell-status>
+        <q-td>
+          <q-btn flat size="sm" icon="star"></q-btn>
+          <q-btn flat size="sm" icon="done"></q-btn>
+          <q-btn flat size="sm" icon="clear"></q-btn>
+        </q-td>
+      </template>
+      <template v-slot:header-cell-date="props">
+        <q-th :props="props">
+          {{ props.col.label }}
+          <q-icon name="info">
+            <q-tooltip> All times are in UT </q-tooltip>
+          </q-icon>
+        </q-th>
+      </template>
+    </q-table>
   </q-card>
 </template>
 
 <script setup lang="ts">
-const objects = [
-  { name: "ZTF12354" },
-  { name: "ZTF12354" },
-  { name: "ZTF12354" },
-  { name: "ZTF12354" },
-  { name: "ZTF12354" },
-];
+import { onMounted, watch, ref } from "vue";
+import { columns } from "./utils/constants";
+import { parseObjectForView } from "./utils/parser";
+import { objects as dummyObjects } from "../stores/_dummies/objects";
+import { useObjectStore } from "../stores";
+import { ObjectView } from "./utils/types";
+
+const { objectList, _setObjectList, selectObject } = useObjectStore();
+const objects = ref<ObjectView[]>([]);
+
+function onRowClicked(_: Event, row: ObjectView) {
+  console.log("Clicked", row);
+  selectObject(row.name);
+}
+
+watch(
+  () => objectList.items,
+  (newObjectList) => {
+    objects.value = newObjectList.map(parseObjectForView);
+  }
+);
+
+// delet this
+onMounted(() => {
+  setTimeout(() => {
+    _setObjectList(dummyObjects);
+  }, 2000);
+});
 </script>
 
-<style scoped>
+<style>
 .q-btn {
   padding: 0.2rem;
   margin: 0.1rem;
+}
+
+#object-list .q-table tbody tr {
+  cursor: pointer !important;
 }
 </style>

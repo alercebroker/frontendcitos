@@ -3,7 +3,7 @@
 <script setup lang="ts">
 import { onMounted, defineProps } from "vue";
 import celestial from "d3-celestial";
-import config from "./config/celestial.config";
+import config from "../config/celestial.config";
 
 const props = defineProps({
   objectSelected: { type: Object, required: true },

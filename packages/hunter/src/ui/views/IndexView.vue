@@ -5,7 +5,7 @@
         <SearchComponent />
       </div>
       <div class="q-pa-xs">
-        <ResultsTableTwo />
+        <ResultsTable />
       </div>
     </div>
     <div class="col-7">
@@ -19,7 +19,6 @@ import { reactive } from "vue";
 import SearchComponent from "../components/SearchComponent.vue";
 import ObjectResults from "../components/ObjectResults.vue";
 import ResultsTable from "../components/ResultsTable.vue";
-import ResultsTableTwo from "../components/ResultsTableTwo.vue";
 
 //remember to use stores next
 const data = reactive({

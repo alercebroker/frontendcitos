@@ -20,8 +20,13 @@ function getDetectionsSuccess(
     mag: 20,
     fid: 1,
     ra: 15,
-    dec: 50
+    dec: 50,
+  };
+
+  if (aid !== "AID4321") {
+    mockDetection.mag = -1;
   }
+
   return new Promise((resolve) => {
     resolve(ok([mockDetection]));
   });
@@ -37,16 +42,28 @@ function getObjectsSuccess(
     next: 1,
     hasPrev: false,
     hasNext: false,
-    items: [{
-      aid: "AID4321",
-      ra: 15,
-      dec: 50,
-      firstmjd: 50000,
-      firstGreg: "111111",
-      lastmjd: 50001,
-      lastGreg: "2222222",
-      firstDetection: null,
-    }],
+    items: [
+      {
+        aid: "AID4321",
+        ra: 15,
+        dec: 50,
+        firstmjd: 50000,
+        firstGreg: "111111",
+        lastmjd: 50001,
+        lastGreg: "2222222",
+        firstDetection: null,
+      },
+      {
+        aid: "AID6942",
+        ra: 15,
+        dec: 50,
+        firstmjd: 50000,
+        firstGreg: "111111",
+        lastmjd: 50001,
+        lastGreg: "2222222",
+        firstDetection: null,
+      },
+    ],
   };
   return new Promise((resolve) => {
     resolve(ok(paginatedList));

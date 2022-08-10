@@ -8,7 +8,7 @@ import { ref, reactive } from "vue";
 export const objectStoreFactory = (searchObjectsUseCase: Command) => {
   return defineStore("objects", () => {
     //is this even necesary?
-    const filters = reactive<CompleteObjectFilter>({
+    const filters = ref<CompleteObjectFilter>({
       firstmjd: [],
       lastmjd: [],
       report: "Supernova",
@@ -19,7 +19,7 @@ export const objectStoreFactory = (searchObjectsUseCase: Command) => {
       },
     });
 
-    const objectList = ref<PaginatedList<ObjectEntity>>({
+    let objectList = reactive<PaginatedList<ObjectEntity>>({
       total: 0,
       page: 1,
       next: 2,
@@ -29,28 +29,45 @@ export const objectStoreFactory = (searchObjectsUseCase: Command) => {
       items: [],
     });
 
+    const selected = ref<ObjectEntity>();
     const errorStatus = ref<any>(null);
 
     const callbacks: Callbacks = {
       handleSuccess(data: PaginatedList<ObjectEntity>) {
-        objectList.value = data;
+        objectList = data;
       },
       handleErrors: {
         handleGenericError(error) {
           errorStatus.value = error;
         },
-      }
-    }
+      },
+    };
 
     function searchByFilter(filter: CompleteObjectFilter) {
-      searchObjectsUseCase.execute(callbacks, filter)
+      filters.value = filter;
+      searchObjectsUseCase.execute(callbacks, filter);
+    }
+
+    //testing purposes only
+    function _setObjectList(list: ObjectEntity[]) {
+      objectList.items = list;
+    }
+
+    function selectObject(aid: string) {
+      const selectedObject = objectList.items.find(
+        (object) => object.aid === aid
+      );
+      selected.value = selectedObject;
     }
 
     return {
       filters,
       objectList,
+      selected,
       errorStatus,
       searchByFilter,
+      selectObject,
+      _setObjectList,
     };
   });
 };

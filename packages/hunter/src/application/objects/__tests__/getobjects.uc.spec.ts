@@ -16,13 +16,15 @@ describe("Success test", () => {
   it("should create a list with objects wth their first detection", () => {
     const testCallbacks: Callbacks = {
       handleSuccess: (data) => {
+        // filters the detection which doesn't meet the criteria
+        expect(data.items.length).toBe(1);
         expect(data.items[0].firstDetection.candid).toEqual("candid1");
       },
       handleErrors: {
         handleGenericError: jest.fn(),
       },
     };
-    getObjects.execute(testCallbacks, {});
+    getObjects.execute(testCallbacks, { magnitude: { min: 0, max: 50 } });
   });
 });
 
