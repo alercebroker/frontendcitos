@@ -1,11 +1,11 @@
 import type {
   ObjectEntity,
-  ObjectListEntity,
   ObjectListFilters,
 } from "@/domain/objects/entities";
 import { isHttpError, isParseError } from "@alercebroker/http-client";
 import type {
   HttpError,
+  PaginatedListEntity,
   ParseError,
 } from "@alercebroker/http-client/build/main/types";
 import { afterEach, describe, expect, it, vi } from "vitest";
@@ -25,21 +25,23 @@ describe("Successful Search", () => {
     const filters: ObjectListFilters = {
       aid: ["abc"],
     };
-    let result: ObjectListEntity = {
+    let result: PaginatedListEntity<ObjectEntity> = {
       total: 0,
-      next: "",
+      next: 1,
       hasNext: false,
-      prev: "",
+      prev: 0,
       hasPrev: false,
       page: 0,
       items: [] as ObjectEntity[],
     };
     await getObjectListUseCase.execute(
       {
-        handleSuccess: (data: ObjectListEntity) => {
+        handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
           result = data;
         },
-        handleGenericError: (_) => {},
+        handleError: {
+          handleGenericError: (_) => {},
+        },
       },
       filters
     );
@@ -57,9 +59,11 @@ describe("HttpError", () => {
     await getObjectListUseCase.execute(
       {
         handleSuccess: (_) => {},
-        handleGenericError: (_) => {},
-        handleHttpClientError: (error: HttpError) => {
-          result = error;
+        handleError: {
+          handleGenericError: (_) => {},
+          handleHttpClientError: (error: HttpError) => {
+            result = error;
+          },
         },
       },
       filters
@@ -76,9 +80,11 @@ describe("HttpError", () => {
     await getObjectListUseCase.execute(
       {
         handleSuccess: (_) => {},
-        handleGenericError: (_) => {},
-        handleHttpServerError: (error: HttpError) => {
-          result = error;
+        handleError: {
+          handleGenericError: (_) => {},
+          handleHttpServerError: (error: HttpError) => {
+            result = error;
+          },
         },
       },
       filters
@@ -97,9 +103,11 @@ describe("ParseError", () => {
     await getObjectListUseCase.execute(
       {
         handleSuccess: (_) => {},
-        handleGenericError: (_) => {},
-        handleParseError: (error: ParseError) => {
-          result = error;
+        handleError: {
+          handleGenericError: (_) => {},
+          handleParseError: (error: ParseError) => {
+            result = error;
+          },
         },
       },
       filters

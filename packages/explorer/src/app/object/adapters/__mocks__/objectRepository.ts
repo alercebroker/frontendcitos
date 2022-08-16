@@ -1,12 +1,12 @@
 import type {
   ObjectEntity,
-  ObjectListEntity,
   ObjectListFilters,
 } from "@/domain/objects/entities";
 import type { ObjectRepository } from "@/domain/objects/ports";
 import {
   HttpError,
   ParseError,
+  type PaginatedListEntity,
 } from "@alercebroker/http-client/build/main/types";
 import { err, ok, type Result } from "neverthrow";
 
@@ -22,7 +22,9 @@ export const objectRepository: ObjectRepository = {
   },
   getObjects: (
     _filters: ObjectListFilters
-  ): Promise<Result<ObjectListEntity, ParseError | HttpError>> => {
+  ): Promise<
+    Result<PaginatedListEntity<ObjectEntity>, ParseError | HttpError>
+  > => {
     if (testType === "success") {
       return new Promise((resolve) => {
         resolve(

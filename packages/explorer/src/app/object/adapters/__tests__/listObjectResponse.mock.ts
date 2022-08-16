@@ -1,6 +1,7 @@
-import type { ObjectListEntity } from "@/domain/objects/entities";
+import type { ObjectEntity } from "@/domain/objects/entities";
+import type { PaginatedListEntity } from "@alercebroker/http-client/build/main/types";
 
-export const objects: ObjectListEntity = {
+export const objects: PaginatedListEntity<ObjectEntity> = {
   total: 1,
   page: 1,
   next: 2,

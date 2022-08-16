@@ -13,17 +13,21 @@ export const getObjectListUseCase = (
     result.map((objectListEntity) => {
       callbacks.handleSuccess(objectListEntity);
     });
+    const errorCallbacks = callbacks.handleError;
     result.mapErr((error) => {
       if (isHttpError(error)) {
-        if (error.isClientError() && callbacks.handleHttpClientError) {
-          callbacks.handleHttpClientError(error);
-        } else if (error.isServerError() && callbacks.handleHttpServerError) {
-          callbacks.handleHttpServerError(error);
+        if (error.isClientError() && errorCallbacks.handleHttpClientError) {
+          errorCallbacks.handleHttpClientError(error);
+        } else if (
+          error.isServerError() &&
+          errorCallbacks.handleHttpServerError
+        ) {
+          errorCallbacks.handleHttpServerError(error);
         }
-      } else if (isParseError(error) && callbacks.handleParseError) {
-        callbacks.handleParseError(error);
+      } else if (isParseError(error) && errorCallbacks.handleParseError) {
+        errorCallbacks.handleParseError(error);
       } else {
-        callbacks.handleGenericError(error);
+        errorCallbacks.handleGenericError(error);
       }
     });
   },

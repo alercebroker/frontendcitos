@@ -1,6 +1,7 @@
 import { AxiosInstance } from 'axios'
 import { inject, injectable } from 'inversify'
 import {
+  DetectionItem,
   listObjectResponse,
   singleObjectResponse,
 } from '../../clients/alerts/AlertsClient.types'
@@ -84,6 +85,32 @@ export class HttpServiceObjectMocks implements IHttpService {
         meanra: 1,
         meandec: 1,
       }
+      return new Promise((resolve) => {
+        resolve(parser.parseTo(res as unknown as T))
+      })
+    }
+    if (request.url.match(/object\/\w+\/detections/)) {
+      const res: DetectionItem[] = [
+        {
+          aid: 'AID321',
+          oid: 'ZTF4629',
+          tid: 'ZTF',
+          mjd: 55050,
+          candid: 'candid',
+          fid: 2,
+          isdiffpos: -1,
+          mag: 20.9,
+          e_mag: 0.01,
+          ra: 17,
+          dec: 55,
+          rb: 55.55,
+          rbversion: 'v1',
+          has_stamp: false,
+          corrected: true,
+          step_id_corr: 'asd',
+          parent_candid: 'pcandid',
+        }
+      ]
       return new Promise((resolve) => {
         resolve(parser.parseTo(res as unknown as T))
       })

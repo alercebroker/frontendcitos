@@ -1,6 +1,6 @@
 {
   "name": "explorer",
-  "version": "1.1.0-rc.4",
+  "version": "1.1.0-rc.7",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -9,13 +9,13 @@
     "test": "vitest --environment jsdom --run",
     "test-watch": "vitest --environment jsdom --watch --ui",
     "build-only": "vite build",
-    "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
+    "type-check": "vue-tsc --noEmit -p tsconfig.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "deploy": "bash ./scripts/deploy.sh"
   },
   "dependencies": {
     "@alercebroker/component-library": "^1.1.0-rc.3",
-    "@alercebroker/http-client": "^1.1.0-rc.4",
+    "@alercebroker/http-client": "^1.1.0-rc.7",
     "@quasar/extras": "^1.14.3",
     "neverthrow": "^4.4.2",
     "pinia": "^2.0.14",

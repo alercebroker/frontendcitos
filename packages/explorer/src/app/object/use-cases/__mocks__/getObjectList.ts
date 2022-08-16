@@ -1,5 +1,4 @@
 import type { Callbacks, Command } from "@/common/use-case";
-import type { ObjectListEntity } from "@/domain/objects/entities";
 import type { ObjectRepository } from "@/domain/objects/ports";
 
 let testType: string;
@@ -35,7 +34,7 @@ export const getObjectListUseCase = (
             raHms: "hms",
           },
         ],
-      } as ObjectListEntity);
+      });
     }
   },
 });
