@@ -1,4 +1,4 @@
-import { HttpError, isHttpError } from './http-error'
+import { HttpError, isHttpError } from '../http-error'
 
 describe('HttpError', () => {
   describe('isClientError()', () => {
