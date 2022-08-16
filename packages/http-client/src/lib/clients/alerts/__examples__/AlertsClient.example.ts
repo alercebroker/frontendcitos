@@ -80,6 +80,7 @@ export async function exampleQueryObjectsWithParser(): Promise<MyCustomObject> {
       myCustomParser
     )
     // do something with result
+    console.log(result)
     return result
   } catch (exception) {
     // handle exception
@@ -160,7 +161,7 @@ export async function exampleQueryObjectsByConesearch(): Promise<listObjectRespo
 export async function exampleQuerySingleObject(): Promise<singleObjectResponse> {
   const aid = 'aid123'
   try {
-    return await AlertsClient.querySingleObject<singleObjectResponse>(aid)
+    return AlertsClient.querySingleObject<singleObjectResponse>(aid)
   } catch (err) {
     throw err
   }

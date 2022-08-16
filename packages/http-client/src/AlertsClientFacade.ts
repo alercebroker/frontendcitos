@@ -26,6 +26,7 @@ export class AlertsClientFacade {
     if (config)
       container.rebind<ClientConfig>(TYPES.ClientConfig).toConstantValue(config)
     const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
+    client.connect()
     const result = client.queryObjects(objectFilters, parser, customModel)
     return result
   }
@@ -38,6 +39,7 @@ export class AlertsClientFacade {
     if (config)
       container.rebind<ClientConfig>(TYPES.ClientConfig).toConstantValue(config)
     const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
+    client.connect()
     const result = client.querySingleObject(aid, parser, customModel)
     return result
   }
@@ -45,12 +47,13 @@ export class AlertsClientFacade {
     aid: string,
     parser?: Parser<DetectionItem[], T>,
     customModel?: Newable<T>,
-    config?: ClientConfig,
+    config?: ClientConfig
   ): Promise<T> {
     if (config)
       container.rebind<ClientConfig>(TYPES.ClientConfig).toConstantValue(config)
     const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
-    return client.queryDetections(aid, parser, customModel);
+    client.connect()
+    return client.queryDetections(aid, parser, customModel)
   }
   public static getClientConfig(): ClientConfig {
     return container.get<ClientConfig>(TYPES.ClientConfig)

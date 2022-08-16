@@ -16,13 +16,17 @@ import { serializeParams } from './utils'
 @injectable()
 export class AlertsClient implements IAlertsClient {
   private httpService: IHttpService
+  private config: ClientConfig
   constructor(
     @inject(TYPES.IHttpService) httpService: IHttpService,
-    @inject(TYPES.ClientConfig) config: ClientConfig,
-    axiosInstance?: AxiosInstance
+    @inject(TYPES.ClientConfig) config: ClientConfig
   ) {
-    const baseUrl = config.baseUrl || 'https://api.alerce.online/alerts/v2'
+    this.config = config
     this.httpService = httpService
+  }
+
+  connect(axiosInstance?: AxiosInstance) {
+    const baseUrl = this.config.baseUrl || 'https://api.alerce.online/alerts/v2'
     this.httpService.connect(baseUrl, axiosInstance)
   }
 
