@@ -28,6 +28,6 @@
     "@container/*": ["container/*"]
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules/**"],
+  "exclude": ["node_modules/**", "src/**/__tests__/**"],
   "compileOnSave": false
 }
