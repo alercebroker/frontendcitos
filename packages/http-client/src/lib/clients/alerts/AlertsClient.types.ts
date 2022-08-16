@@ -61,7 +61,7 @@ export type DetectionItem = {
 export interface singleObjectResponse extends objectListItem {}
 
 export interface IAlertsClient {
-  connect(axiosInstance?: AxiosInstance): void
+  initClient(axiosInstance?: AxiosInstance): void
   queryObjects<T>(
     objectFilters: ObjectFilters,
     parser?: Parser<listObjectResponse, T>,

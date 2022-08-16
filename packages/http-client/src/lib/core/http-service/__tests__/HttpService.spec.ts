@@ -67,7 +67,7 @@ describe('HttpService', () => {
       users: [{ id: 1, lastName: 'Smith' }],
     })
     httpService = container.get<IHttpService>(TYPES.IHttpService)
-    httpService.connect('baseUrl', axiosInstance)
+    httpService.initClient('baseUrl', axiosInstance)
     parseTo = (rawData: userResponse): userType[] => {
       const userArray = []
       rawData.users.forEach((user) => {

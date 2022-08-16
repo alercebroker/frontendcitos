@@ -26,7 +26,7 @@ export class AlertsClientFacade {
     if (config)
       container.rebind<ClientConfig>(TYPES.ClientConfig).toConstantValue(config)
     const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
-    client.connect()
+    client.initClient()
     const result = client.queryObjects(objectFilters, parser, customModel)
     return result
   }
@@ -39,7 +39,7 @@ export class AlertsClientFacade {
     if (config)
       container.rebind<ClientConfig>(TYPES.ClientConfig).toConstantValue(config)
     const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
-    client.connect()
+    client.initClient()
     const result = client.querySingleObject(aid, parser, customModel)
     return result
   }
@@ -52,7 +52,7 @@ export class AlertsClientFacade {
     if (config)
       container.rebind<ClientConfig>(TYPES.ClientConfig).toConstantValue(config)
     const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
-    client.connect()
+    client.initClient()
     return client.queryDetections(aid, parser, customModel)
   }
   public static getClientConfig(): ClientConfig {

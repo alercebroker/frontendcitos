@@ -19,7 +19,7 @@ export class HttpServiceObjectMocks implements IHttpService {
     this.testType = testType
   }
 
-  connect(
+  initClient(
     baseUrl: string,
     axiosInstance?: AxiosInstance,
     accessToken?: string
@@ -109,7 +109,7 @@ export class HttpServiceObjectMocks implements IHttpService {
           corrected: true,
           step_id_corr: 'asd',
           parent_candid: 'pcandid',
-        }
+        },
       ]
       return new Promise((resolve) => {
         resolve(parser.parseTo(res as unknown as T))

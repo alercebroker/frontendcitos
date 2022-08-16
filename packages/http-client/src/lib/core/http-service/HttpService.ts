@@ -29,7 +29,7 @@ export class HttpService implements IHttpService {
    * @param axiosInstance - optional axios instance to use instead of creating a new one
    * @param accessToken - token for authentication with the API
    */
-  connect(baseUrl: string, axiosInstance?: AxiosInstance, accessToken = '') {
+  initClient(baseUrl: string, axiosInstance?: AxiosInstance, accessToken = '') {
     if (axiosInstance) {
       this.axiosInstance = axiosInstance
     } else {
