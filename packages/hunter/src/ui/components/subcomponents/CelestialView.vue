@@ -1,34 +1,36 @@
 <script lang="ts"></script>
 
 <script setup lang="ts">
-import { onMounted, defineProps } from "vue";
+import { ref, watch, onMounted, defineProps } from "vue";
 import celestial from "d3-celestial";
 import config from "../config/celestial.config";
 
+const CelestialRef = ref<any>();
 const props = defineProps({
-  objectSelected: { type: Object, required: true },
+  objectList: { type: Array, required: true },
+  objectSelected: { type: Object },
 });
 
-onMounted(() => {
-  const Celestial = celestial.Celestial();
-  const { objectSelected } = props;
+function addPoints() {
+  const Celestial = CelestialRef.value;
+  Celestial.clear();
+  const { objectList } = props;
   const coordinates = {
     type: "FeatureCollection",
-    features: [
-      {
-        type: "Feature",
-        id: objectSelected.candid,
-        properties: {
-          name: objectSelected.name,
-          type: "sn",
-        },
-        geometry: {
-          type: "Point",
-          coordinates: [objectSelected.ra, objectSelected.dec],
-        },
+    features: objectList.map((object: any) => ({
+      type: "Feature",
+      id: object.aid,
+      properties: {
+        name: object.aid,
+        type: "sn",
       },
-    ],
+      geometry: {
+        type: "Point",
+        coordinates: [object.ra, object.dec],
+      },
+    })),
   };
+
   Celestial.add({
     type: "raw",
     callback() {
@@ -59,7 +61,34 @@ onMounted(() => {
     },
   });
   Celestial.display(config);
+}
+
+function moveToPoint(ra: number, dec: number) {
+  const point = [ra, dec, 0];
+  const animations = [{ param: "center", value: point, duration: 250 }];
+  CelestialRef.value.animate(animations, false);
+}
+
+onMounted(() => {
+  CelestialRef.value = celestial.Celestial();
+  addPoints();
 });
+
+watch(
+  () => props.objectList,
+  () => {
+    addPoints();
+  }
+);
+
+watch(
+  () => props.objectSelected,
+  (newObjectSelected: any) => {
+    if (!newObjectSelected) return;
+    const { ra, dec } = newObjectSelected;
+    moveToPoint(ra, dec);
+  }
+);
 </script>
 
 <style scoped>

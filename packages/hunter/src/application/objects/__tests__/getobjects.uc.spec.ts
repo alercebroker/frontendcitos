@@ -1,3 +1,4 @@
+import { describe, it, beforeAll, expect, vi } from "vitest";
 import type { Callbacks, Command } from "@/application/common";
 import { getObjectsListUseCase } from "../getobjects.uc";
 import {
@@ -21,7 +22,7 @@ describe("Success test", () => {
         expect(data.items[0].firstDetection.candid).toEqual("candid1");
       },
       handleErrors: {
-        handleGenericError: jest.fn(),
+        handleGenericError: vi.fn(),
       },
     };
     getObjects.execute(testCallbacks, { magnitude: { min: 0, max: 50 } });
@@ -37,9 +38,9 @@ describe("Failure test", () => {
   });
 
   it("should call the handleGenericError function", async () => {
-    const handleGenericError = jest.fn();
+    const handleGenericError = vi.fn();
     const testCallbacks: Callbacks = {
-      handleSuccess: jest.fn(),
+      handleSuccess: vi.fn(),
       handleErrors: {
         handleGenericError,
       },

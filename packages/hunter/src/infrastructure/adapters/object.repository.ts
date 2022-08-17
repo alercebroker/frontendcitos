@@ -27,6 +27,8 @@ function parseItems(items: objectListItem[]): ObjectEntity[] {
   }));
 }
 
+const BASE_URL = "https://dev.api.alerce.online/alerts/v2";
+
 export const objectListParser: Parser<
   listObjectResponse,
   PaginatedList<ObjectEntity>
@@ -48,7 +50,11 @@ async function getObjects(
   try {
     const result = await AlertsClient.queryObjects<PaginatedList<ObjectEntity>>(
       filters,
-      objectListParser
+      objectListParser,
+      undefined,
+      {
+        baseUrl: BASE_URL,
+      }
     );
     return ok(result);
   } catch (error) {
@@ -63,7 +69,14 @@ async function getDetections(
   aid: string
 ): Promise<Result<DetectionEntity[], ParseError | HttpError>> {
   try {
-    const result = await AlertsClient.queryDetections<DetectionEntity[]>(aid);
+    const result = await AlertsClient.queryDetections<DetectionEntity[]>(
+      aid,
+      undefined,
+      undefined,
+      {
+        baseUrl: BASE_URL,
+      }
+    );
     return ok(result);
   } catch (error) {
     if (error instanceof Error) return err(error);

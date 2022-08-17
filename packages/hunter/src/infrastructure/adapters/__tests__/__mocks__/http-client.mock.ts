@@ -1,9 +1,10 @@
+import { vi } from "vitest";
 import { objects } from "./objectlist.mock";
 
 const AlertsClientMock = {
-  queryDetections: jest.fn(),
-  queryObjects: jest.fn(),
-  querySingleObject: jest.fn(),
+  queryDetections: vi.fn(),
+  queryObjects: vi.fn(),
+  querySingleObject: vi.fn(),
 };
 
 export type MockedAlertsClient = typeof AlertsClientMock;
@@ -26,6 +27,6 @@ export function setFailureCase(
 
 export const mockAlertsModule = () => ({
   AlertsClient: AlertsClientMock,
-  isHttpError: jest.fn(),
-  isParseError: jest.fn()
+  isHttpError: vi.fn(),
+  isParseError: vi.fn()
 });

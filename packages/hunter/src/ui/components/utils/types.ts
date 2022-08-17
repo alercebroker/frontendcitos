@@ -7,4 +7,6 @@ export type ObjectView = {
   fdtel: string;
   fdmag: number;
   fdband: string;
+  ra: number;
+  dec: number;
 };

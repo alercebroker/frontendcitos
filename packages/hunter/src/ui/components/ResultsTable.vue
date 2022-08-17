@@ -2,7 +2,7 @@
   <q-card id="object-list" flat bordered>
     <q-table
       title="Objects"
-      :rows="objects"
+      :rows="objectList.items.map(parseObjectForView)"
       :columns="columns"
       row-key="name"
       @row-click="onRowClicked"
@@ -27,27 +27,21 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch, ref } from "vue";
+import { onMounted, watch, reactive } from "vue";
+import { storeToRefs } from "pinia";
 import { columns } from "./utils/constants";
 import { parseObjectForView } from "./utils/parser";
 import { objects as dummyObjects } from "../stores/_dummies/objects";
 import { useObjectStore } from "../stores";
 import { ObjectView } from "./utils/types";
 
-const { objectList, _setObjectList, selectObject } = useObjectStore();
-const objects = ref<ObjectView[]>([]);
+const objectStore = useObjectStore();
+const { selectObject, _setObjectList } = objectStore;
+const { objectList } = storeToRefs(objectStore);
 
 function onRowClicked(_: Event, row: ObjectView) {
-  console.log("Clicked", row);
   selectObject(row.name);
 }
-
-watch(
-  () => objectList.items,
-  (newObjectList) => {
-    objects.value = newObjectList.map(parseObjectForView);
-  }
-);
 
 // delet this
 onMounted(() => {

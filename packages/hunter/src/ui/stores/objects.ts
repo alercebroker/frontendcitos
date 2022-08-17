@@ -19,7 +19,7 @@ export const objectStoreFactory = (searchObjectsUseCase: Command) => {
       },
     });
 
-    let objectList = reactive<PaginatedList<ObjectEntity>>({
+    const objectList = ref<PaginatedList<ObjectEntity>>({
       total: 0,
       page: 1,
       next: 2,
@@ -34,7 +34,7 @@ export const objectStoreFactory = (searchObjectsUseCase: Command) => {
 
     const callbacks: Callbacks = {
       handleSuccess(data: PaginatedList<ObjectEntity>) {
-        objectList = data;
+        objectList.value = data;
       },
       handleErrors: {
         handleGenericError(error) {
@@ -50,11 +50,11 @@ export const objectStoreFactory = (searchObjectsUseCase: Command) => {
 
     //testing purposes only
     function _setObjectList(list: ObjectEntity[]) {
-      objectList.items = list;
+      objectList.value.items = list;
     }
 
     function selectObject(aid: string) {
-      const selectedObject = objectList.items.find(
+      const selectedObject = objectList.value.items.find(
         (object) => object.aid === aid
       );
       selected.value = selectedObject;

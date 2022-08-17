@@ -11,5 +11,7 @@ export function parseObjectForView(object: ObjectEntity): ObjectView {
     fdtel: String(object.firstDetection?.fid) ?? "",
     fdband: "g",
     fdmag: object.firstDetection?.mag ?? 0,
+    ra: object.ra,
+    dec: object.dec,
   };
 }

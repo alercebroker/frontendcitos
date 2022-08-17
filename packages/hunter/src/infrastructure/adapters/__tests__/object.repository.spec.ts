@@ -1,3 +1,4 @@
+import { describe, it, beforeEach, expect, vi } from "vitest";
 import {
   mockAlertsModule,
   setSuccessCase,
@@ -6,7 +7,7 @@ import {
 import type { MockedAlertsClient } from "./__mocks__/http-client.mock";
 
 const mockAlerts = mockAlertsModule;
-jest.doMock("@alercebroker/http-client", () => {
+vi.doMock("@alercebroker/http-client", () => {
   return mockAlerts();
 });
 
