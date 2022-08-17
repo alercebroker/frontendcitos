@@ -1,11 +1,11 @@
 export type Newable<T> = { new (...args: unknown[]): T }
 
 export type PaginatedListEntity<T> = {
-  total: number
+  total: number | null
   page: number
-  next: number
+  next: number | null
   hasNext: boolean
-  prev: number
+  prev: number | null
   hasPrev: boolean
   items: T[]
 }
