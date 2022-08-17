@@ -36,7 +36,6 @@ export class HttpService implements IHttpService {
       this.axiosInstance = axios.create({
         baseURL: baseUrl,
         headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
       })
     }
     this.accessToken = accessToken
