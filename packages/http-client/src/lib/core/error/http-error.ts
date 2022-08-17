@@ -23,7 +23,9 @@ export class HttpError extends Error implements IHttpError {
 
     Object.setPrototypeOf(this, HttpError.prototype)
     if (!HttpStatusCode[status]) {
-      throw Error('Status code not valid for HttpError')
+      throw Error(
+        'Status code not valid for HttpError: ' + status + ', ' + message
+      )
     }
     this.status = status
     this.name = HttpStatusCode[status]

@@ -1,6 +1,6 @@
 {
   "name": "hunter",
-  "version": "1.1.0-rc.7",
+  "version": "1.1.0-rc.9",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@alercebroker/component-library": "^1.1.0-rc.3",
-    "@alercebroker/http-client": "^1.1.0-rc.7",
+    "@alercebroker/http-client": "^1.1.0-rc.9",
     "@quasar/extras": "^1.15.0",
     "@vue/test-utils": "^2.0.2",
     "core-js": "^3.8.3",

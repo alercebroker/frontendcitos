@@ -28,7 +28,7 @@ export type Parser<T, M> = {
  * http service interface
  */
 export interface IHttpService {
-  connect(
+  initClient(
     baseUrl: string,
     axiosInstance?: AxiosInstance,
     accessToken?: string

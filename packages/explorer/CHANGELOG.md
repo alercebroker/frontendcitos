@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.9](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.8...v1.1.0-rc.9) (2022-08-17)
+
+**Note:** Version bump only for package explorer
+
+
+
+
+
+# [1.1.0-rc.8](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.7...v1.1.0-rc.8) (2022-08-16)
+
+
+### Features
+
+* add tests for querystring ([28bf0f7](https://github.com/alercebroker/frontendcitos/commit/28bf0f729c0c6f73bb5913160f610df11a09dff4))
+
+
+
+
+
 # [1.1.0-rc.7](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.6...v1.1.0-rc.7) (2022-08-04)
 
 **Note:** Version bump only for package explorer

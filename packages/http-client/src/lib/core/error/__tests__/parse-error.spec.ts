@@ -1,4 +1,4 @@
-import { isParseError, ParseError } from './parse-error'
+import { isParseError, ParseError } from '../parse-error'
 
 describe('ParseError', () => {
   describe('Constructor', () => {

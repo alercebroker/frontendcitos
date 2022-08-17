@@ -6,8 +6,8 @@ const searchStore = useSearchStore();
 
 const searchInput: SearchInput = reactive({
   ndet: {
-    min: 0,
-    max: 1000,
+    min: null,
+    max: null,
   },
   firstmjdDate: { from: null, to: null },
   firstmjd: { from: null, to: null },

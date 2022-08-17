@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.9](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.8...v1.1.0-rc.9) (2022-08-17)
+
+
+### Bug Fixes
+
+* delete withCredentials ([8e617a0](https://github.com/alercebroker/frontendcitos/commit/8e617a046dacf5455344669dfbb6a53e1e0bf4c3))
+* **http-client:** Fixed PaginatedListEntity ([daaa879](https://github.com/alercebroker/frontendcitos/commit/daaa879c9a9fe023795f17aae67616fa94e5dda3))
+
+
+
+
+
+# [1.1.0-rc.8](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.7...v1.1.0-rc.8) (2022-08-16)
+
+
+### Features
+
+* add connect method to alerts client ([b707ad2](https://github.com/alercebroker/frontendcitos/commit/b707ad2a7e6532bf074f274da56c69cbd4f421f7))
+* add tests for querystring ([28bf0f7](https://github.com/alercebroker/frontendcitos/commit/28bf0f729c0c6f73bb5913160f610df11a09dff4))
+
+
+
+
+
 # [1.1.0-rc.7](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.6...v1.1.0-rc.7) (2022-08-04)
 
 
