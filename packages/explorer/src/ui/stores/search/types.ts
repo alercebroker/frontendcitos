@@ -23,7 +23,6 @@ export type SearchInput = {
   ndet: NdetRange;
   firstmjdDate: DateRange;
   firstmjd: MjdRange;
-  aid: string;
   oid: string;
   coordinates: Coordinates;
 };

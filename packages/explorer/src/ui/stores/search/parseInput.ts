@@ -5,11 +5,9 @@ import type { SearchInput } from "./types";
 const UNSET = -999;
 
 export function parseInput(filterInput: SearchInput): ObjectListFilters {
-  const aidArray = filterInput.aid.split(",").filter(Boolean);
   const oidArray = filterInput.oid.split(",").filter(Boolean);
   const ndet = [filterInput.ndet.min ?? UNSET, filterInput.ndet.max ?? UNSET];
   return {
-    aid: aidArray,
     oid: oidArray,
     firstmjd: [
       filterInput.firstmjd.from ?? UNSET,
@@ -72,7 +70,6 @@ export function parseInputReverse(
     to: parsedFilters.firstmjd ? parsedFilters.firstmjd[1] : null,
   };
   const firstmjdDate = convertMjd(convertMjdUseCase, firstmjd);
-  const aid = parsedFilters.aid ? parsedFilters.aid.toString() : "";
   const oid = parsedFilters.oid ? parsedFilters.oid.toString() : "";
   const coordinates = {
     ra: parsedFilters.ra ? parsedFilters.ra : null,
@@ -83,7 +80,6 @@ export function parseInputReverse(
     ndet,
     firstmjdDate,
     firstmjd,
-    aid,
     oid,
     coordinates,
   };

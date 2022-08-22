@@ -11,7 +11,6 @@ const searchInput: SearchInput = reactive({
   },
   firstmjdDate: { from: null, to: null },
   firstmjd: { from: null, to: null },
-  aid: "",
   oid: "",
   coordinates: {
     ra: null,
@@ -78,14 +77,6 @@ watch(
               <div class="col-md-8">
                 <q-tab-panels v-model="tab" animated>
                   <q-tab-panel name="general">
-                    <q-input
-                      data-test="aid"
-                      v-model="searchInput.aid"
-                      label="ALeRCE ID"
-                      debounce="500"
-                      square
-                      outlined
-                    />
                     <q-input
                       data-test="oid"
                       class="q-mt-md"
@@ -214,7 +205,11 @@ watch(
               label="Search"
               @click="searchStore.search(searchInput)"
             />
-            <q-btn flat label="Fill Parameters" />
+            <q-btn
+              flat
+              label="Fill Parameters"
+              @click="searchStore.fillParameters(query.title)"
+            />
           </q-card-actions>
         </q-card>
       </div>
