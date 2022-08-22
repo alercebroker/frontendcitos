@@ -21,7 +21,7 @@ describe("Search", () => {
     await btn.trigger("click");
     expect(store.results.items.length).toBe(1);
     expect(store.results.items[0].aid).toBe("aid");
-    expect(store.filters.aid).toStrictEqual([]);
-    expect(store.componentFilters.aid).toBe("");
+    expect(store.filters.oid).toStrictEqual([]);
+    expect(store.componentFilters.oid).toBe("");
   });
 });

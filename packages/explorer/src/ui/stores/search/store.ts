@@ -37,7 +37,6 @@ export const searchStore = (
 ) => {
   return defineStore("search", () => {
     const filters = ref<ObjectListFilters>({
-      aid: [],
       oid: [],
       ndet: [],
       firstmjd: [],
@@ -53,7 +52,14 @@ export const searchStore = (
         description: "Query Description",
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
-        filters: {},
+        filters: {
+          oid: [],
+          ndet: [],
+          firstmjd: [],
+          ra: -999,
+          dec: -999,
+          radius: -999,
+        },
       },
       {
         title: "Query Title 2",
@@ -61,7 +67,14 @@ export const searchStore = (
         description: "Query Description",
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
-        filters: {},
+        filters: {
+          oid: [],
+          ndet: [],
+          firstmjd: [59000, 60000],
+          ra: -999,
+          dec: -999,
+          radius: -999,
+        },
       },
       {
         title: "Query Title 3",
@@ -69,7 +82,14 @@ export const searchStore = (
         description: "Query Description",
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
-        filters: {},
+        filters: {
+          oid: [],
+          ndet: [10, 20],
+          firstmjd: [],
+          ra: -999,
+          dec: -999,
+          radius: -999,
+        },
       },
       {
         title: "Query Title 4",
@@ -77,7 +97,14 @@ export const searchStore = (
         description: "Query Description",
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
-        filters: {},
+        filters: {
+          oid: ["example"],
+          ndet: [],
+          firstmjd: [],
+          ra: -999,
+          dec: -999,
+          radius: -999,
+        },
       },
     ]);
 
@@ -173,6 +200,14 @@ export const searchStore = (
       return parseInputReverse(filters.value, convertMjdUseCase);
     });
 
+    function fillParameters(premadeQueryTitle: string): void {
+      const foundQuery = premadeQueries.value.find((query) => {
+        return query.title === premadeQueryTitle;
+      });
+      if (!foundQuery) return;
+      filters.value = foundQuery.filters;
+    }
+
     return {
       filters,
       premadeQueries,
@@ -182,6 +217,7 @@ export const searchStore = (
       results,
       convertGregToMjd,
       convertMjdToGreg,
+      fillParameters,
     };
   });
 };

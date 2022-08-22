@@ -27,8 +27,8 @@ describe("Search from premade query", () => {
     const btn = wrapper.get('[data-test="premade-search"]');
     await btn.trigger("click");
     expect(store.results).toStrictEqual(objects);
-    expect(store.filters.aid).toStrictEqual([]);
-    expect(store.componentFilters.aid).toBe("");
+    expect(store.filters.oid).toStrictEqual([]);
+    expect(store.componentFilters.oid).toBe("");
   });
 });
 
@@ -39,11 +39,11 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.searchInput.aid = "aid1,aid2,aid3";
+      wrapper.vm.searchInput.oid = "aid1,aid2,aid3";
       wrapper.vm.searchInput.ndet = { min: 10, max: 20 };
       const btn = wrapper.get('[data-test="button-search"]');
       await btn.trigger("click");
-      expect(mock.mock.calls[0][0].aid).toStrictEqual(["aid1", "aid2", "aid3"]);
+      expect(mock.mock.calls[0][0].oid).toStrictEqual(["aid1", "aid2", "aid3"]);
       expect(mock.mock.calls[0][0].ndet).toStrictEqual([10, 20]);
     });
   });
