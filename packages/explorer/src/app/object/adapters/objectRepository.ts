@@ -18,6 +18,7 @@ import type {
   HttpError,
   ParseError,
   PaginatedListEntity,
+  ClientConfig,
 } from "@alercebroker/http-client/build/main/types";
 import { err, ok, type Result } from "neverthrow";
 
@@ -67,9 +68,14 @@ async function getObjects(
   filters: ObjectListFilters
 ): Promise<Result<PaginatedListEntity<ObjectEntity>, ParseError | HttpError>> {
   try {
+    const config: ClientConfig = {
+      baseUrl:
+        import.meta.env.ALERTS_API_URL ||
+        "https://dev.api.alerce.online/alerts/v2",
+    };
     const result = await AlertsClient.queryObjects<
       PaginatedListEntity<ObjectEntity>
-    >(filters, objectListParser);
+    >(filters, objectListParser, undefined, config);
     return ok(result);
   } catch (error) {
     if (error instanceof Error) {
