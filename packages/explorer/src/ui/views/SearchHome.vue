@@ -22,6 +22,17 @@ const searchInput: SearchInput = reactive({
 const tab = ref("general");
 
 watch(
+  () => searchStore.componentFilters,
+  (newVal) => {
+    searchInput.ndet = newVal.ndet;
+    searchInput.firstmjd = newVal.firstmjd;
+    searchInput.firstmjdDate = newVal.firstmjdDate;
+    searchInput.oid = newVal.oid;
+    searchInput.coordinates = newVal.coordinates;
+  }
+);
+
+watch(
   () => searchInput.firstmjdDate,
   (newDate) => {
     searchInput.firstmjd.from = searchStore.convertGregToMjd(
@@ -185,8 +196,8 @@ watch(
     </div>
     <div class="row justify-center q-ml-xl q-mr-xl">
       <div
-        v-for="query in searchStore.premadeQueries"
-        :key="query.title"
+        v-for="(query, index) in searchStore.premadeQueries"
+        :key="index"
         class="col-lg-3 col-md-6 col-sm-12 fast-query q-ml-md q-mr-md"
       >
         <q-card flat bordered>
@@ -206,6 +217,7 @@ watch(
               @click="searchStore.search(searchInput)"
             />
             <q-btn
+              :data-test="'fill-parameters-' + index"
               flat
               label="Fill Parameters"
               @click="searchStore.fillParameters(query.title)"
