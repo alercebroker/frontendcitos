@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.10](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.9...v1.1.0-rc.10) (2022-08-22)
+
+
+### Bug Fixes
+
+* read api url from environment variable ([50f8190](https://github.com/alercebroker/frontendcitos/commit/50f8190d29d9e8056a0e0552eb8f220d03478ee8))
+
+
+
+
+
 # [1.1.0-rc.9](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.8...v1.1.0-rc.9) (2022-08-17)
 
 **Note:** Version bump only for package explorer
