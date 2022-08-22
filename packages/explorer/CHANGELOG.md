@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.11](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.10...v1.1.0-rc.11) (2022-08-22)
+
+
+### Bug Fixes
+
+* fixed tests ([3f50f43](https://github.com/alercebroker/frontendcitos/commit/3f50f430d48600a8b9857136e3227ec84e5cbdd2))
+
+
+### Features
+
+* **explorer:** delete aid filter ([cf2d030](https://github.com/alercebroker/frontendcitos/commit/cf2d030e156b7909e41fb58cef871726d136ffeb))
+
+
+
+
+
 # [1.1.0-rc.10](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.9...v1.1.0-rc.10) (2022-08-22)
 
 
