@@ -27,8 +27,7 @@ describe("Search from premade query", () => {
     const btn = wrapper.get('[data-test="premade-search"]');
     await btn.trigger("click");
     expect(store.results).toStrictEqual(objects);
-    expect(store.filters.oid).toStrictEqual([]);
-    expect(store.componentFilters.oid).toBe("");
+    expect(store.filters.oid).toStrictEqual("");
   });
 });
 
@@ -39,8 +38,8 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.searchInput.oid = "aid1,aid2,aid3";
-      wrapper.vm.searchInput.ndet = { min: 10, max: 20 };
+      wrapper.vm.filters.oid = "aid1,aid2,aid3";
+      wrapper.vm.filters.ndet = { min: 10, max: 20 };
       const btn = wrapper.get('[data-test="button-search"]');
       await btn.trigger("click");
       expect(mock.mock.calls[0][0].oid).toStrictEqual(["aid1", "aid2", "aid3"]);
@@ -52,7 +51,7 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.searchInput.firstmjdDate = {
+      wrapper.vm.filters.firstmjdDate = {
         from: "1995/01/13",
         to: "1995/01/14",
       };
@@ -74,15 +73,15 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.searchInput.firstmjd = {
+      wrapper.vm.filters.firstmjd = {
         from: 49730,
         to: 49731,
       };
       await flushPromises();
-      expect(wrapper.vm.searchInput.firstmjdDate.from).toBe(
+      expect(wrapper.vm.filters.firstmjdDate.from).toBe(
         new Date("1995-01-13").toUTCString()
       );
-      expect(wrapper.vm.searchInput.firstmjdDate.to).toBe(
+      expect(wrapper.vm.filters.firstmjdDate.to).toBe(
         new Date("1995-01-14").toUTCString()
       );
       const btn = wrapper.get('[data-test="button-search"]');
@@ -97,9 +96,9 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.searchInput.coordinates.ra = 10;
-      wrapper.vm.searchInput.coordinates.dec = 20;
-      wrapper.vm.searchInput.coordinates.radius = 30;
+      wrapper.vm.filters.coordinates.ra = 10;
+      wrapper.vm.filters.coordinates.dec = 20;
+      wrapper.vm.filters.coordinates.radius = 30;
       await flushPromises();
       const btn = wrapper.get('[data-test="button-search"]');
       await btn.trigger("click");
@@ -111,9 +110,9 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.searchInput.coordinates.ra = 10;
-      wrapper.vm.searchInput.coordinates.dec = 20;
-      wrapper.vm.searchInput.coordinates.radius = null;
+      wrapper.vm.filters.coordinates.ra = 10;
+      wrapper.vm.filters.coordinates.dec = 20;
+      wrapper.vm.filters.coordinates.radius = null;
       await flushPromises();
       const btn = wrapper.get('[data-test="button-search"]');
       await btn.trigger("click");
