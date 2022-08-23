@@ -21,8 +21,7 @@ describe("Premade queries", () => {
     await btn.trigger("click");
     expect(store.results.items.length).toBe(1);
     expect(store.results.items[0].aid).toBe("aid");
-    expect(store.filters.oid).toStrictEqual([]);
-    expect(store.componentFilters.oid).toBe("");
+    expect(store.filters.oid).toBe("");
   });
 
   it("should fill parameters in filters when fill parameters button is clicked", async () => {
@@ -36,18 +35,30 @@ describe("Premade queries", () => {
       image:
         "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
       filters: {
-        oid: ["oid-test"],
-        ndet: [],
-        firstmjd: [],
-        ra: -999,
-        dec: -999,
-        radius: -999,
+        oid: "oid-test",
+        ndet: {
+          min: null,
+          max: null,
+        },
+        firstmjd: {
+          from: null,
+          to: null,
+        },
+        firstmjdDate: {
+          from: null,
+          to: null,
+        },
+        coordinates: {
+          ra: -999,
+          dec: -999,
+          radius: -999,
+        },
       },
     };
     expect(wrapper).toBeTruthy();
     const btn = wrapper.get('[data-test="fill-parameters-0"]');
     await flushPromises();
     await btn.trigger("click");
-    expect(store.filters.oid).toStrictEqual(["oid-test"]);
+    expect(store.filters.oid).toStrictEqual("oid-test");
   });
 });
