@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.12](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.11...v1.1.0-rc.12) (2022-08-23)
+
+
+### Bug Fixes
+
+* fill-parameters button ([69701e0](https://github.com/alercebroker/frontendcitos/commit/69701e00eb981e82bd89f3b0983a5e18bc076a31))
+
+
+
+
+
 # [1.1.0-rc.11](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.10...v1.1.0-rc.11) (2022-08-22)
 
 
