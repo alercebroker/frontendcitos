@@ -1,56 +1,33 @@
 <script setup lang="ts">
-import { reactive, ref, watch } from "vue";
-import { type SearchInput, useSearchStore } from "@/ui/stores/search";
+import { ref, watch } from "vue";
+import { useSearchStore } from "@/ui/stores/search";
+import { storeToRefs } from "pinia";
 
 const searchStore = useSearchStore();
 
-const searchInput: SearchInput = reactive({
-  ndet: {
-    min: null,
-    max: null,
-  },
-  firstmjdDate: { from: null, to: null },
-  firstmjd: { from: null, to: null },
-  oid: "",
-  coordinates: {
-    ra: null,
-    dec: null,
-    radius: null,
-  },
-});
+const { filters } = storeToRefs(searchStore);
 
 const tab = ref("general");
 
 watch(
-  () => searchStore.componentFilters,
-  (newVal) => {
-    searchInput.ndet = newVal.ndet;
-    searchInput.firstmjd = newVal.firstmjd;
-    searchInput.firstmjdDate = newVal.firstmjdDate;
-    searchInput.oid = newVal.oid;
-    searchInput.coordinates = newVal.coordinates;
-  }
-);
-
-watch(
-  () => searchInput.firstmjdDate,
+  () => filters.value.firstmjdDate,
   (newDate) => {
-    searchInput.firstmjd.from = searchStore.convertGregToMjd(
+    filters.value.firstmjd.from = searchStore.convertGregToMjd(
       newDate.from as string
     );
-    searchInput.firstmjd.to = searchStore.convertGregToMjd(
+    filters.value.firstmjd.to = searchStore.convertGregToMjd(
       newDate.to as string
     );
   }
 );
 
 watch(
-  () => searchInput.firstmjd,
+  () => filters.value.firstmjd,
   (newMjd) => {
-    searchInput.firstmjdDate.from = searchStore.convertMjdToGreg(
+    filters.value.firstmjdDate.from = searchStore.convertMjdToGreg(
       newMjd.from as number
     );
-    searchInput.firstmjdDate.to = searchStore.convertMjdToGreg(
+    filters.value.firstmjdDate.to = searchStore.convertMjdToGreg(
       newMjd.to as number
     );
   }
@@ -91,7 +68,7 @@ watch(
                     <q-input
                       data-test="oid"
                       class="q-mt-md"
-                      v-model="searchInput.oid"
+                      v-model="filters.oid"
                       label="Object ID"
                       debounce="500"
                       square
@@ -100,7 +77,7 @@ watch(
                     <p class="q-mt-lg q-mb-lg">Number of detections</p>
                     <q-range
                       data-test="ndet"
-                      v-model="searchInput.ndet"
+                      v-model="filters.ndet"
                       :min="0"
                       :max="50"
                       label-always
@@ -113,7 +90,7 @@ watch(
                       <div class="col-md-12 col-lg-6">
                         <q-date
                           data-test="firstmjdDate"
-                          v-model="searchInput.firstmjdDate"
+                          v-model="filters.firstmjdDate"
                           range
                           minimal
                           first-day-of-week="1"
@@ -122,7 +99,7 @@ watch(
                       <div class="col-md-12 col-lg-4">
                         <q-input
                           data-test="firstmjdFrom"
-                          v-model.number="searchInput.firstmjd.from"
+                          v-model.number="filters.firstmjd.from"
                           type="number"
                           label="Firstmjd From"
                           squared
@@ -131,7 +108,7 @@ watch(
                         <q-input
                           data-test="firstmjdTo"
                           class="q-mt-md"
-                          v-model.number="searchInput.firstmjd.to"
+                          v-model.number="filters.firstmjd.to"
                           type="number"
                           label="Firstmjd To"
                           squared
@@ -147,7 +124,7 @@ watch(
                       <div class="col q-mr-md">
                         <q-input
                           data-test="ra"
-                          v-model="searchInput.coordinates.ra"
+                          v-model="filters.coordinates.ra"
                           type="number"
                           label="RA"
                           squared
@@ -157,7 +134,7 @@ watch(
                       <div class="col q-mr-md">
                         <q-input
                           data-test="dec"
-                          v-model="searchInput.coordinates.dec"
+                          v-model="filters.coordinates.dec"
                           type="number"
                           label="Dec"
                           squared
@@ -167,7 +144,7 @@ watch(
                       <div class="col">
                         <q-input
                           data-test="radius"
-                          v-model="searchInput.coordinates.radius"
+                          v-model="filters.coordinates.radius"
                           type="number"
                           label="Radius"
                           squared
@@ -185,7 +162,7 @@ watch(
                   color="primary"
                   label="Search"
                   size="xl"
-                  @click="searchStore.search(searchInput)"
+                  @click="searchStore.search()"
                 />
                 <q-btn class="full-width q-mt-xl" label="Clear" outline />
               </div>
@@ -214,7 +191,7 @@ watch(
               data-test="premade-search"
               flat
               label="Search"
-              @click="searchStore.search(searchInput)"
+              @click="searchStore.search()"
             />
             <q-btn
               :data-test="'fill-parameters-' + index"

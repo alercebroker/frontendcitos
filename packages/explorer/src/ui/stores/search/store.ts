@@ -19,7 +19,7 @@ export type PremadeQuery = {
   category: string;
   description: string;
   image: string;
-  filters: ObjectListFilters;
+  filters: SearchInput;
 };
 
 export type Errors = {
@@ -36,13 +36,25 @@ export const searchStore = (
   convertGregUseCase: Command
 ) => {
   return defineStore("search", () => {
-    const filters = ref<ObjectListFilters>({
-      oid: [],
-      ndet: [],
-      firstmjd: [],
-      ra: -999,
-      dec: -999,
-      radius: -999,
+    const filters = ref<SearchInput>({
+      oid: "",
+      ndet: {
+        min: null,
+        max: null,
+      },
+      firstmjdDate: {
+        from: null,
+        to: null,
+      },
+      firstmjd: {
+        from: null,
+        to: null,
+      },
+      coordinates: {
+        ra: null,
+        dec: null,
+        radius: null,
+      },
     });
 
     const premadeQueries = ref<PremadeQuery[]>([
@@ -53,12 +65,24 @@ export const searchStore = (
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
         filters: {
-          oid: [],
-          ndet: [],
-          firstmjd: [],
-          ra: -999,
-          dec: -999,
-          radius: -999,
+          oid: "",
+          ndet: {
+            min: null,
+            max: null,
+          },
+          firstmjdDate: {
+            from: null,
+            to: null,
+          },
+          firstmjd: {
+            from: null,
+            to: null,
+          },
+          coordinates: {
+            ra: null,
+            dec: null,
+            radius: null,
+          },
         },
       },
       {
@@ -68,12 +92,24 @@ export const searchStore = (
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
         filters: {
-          oid: [],
-          ndet: [],
-          firstmjd: [59000, 60000],
-          ra: -999,
-          dec: -999,
-          radius: -999,
+          oid: "",
+          ndet: {
+            min: null,
+            max: null,
+          },
+          firstmjdDate: {
+            from: null,
+            to: null,
+          },
+          firstmjd: {
+            from: null,
+            to: null,
+          },
+          coordinates: {
+            ra: null,
+            dec: null,
+            radius: null,
+          },
         },
       },
       {
@@ -83,12 +119,24 @@ export const searchStore = (
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
         filters: {
-          oid: [],
-          ndet: [10, 20],
-          firstmjd: [],
-          ra: -999,
-          dec: -999,
-          radius: -999,
+          oid: "",
+          ndet: {
+            min: null,
+            max: null,
+          },
+          firstmjdDate: {
+            from: null,
+            to: null,
+          },
+          firstmjd: {
+            from: null,
+            to: null,
+          },
+          coordinates: {
+            ra: null,
+            dec: null,
+            radius: null,
+          },
         },
       },
       {
@@ -98,12 +146,24 @@ export const searchStore = (
         image:
           "https://alerce-science.s3.amazonaws.com/images/nick_hall_alerce_star_trail_web01.max-1600x900.jpg",
         filters: {
-          oid: ["example"],
-          ndet: [],
-          firstmjd: [],
-          ra: -999,
-          dec: -999,
-          radius: -999,
+          oid: "",
+          ndet: {
+            min: null,
+            max: null,
+          },
+          firstmjdDate: {
+            from: null,
+            to: null,
+          },
+          firstmjd: {
+            from: null,
+            to: null,
+          },
+          coordinates: {
+            ra: null,
+            dec: null,
+            radius: null,
+          },
         },
       },
     ]);
@@ -126,16 +186,15 @@ export const searchStore = (
       inputError: null,
     });
 
-    function search(inputFilters: SearchInput) {
-      const [isValid, inputErrors] = validateInputFilters(inputFilters);
+    function search() {
+      const [isValid, inputErrors] = validateInputFilters(filters.value);
       if (!isValid) {
         errors.value.inputError = inputErrors.map((errorsito) => {
           return new Error(errorsito);
         });
         return;
       }
-      const parsedFilters = parseInput(inputFilters);
-      filters.value = parsedFilters;
+      const parsedFilters = parseInput(filters.value);
       searchObjectsUseCase.execute(
         {
           handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
@@ -196,10 +255,6 @@ export const searchStore = (
       return result;
     }
 
-    const componentFilters = computed(() => {
-      return parseInputReverse(filters.value, convertMjdUseCase);
-    });
-
     function fillParameters(premadeQueryTitle: string): void {
       const foundQuery = premadeQueries.value.find((query) => {
         return query.title === premadeQueryTitle;
@@ -213,7 +268,6 @@ export const searchStore = (
       premadeQueries,
       errors,
       search,
-      componentFilters,
       results,
       convertGregToMjd,
       convertMjdToGreg,
