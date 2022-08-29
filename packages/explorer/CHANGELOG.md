@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.13](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.12...v1.1.0-rc.13) (2022-08-29)
+
+
+### Bug Fixes
+
+* aws cli deployment permissions ([7a6ba10](https://github.com/alercebroker/frontendcitos/commit/7a6ba10045cc01cfa92d1441f1711e89427097c1))
+
+
+
+
+
 # [1.1.0-rc.12](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.11...v1.1.0-rc.12) (2022-08-23)
 
 
