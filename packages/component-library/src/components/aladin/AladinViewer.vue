@@ -9,9 +9,9 @@ function appendScript(lib: string, onload?: () => void): Promise<void> {
     function resolveFunction() {
       if (onload) onload();
       resolve();
-    };
+    }
     // check if library exists before appending it
-    if (document.querySelectorAll(`script[src="${lib}"]`).length > 0){
+    if (document.querySelectorAll(`script[src="${lib}"]`).length > 0) {
       return resolveFunction();
     }
 
@@ -48,7 +48,7 @@ onMounted(async () => {
   await appendScript("https://code.jquery.com/jquery-1.12.1.min.js");
   await appendScript(
     "https://aladin.cds.unistra.fr/AladinLite/api/v3/latest/aladin.js",
-    function() {
+    function () {
       A.init.then(() => {
         aladin.value = A.aladin("#" + props.divId, {
           survey: "P/PanSTARRS/DR1/color-z-zg-g",
@@ -117,6 +117,7 @@ function updateCatalog(objects: any[]) {
 }
 
 function onObjectSelected(newObject: any) {
+  if (!newObject) return;
   const coordinates = {
     ra: newObject.meanra,
     dec: newObject.meandec,
@@ -149,12 +150,27 @@ function addNearCatalogObjects(coordinates: { ra: number; dec: number }) {
   );
 }
 
-watch(() => data.objectSelected, onObjectSelected);
+watch(() => [data.objectSelected], onObjectSelected);
+watch(
+  () => props.initObjectId,
+  (newObjectId: string) => {
+    console.log("new object selected", newObjectId);
+    const newObject = findObjectByOid(newObjectId);
+    onObjectSelected(newObject);
+  }
+);
 watch(
   () => data.aladinObjectSelected,
   (newASelected: any, currentASelected: any) => {
     if (newASelected) newASelected.select();
     if (currentASelected) currentASelected.deselect();
+  }
+);
+watch(
+  () => props.objects,
+  (newObjects) => {
+    console.log("a new list of objects has been found", newObjects);
+    updateCatalog(newObjects);
   }
 );
 </script>

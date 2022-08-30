@@ -32,7 +32,6 @@ describe("SearchComponent test", () => {
       const idColumn = indexView
         .findAll("td")
         .filter((wrapper) => wrapper.text() === "AID4321");
-      console.log(idColumn.length);
       expect(idColumn.length).toBe(1);
       expect(idColumn[0].text()).toEqual("AID4321");
     });

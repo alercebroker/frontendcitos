@@ -66,7 +66,6 @@ const dateOptions = [
 watch(
   date,
   (newDate: { label: string; diff: number }) => {
-    console.log(newDate);
     const now = new Date();
     const since = new Date(now);
     since.setDate(since.getDate() - newDate.diff);

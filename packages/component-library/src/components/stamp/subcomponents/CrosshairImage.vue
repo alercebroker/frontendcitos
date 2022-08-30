@@ -32,7 +32,6 @@ function drawCrosshair(
 }
 
 function drawImage() {
-  console.log("Drawing crosshair image");
   const ctx = canvasRef.value.getContext("2d");
   const canvas = canvasRef.value;
   const img = new Image();
