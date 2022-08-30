@@ -18,7 +18,7 @@ describe("Success test", () => {
     const testCallbacks: Callbacks = {
       handleSuccess: (data) => {
         // filters the detection which doesn't meet the criteria
-        expect(data.items.length).toBe(1);
+        expect(data.items.length).toBe(2);
         expect(data.items[0].firstDetection.candid).toEqual("candid1");
       },
       handleErrors: {

@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve --port 3000",
     "build": "vue-cli-service build",
-    "test": "vitest",
+    "test": "vitest --environment jsdom --run",
     "test:unit": "vitest",
     "lint": "vue-cli-service lint",
     "deploy": "bash ./scripts/deploy.sh"

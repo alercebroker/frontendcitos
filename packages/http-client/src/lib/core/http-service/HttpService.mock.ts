@@ -89,7 +89,7 @@ export class HttpServiceObjectMocks implements IHttpService {
         resolve(parser.parseTo(res as unknown as T))
       })
     }
-    if (request.url.match(/object\/\w+\/detections/)) {
+    if (request.url.match(/objects\/\w+\/detections/)) {
       const res: DetectionItem[] = [
         {
           aid: 'AID321',
