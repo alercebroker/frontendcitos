@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.16](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.15...v1.1.0-rc.16) (2022-08-30)
+
+
+### Bug Fixes
+
+* commented issues in the PR were fixed ([cb6bb97](https://github.com/alercebroker/frontendcitos/commit/cb6bb979024612552834db27d19208f727fe2783))
+* **test:** other fixes to mock httpclient ([529de4b](https://github.com/alercebroker/frontendcitos/commit/529de4bdb982b496e1ef7190b4cd8fbb1a84aa2b))
+* **tests:** tests fixed ([3ce8c30](https://github.com/alercebroker/frontendcitos/commit/3ce8c30564aaa713198aa0c5ec30b3d64b9b4f9e))
+* **vitest:** hunter wont have integration tests ([b5b2cbc](https://github.com/alercebroker/frontendcitos/commit/b5b2cbc3035feb8aff14538662af4b701e8fe11c))
+
+
+### Features
+
+* **hunter:** new webpack configuration + wip ([8e12e19](https://github.com/alercebroker/frontendcitos/commit/8e12e19f2de349a912e3d14005de31c014c17e64))
+* **hunter:** object querying + detections wip ([c508db0](https://github.com/alercebroker/frontendcitos/commit/c508db07b0c0f9976a83f2ebf1cd8c1ce48da09e))
+* **query:** added default date ranges ([96b8262](https://github.com/alercebroker/frontendcitos/commit/96b826274d053b280c468452162d2e938fde22f9))
+
+
+
+
+
 # [1.1.0-rc.15](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.14...v1.1.0-rc.15) (2022-08-30)
 
 **Note:** Version bump only for package hunter

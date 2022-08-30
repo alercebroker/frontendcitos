@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.16](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.15...v1.1.0-rc.16) (2022-08-30)
+
+
+### Bug Fixes
+
+* commented issues in the PR were fixed ([cb6bb97](https://github.com/alercebroker/frontendcitos/commit/cb6bb979024612552834db27d19208f727fe2783))
+
+
+### Features
+
+* **hunter:** new webpack configuration + wip ([8e12e19](https://github.com/alercebroker/frontendcitos/commit/8e12e19f2de349a912e3d14005de31c014c17e64))
+* **hunter:** object querying + detections wip ([c508db0](https://github.com/alercebroker/frontendcitos/commit/c508db07b0c0f9976a83f2ebf1cd8c1ce48da09e))
+
+
+
+
+
 # [1.1.0-rc.14](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.13...v1.1.0-rc.14) (2022-08-29)
 
 **Note:** Version bump only for package @alercebroker/component-library
