@@ -76,20 +76,6 @@ export class HttpServiceObjectMocks implements IHttpService {
         resolve(parser.parseTo(listResponse as unknown as T))
       })
     }
-    if (request.url.match(/objects\/\w+/)) {
-      const res: singleObjectResponse = {
-        aid: 'aid123',
-        oid: ['oid123'],
-        ndet: 1,
-        firstmjd: 1,
-        lastmjd: 1,
-        meanra: 1,
-        meandec: 1,
-      }
-      return new Promise((resolve) => {
-        resolve(parser.parseTo(res as unknown as T))
-      })
-    }
     if (request.url.match(/objects\/\w+\/detections/)) {
       const res: DetectionItem[] = [
         {
@@ -112,6 +98,20 @@ export class HttpServiceObjectMocks implements IHttpService {
           parent_candid: 'pcandid',
         },
       ]
+      return new Promise((resolve) => {
+        resolve(parser.parseTo(res as unknown as T))
+      })
+    }
+    if (request.url.match(/objects\/\w+/)) {
+      const res: singleObjectResponse = {
+        aid: 'aid123',
+        oid: ['oid123'],
+        ndet: 1,
+        firstmjd: 1,
+        lastmjd: 1,
+        meanra: 1,
+        meandec: 1,
+      }
       return new Promise((resolve) => {
         resolve(parser.parseTo(res as unknown as T))
       })
