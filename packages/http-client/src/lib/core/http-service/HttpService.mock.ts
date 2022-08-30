@@ -50,6 +50,7 @@ export class HttpServiceObjectMocks implements IHttpService {
     throw new Error('Method not implemented.')
   }
   getSuccess<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M> {
+    console.log("requesting", request.url);
     if (request.url === '/objects') {
       const items: singleObjectResponse[] = [
         {
@@ -75,7 +76,7 @@ export class HttpServiceObjectMocks implements IHttpService {
         resolve(parser.parseTo(listResponse as unknown as T))
       })
     }
-    if (request.url === '/object') {
+    if (request.url.match(/objects\/\w+/)) {
       const res: singleObjectResponse = {
         aid: 'aid123',
         oid: ['oid123'],
