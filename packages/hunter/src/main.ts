@@ -1,12 +1,21 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import { Quasar, Dark } from "quasar";
+import VChart from "vue-echarts";
 
-import App from './App.vue'
-import router from './router'
+import App from "./App.vue";
 
-const app = createApp(App)
+import "echarts";
+import "echarts/lib/chart/custom";
+import "@quasar/extras/material-icons/material-icons.css";
+import "quasar/dist/quasar.css";
 
-app.use(createPinia())
-app.use(router)
+const app = createApp(App as any);
 
-app.mount('#app')
+app
+  .use(createPinia())
+  .use(Quasar, { plugins: {} })
+  .component("v-chart", VChart);
+Dark.set(true);
+
+app.mount("#app");

@@ -88,7 +88,7 @@ export class AlertsClient implements IAlertsClient {
     }
     return this.httpService.get<DetectionItem[], T>(
       {
-        url: `/object/${aid}/detections`,
+        url: `/objects/${aid}/detections`,
       },
       parser
     )

@@ -5,7 +5,7 @@ import "@quasar/extras/material-icons/material-icons.css";
 import "quasar/dist/quasar.css";
 import App from "./App.vue";
 
-const app = createApp(App);
+const app = createApp(App as any);
 
 app
   .use(Quasar, {

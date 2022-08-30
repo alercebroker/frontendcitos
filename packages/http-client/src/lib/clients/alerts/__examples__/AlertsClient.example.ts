@@ -80,7 +80,7 @@ export async function exampleQueryObjectsWithParser(): Promise<MyCustomObject> {
       myCustomParser
     )
     // do something with result
-    console.log(result)
+    // console.log(result)
     return result
   } catch (exception) {
     // handle exception
