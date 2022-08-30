@@ -14,5 +14,5 @@ export function gregorianToMjd(dateString: string) {
     date.getUTCSeconds()
   );
   const mjd = dateUtc / 86400000 + 40587;
-  return mjd;
+  return mjd.toFixed(3);
 }

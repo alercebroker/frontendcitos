@@ -16,6 +16,9 @@
     }
   },
   "targetDefaults": {
+    "serve": {
+      "dependsOn": ["^build", "^build:module"]
+    },
     "build": {
       "dependsOn": ["^build", "^build:module"]
     },

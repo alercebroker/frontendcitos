@@ -70,8 +70,10 @@ watch(
     const now = new Date();
     const since = new Date(now);
     since.setDate(since.getDate() - newDate.diff);
-    data.firstmjd = [gregorianToMjd(since.toUTCString())];
-    data.lastmjd = [gregorianToMjd(now.toUTCString())];
+    data.firstmjd = [
+      gregorianToMjd(since.toUTCString()),
+      gregorianToMjd(now.toUTCString()),
+    ];
   },
   {
     immediate: true,

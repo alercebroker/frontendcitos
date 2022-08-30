@@ -3,9 +3,9 @@
   "version": "1.1.0-rc.9",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --port 3000",
     "build": "vue-cli-service build",
-    "test": "vue-cli-service test:unit --passWithNoTests",
+    "test": "vue-cli-service test:unit",
     "test:unit": "vitest",
     "lint": "vue-cli-service lint",
     "deploy": "bash ./scripts/deploy.sh"

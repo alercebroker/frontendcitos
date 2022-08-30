@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref, onUpdated } from "vue";
 const canvasRef: any = ref(null);
+const error = ref(false);
 
 const props = defineProps({
   name: { type: String, required: true },
@@ -31,6 +32,7 @@ function drawCrosshair(
 }
 
 function drawImage() {
+  console.log("Drawing crosshair image");
   const ctx = canvasRef.value.getContext("2d");
   const canvas = canvasRef.value;
   const img = new Image();
@@ -40,6 +42,7 @@ function drawImage() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
     
+    if (error.value) return;
     drawCrosshair(
       canvas.width / 2,
       canvas.height / 2,
@@ -49,6 +52,11 @@ function drawImage() {
       props.crosshairSpace
     );
   };
+  img.onerror = () => {
+    console.error("Something went wrong when loading image");
+    error.value = true;
+    img.src = 'https://via.placeholder.com/300';
+  }
   img.src = props.image;
   img.alt = 'https://via.placeholder.com/300';
 }

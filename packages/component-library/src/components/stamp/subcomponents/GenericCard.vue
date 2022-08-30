@@ -17,7 +17,7 @@
       </div>
     </q-card-section>
     <q-card-section class="card-image">
-      <crosshair-image  v-if="viewtype === 'crosshair'" :name="props.title" :image="data.image" />
+      <crosshair-image v-if="viewtype === 'crosshair'" :name="props.title" :image="data.image" />
       <zoom-image v-if="viewtype === 'zoom'" :image="data.image" :scale="2"/>
     </q-card-section>
   </q-card>

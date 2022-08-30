@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="row q-pa-xs">
-      <div class="col-7 q-pa-xs" style="height: 33vh">
+      <div class="col-7 q-pa-xs" style="height: 27vh">
         <AladinContainer />
       </div>
       <div class="col-5 q-pa-xs">
