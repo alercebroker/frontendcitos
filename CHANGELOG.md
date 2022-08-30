@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.15](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.14...v1.1.0-rc.15) (2022-08-30)
+
+
+### Bug Fixes
+
+* **http-client:** fix url with object id ([3b144a0](https://github.com/alercebroker/frontendcitos/commit/3b144a0ef21d8dfcdfed580be2d5829d9bcd9911))
+
+
+### Features
+
+* **explorer:** Add object details view layout ([7682035](https://github.com/alercebroker/frontendcitos/commit/7682035e6b8efdf282660bcf1b8b66b964336581))
+
+
+
+
+
 # [1.1.0-rc.14](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.13...v1.1.0-rc.14) (2022-08-29)
 
 **Note:** Version bump only for package root

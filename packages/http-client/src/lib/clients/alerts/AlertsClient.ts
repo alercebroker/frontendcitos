@@ -72,10 +72,7 @@ export class AlertsClient implements IAlertsClient {
         },
       }
     }
-    return this.httpService.get(
-      { url: '/object', config: { params: { aid } } },
-      parser
-    )
+    return this.httpService.get({ url: `/objects/${aid}` }, parser)
   }
 
   queryDetections<T>(
