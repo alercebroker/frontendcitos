@@ -8,6 +8,7 @@ on:
       - '.github/workflows/publish.yaml'
       - '.github/workflows/publish-release.yaml'
       - '**/docs/**'
+      - '**/scripts/**'
 
 jobs:
   unit_test:

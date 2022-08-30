@@ -3,6 +3,63 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.14](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.13...v1.1.0-rc.14) (2022-08-29)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+# [1.1.0-rc.13](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.12...v1.1.0-rc.13) (2022-08-29)
+
+
+### Bug Fixes
+
+* aws cli deployment permissions ([7a6ba10](https://github.com/alercebroker/frontendcitos/commit/7a6ba10045cc01cfa92d1441f1711e89427097c1))
+
+
+
+
+
+# [1.1.0-rc.12](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.11...v1.1.0-rc.12) (2022-08-23)
+
+
+### Bug Fixes
+
+* fill-parameters button ([69701e0](https://github.com/alercebroker/frontendcitos/commit/69701e00eb981e82bd89f3b0983a5e18bc076a31))
+
+
+
+
+
+# [1.1.0-rc.11](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.10...v1.1.0-rc.11) (2022-08-22)
+
+
+### Bug Fixes
+
+* fixed tests ([3f50f43](https://github.com/alercebroker/frontendcitos/commit/3f50f430d48600a8b9857136e3227ec84e5cbdd2))
+
+
+### Features
+
+* **explorer:** delete aid filter ([cf2d030](https://github.com/alercebroker/frontendcitos/commit/cf2d030e156b7909e41fb58cef871726d136ffeb))
+
+
+
+
+
+# [1.1.0-rc.10](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.9...v1.1.0-rc.10) (2022-08-22)
+
+
+### Bug Fixes
+
+* read api url from environment variable ([50f8190](https://github.com/alercebroker/frontendcitos/commit/50f8190d29d9e8056a0e0552eb8f220d03478ee8))
+
+
+
+
+
 # [1.1.0-rc.9](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.8...v1.1.0-rc.9) (2022-08-17)
 
 
