@@ -154,7 +154,6 @@ watch(() => [data.objectSelected], onObjectSelected);
 watch(
   () => props.initObjectId,
   (newObjectId: string) => {
-    console.log("new object selected", newObjectId);
     const newObject = findObjectByOid(newObjectId);
     onObjectSelected(newObject);
   }
@@ -169,7 +168,6 @@ watch(
 watch(
   () => props.objects,
   (newObjects) => {
-    console.log("a new list of objects has been found", newObjects);
     updateCatalog(newObjects);
   }
 );
