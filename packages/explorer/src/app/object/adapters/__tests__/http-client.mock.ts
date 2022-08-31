@@ -2,6 +2,7 @@ import {
   HttpError,
   ParseError,
   type ClientConfig,
+  type DetectionItem,
   type IAlertsClient,
   type listObjectResponse,
   type Newable,
@@ -18,6 +19,16 @@ export const __setTestType = (tt: string) => {
 };
 
 class AlertsClientMock implements IAlertsClient {
+  initClient() {
+    throw new Error("Method not implemented.");
+  }
+  queryDetections<T>(
+    aid: string,
+    parser?: Parser<DetectionItem[], T> | undefined,
+    customModel?: Newable<T> | undefined
+  ): Promise<T> {
+    throw new Error("Method not implemented.");
+  }
   queryObjects<T>(
     objectFilters: ObjectFilters,
     parser?: Parser<listObjectResponse, T>,

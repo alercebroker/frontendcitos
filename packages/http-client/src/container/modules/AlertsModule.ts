@@ -1,5 +1,5 @@
 import { ContainerModule, interfaces } from 'inversify'
-import { AlertsClient } from '../../lib/clients/alerts/AlertsClient.1'
+import { AlertsClient } from '../../lib/clients/alerts/AlertsClient'
 import {
   IAlertsClient,
   ClientConfig,

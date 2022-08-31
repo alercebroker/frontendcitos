@@ -51,8 +51,10 @@ function parseItems(items: objectListItem[]): ObjectEntity[] {
   return items.map((item) => {
     const objectEntity: ObjectEntity = {
       aid: item.aid,
+      oid: item.oid,
       ra: item.meanra,
       dec: item.meandec,
+      ndet: item.ndet,
       firstmjd: item.firstmjd,
       firstGreg: mjdToGreg(item.firstmjd),
       lastmjd: item.lastmjd,

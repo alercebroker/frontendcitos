@@ -11,6 +11,8 @@ export const objects: PaginatedListEntity<ObjectEntity> = {
   items: [
     {
       aid: "aid123",
+      oid: ["oid1"],
+      ndet: 2,
       ra: 111,
       dec: 222,
       firstmjd: 123,

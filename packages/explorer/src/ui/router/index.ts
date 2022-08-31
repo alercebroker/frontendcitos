@@ -19,6 +19,7 @@ const router = createRouter({
         },
         {
           path: "results",
+          name: "results",
           component: SearchResults,
         },
       ],
