@@ -104,8 +104,18 @@ function isParseError(_: Error) {
   return false;
 }
 
+function serializeParams(params: any, args?: any) {
+  return "serializedParams";
+}
+
+function serializeParamsReverse(queryString: string, args?: any) {
+  return {};
+}
+
 export const mockedModule = {
   AlertsClient,
   isHttpError,
   isParseError,
+  serializeParams,
+  serializeParamsReverse,
 };
