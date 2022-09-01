@@ -1,5 +1,5 @@
 import { installQuasar } from "@quasar/quasar-app-extension-testing-unit-vitest";
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect, vi, afterEach, beforeEach } from "vitest";
 import {
   mockedModule,
   __setTestType,
@@ -10,6 +10,7 @@ import SearchCardHorizontal from "@ui/components/SearchCardHorizontal.vue";
 import { flushPromises, mount } from "@vue/test-utils";
 import { installPinia } from "@/common/test_utils/quasar";
 import { objects } from "@/app/object/adapters/__tests__/listObjectResponse.mock";
+import router from "@/ui/router";
 
 vi.mock("@alercebroker/http-client", () => mockedModule);
 installQuasar();
@@ -43,9 +44,14 @@ describe("Search with filters", () => {
       searchComp.vm.filters.oid = "aid1,aid2,aid3";
       searchComp.vm.filters.ndet = { min: 10, max: 20 };
       const btn = wrapper.get('[data-test="button-search"]');
+      const push = vi.spyOn(router, "push");
+      expect(push).not.toHaveBeenCalled();
       await btn.trigger("click");
       expect(mock.mock.calls[0][0].oid).toStrictEqual(["aid1", "aid2", "aid3"]);
       expect(mock.mock.calls[0][0].ndet).toStrictEqual([10, 20]);
+      await flushPromises();
+      expect(push).toHaveBeenCalledOnce();
+      expect(push).toHaveBeenCalledWith({ name: "results", query: {} });
     });
   });
   describe("Search with date filters", () => {
@@ -60,6 +66,8 @@ describe("Search with filters", () => {
       };
       const btn = wrapper.get('[data-test="button-search"]');
       await flushPromises();
+      const push = vi.spyOn(router, "push");
+      expect(push).not.toHaveBeenCalled();
       await btn.trigger("click");
       expect(
         mock.mock.calls[0][0].firstmjd
@@ -71,6 +79,9 @@ describe("Search with filters", () => {
           ? mock.mock.calls[0][0].firstmjd[1]
           : -999
       ).toBeCloseTo(49731, 0.5);
+      await flushPromises();
+      expect(push).toHaveBeenCalledOnce();
+      expect(push).toHaveBeenCalledWith({ name: "results", query: {} });
     });
     it("should use correct filters if mjd is used", async () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
@@ -90,8 +101,13 @@ describe("Search with filters", () => {
       );
       const btn = wrapper.get('[data-test="button-search"]');
       await flushPromises();
+      const push = vi.spyOn(router, "push");
+      expect(push).not.toHaveBeenCalled();
       await btn.trigger("click");
       expect(mock.mock.calls[0][0].firstmjd).toStrictEqual([49730, 49731]);
+      await flushPromises();
+      expect(push).toHaveBeenCalledOnce();
+      expect(push).toHaveBeenCalledWith({ name: "results", query: {} });
     });
   });
 
@@ -106,10 +122,15 @@ describe("Search with filters", () => {
       searchComp.vm.filters.coordinates.radius = 30;
       await flushPromises();
       const btn = wrapper.get('[data-test="button-search"]');
+      const push = vi.spyOn(router, "push");
+      expect(push).not.toHaveBeenCalled();
       await btn.trigger("click");
       expect(mock.mock.calls[0][0].ra).toBe(10);
       expect(mock.mock.calls[0][0].dec).toBe(20);
       expect(mock.mock.calls[0][0].radius).toBe(30);
+      await flushPromises();
+      expect(push).toHaveBeenCalledOnce();
+      expect(push).toHaveBeenCalledWith({ name: "results", query: {} });
     });
     it("should fail if not all of ra, dec, radius are used", async () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
@@ -121,8 +142,12 @@ describe("Search with filters", () => {
       searchComp.vm.filters.coordinates.radius = null;
       await flushPromises();
       const btn = wrapper.get('[data-test="button-search"]');
+      const push = vi.spyOn(router, "push");
+      expect(push).not.toHaveBeenCalled();
       await btn.trigger("click");
       expect(mock).not.toBeCalled();
+      await flushPromises();
+      expect(push).not.toHaveBeenCalled();
     });
   });
 });
