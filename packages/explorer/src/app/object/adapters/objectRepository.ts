@@ -13,6 +13,7 @@ import {
 } from "@alercebroker/http-client";
 import type {
   listObjectResponse,
+  singleObjectResponse,
   objectListItem,
   Parser,
   HttpError,
@@ -64,6 +65,28 @@ function parseItems(items: objectListItem[]): ObjectEntity[] {
   });
 }
 
+export const objectSingleParser: Parser<
+  singleObjectResponse,
+  ObjectEntity
+> = {
+  parseTo: (
+    response: singleObjectResponse
+  ): ObjectEntity => {
+    const result: ObjectEntity = {
+      aid: response.aid,
+      ra: response.meanra,
+      dec: response.meandec,
+      firstmjd: response.firstmjd,
+      lastmjd: response.lastmjd,
+      firstGreg: mjdToGreg(response.firstmjd),
+      lastGreg: mjdToGreg(response.lastmjd),
+      raHms: raToHms(response.meanra),
+      decHms: decToHms(response.meandec),
+    };
+    return result;
+  },
+};
+
 async function getObjects(
   filters: ObjectListFilters
 ): Promise<Result<PaginatedListEntity<ObjectEntity>, ParseError | HttpError>> {
@@ -91,5 +114,22 @@ async function getObjects(
 async function getObject(
   id: string
 ): Promise<Result<ObjectEntity, ParseError | HttpError>> {
-  throw new Error("Not Implemented");
+  try {
+    const config: ClientConfig = {
+      baseUrl:
+        import.meta.env.ALERTS_API_URL ||
+        "https://dev.api.alerce.online/alerts/v2",
+    };
+    const result = await AlertsClient.querySingleObject<ObjectEntity
+    >(id, objectSingleParser, undefined, config);
+    return ok(result);
+  } catch (error) {
+    if (error instanceof Error) {
+      if (isHttpError(error) || isParseError(error)) {
+        return err(error);
+      }
+    }
+    // Unknown error, just rethrow
+    throw error;
+  }
 }

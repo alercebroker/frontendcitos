@@ -10,5 +10,7 @@ export interface ObjectRepository {
   getObjects(
     filters: ObjectListFilters
   ): Promise<Result<PaginatedListEntity<ObjectEntity>, HttpError | ParseError>>;
-  getObject(id: string): Promise<Result<ObjectEntity, HttpError | ParseError>>;
+  getObject(
+    id: string
+  ): Promise<Result<ObjectEntity, HttpError | ParseError>>;
 }
