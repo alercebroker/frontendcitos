@@ -1,4 +1,5 @@
 import { AlertsClientFacade } from './AlertsClientFacade'
+import { AuthClientFacade } from './AuthClientFacade'
 import { loadContainerModules } from './container/container'
 
 export * from './lib/core/http-service/HttpService'
@@ -7,4 +8,4 @@ export { isParseError } from './lib/core/error/parse-error'
 
 loadContainerModules()
 
-export { AlertsClientFacade as AlertsClient }
+export { AlertsClientFacade as AlertsClient, AuthClientFacade as AuthClient }
