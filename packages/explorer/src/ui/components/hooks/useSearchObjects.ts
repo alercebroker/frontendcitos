@@ -1,6 +1,6 @@
-import { useSearchStore } from "@/ui/stores/search";
 import { storeToRefs } from "pinia";
 import { watch } from "vue";
+import { useSearchStore } from "@/ui/stores/search";
 
 export function useSearchObjects() {
   const searchStore = useSearchStore();

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { useSearchStore } from "@/ui/stores/search";
+import SearchCardVertical from "../components/SearchCardVertical.vue";
 import { storeToRefs } from "pinia";
 import { reactive } from "vue";
-import SearchCardVertical from "../components/SearchCardVertical.vue";
+import { useSearchStore } from "@/ui/stores/search";
 
 const searchStore = useSearchStore();
 const { results, columns } = storeToRefs(searchStore);
