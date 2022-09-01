@@ -1,9 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Search from "@ui/layouts/Search.vue";
-import SearchHome from "@ui/views/SearchHome.vue";
-import SearchResults from "@ui/views/SearchResults.vue";
-import ObjectDetails from "@ui/layouts/ObjectDetails.vue";
-import ObjectDetailsView from "@ui/views/ObjectDetailsView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,27 +6,27 @@ const router = createRouter({
     {
       path: "/",
       name: "search",
-      component: Search,
+      component: () => import("@ui/layouts/Search.vue"),
       children: [
         {
           path: "/",
-          component: SearchHome,
+          component: () => import("@ui/views/SearchHome.vue"),
         },
         {
           path: "results",
           name: "results",
-          component: SearchResults,
+          component: () => import("@ui/views/SearchResults.vue"),
         },
       ],
     },
     {
       path: "/object/:objectId",
       name: "object-details",
-      component: ObjectDetails,
+      component: () => import("@ui/layouts/ObjectDetails.vue"),
       children: [
         {
           path: "",
-          component: ObjectDetailsView,
+          component: () => import("@ui/views/ObjectDetailsView.vue"),
           name: "object",
         },
       ],
