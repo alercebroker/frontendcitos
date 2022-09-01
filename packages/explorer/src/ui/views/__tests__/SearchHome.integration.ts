@@ -1,5 +1,5 @@
 import { installQuasar } from "@quasar/quasar-app-extension-testing-unit-vitest";
-import { describe, it, expect, vi, afterEach, beforeEach } from "vitest";
+import { describe, it, expect, vi, afterEach } from "vitest";
 import {
   mockedModule,
   __setTestType,
