@@ -26,6 +26,22 @@ export class AuthClient implements IAuthClient {
     return res
   }
 
+  private refreshSession(refreshToken: string): Promise<string> {
+    return new Promise((resolve) => {
+      this._httpService
+        .post(
+          { url: '/users/refresh/', data: { refresh: refreshToken } },
+          { parseTo: (res: { access: string }) => res.access }
+        )
+        .then((response) => {
+          resolve(response)
+        })
+        .catch(() => {
+          resolve('')
+        })
+    })
+  }
+
   private getCurrentUser(): Promise<UserSchema> {
     return this._httpService.get(
       { url: '/users/current/' },
@@ -44,18 +60,30 @@ export class AuthClient implements IAuthClient {
       { parseTo: this.defaultParser<SessionTokens> }
     )
   }
-  verifySession(session: SessionTokens): Promise<UserSchema> {
+  verifySession(session: SessionTokens): Promise<[UserSchema, SessionTokens]> {
     this._httpService.setAccessToken(session.access)
 
     return new Promise(async (resolve, reject) => {
       try {
-        const response = await this.getCurrentUser();
-        resolve(response);
+        const response = await this.getCurrentUser()
+        resolve([response, session])
       } catch (e) {
-        console.log(e)
-        //check if session expired
-        //maybe refresh...
-        reject(new Error("Session expired, please login again."))
+        console.log(JSON.stringify(e), typeof e)
+        //unknown error
+        if (e.status !== 401) reject(new Error('Unknown error'))
+
+        const newAccessToken = await this.refreshSession(session.refresh)
+        if (newAccessToken === '')
+          reject(new Error('Session expired, please login again.'))
+        this._httpService.setAccessToken(newAccessToken)
+        const response = await this.getCurrentUser()
+        resolve([
+          response,
+          {
+            access: newAccessToken,
+            refresh: session.refresh,
+          },
+        ])
       }
     })
   }

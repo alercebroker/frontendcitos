@@ -52,7 +52,11 @@
           />
         </q-card-actions>
         <q-card-actions>
-          <q-btn outline icon="mdi-google" class="full-width"
+          <q-btn
+            outline
+            icon="mdi-google"
+            class="full-width"
+            @click="loginWithGoogle"
             >Login with Google</q-btn
           >
         </q-card-actions>
@@ -64,7 +68,9 @@
 
 <script setup lang="ts">
 import { reactive, ref, toRefs } from "vue";
+import axios from "axios";
 import { useAuthentication } from "../stores";
+import { storeToRefs } from "pinia";
 
 const AUTH_URL = "https://dev.users.alerce.online";
 //login logic
@@ -75,10 +81,19 @@ const loginCredentials = reactive({
 });
 
 const { username, password } = toRefs(loginCredentials);
-const { userLogged, login } = useAuthentication();
+const userStore = useAuthentication();
+
+const { login } = userStore;
+const { userLogged } = storeToRefs(userStore);
 
 function loginWithGoogle() {
-  return;
+  axios
+    .get(
+      `${AUTH_URL}/users/social/o/google-oauth2/?redirect_uri=http://localhost:8080`
+    )
+    .then((response) => {
+      console.log(response.data);
+    });
 }
 </script>
 

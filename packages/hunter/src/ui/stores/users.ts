@@ -34,7 +34,7 @@ export const useAuthentication = defineStore("auth", () => {
   async function verifySession() {
     try {
       const session: SessionTokens = JSON.parse(token.value) as SessionTokens;
-      const user = await AuthClient.verifySession(session, {
+      const [user, usedSession] = await AuthClient.verifySession(session, {
         baseUrl: DEV_AUTH_URL,
         accessToken: session.access,
       });
@@ -42,6 +42,9 @@ export const useAuthentication = defineStore("auth", () => {
         isLogged: true,
         user: user.username,
       };
+      if (session.access !== usedSession.access) {
+        setToken(JSON.stringify(usedSession));
+      }
     } catch (e) {
       console.error("Error verifying session", e);
     }
