@@ -6,6 +6,7 @@ import {
 } from "@/app/object/adapters/__tests__/http-client.mock";
 import { useSearchStore } from "@/ui/stores/search";
 import SearchHome from "../SearchHome.vue";
+import SearchCardHorizontal from "@ui/components/SearchCardHorizontal.vue";
 import { flushPromises, mount } from "@vue/test-utils";
 import { installPinia } from "@/common/test_utils/quasar";
 import { objects } from "@/app/object/adapters/__tests__/listObjectResponse.mock";
@@ -38,8 +39,9 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.filters.oid = "aid1,aid2,aid3";
-      wrapper.vm.filters.ndet = { min: 10, max: 20 };
+      const searchComp = wrapper.getComponent(SearchCardHorizontal);
+      searchComp.vm.filters.oid = "aid1,aid2,aid3";
+      searchComp.vm.filters.ndet = { min: 10, max: 20 };
       const btn = wrapper.get('[data-test="button-search"]');
       await btn.trigger("click");
       expect(mock.mock.calls[0][0].oid).toStrictEqual(["aid1", "aid2", "aid3"]);
@@ -51,7 +53,8 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.filters.firstmjdDate = {
+      const searchComp = wrapper.getComponent(SearchCardHorizontal);
+      searchComp.vm.filters.firstmjdDate = {
         from: "1995/01/13",
         to: "1995/01/14",
       };
@@ -73,15 +76,16 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.filters.firstmjd = {
+      const searchComp = wrapper.getComponent(SearchCardHorizontal);
+      searchComp.vm.filters.firstmjd = {
         from: 49730,
         to: 49731,
       };
       await flushPromises();
-      expect(wrapper.vm.filters.firstmjdDate.from).toBe(
+      expect(searchComp.vm.filters.firstmjdDate.from).toBe(
         new Date("1995-01-13").toUTCString()
       );
-      expect(wrapper.vm.filters.firstmjdDate.to).toBe(
+      expect(searchComp.vm.filters.firstmjdDate.to).toBe(
         new Date("1995-01-14").toUTCString()
       );
       const btn = wrapper.get('[data-test="button-search"]');
@@ -96,9 +100,10 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.filters.coordinates.ra = 10;
-      wrapper.vm.filters.coordinates.dec = 20;
-      wrapper.vm.filters.coordinates.radius = 30;
+      const searchComp = wrapper.getComponent(SearchCardHorizontal);
+      searchComp.vm.filters.coordinates.ra = 10;
+      searchComp.vm.filters.coordinates.dec = 20;
+      searchComp.vm.filters.coordinates.radius = 30;
       await flushPromises();
       const btn = wrapper.get('[data-test="button-search"]');
       await btn.trigger("click");
@@ -110,9 +115,10 @@ describe("Search with filters", () => {
       mockedModule.AlertsClient.queryObjects = vi.fn();
       const mock = vi.mocked(mockedModule.AlertsClient.queryObjects);
       const wrapper = mount(SearchHome);
-      wrapper.vm.filters.coordinates.ra = 10;
-      wrapper.vm.filters.coordinates.dec = 20;
-      wrapper.vm.filters.coordinates.radius = null;
+      const searchComp = wrapper.getComponent(SearchCardHorizontal);
+      searchComp.vm.filters.coordinates.ra = 10;
+      searchComp.vm.filters.coordinates.dec = 20;
+      searchComp.vm.filters.coordinates.radius = null;
       await flushPromises();
       const btn = wrapper.get('[data-test="button-search"]');
       await btn.trigger("click");
