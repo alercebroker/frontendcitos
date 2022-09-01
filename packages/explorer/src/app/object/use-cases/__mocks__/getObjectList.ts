@@ -25,7 +25,6 @@ export const getObjectListUseCase = (
         items: [
           {
             aid: "aid",
-            oid: ["oid1", "oid2"],
             ra: 1,
             dec: 1,
             ndet: 2,

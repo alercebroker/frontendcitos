@@ -1,6 +1,5 @@
 export type ObjectEntity = {
   aid: string;
-  oid: string[];
   ra: number;
   dec: number;
   ndet: number;
