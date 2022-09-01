@@ -15,7 +15,7 @@ const include = (mode: string | undefined) => {
 export default defineConfig({
   test: {
     environment: "jsdom",
-    globals: false,
+    globals: true,
     include: include(process.env.TEST_MODE),
   },
   plugins: [
