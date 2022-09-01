@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useSearchStore } from "@/ui/stores/search";
 import SearchCardHorizontal from "../components/SearchCardHorizontal.vue";
+import PremadeQueryCard from "../components/PremadeQueryCard.vue";
 
 const searchStore = useSearchStore();
 </script>
@@ -25,30 +26,12 @@ const searchStore = useSearchStore();
         :key="index"
         class="col-lg-3 col-md-6 col-sm-12 fast-query q-ml-md q-mr-md"
       >
-        <q-card flat bordered>
-          <q-img :src="query.image" style="height: 150px" />
-
-          <q-card-section>
-            <div class="text-overline">{{ query.category }}</div>
-            <div class="text-h5 q-mt-sm q-mb-xs">{{ query.title }}</div>
-            <div class="text-caption text-grey">{{ query.description }}</div>
-          </q-card-section>
-
-          <q-card-actions>
-            <q-btn
-              data-test="premade-search"
-              flat
-              label="Search"
-              @click="searchStore.search()"
-            />
-            <q-btn
-              :data-test="'fill-parameters-' + index"
-              flat
-              label="Fill Parameters"
-              @click="searchStore.fillParameters(query.title)"
-            />
-          </q-card-actions>
-        </q-card>
+        <PremadeQueryCard
+          :query="query"
+          :index="index"
+          @search="searchStore.search()"
+          @fillParameters="searchStore.fillParameters(query.title)"
+        />
       </div>
     </div>
   </q-page>
