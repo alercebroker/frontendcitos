@@ -1,5 +1,5 @@
 import qs from 'qs'
-export function serializeParams(params: any) {
+export function serializeParams(params: any, args?: any) {
   return qs.stringify(params, {
     arrayFormat: 'repeat',
     skipNulls: true,
@@ -12,5 +12,10 @@ export function serializeParams(params: any) {
       }
       return value
     },
+    ...args,
   })
+}
+
+export function serializeParamsReverse(queryString: string, args?: any) {
+  return qs.parse(queryString, { ...args })
 }

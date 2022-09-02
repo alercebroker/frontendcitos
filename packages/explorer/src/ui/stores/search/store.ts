@@ -1,18 +1,21 @@
 import type { Command } from "@/common/use-case";
-import type {
-  ObjectEntity,
-  ObjectListFilters,
-} from "@/domain/objects/entities";
+import type { ObjectEntity } from "@/domain/objects/entities";
+import router from "@/ui/router";
 import type {
   HttpError,
   PaginatedListEntity,
   ParseError,
 } from "@alercebroker/http-client/build/main/types";
+import {
+  serializeParams,
+  serializeParamsReverse,
+} from "@alercebroker/http-client";
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
-import { parseInput, parseInputReverse } from "./parseInput";
+import { ref } from "vue";
+import { parseInput } from "./parseInput";
 import type { SearchInput } from "./types";
 import { validateInputFilters } from "./validateInput";
+import type { LocationQueryRaw } from "vue-router";
 
 export type PremadeQuery = {
   title: string;
@@ -186,6 +189,50 @@ export const searchStore = (
       inputError: null,
     });
 
+    const columns = ref([
+      {
+        name: "oid",
+        label: "ObjectId",
+        field: "aid",
+        required: true,
+      },
+      {
+        name: "ndet",
+        label: "Num. of Detections",
+        field: "ndet",
+        required: true,
+      },
+      {
+        name: "firstmjd",
+        label: "FirstMJD",
+        field: "firstmjd",
+        format: (val: number, _: any) => `${val.toFixed(3)}`,
+        required: true,
+      },
+      {
+        name: "lastmjd",
+        label: "LastMJD",
+        field: "lastmjd",
+        format: (val: number, _: any) => `${val.toFixed(3)}`,
+        required: true,
+      },
+      {
+        name: "radec",
+        label: "RA/Dec(Degrees)",
+        field: (row: ObjectEntity) =>
+          `${row.ra.toFixed(3)},${row.dec.toFixed(3)}`,
+        required: true,
+      },
+      {
+        name: "deltajd",
+        label: "DeltaJD(days)",
+        field: (row) => {
+          return row.lastmjd - row.firstmjd;
+        },
+        required: true,
+      },
+    ]);
+
     function search() {
       const [isValid, inputErrors] = validateInputFilters(filters.value);
       if (!isValid) {
@@ -199,6 +246,14 @@ export const searchStore = (
         {
           handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
             results.value = data;
+            const queryString = serializeParams(parsedFilters, {
+              encode: false,
+            });
+            const queryStringJson = serializeParamsReverse(queryString);
+            router.push({
+              name: "results",
+              query: queryStringJson as LocationQueryRaw,
+            });
           },
           handleError: {
             handleGenericError: (error: Error) => {
@@ -269,6 +324,7 @@ export const searchStore = (
       errors,
       search,
       results,
+      columns,
       convertGregToMjd,
       convertMjdToGreg,
       fillParameters,

@@ -53,6 +53,7 @@ function parseItems(items: objectListItem[]): ObjectEntity[] {
       aid: item.aid,
       ra: item.meanra,
       dec: item.meandec,
+      ndet: item.ndet,
       firstmjd: item.firstmjd,
       firstGreg: mjdToGreg(item.firstmjd),
       lastmjd: item.lastmjd,

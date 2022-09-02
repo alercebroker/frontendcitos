@@ -1,6 +1,11 @@
 import type { Callbacks, Command } from "@/common/use-case";
+import type { ObjectListFilters } from "@/domain/objects/entities";
 import type { ObjectRepository } from "@/domain/objects/ports";
 import { isHttpError, isParseError } from "@alercebroker/http-client";
+
+function setDefaultFilters(payload: ObjectListFilters) {
+  payload.page_size = 20;
+}
 
 export const getObjectListUseCase = (
   repository: ObjectRepository
@@ -9,6 +14,7 @@ export const getObjectListUseCase = (
     callbacks: Callbacks,
     payload: ObjectListFilters
   ) => {
+    setDefaultFilters(payload);
     const result = await repository.getObjects(payload);
     result.map((objectListEntity) => {
       callbacks.handleSuccess(objectListEntity);

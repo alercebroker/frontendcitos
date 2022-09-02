@@ -1,13 +1,13 @@
+import SearchHome from "../SearchHome.vue";
 import { installQuasar } from "@quasar/quasar-app-extension-testing-unit-vitest";
 import { describe, it, expect, vi } from "vitest";
-import SearchHome from "../SearchHome.vue";
 import { flushPromises, mount } from "@vue/test-utils";
 import { installPinia } from "@/common/test_utils/quasar";
 import { useSearchStore } from "@/ui/stores/search";
 import { __setTestType } from "@/app/object/use-cases/__mocks__/getObjectList";
 
-installQuasar();
 installPinia();
+installQuasar();
 
 vi.mock("@/ui/stores/search");
 
