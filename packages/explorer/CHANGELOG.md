@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.18](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.17...v1.1.0-rc.18) (2022-09-02)
+
+
+### Features
+
+* added search results ([3cad5e2](https://github.com/alercebroker/frontendcitos/commit/3cad5e215c1e2545fe4549b8ac34a626d0fd5c28))
+* delete oid ([579b5ca](https://github.com/alercebroker/frontendcitos/commit/579b5caaadba971fc8bb26475ff6d6e928b30592))
+
+
+
+
+
 # [1.1.0-rc.17](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.16...v1.1.0-rc.17) (2022-09-01)
 
 **Note:** Version bump only for package explorer
