@@ -1,11 +1,9 @@
 <script setup lang="ts">
 import SearchCardVertical from "../components/SearchCardVertical.vue";
-import { storeToRefs } from "pinia";
 import { reactive } from "vue";
 import { useSearchStore } from "@/ui/stores/search";
 
 const searchStore = useSearchStore();
-const { results, columns } = storeToRefs(searchStore);
 const paginationOpts = reactive({
   rowsPerPage: 0,
 });
@@ -20,8 +18,8 @@ const paginationOpts = reactive({
       <div class="col">
         <q-table
           title="Results"
-          :rows="results.items"
-          :columns="columns"
+          :rows="searchStore.results.items"
+          :columns="searchStore.columns"
           dense
           :pagination="paginationOpts"
         />

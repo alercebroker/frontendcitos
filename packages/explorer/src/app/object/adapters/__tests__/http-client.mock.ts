@@ -30,9 +30,9 @@ class AlertsClientMock implements IAlertsClient {
     throw new Error("Method not implemented.");
   }
   queryObjects<T>(
-    objectFilters: ObjectFilters,
-    parser?: Parser<listObjectResponse, T>,
-    customModel?: Newable<T>
+    _objectFilters: ObjectFilters,
+    _parser?: Parser<listObjectResponse, T>,
+    _customModel?: Newable<T>
   ): Promise<T> {
     return new Promise<T>((resolve, reject) => {
       if (__testType === "success") {
