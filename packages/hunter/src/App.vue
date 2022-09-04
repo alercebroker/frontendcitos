@@ -15,7 +15,7 @@ onMounted(async () => {
   <header>
     <HunterNavbar />
   </header>
-  <IndexView />
+  <router-view />
 </template>
 
 <style></style>

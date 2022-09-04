@@ -82,6 +82,13 @@ const loginCredentials = reactive({
 
 const { username, password } = toRefs(loginCredentials);
 const userStore = useAuthentication();
+let popupInterval: any;
+
+function checkWindow(window: Window) {
+  if (!window.closed) return;
+  console.log("Closed!");
+  clearInterval(popupInterval);
+}
 
 const { login } = userStore;
 const { userLogged } = storeToRefs(userStore);
@@ -89,10 +96,14 @@ const { userLogged } = storeToRefs(userStore);
 function loginWithGoogle() {
   axios
     .get(
-      `${AUTH_URL}/users/social/o/google-oauth2/?redirect_uri=http://localhost:8080`
+      `${AUTH_URL}/users/social/o/google-oauth2/?redirect_uri=http://localhost:3000/oauth/`
     )
     .then((response) => {
-      console.log(response.data);
+      const oauthUrl = response.data.authorization_url;
+      console.log(oauthUrl);
+      const loginWindow = window.open(oauthUrl, "Google Login");
+      if (loginWindow)
+        popupInterval = setInterval(() => checkWindow(loginWindow), 250);
     });
 }
 </script>
