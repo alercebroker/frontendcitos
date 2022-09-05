@@ -54,12 +54,13 @@ export class AuthClient implements IAuthClient {
     this._httpService.initClient(baseUrl, axiosInstance)
   }
 
-  signIn(credentials?: Credentials): Promise<SessionTokens> {
+  signIn(credentials: Credentials): Promise<SessionTokens> {
     return this._httpService.post(
       { url: '/users/login/', data: credentials },
       { parseTo: this.defaultParser<SessionTokens> }
     )
   }
+  
   verifySession(session: SessionTokens): Promise<[UserSchema, SessionTokens]> {
     this._httpService.setAccessToken(session.access)
 
@@ -87,10 +88,33 @@ export class AuthClient implements IAuthClient {
       }
     })
   }
-  signInOAuth2(): void {
-    throw new Error('Method not implemented.')
+
+  getOAuthURL(callbackUrl: string): Promise<string> {
+    return this._httpService
+      .get(
+        {
+          url: `/users/social/o/google-oauth2/?redirect_uri=${callbackUrl}`,
+        },
+        { parseTo: this.defaultParser<{ authorization_url: string }> }
+      )
+      .then((auth) => auth.authorization_url)
   }
-  verifyOAuthSession(): boolean {
-    throw new Error('Method not implemented.')
+
+  signInOAuth2(
+    code: string,
+    state: string
+  ): Promise<SessionTokens & { user: string }> {
+    const formData = new URLSearchParams()
+    formData.append('code', code)
+    formData.append('state', state)
+    return this._httpService.post(
+      {
+        url: '/users/social/o/google-auth2/',
+        data: formData,
+      },
+      {
+        parseTo: this.defaultParser<SessionTokens & { user: string }>,
+      }
+    )
   }
 }

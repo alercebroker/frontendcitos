@@ -25,7 +25,7 @@ export type UserSchema = {
 export interface IAuthClient {
   initClient(axiosInstance?: AxiosInstance): void
   signIn(credentials?: Credentials): Promise<SessionTokens>
-  signInOAuth2(): void
+  getOAuthURL(callbackUrl: string): Promise<string>
+  signInOAuth2(code: string, state: string): Promise<SessionTokens & { user: string }>
   verifySession(session: SessionTokens): Promise<[UserSchema, SessionTokens]>
-  verifyOAuthSession(): boolean
 }

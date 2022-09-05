@@ -96,7 +96,8 @@ const { userLogged } = storeToRefs(userStore);
 function loginWithGoogle() {
   axios
     .get(
-      `${AUTH_URL}/users/social/o/google-oauth2/?redirect_uri=http://localhost:3000/oauth/`
+      `${AUTH_URL}/users/social/o/google-oauth2/?redirect_uri=http://localhost:3000/oauth/`,
+      { withCredentials: true }
     )
     .then((response) => {
       const oauthUrl = response.data.authorization_url;
