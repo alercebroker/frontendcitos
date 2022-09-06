@@ -27,7 +27,7 @@ export class AuthClientFacade {
     const client = getConfiguredClient(config);
     return client.verifySession(session)
   }
-  public static getOAuth2Url(callbackUrl: string, config?: ClientConfig) {
+  public static getOAuth2Url(callbackUrl: string, config?: ClientConfig): Promise<string> {
     const client = getConfiguredClient(config);
     return client.getOAuthURL(callbackUrl);
   }

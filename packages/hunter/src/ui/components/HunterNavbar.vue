@@ -16,71 +16,24 @@
         <q-btn flat dense size="md" icon="logout">Logout</q-btn>
       </div>
     </q-toolbar>
-    <!-- Login modal (move to component once tested)-->
-    <q-dialog v-model="loginModalOpened">
-      <q-card bordered class="q-pa-sm" style="min-width: 400px">
-        <q-card-section>
-          <div class="text-h6">Login</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <q-input dense v-model="username" autofocus placeholder="Username" />
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <q-input
-            dense
-            v-model="password"
-            autofocus
-            placeholder="Password"
-            type="password"
-          />
-        </q-card-section>
-        <q-card-actions align="around">
-          <q-btn
-            outline
-            color="primary"
-            label="Login"
-            style="width: 45%"
-            @click="login(username, password)"
-          />
-          <q-btn
-            outline
-            color="secondary"
-            label="Register"
-            style="width: 45%"
-          />
-        </q-card-actions>
-        <q-card-actions>
-          <q-btn
-            outline
-            icon="mdi-google"
-            class="full-width"
-            @click="loginWithGoogle"
-            >Login with Google</q-btn
-          >
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
-    <!-- end of modal -->
+    <LoginModal
+      :opened="loginModalOpened"
+      :login="login"
+      :loginWithGoogle="loginWithGoogle"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
+import LoginModal from "@alercebroker/component-library/src/components/login-modal/LoginModal.vue";
 import { reactive, ref, toRefs } from "vue";
-import axios from "axios";
+import { axiosConfigured } from "../axios";
 import { useAuthentication } from "../stores";
 import { storeToRefs } from "pinia";
 
 const AUTH_URL = "https://dev.users.alerce.online";
 //login logic
 const loginModalOpened = ref(false);
-const loginCredentials = reactive({
-  username: "",
-  password: "",
-});
-
-const { username, password } = toRefs(loginCredentials);
 const userStore = useAuthentication();
 let popupInterval: any;
 
@@ -94,14 +47,13 @@ const { login } = userStore;
 const { userLogged } = storeToRefs(userStore);
 
 function loginWithGoogle() {
-  axios
+  axiosConfigured
     .get(
-      `${AUTH_URL}/users/social/o/google-oauth2/?redirect_uri=http://localhost:3000/oauth/`,
-      { withCredentials: true }
+      `${AUTH_URL}/users/social/o/google-oauth2/?redirect_uri=http://localhost:3000/oauth/`
     )
     .then((response) => {
       const oauthUrl = response.data.authorization_url;
-      console.log(oauthUrl);
+      console.log(oauthUrl, response.request);
       const loginWindow = window.open(oauthUrl, "Google Login");
       if (loginWindow)
         popupInterval = setInterval(() => checkWindow(loginWindow), 250);

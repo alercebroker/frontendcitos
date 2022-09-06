@@ -6,7 +6,7 @@ import { verifySession as genericVerifySession } from "./common";
 export function oauthFactory(
   tokenHandler: TokenHandler<{ access: string; refresh: string }>
 ) {
-  function getUrl(callbackUrl: string) {
+  function getUrl(callbackUrl: string): Promise<string> {
     return AuthClient.getOAuth2Url(callbackUrl);
   }
   async function signIn(code: string, state: string) {
