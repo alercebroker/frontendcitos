@@ -5,32 +5,24 @@ import { oauthFactory } from "./auth/oauth";
 import { credentialsAuthFactory } from "./auth/credentials";
 
 export function authStoreFactory(
-  tokenHandler: TokenHandler<{ access: string; refresh: string }>
+  tokenHandler: TokenHandler<{ access: string; refresh: string }>,
+  environment = "production"
 ) {
-  const _oauth = oauthFactory(tokenHandler);
-  const _credentials = credentialsAuthFactory(tokenHandler);
+  const _oauth = oauthFactory(tokenHandler, environment);
+  const _credentials = credentialsAuthFactory(tokenHandler, environment);
 
-  return defineStore("auth", () => {
+  return defineStore("alerceAuth", () => {
     const oauthWindow = ref<Window | null>(null);
-    const checkWindowInterval = ref<any>(null);
+    let checkWindowInterval: any;
     const loggedUser = ref({
       isLogged: false,
       user: "",
     });
     // add alerts when logout failed :D
 
-    function _onPopupClosed() {
-      return _oauth.verifySession();
-    }
-
     async function oauthLoginPopup(callbackUrl: string) {
       const url = await _oauth.getUrl(callbackUrl);
-      oauthWindow.value = window.open(url);
-      checkWindowInterval.value = setInterval(() => {
-        if (oauthWindow.value && !oauthWindow.value.closed) return;
-        _onPopupClosed();
-        clearInterval(checkWindowInterval.value);
-      }, 250);
+      return window.open(url);
     }
 
     function oauthLogin(code: string, state: string) {
@@ -50,7 +42,11 @@ export function authStoreFactory(
     }
 
     function logout() {
-      return _credentials.signOut();
+      _credentials.signOut();
+      loggedUser.value = {
+        isLogged: false,
+        user: "",
+      };
     }
 
     async function verifySession() {
@@ -61,7 +57,8 @@ export function authStoreFactory(
           user: user.username,
         };
         return user;
-      } catch {
+      } catch (e) {
+        console.error(e);
         console.error("Please login again!");
       }
     }

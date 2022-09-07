@@ -109,7 +109,7 @@ export class AuthClient implements IAuthClient {
     formData.append('state', state)
     return this._httpService.post(
       {
-        url: '/users/social/o/google-auth2/',
+        url: '/users/social/o/google-oauth2/',
         data: formData,
       },
       {
