@@ -17,6 +17,11 @@ export function parseInput(filterInput: SearchInput): ObjectListFilters {
     ra: filterInput.coordinates.ra ?? UNSET,
     dec: filterInput.coordinates.dec ?? UNSET,
     radius: filterInput.coordinates.radius ?? UNSET,
+    page: filterInput.page,
+    page_size: filterInput.rowsPerPage,
+    count: "false",
+    order_by: filterInput.sortBy,
+    order_mode: filterInput.descending ? "DESC" : "ASC",
   };
 }
 

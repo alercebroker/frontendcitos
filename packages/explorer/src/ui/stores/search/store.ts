@@ -1,6 +1,5 @@
 import type { Command } from "@/common/use-case";
 import type { ObjectEntity } from "@/domain/objects/entities";
-import router from "@/ui/router";
 import type {
   HttpError,
   PaginatedListEntity,
@@ -15,6 +14,7 @@ import { ref } from "vue";
 import { parseInput } from "./parseInput";
 import type { SearchInput } from "./types";
 import { validateInputFilters } from "./validateInput";
+import router from "@/ui/router";
 import type { LocationQueryRaw } from "vue-router";
 
 export type PremadeQuery = {
@@ -30,7 +30,7 @@ export type Errors = {
   client: HttpError | null;
   server: HttpError | null;
   parse: ParseError | null;
-  inputError: Error[] | null;
+  inputError: Record<string, string | undefined>;
 };
 
 export const searchStore = (
@@ -58,6 +58,10 @@ export const searchStore = (
         dec: null,
         radius: null,
       },
+      sortBy: "",
+      descending: false,
+      page: 1,
+      rowsPerPage: 20,
     });
 
     const premadeQueries = ref<PremadeQuery[]>([
@@ -86,6 +90,10 @@ export const searchStore = (
             dec: null,
             radius: null,
           },
+          sortBy: "",
+          descending: false,
+          page: 1,
+          rowsPerPage: 20,
         },
       },
       {
@@ -113,6 +121,10 @@ export const searchStore = (
             dec: null,
             radius: null,
           },
+          sortBy: "",
+          descending: false,
+          page: 1,
+          rowsPerPage: 20,
         },
       },
       {
@@ -140,6 +152,10 @@ export const searchStore = (
             dec: null,
             radius: null,
           },
+          sortBy: "",
+          descending: false,
+          page: 1,
+          rowsPerPage: 20,
         },
       },
       {
@@ -167,6 +183,10 @@ export const searchStore = (
             dec: null,
             radius: null,
           },
+          sortBy: "",
+          descending: false,
+          page: 1,
+          rowsPerPage: 20,
         },
       },
     ]);
@@ -186,7 +206,11 @@ export const searchStore = (
       client: null,
       server: null,
       parse: null,
-      inputError: null,
+      inputError: {
+        ra: undefined,
+        dec: undefined,
+        radius: undefined,
+      },
     });
 
     const columns = ref([
@@ -233,18 +257,21 @@ export const searchStore = (
       },
     ]);
 
+    function searchFromCard() {
+      filters.value.page = 1;
+      search();
+    }
+
     function search() {
       const [isValid, inputErrors] = validateInputFilters(filters.value);
       if (!isValid) {
-        errors.value.inputError = inputErrors.map((errorsito) => {
-          return new Error(errorsito);
-        });
+        errors.value.inputError = inputErrors;
         return;
       }
       const parsedFilters = parseInput(filters.value);
       searchObjectsUseCase.execute(
         {
-          handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
+          handleSuccess: async (data: PaginatedListEntity<ObjectEntity>) => {
             results.value = data;
             const queryString = serializeParams(parsedFilters, {
               encode: false,
@@ -322,6 +349,7 @@ export const searchStore = (
       filters,
       premadeQueries,
       errors,
+      searchFromCard,
       search,
       results,
       columns,

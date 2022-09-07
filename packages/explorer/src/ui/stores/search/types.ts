@@ -25,4 +25,8 @@ export type SearchInput = {
   firstmjd: MjdRange;
   oid: string;
   coordinates: Coordinates;
+  sortBy: string;
+  descending: boolean;
+  page: number;
+  rowsPerPage: number;
 };

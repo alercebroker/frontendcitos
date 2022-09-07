@@ -8,21 +8,32 @@ import SearchResults from "../SearchResults.vue";
 import SearchCardVertical from "@ui/components/SearchCardVertical.vue";
 import { flushPromises, mount, VueWrapper } from "@vue/test-utils";
 import { installPinia } from "@/common/test_utils/quasar";
-import router from "@/ui/router";
 import { objects } from "@/app/object/adapters/__tests__/listObjectResponse.mock";
 import type { PaginatedListEntity } from "@alercebroker/http-client/build/main/types";
 import type { ObjectEntity } from "@/domain/objects/entities";
 import { useSearchStore } from "@/ui/stores/search";
+import { createRouter, createWebHashHistory, type Router } from "vue-router";
+import { routes } from "@/ui/router";
+import routerOriginal from "@/ui/router";
 
 installQuasar();
 installPinia();
 
 let searchResultsWrapper: VueWrapper;
 let store: ReturnType<typeof useSearchStore>;
+let router: Router;
 
 beforeEach(() => {
+  router = createRouter({
+    history: createWebHashHistory(),
+    routes: routes,
+  });
   vi.mock("@alercebroker/http-client", () => mockedModule);
-  searchResultsWrapper = mount(SearchResults);
+  searchResultsWrapper = mount(SearchResults, {
+    global: {
+      plugins: [router],
+    },
+  });
   store = useSearchStore();
   store.$reset();
   mockedModule.AlertsClient.queryObjects = vi.fn(
@@ -42,14 +53,9 @@ describe("Search", () => {
       searchComp.vm.filters.oid = "aid1,aid2,aid3";
       searchComp.vm.filters.ndet = { min: 10, max: 20 };
       const btn = searchResultsWrapper.get('[data-test="button-search"]');
-      const push = vi.spyOn(router, "push");
-      expect(push).not.toHaveBeenCalled();
       await btn.trigger("click");
       expect(mock.mock.calls[0][0].oid).toStrictEqual(["aid1", "aid2", "aid3"]);
       expect(mock.mock.calls[0][0].ndet).toStrictEqual([10, 20]);
-      await flushPromises();
-      expect(push).toHaveBeenCalledOnce();
-      expect(push).toHaveBeenCalledWith({ name: "results", query: {} });
     });
   });
   describe("Search with date filters", () => {
@@ -120,5 +126,15 @@ describe("Search", () => {
       await btn.trigger("click");
       expect(mock).not.toBeCalled();
     });
+  });
+});
+
+describe("Change to results view on search", () => {
+  it("should change to results view on search", async () => {
+    const push = vi.spyOn(routerOriginal, "push");
+    const btn = searchResultsWrapper.get('[data-test="button-search"]');
+    await btn.trigger("click");
+    await flushPromises();
+    expect(push).toHaveBeenCalledOnce();
   });
 });

@@ -53,6 +53,10 @@ describe("Premade queries", () => {
           dec: -999,
           radius: -999,
         },
+        sortBy: "",
+        descending: false,
+        page: 1,
+        rowsPerPage: 10,
       },
     };
     expect(wrapper).toBeTruthy();
