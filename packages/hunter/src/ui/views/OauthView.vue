@@ -10,7 +10,6 @@ import { useAlerceAuth } from "../stores";
 
 const route = useRoute();
 const { oauthLogin } = useAlerceAuth(getActivePinia());
-const AUTH_URL = "https://dev.users.alerce.online";
 
 onMounted(async () => {
   console.log(route.query);

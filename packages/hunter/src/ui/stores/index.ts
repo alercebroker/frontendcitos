@@ -1,2 +1,2 @@
-export { useAuthentication } from "./users";
+export * from "./users";
 export * from "./di";
