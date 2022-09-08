@@ -18,15 +18,15 @@ const router = useRouter();
 
 function onRequest(requestProp: any): void {
   const { sortBy, descending, page, rowsPerPage } = requestProp.pagination;
-  searchStore.filters.sortBy = sortBy;
-  searchStore.filters.descending = descending;
-  searchStore.filters.page = page;
-  searchStore.filters.rowsPerPage = rowsPerPage;
+  searchStore.filters = {
+    ...searchStore.filters,
+    ...{ sortBy, descending, page, rowsPerPage },
+  };
   searchStore.search();
-  paginationOpts.value.sortBy = sortBy;
-  paginationOpts.value.descending = descending;
-  paginationOpts.value.page = page;
-  paginationOpts.value.rowsPerPage = rowsPerPage;
+  paginationOpts.value = {
+    ...paginationOpts.value,
+    ...{ sortBy, descending, page, rowsPerPage },
+  };
 }
 
 onMounted(() => {
