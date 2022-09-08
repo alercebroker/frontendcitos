@@ -120,6 +120,7 @@ const { filters, search, errors, clear } = useSearchObjects();
           @click="search()"
         />
         <q-btn
+          data-test="clear"
           class="full-width q-mt-md"
           label="Clear"
           outline
