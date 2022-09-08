@@ -55,7 +55,6 @@ export class AuthClient implements IAuthClient {
   }
 
   signIn(credentials: Credentials): Promise<SessionTokens> {
-    console.log(this._httpService, this._config)
     return this._httpService.post(
       { url: '/users/login/', data: credentials, config: this._config },
       { parseTo: this.defaultParser<SessionTokens> }
