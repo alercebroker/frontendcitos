@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useSearchObjects } from "./hooks/useSearchObjects.js";
 
-const { filters, search, errors } = useSearchObjects();
+const { filters, search, errors, clear } = useSearchObjects();
 </script>
 <template>
   <q-card class="my-card" flat bordered>
@@ -119,7 +119,12 @@ const { filters, search, errors } = useSearchObjects();
           size="xl"
           @click="search()"
         />
-        <q-btn class="full-width q-mt-md" label="Clear" outline />
+        <q-btn
+          class="full-width q-mt-md"
+          label="Clear"
+          outline
+          @click="clear"
+        />
       </div>
     </q-card-section>
   </q-card>

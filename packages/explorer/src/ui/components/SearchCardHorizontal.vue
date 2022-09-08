@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useSearchObjects } from "./hooks/index.js";
 
-const { filters, search } = useSearchObjects();
+const { filters, search, clear } = useSearchObjects();
 const tab = ref<string>("general");
 </script>
 <template>
@@ -125,7 +125,13 @@ const tab = ref<string>("general");
             size="xl"
             @click="search()"
           />
-          <q-btn class="full-width q-mt-xl" label="Clear" outline />
+          <q-btn
+            data-test="clear"
+            class="full-width q-mt-xl"
+            label="Clear"
+            outline
+            @click="clear"
+          />
         </div>
       </div>
     </q-card-section>
