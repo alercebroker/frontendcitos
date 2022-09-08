@@ -1,22 +1,22 @@
-import { AxiosInstance } from 'axios'
 import { inject, injectable } from 'inversify'
 import { TYPES } from '../../../container/types'
-import { ClientConfig, IHttpService } from '../../../types'
+import { IHttpService } from '../../../types'
 import {
   Credentials,
   IAuthClient,
   SessionTokens,
   UserSchema,
+  AuthClientConfig,
 } from './AuthClient.types'
 
 @injectable()
 export class AuthClient implements IAuthClient {
   private _httpService: IHttpService
-  private _config: ClientConfig
+  private _config: AuthClientConfig
 
   constructor(
     @inject(TYPES.IHttpService) httpService: IHttpService,
-    @inject(TYPES.ClientConfig) config: ClientConfig
+    @inject(TYPES.AuthClientConfig) config: AuthClientConfig
   ) {
     this._config = config
     this._httpService = httpService
@@ -44,23 +44,24 @@ export class AuthClient implements IAuthClient {
 
   private getCurrentUser(): Promise<UserSchema> {
     return this._httpService.get(
-      { url: '/users/current/' },
+      { url: '/users/current/', config: this._config },
       { parseTo: this.defaultParser<UserSchema> }
     )
   }
 
-  initClient(axiosInstance?: AxiosInstance): void {
+  initClient(): void {
     const baseUrl = this._config.baseUrl || 'https://users.alerce.online'
-    this._httpService.initClient(baseUrl, axiosInstance)
+    this._httpService.initClient(baseUrl)
   }
 
   signIn(credentials: Credentials): Promise<SessionTokens> {
+    console.log(this._httpService, this._config)
     return this._httpService.post(
-      { url: '/users/login/', data: credentials },
+      { url: '/users/login/', data: credentials, config: this._config },
       { parseTo: this.defaultParser<SessionTokens> }
     )
   }
-  
+
   verifySession(session: SessionTokens): Promise<[UserSchema, SessionTokens]> {
     this._httpService.setAccessToken(session.access)
 
@@ -94,6 +95,7 @@ export class AuthClient implements IAuthClient {
       .get(
         {
           url: `/users/social/o/google-oauth2/?redirect_uri=${callbackUrl}`,
+          config: this._config,
         },
         { parseTo: this.defaultParser<{ authorization_url: string }> }
       )
@@ -111,6 +113,7 @@ export class AuthClient implements IAuthClient {
       {
         url: '/users/social/o/google-oauth2/',
         data: formData,
+        config: this._config,
       },
       {
         parseTo: this.defaultParser<SessionTokens & { user: string }>,

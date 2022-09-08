@@ -11,6 +11,15 @@ export type Credentials = {
   password: string
 }
 
+export type AuthClientConfig = {
+  accessToken?: string
+  baseUrl?: string
+  headers?: {
+    "Content-Type": string
+  },
+  withCredentials: boolean
+}
+
 export type UserSchema = {
   id: number
   username: string

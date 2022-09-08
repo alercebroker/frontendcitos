@@ -6,14 +6,12 @@ import { credentialsAuthFactory } from "./auth/credentials";
 
 export function authStoreFactory(
   tokenHandler: TokenHandler<{ access: string; refresh: string }>,
-  environment = "production"
+  baseUrl?: string
 ) {
-  const _oauth = oauthFactory(tokenHandler, environment);
-  const _credentials = credentialsAuthFactory(tokenHandler, environment);
+  const _oauth = oauthFactory(tokenHandler, baseUrl);
+  const _credentials = credentialsAuthFactory(tokenHandler, baseUrl);
 
   return defineStore("alerceAuth", () => {
-    const oauthWindow = ref<Window | null>(null);
-    let checkWindowInterval: any;
     const loggedUser = ref({
       isLogged: false,
       user: "",
