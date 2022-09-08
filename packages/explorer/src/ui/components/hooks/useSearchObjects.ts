@@ -5,9 +5,9 @@ import { useSearchStore } from "@/ui/stores/search";
 export function useSearchObjects() {
   const searchStore = useSearchStore();
 
-  const { filters } = storeToRefs(searchStore);
+  const { filters, errors } = storeToRefs(searchStore);
 
-  const search = searchStore.search;
+  const search = searchStore.searchFromCard;
 
   watch(
     () => filters.value.firstmjdDate,
@@ -32,5 +32,5 @@ export function useSearchObjects() {
       );
     }
   );
-  return { filters, search };
+  return { filters, search, errors };
 }

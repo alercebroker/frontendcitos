@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useSearchObjects } from "./hooks/useSearchObjects.js";
 
-const { filters, search } = useSearchObjects();
+const { filters, search, errors } = useSearchObjects();
 </script>
 <template>
   <q-card class="my-card" flat bordered>
@@ -78,6 +78,9 @@ const { filters, search } = useSearchObjects();
             label="RA"
             squared
             outlined
+            bottom-slots
+            :error-message="errors.inputError.ra"
+            :error="errors.inputError.ra != undefined"
           />
         </div>
         <div class="col q-mr-md">
@@ -88,6 +91,9 @@ const { filters, search } = useSearchObjects();
             label="Dec"
             squared
             outlined
+            bottom-slots
+            :error="errors.inputError.dec != undefined"
+            :error-message="errors.inputError.dec"
           />
         </div>
         <div class="col">
@@ -98,6 +104,9 @@ const { filters, search } = useSearchObjects();
             label="Radius"
             squared
             outlined
+            bottom-slots
+            :error="errors.inputError.radius != undefined"
+            :error-message="errors.inputError.radius"
           />
         </div>
       </div>
