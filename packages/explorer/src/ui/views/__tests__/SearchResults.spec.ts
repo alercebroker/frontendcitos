@@ -101,3 +101,15 @@ describe("Select Object", () => {
     });
   });
 });
+
+describe("Clear selection", () => {
+  it("should restore filters when clear button is pressed", async () => {
+    const input = wrapper.find("[data-test='oid']");
+    input.setValue("testo");
+    expect(store.filters.oid).toBe("testo");
+    const clear = wrapper.find("[data-test='clear']");
+    clear.trigger("click");
+    await flushPromises();
+    expect(store.filters.oid).toBe("");
+  });
+});

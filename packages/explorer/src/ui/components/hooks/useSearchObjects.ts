@@ -32,5 +32,10 @@ export function useSearchObjects() {
       );
     }
   );
-  return { filters, search, errors };
+
+  function clear() {
+    searchStore.clearFilters();
+  }
+
+  return { filters, search, errors, clear };
 }

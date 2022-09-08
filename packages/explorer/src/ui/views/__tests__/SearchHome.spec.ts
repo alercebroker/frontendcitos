@@ -66,3 +66,18 @@ describe("Premade queries", () => {
     expect(store.filters.oid).toStrictEqual("oid-test");
   });
 });
+
+describe("Clear selection", () => {
+  it("should restore filters when clear button is pressed", async () => {
+    const wrapper = mount(SearchHome);
+    const store = useSearchStore();
+    expect(wrapper).toBeTruthy();
+    const input = wrapper.find("[data-test='oid']");
+    input.setValue("testo");
+    expect(store.filters.oid).toBe("testo");
+    const clear = wrapper.find("[data-test='clear']");
+    clear.trigger("click");
+    await flushPromises();
+    expect(store.filters.oid).toBe("");
+  });
+});

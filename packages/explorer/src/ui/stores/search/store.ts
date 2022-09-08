@@ -345,6 +345,33 @@ export const searchStore = (
       filters.value = foundQuery.filters;
     }
 
+    function clearFilters() {
+      filters.value = {
+        oid: "",
+        ndet: {
+          min: null,
+          max: null,
+        },
+        firstmjdDate: {
+          from: null,
+          to: null,
+        },
+        firstmjd: {
+          from: null,
+          to: null,
+        },
+        coordinates: {
+          ra: null,
+          dec: null,
+          radius: null,
+        },
+        sortBy: "",
+        descending: false,
+        page: 1,
+        rowsPerPage: 20,
+      };
+    }
+
     return {
       filters,
       premadeQueries,
@@ -356,6 +383,7 @@ export const searchStore = (
       convertGregToMjd,
       convertMjdToGreg,
       fillParameters,
+      clearFilters,
     };
   });
 };
