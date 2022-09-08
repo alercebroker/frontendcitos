@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.19](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.18...v1.1.0-rc.19) (2022-09-08)
+
+
+### Features
+
+* **explorer:** add pagination and select object ([3d4bad8](https://github.com/alercebroker/frontendcitos/commit/3d4bad8f34e3dcdca031b8908e1d4c59e0c738fd))
+
+
+
+
+
 # [1.1.0-rc.18](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.17...v1.1.0-rc.18) (2022-09-02)
 
 
