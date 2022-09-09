@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.22](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.21...v1.1.0-rc.22) (2022-09-09)
+
+
+### Features
+
+* **client:** update object model ([66e5df7](https://github.com/alercebroker/frontendcitos/commit/66e5df79be640db0557cbb9954ae08b81c82c7d3))
+
+
+
+
+
 # [1.1.0-rc.18](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.17...v1.1.0-rc.18) (2022-09-02)
 
 
