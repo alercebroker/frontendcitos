@@ -183,6 +183,7 @@ export const objectRepository: ObjectRepository = {
               aid: "aid",
               ra: 1,
               dec: 1,
+              ndet: 1,
               firstmjd: 1,
               lastmjd: 1,
               firstGreg: "utc",

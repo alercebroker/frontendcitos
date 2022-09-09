@@ -80,6 +80,7 @@ export const objectSingleParser: Parser<
       aid: response.aid,
       ra: response.meanra,
       dec: response.meandec,
+      ndet: response.ndet,
       firstmjd: response.firstmjd,
       lastmjd: response.lastmjd,
       firstGreg: mjdToGreg(response.firstmjd),
