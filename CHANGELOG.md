@@ -3,6 +3,59 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.21](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.20...v1.1.0-rc.21) (2022-09-09)
+
+
+### Features
+
+* **explorer:** add loading ([45b4ac6](https://github.com/alercebroker/frontendcitos/commit/45b4ac629555dfc93ba97fdd7285eae83840fb98))
+
+
+
+
+
+# [1.1.0-rc.20](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.19...v1.1.0-rc.20) (2022-09-08)
+
+**Note:** Version bump only for package root
+
+
+
+
+
+# [1.1.0-rc.19](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.18...v1.1.0-rc.19) (2022-09-08)
+
+
+### Features
+
+* **explorer:** add pagination and select object ([3d4bad8](https://github.com/alercebroker/frontendcitos/commit/3d4bad8f34e3dcdca031b8908e1d4c59e0c738fd))
+
+
+
+
+
+# [1.1.0-rc.18](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.17...v1.1.0-rc.18) (2022-09-02)
+
+
+### Features
+
+* added search results ([3cad5e2](https://github.com/alercebroker/frontendcitos/commit/3cad5e215c1e2545fe4549b8ac34a626d0fd5c28))
+* delete oid ([579b5ca](https://github.com/alercebroker/frontendcitos/commit/579b5caaadba971fc8bb26475ff6d6e928b30592))
+
+
+
+
+
+# [1.1.0-rc.17](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.16...v1.1.0-rc.17) (2022-09-01)
+
+
+### Features
+
+* authentication in hunter + authclient in http-client module ([f250c5e](https://github.com/alercebroker/frontendcitos/commit/f250c5e3441558948ca99561ad67ef5bcaffcc11))
+
+
+
+
+
 # [1.1.0-rc.16](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.15...v1.1.0-rc.16) (2022-08-30)
 
 

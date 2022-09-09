@@ -1,18 +1,21 @@
 import type { Command } from "@/common/use-case";
-import type {
-  ObjectEntity,
-  ObjectListFilters,
-} from "@/domain/objects/entities";
+import type { ObjectEntity } from "@/domain/objects/entities";
 import type {
   HttpError,
   PaginatedListEntity,
   ParseError,
 } from "@alercebroker/http-client/build/main/types";
+import {
+  serializeParams,
+  serializeParamsReverse,
+} from "@alercebroker/http-client";
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
-import { parseInput, parseInputReverse } from "./parseInput";
+import { ref } from "vue";
+import { parseInput } from "./parseInput";
 import type { SearchInput } from "./types";
 import { validateInputFilters } from "./validateInput";
+import router from "@/ui/router";
+import type { LocationQueryRaw } from "vue-router";
 
 export type PremadeQuery = {
   title: string;
@@ -27,7 +30,7 @@ export type Errors = {
   client: HttpError | null;
   server: HttpError | null;
   parse: ParseError | null;
-  inputError: Error[] | null;
+  inputError: Record<string, string | undefined>;
 };
 
 export const searchStore = (
@@ -55,6 +58,10 @@ export const searchStore = (
         dec: null,
         radius: null,
       },
+      sortBy: "",
+      descending: false,
+      page: 1,
+      rowsPerPage: 20,
     });
 
     const premadeQueries = ref<PremadeQuery[]>([
@@ -83,6 +90,10 @@ export const searchStore = (
             dec: null,
             radius: null,
           },
+          sortBy: "",
+          descending: false,
+          page: 1,
+          rowsPerPage: 20,
         },
       },
       {
@@ -110,6 +121,10 @@ export const searchStore = (
             dec: null,
             radius: null,
           },
+          sortBy: "",
+          descending: false,
+          page: 1,
+          rowsPerPage: 20,
         },
       },
       {
@@ -137,6 +152,10 @@ export const searchStore = (
             dec: null,
             radius: null,
           },
+          sortBy: "",
+          descending: false,
+          page: 1,
+          rowsPerPage: 20,
         },
       },
       {
@@ -164,6 +183,10 @@ export const searchStore = (
             dec: null,
             radius: null,
           },
+          sortBy: "",
+          descending: false,
+          page: 1,
+          rowsPerPage: 20,
         },
       },
     ]);
@@ -183,34 +206,118 @@ export const searchStore = (
       client: null,
       server: null,
       parse: null,
-      inputError: null,
+      inputError: {
+        ra: undefined,
+        dec: undefined,
+        radius: undefined,
+      },
     });
 
+    const loading = ref<boolean>(false);
+
+    const columns = ref([
+      {
+        name: "oid",
+        label: "ObjectId",
+        field: "aid",
+        required: true,
+      },
+      {
+        name: "ndet",
+        label: "Num. of Detections",
+        field: "ndet",
+        required: true,
+      },
+      {
+        name: "firstmjd",
+        label: "FirstMJD",
+        field: "firstmjd",
+        format: (val: number, _: any) => `${val.toFixed(3)}`,
+        required: true,
+      },
+      {
+        name: "lastmjd",
+        label: "LastMJD",
+        field: "lastmjd",
+        format: (val: number, _: any) => `${val.toFixed(3)}`,
+        required: true,
+      },
+      {
+        name: "radec",
+        label: "RA/Dec(Degrees)",
+        field: (row: ObjectEntity) =>
+          `${row.ra.toFixed(3)},${row.dec.toFixed(3)}`,
+        required: true,
+      },
+      {
+        name: "deltajd",
+        label: "DeltaJD(days)",
+        field: (row) => {
+          return row.lastmjd - row.firstmjd;
+        },
+        required: true,
+      },
+    ]);
+
+    function searchFromCard() {
+      filters.value.page = 1;
+      search();
+    }
+
+    function resetInputErrors() {
+      errors.value.inputError = {
+        ra: undefined,
+        dec: undefined,
+        radius: undefined,
+      };
+    }
+
+    function resetErrors() {
+      errors.value.generic = null;
+      errors.value.client = null;
+      errors.value.server = null;
+      errors.value.parse = null;
+      resetInputErrors();
+    }
+
     function search() {
+      loading.value = true;
+      resetErrors();
       const [isValid, inputErrors] = validateInputFilters(filters.value);
       if (!isValid) {
-        errors.value.inputError = inputErrors.map((errorsito) => {
-          return new Error(errorsito);
-        });
+        errors.value.inputError = inputErrors;
         return;
       }
       const parsedFilters = parseInput(filters.value);
       searchObjectsUseCase.execute(
         {
-          handleSuccess: (data: PaginatedListEntity<ObjectEntity>) => {
+          handleSuccess: async (data: PaginatedListEntity<ObjectEntity>) => {
+            loading.value = false;
             results.value = data;
+            const queryString = serializeParams(parsedFilters, {
+              encode: false,
+            });
+            const queryStringJson = serializeParamsReverse(queryString);
+            router.push({
+              name: "results",
+              query: queryStringJson as LocationQueryRaw,
+            });
           },
           handleError: {
             handleGenericError: (error: Error) => {
+              loading.value = false;
               errors.value.generic = error;
             },
             handleHttpClientError: (error: HttpError) => {
+              loading.value = false;
               errors.value.client = error;
             },
             handleHttpServerError: (error: HttpError) => {
+              loading.value = false;
               errors.value.server = error;
             },
             handleParseError: (error: ParseError) => {
+              loading.value = false;
               errors.value.parse = error;
             },
           },
@@ -219,8 +326,9 @@ export const searchStore = (
       );
     }
 
-    function convertGregToMjd(gregDate: string): number {
-      let result = -999;
+    function convertGregToMjd(gregDate: string | null): number | null {
+      let result = null;
+      if (!gregDate) return result;
       convertGregUseCase.execute(
         {
           handleSuccess: (mjd: number) => {
@@ -237,8 +345,9 @@ export const searchStore = (
       return result;
     }
 
-    function convertMjdToGreg(mjd: number): string {
-      let result = "";
+    function convertMjdToGreg(mjd: number | null): string | null {
+      let result = null;
+      if (!mjd) return result;
       convertMjdUseCase.execute(
         {
           handleSuccess: (greg: string) => {
@@ -263,15 +372,46 @@ export const searchStore = (
       filters.value = foundQuery.filters;
     }
 
+    function clearFilters() {
+      filters.value = {
+        oid: "",
+        ndet: {
+          min: null,
+          max: null,
+        },
+        firstmjdDate: {
+          from: null,
+          to: null,
+        },
+        firstmjd: {
+          from: null,
+          to: null,
+        },
+        coordinates: {
+          ra: null,
+          dec: null,
+          radius: null,
+        },
+        sortBy: "",
+        descending: false,
+        page: 1,
+        rowsPerPage: 20,
+      };
+    }
+
     return {
       filters,
       premadeQueries,
       errors,
+      searchFromCard,
       search,
       results,
+      columns,
       convertGregToMjd,
       convertMjdToGreg,
       fillParameters,
+      clearFilters,
+      loading,
     };
   });
 };

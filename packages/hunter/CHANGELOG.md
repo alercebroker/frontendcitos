@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.18](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.17...v1.1.0-rc.18) (2022-09-02)
+
+**Note:** Version bump only for package hunter
+
+
+
+
+
+# [1.1.0-rc.17](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.16...v1.1.0-rc.17) (2022-09-01)
+
+
+### Features
+
+* authentication in hunter + authclient in http-client module ([f250c5e](https://github.com/alercebroker/frontendcitos/commit/f250c5e3441558948ca99561ad67ef5bcaffcc11))
+
+
+
+
+
 # [1.1.0-rc.16](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.15...v1.1.0-rc.16) (2022-08-30)
 
 

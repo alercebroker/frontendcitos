@@ -8,6 +8,7 @@ export type ObjectListFilters = {
   dec?: number;
   radius?: number;
   page?: number;
+  page_size?: number;
   count?: string;
   order_by?: string;
   order_mode?: string;

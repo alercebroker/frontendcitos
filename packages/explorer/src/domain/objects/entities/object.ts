@@ -3,6 +3,7 @@ export type ObjectEntity = {
   aid: string;
   ra: number;
   dec: number;
+  ndet: number;
   firstmjd: number;
   lastmjd: number;
   firstGreg: string;

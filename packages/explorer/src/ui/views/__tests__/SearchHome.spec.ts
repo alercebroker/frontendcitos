@@ -1,13 +1,13 @@
+import SearchHome from "../SearchHome.vue";
 import { installQuasar } from "@quasar/quasar-app-extension-testing-unit-vitest";
 import { describe, it, expect, vi } from "vitest";
-import SearchHome from "../SearchHome.vue";
 import { flushPromises, mount } from "@vue/test-utils";
 import { installPinia } from "@/common/test_utils/quasar";
 import { useSearchStore } from "@/ui/stores/search";
 import { __setTestType } from "@/app/object/use-cases/__mocks__/getObjectList";
 
-installQuasar();
 installPinia();
+installQuasar();
 
 vi.mock("@/ui/stores/search");
 
@@ -53,6 +53,10 @@ describe("Premade queries", () => {
           dec: -999,
           radius: -999,
         },
+        sortBy: "",
+        descending: false,
+        page: 1,
+        rowsPerPage: 10,
       },
     };
     expect(wrapper).toBeTruthy();
@@ -60,5 +64,20 @@ describe("Premade queries", () => {
     await flushPromises();
     await btn.trigger("click");
     expect(store.filters.oid).toStrictEqual("oid-test");
+  });
+});
+
+describe("Clear selection", () => {
+  it("should restore filters when clear button is pressed", async () => {
+    const wrapper = mount(SearchHome);
+    const store = useSearchStore();
+    expect(wrapper).toBeTruthy();
+    const input = wrapper.find("[data-test='oid']");
+    input.setValue("testo");
+    expect(store.filters.oid).toBe("testo");
+    const clear = wrapper.find("[data-test='clear']");
+    clear.trigger("click");
+    await flushPromises();
+    expect(store.filters.oid).toBe("");
   });
 });
