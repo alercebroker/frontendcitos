@@ -1,6 +1,8 @@
 import type {
   ObjectEntity,
   ObjectListFilters,
+  SingleObjectResponseEntity,
+  LightCurveEntity,
 } from "@/domain/objects/entities";
 import type { ObjectRepository } from "@/domain/objects/ports";
 import {
@@ -17,7 +19,10 @@ export function __setTestType(tt: string) {
 }
 
 export const objectRepository: ObjectRepository = {
-  getObject: (): Promise<Result<ObjectEntity, HttpError | ParseError>> => {
+  getObject: (): Promise<Result<SingleObjectResponseEntity, HttpError | ParseError>> => {
+    throw new Error("Not Implemented");
+  },
+  getLightCurve: (): Promise<Result<LightCurveEntity, HttpError | ParseError>> => {
     throw new Error("Not Implemented");
   },
   getObjects: (
