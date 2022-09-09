@@ -47,11 +47,11 @@ export class HttpServiceAuthMocks implements IHttpService {
     }
   }
 
-  put<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M> {
+  put<T, M>(__: IHttpRequest, _: Parser<T, M>): Promise<M> {
     throw new Error('Method not implemented.')
   }
 
-  delete(request: IHttpRequest): Promise<number> {
+  delete(_: IHttpRequest): Promise<number> {
     throw new Error('Method not implemented.')
   }
 
@@ -59,8 +59,7 @@ export class HttpServiceAuthMocks implements IHttpService {
     request: IHttpRequest,
     parser: Parser<T, M>
   ): Promise<M> {
-    console.log()
-    if (request.url === '/users/current') {
+    if (request.url === '/users/current/') {
       const user: UserSchema = {
         id: 1337,
         username: 'elpeter',
@@ -75,7 +74,16 @@ export class HttpServiceAuthMocks implements IHttpService {
         resolve(parser.parseTo(user as unknown as T))
       })
     }
-    if (request.url === )
+    if (request.url.match(/users\/social\/o\/google-oauth2\/.*/)) {
+      const res = {
+        authorization_url: 'https://oauth.google.com/user',
+      }
+      return new Promise((resolve) => {
+        resolve(parser.parseTo(res as unknown as T))
+      })
+    }
+
+    throw new Error('Mock not implemented or request unknown')
   }
 
   private getClientError<T, M>(_: IHttpRequest, __: Parser<T, M>): Promise<M> {
@@ -86,10 +94,23 @@ export class HttpServiceAuthMocks implements IHttpService {
     request: IHttpRequest,
     parser: Parser<T, M>
   ): Promise<M> {
-    if (request.url !== '/users')
-    return new Promise((resolve) => {
-      resolve(parser.parseTo({} as T))
-    })
+    if (request.url === '/users/login/')
+      return new Promise((resolve) => {
+        resolve(
+          parser.parseTo({
+            access: 'eyeyey',
+            refresh: 'eyeyeye0',
+          } as unknown as T)
+        )
+      })
+    if (request.url.match(/users\/social\/o\/google-oauth2\/.*/)) {
+      const tokens = {
+        access: 'oauth',
+        refresh: 'oauth',
+      }
+      return Promise.resolve(parser.parseTo(tokens as unknown as T))
+    }
+    throw new Error('Mock not implemented or request unknown')
   }
 
   private postClientError<T, M>(_: IHttpRequest, __: Parser<T, M>): Promise<M> {
@@ -98,5 +119,15 @@ export class HttpServiceAuthMocks implements IHttpService {
 
   setAccessToken(accessToken: string): void {
     this.accessToken = accessToken
+  }
+
+  getBaseUrl(): string {
+    return this.baseUrl
+  }
+  getAxiosInstance(): AxiosInstance {
+    return this.axiosInstance
+  }
+  getaccessToken(): string {
+    return this.accessToken
   }
 }
