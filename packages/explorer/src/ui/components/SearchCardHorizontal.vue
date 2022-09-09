@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import { useSearchObjects } from "./hooks/index.js";
 
-const { filters, search, clear } = useSearchObjects();
+const { filters, search, clear, errors } = useSearchObjects();
 const tab = ref<string>("general");
 </script>
 <template>
@@ -90,6 +90,9 @@ const tab = ref<string>("general");
                     label="RA"
                     squared
                     outlined
+                    bottom-slots
+                    :error-message="errors.inputError.ra"
+                    :error="errors.inputError.ra != undefined"
                   />
                 </div>
                 <div class="col q-mr-md">
@@ -100,6 +103,9 @@ const tab = ref<string>("general");
                     label="Dec"
                     squared
                     outlined
+                    bottom-slots
+                    :error-message="errors.inputError.dec"
+                    :error="errors.inputError.dec != undefined"
                   />
                 </div>
                 <div class="col">
@@ -110,6 +116,9 @@ const tab = ref<string>("general");
                     label="Radius"
                     squared
                     outlined
+                    bottom-slots
+                    :error-message="errors.inputError.radius"
+                    :error="errors.inputError.radius != undefined"
                   />
                 </div>
               </div>
