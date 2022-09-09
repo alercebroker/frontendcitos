@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.21](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.20...v1.1.0-rc.21) (2022-09-09)
+
+
+### Features
+
+* **explorer:** add loading ([45b4ac6](https://github.com/alercebroker/frontendcitos/commit/45b4ac629555dfc93ba97fdd7285eae83840fb98))
+
+
+
+
+
 # [1.1.0-rc.20](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.19...v1.1.0-rc.20) (2022-09-08)
 
 **Note:** Version bump only for package explorer
