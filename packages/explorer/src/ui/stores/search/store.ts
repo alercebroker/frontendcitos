@@ -213,6 +213,8 @@ export const searchStore = (
       },
     });
 
+    const loading = ref<boolean>(false);
+
     const columns = ref([
       {
         name: "oid",
@@ -262,7 +264,25 @@ export const searchStore = (
       search();
     }
 
+    function resetInputErrors() {
+      errors.value.inputError = {
+        ra: undefined,
+        dec: undefined,
+        radius: undefined,
+      };
+    }
+
+    function resetErrors() {
+      errors.value.generic = null;
+      errors.value.client = null;
+      errors.value.server = null;
+      errors.value.parse = null;
+      resetInputErrors();
+    }
+
     function search() {
+      loading.value = true;
+      resetErrors();
       const [isValid, inputErrors] = validateInputFilters(filters.value);
       if (!isValid) {
         errors.value.inputError = inputErrors;
@@ -272,6 +292,7 @@ export const searchStore = (
       searchObjectsUseCase.execute(
         {
           handleSuccess: async (data: PaginatedListEntity<ObjectEntity>) => {
+            loading.value = false;
             results.value = data;
             const queryString = serializeParams(parsedFilters, {
               encode: false,
@@ -284,15 +305,19 @@ export const searchStore = (
           },
           handleError: {
             handleGenericError: (error: Error) => {
+              loading.value = false;
               errors.value.generic = error;
             },
             handleHttpClientError: (error: HttpError) => {
+              loading.value = false;
               errors.value.client = error;
             },
             handleHttpServerError: (error: HttpError) => {
+              loading.value = false;
               errors.value.server = error;
             },
             handleParseError: (error: ParseError) => {
+              loading.value = false;
               errors.value.parse = error;
             },
           },
@@ -301,8 +326,9 @@ export const searchStore = (
       );
     }
 
-    function convertGregToMjd(gregDate: string): number {
-      let result = -999;
+    function convertGregToMjd(gregDate: string | null): number | null {
+      let result = null;
+      if (!gregDate) return result;
       convertGregUseCase.execute(
         {
           handleSuccess: (mjd: number) => {
@@ -319,8 +345,9 @@ export const searchStore = (
       return result;
     }
 
-    function convertMjdToGreg(mjd: number): string {
-      let result = "";
+    function convertMjdToGreg(mjd: number | null): string | null {
+      let result = null;
+      if (!mjd) return result;
       convertMjdUseCase.execute(
         {
           handleSuccess: (greg: string) => {
@@ -384,6 +411,7 @@ export const searchStore = (
       convertMjdToGreg,
       fillParameters,
       clearFilters,
+      loading,
     };
   });
 };

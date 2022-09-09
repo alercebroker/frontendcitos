@@ -55,6 +55,7 @@ function onRowClick(_evt: any, _row: any, index: number) {
           :rows="searchStore.results.items"
           :columns="searchStore.columns"
           :rows-per-page-options="rowsPerPageOpts"
+          :loading="searchStore.loading"
           @request="onRequest"
           @row-click="onRowClick"
         />
