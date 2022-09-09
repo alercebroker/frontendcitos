@@ -37,7 +37,6 @@ const alerceUserStore = useAlerceAuth(getActivePinia());
 let popup: Window | null;
 let popupInterval: any;
 
-console.log(alerceUserStore);
 const { credentialsLogin, logout, oauthLoginPopup, verifySession } =
   alerceUserStore;
 const { loggedUser } = storeToRefs(alerceUserStore as StoreGeneric);

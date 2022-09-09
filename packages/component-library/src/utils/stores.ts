@@ -16,15 +16,22 @@ export function authStoreFactory(
       isLogged: false,
       user: "",
     });
-    // add alerts when logout failed :D
 
     async function oauthLoginPopup(callbackUrl: string) {
-      const url = await _oauth.getUrl(callbackUrl);
-      return window.open(url);
+      try {
+        const url = await _oauth.getUrl(callbackUrl);
+        return window.open(url);
+      } catch {
+        throwErrorWithMessage("Error getting OAuth URL");
+      }
     }
 
-    function oauthLogin(code: string, state: string) {
-      return _oauth.signIn(code, state);
+    async function oauthLogin(code: string, state: string) {
+      try {
+        return await _oauth.signIn(code, state);
+      } catch {
+        throwErrorWithMessage("Error logging in with Google OAuth");
+      }
     }
 
     async function credentialsLogin(username: string, password: string) {
@@ -35,7 +42,7 @@ export function authStoreFactory(
           user: username,
         };
       } catch (e) {
-        console.error("Invalid username or password");
+        throwErrorWithMessage("Invalid username or password");
       }
     }
 
@@ -56,9 +63,32 @@ export function authStoreFactory(
         };
         return user;
       } catch (e) {
-        console.error(e);
-        console.error("Please login again!");
+        throwErrorWithMessage("Session expired, please try logging again");
       }
+    }
+
+    const error = ref({
+      isDismissed: false,
+      message: "",
+    });
+
+    function setErrorMessage(message: string) {
+      error.value = {
+        isDismissed: true,
+        message,
+      };
+    }
+
+    function throwErrorWithMessage(message: string) {
+      setErrorMessage(message);
+      throw new Error(message);
+    }
+
+    function dismissError() {
+      error.value = {
+        isDismissed: false,
+        message: "",
+      };
     }
 
     return {
@@ -68,6 +98,8 @@ export function authStoreFactory(
       credentialsLogin,
       logout,
       verifySession,
+      error,
+      dismissError,
     };
   });
 }

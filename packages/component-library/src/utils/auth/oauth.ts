@@ -19,18 +19,14 @@ export function oauthFactory(
     return AuthClient.getOAuth2Url(callbackUrl, config);
   }
   async function signIn(code: string, state: string) {
-    try {
-      const session = await AuthClient.signInWithOAuth2(code, state, {
-        ...config,
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      });
-      const { access, refresh } = session;
-      tokenHandler.storeToken({ access, refresh });
-    } catch (e) {
-      throw e;
-    }
+    const session = await AuthClient.signInWithOAuth2(code, state, {
+      ...config,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    });
+    const { access, refresh } = session;
+    tokenHandler.storeToken({ access, refresh });
   }
 
   function signOut() {

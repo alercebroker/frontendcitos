@@ -12,7 +12,6 @@ const route = useRoute();
 const { oauthLogin } = useAlerceAuth(getActivePinia());
 
 onMounted(async () => {
-  console.log(route.query);
   const { code, state } = route.query;
   await oauthLogin(code as string, state as string);
   window.close();

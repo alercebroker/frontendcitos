@@ -69,7 +69,6 @@ export class AuthClient implements IAuthClient {
         const response = await this.getCurrentUser()
         resolve([response, session])
       } catch (e) {
-        console.log(JSON.stringify(e), typeof e)
         //unknown error
         if (e.status !== 401) reject(new Error('Unknown error'))
 

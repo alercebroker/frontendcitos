@@ -16,15 +16,9 @@ export function credentialsAuthFactory(
     },
   };
 
-  console.log("credentials baseurl", baseUrl);
-
   async function signIn(username: string, password: string) {
-    try {
-      const tokens = await AuthClient.signIn({ username, password }, config);
-      tokenHandler.storeToken(tokens);
-    } catch (e) {
-      throw e;
-    }
+    const tokens = await AuthClient.signIn({ username, password }, config);
+    tokenHandler.storeToken(tokens);
   }
 
   function signOut() {
