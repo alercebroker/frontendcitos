@@ -1,21 +1,21 @@
-[@alercebroker/http-client](README.md) / Exports
+[@alercebroker/http-client](../README.md) / [Modules](../modules.md) / index
 
-# @alercebroker/http-client
+# Module: index
 
 ## Table of contents
 
 ### Classes
 
-- [AlertsClient](classes/AlertsClient.md)
-- [AuthClient](classes/AuthClient.md)
-- [HttpService](classes/HttpService.md)
+- [AlertsClient](../classes/index.AlertsClient.md)
+- [AuthClient](../classes/index.AuthClient.md)
+- [HttpService](../classes/index.HttpService.md)
 
 ### Functions
 
-- [isHttpError](modules.md#ishttperror)
-- [isParseError](modules.md#isparseerror)
-- [serializeParams](modules.md#serializeparams)
-- [serializeParamsReverse](modules.md#serializeparamsreverse)
+- [isHttpError](index.md#ishttperror)
+- [isParseError](index.md#isparseerror)
+- [serializeParams](index.md#serializeparams)
+- [serializeParamsReverse](index.md#serializeparamsreverse)
 
 ## Functions
 

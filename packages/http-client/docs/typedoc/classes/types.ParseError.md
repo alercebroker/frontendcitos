@@ -1,6 +1,8 @@
-[@alercebroker/http-client](../README.md) / [Exports](../modules.md) / ParseError
+[@alercebroker/http-client](../README.md) / [Modules](../modules.md) / [types](../modules/types.md) / ParseError
 
 # Class: ParseError
+
+[types](../modules/types.md).ParseError
 
 Parse error class
 
@@ -14,19 +16,19 @@ Parse error class
 
 ### Constructors
 
-- [constructor](ParseError.md#constructor)
+- [constructor](types.ParseError.md#constructor)
 
 ### Properties
 
-- [message](ParseError.md#message)
-- [name](ParseError.md#name)
-- [stack](ParseError.md#stack)
-- [prepareStackTrace](ParseError.md#preparestacktrace)
-- [stackTraceLimit](ParseError.md#stacktracelimit)
+- [message](types.ParseError.md#message)
+- [name](types.ParseError.md#name)
+- [stack](types.ParseError.md#stack)
+- [prepareStackTrace](types.ParseError.md#preparestacktrace)
+- [stackTraceLimit](types.ParseError.md#stacktracelimit)
 
 ### Methods
 
-- [captureStackTrace](ParseError.md#capturestacktrace)
+- [captureStackTrace](types.ParseError.md#capturestacktrace)
 
 ## Constructors
 

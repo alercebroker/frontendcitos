@@ -1,18 +1,20 @@
-[@alercebroker/http-client](../README.md) / [Exports](../modules.md) / AuthClient
+[@alercebroker/http-client](../README.md) / [Modules](../modules.md) / [index](../modules/index.md) / AuthClient
 
 # Class: AuthClient
+
+[index](../modules/index.md).AuthClient
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](AuthClient.md#constructor)
+- [constructor](index.AuthClient.md#constructor)
 
 ### Methods
 
-- [create](AuthClient.md#create)
-- [signIn](AuthClient.md#signin)
-- [verifySession](AuthClient.md#verifysession)
+- [create](index.AuthClient.md#create)
+- [signIn](index.AuthClient.md#signin)
+- [verifySession](index.AuthClient.md#verifysession)
 
 ## Constructors
 
@@ -30,7 +32,7 @@
 
 | Name | Type |
 | :------ | :------ |
-| `config` | `ClientConfig` |
+| `config` | [`ClientConfig`](../interfaces/types.ClientConfig.md) |
 
 #### Returns
 
@@ -47,7 +49,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `credentials` | `Credentials` |
-| `config?` | `ClientConfig` |
+| `config?` | [`ClientConfig`](../interfaces/types.ClientConfig.md) |
 
 #### Returns
 
@@ -64,7 +66,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `session` | `SessionTokens` |
-| `config?` | `ClientConfig` |
+| `config?` | [`ClientConfig`](../interfaces/types.ClientConfig.md) |
 
 #### Returns
 

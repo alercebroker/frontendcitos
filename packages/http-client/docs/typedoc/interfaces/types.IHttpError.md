@@ -1,19 +1,21 @@
-[@alercebroker/http-client](../README.md) / [Exports](../modules.md) / IHttpError
+[@alercebroker/http-client](../README.md) / [Modules](../modules.md) / [types](../modules/types.md) / IHttpError
 
 # Interface: IHttpError
 
+[types](../modules/types.md).IHttpError
+
 ## Implemented by
 
-- [`HttpError`](../classes/HttpError.md)
+- [`HttpError`](../classes/types.HttpError.md)
 
 ## Table of contents
 
 ### Properties
 
-- [message](IHttpError.md#message)
-- [name](IHttpError.md#name)
-- [stack](IHttpError.md#stack)
-- [status](IHttpError.md#status)
+- [message](types.IHttpError.md#message)
+- [name](types.IHttpError.md#name)
+- [stack](types.IHttpError.md#stack)
+- [status](types.IHttpError.md#status)
 
 ## Properties
 
