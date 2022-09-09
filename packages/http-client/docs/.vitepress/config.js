@@ -10,7 +10,7 @@ export default {
         collapsible: true,
         items: [
           { text: 'Getting Started', link: '/getting-started' },
-          { text: 'Modules', link: '/modules' },
+          { text: 'Modules', link: '/typedoc/modules' },
           { text: 'Base Client', link: '/base-client' },
           { text: 'Specialized Clients', link: '/specialized-clients' },
           { text: 'Configuration', link: '/configuration' },
@@ -21,8 +21,8 @@ export default {
         collapsible: true,
         items: [
           { text: 'Examples', link: '/examples/HttpService' },
-          { text: 'API', link: '/classes/HttpService' },
-          { text: 'Error', link: '/classes/HttpError' },
+          { text: 'API', link: '/typedoc/classes/index.HttpService' },
+          { text: 'Error', link: '/typedoc/classes/index.HttpError' },
         ],
       },
       {
@@ -30,7 +30,7 @@ export default {
         collapsible: true,
         items: [
           { text: 'Examples', link: '/examples/AlertsClient' },
-          { text: 'API', link: '/classes/AlertsClient' },
+          { text: 'API', link: '/typedoc/classes/index.AlertsClient' },
         ],
       },
       {
