@@ -6,7 +6,7 @@ http service class
 
 ## Implements
 
-- [`IHttpService`](../interfaces/IHttpService.md)
+- `IHttpService`
 
 ## Table of contents
 
@@ -27,9 +27,9 @@ http service class
 - [\_initializeRequestInterceptor](HttpService.md#_initializerequestinterceptor)
 - [\_initializeResponseInterceptor](HttpService.md#_initializeresponseinterceptor)
 - [\_parseFailable](HttpService.md#_parsefailable)
-- [connect](HttpService.md#connect)
 - [delete](HttpService.md#delete)
 - [get](HttpService.md#get)
+- [initClient](HttpService.md#initclient)
 - [post](HttpService.md#post)
 - [put](HttpService.md#put)
 - [setAccessToken](HttpService.md#setaccesstoken)
@@ -48,7 +48,7 @@ http service class
 
 #### Defined in
 
-src/lib/core/http-service/HttpService.ts:62
+lib/core/http-service/HttpService.ts:24
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-src/lib/core/http-service/HttpService.ts:61
+lib/core/http-service/HttpService.ts:23
 
 ## Methods
 
@@ -87,7 +87,7 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `config` | `AxiosRequestConfig`<`any`\> |
-| `accessToken` | `any` |
+| `accessToken` | `string` |
 
 #### Returns
 
@@ -147,35 +147,11 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `data` | `T` |
-| `parser` | [`FailableParser`](../modules.md#failableparser)<`T`, `M`\> |
+| `parser` | `FailableParser`<`T`, `M`\> |
 
 #### Returns
 
 `M`
-
-___
-
-### connect
-
-▸ **connect**(`baseUrl`, `axiosInstance?`, `accessToken?`): `void`
-
-http service constructor
-
-#### Parameters
-
-| Name | Type | Default value | Description |
-| :------ | :------ | :------ | :------ |
-| `baseUrl` | `string` | `undefined` | base url for axsios instance |
-| `axiosInstance?` | `AxiosInstance` | `undefined` | optional axios instance to use instead of creating a new one |
-| `accessToken` | `string` | `''` | token for authentication with the API |
-
-#### Returns
-
-`void`
-
-#### Implementation of
-
-[IHttpService](../interfaces/IHttpService.md).[connect](../interfaces/IHttpService.md#connect)
 
 ___
 
@@ -193,7 +169,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | [`IHttpRequest`](../modules.md#ihttprequest) |
+| `__namedParameters` | `IHttpRequest` |
 
 #### Returns
 
@@ -201,7 +177,7 @@ ___
 
 #### Implementation of
 
-[IHttpService](../interfaces/IHttpService.md).[delete](../interfaces/IHttpService.md#delete)
+IHttpService.delete
 
 ___
 
@@ -240,8 +216,8 @@ Performs a GET http request and parses the result.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `requestObject` | [`IHttpRequest`](../modules.md#ihttprequest) | an object containing url and axios config for the request. |
-| `parser` | [`Parser`](../modules.md#parser)<`T`, `M`\> | object containing the parser function for the result. |
+| `requestObject` | `IHttpRequest` | an object containing url and axios config for the request. |
+| `parser` | `Parser`<`T`, `M`\> | object containing the parser function for the result. |
 
 #### Returns
 
@@ -251,7 +227,31 @@ the parsed data according to the parseTo function.
 
 #### Implementation of
 
-[IHttpService](../interfaces/IHttpService.md).[get](../interfaces/IHttpService.md#get)
+IHttpService.get
+
+___
+
+### initClient
+
+▸ **initClient**(`baseUrl`, `axiosInstance?`, `accessToken?`): `void`
+
+http service constructor
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `baseUrl` | `string` | `undefined` | base url for axsios instance |
+| `axiosInstance?` | `AxiosInstance` | `undefined` | optional axios instance to use instead of creating a new one |
+| `accessToken` | `string` | `''` | token for authentication with the API |
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+IHttpService.initClient
 
 ___
 
@@ -272,8 +272,8 @@ Performs a POST http request and parses the result.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `requestObject` | [`IHttpRequest`](../modules.md#ihttprequest) | an object containing url and axios config for the request. |
-| `parser` | [`Parser`](../modules.md#parser)<`T`, `M`\> | object containing the parser function for the result. |
+| `requestObject` | `IHttpRequest` | an object containing url and axios config for the request. |
+| `parser` | `Parser`<`T`, `M`\> | object containing the parser function for the result. |
 
 #### Returns
 
@@ -283,7 +283,7 @@ the parsed data according to the parseTo function.
 
 #### Implementation of
 
-[IHttpService](../interfaces/IHttpService.md).[post](../interfaces/IHttpService.md#post)
+IHttpService.post
 
 ___
 
@@ -302,8 +302,8 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `__namedParameters` | [`IHttpRequest`](../modules.md#ihttprequest) |
-| `parser` | [`Parser`](../modules.md#parser)<`T`, `M`\> |
+| `__namedParameters` | `IHttpRequest` |
+| `parser` | `Parser`<`T`, `M`\> |
 
 #### Returns
 
@@ -311,7 +311,7 @@ ___
 
 #### Implementation of
 
-[IHttpService](../interfaces/IHttpService.md).[put](../interfaces/IHttpService.md#put)
+IHttpService.put
 
 ___
 
@@ -331,4 +331,4 @@ ___
 
 #### Implementation of
 
-[IHttpService](../interfaces/IHttpService.md).[setAccessToken](../interfaces/IHttpService.md#setaccesstoken)
+IHttpService.setAccessToken

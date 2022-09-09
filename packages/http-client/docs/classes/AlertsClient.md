@@ -11,6 +11,8 @@
 ### Methods
 
 - [create](AlertsClient.md#create)
+- [getClientConfig](AlertsClient.md#getclientconfig)
+- [queryDetections](AlertsClient.md#querydetections)
 - [queryObjects](AlertsClient.md#queryobjects)
 - [querySingleObject](AlertsClient.md#querysingleobject)
 
@@ -24,47 +26,33 @@
 
 ### create
 
-▸ `Static` **create**(`config`): [`IAlertsClient`](../interfaces/IAlertsClient.md)
+▸ `Static` **create**(`config`): `IAlertsClient`
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `config` | [`ClientConfig`](../interfaces/ClientConfig.md) |
+| `config` | `ClientConfig` |
 
 #### Returns
 
-[`IAlertsClient`](../interfaces/IAlertsClient.md)
+`IAlertsClient`
 
 ___
 
-### queryObjects
+### getClientConfig
 
-▸ `Static` **queryObjects**<`T`\>(`objectFilters`, `parser?`, `customModel?`): `Promise`<`T`\>
-
-#### Type parameters
-
-| Name |
-| :------ |
-| `T` |
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `objectFilters` | [`ObjectFilters`](../modules.md#objectfilters) |
-| `parser?` | [`Parser`](../modules.md#parser)<[`listObjectResponse`](../modules.md#listobjectresponse), `T`\> |
-| `customModel?` | `Newable`<`T`\> |
+▸ `Static` **getClientConfig**(): `ClientConfig`
 
 #### Returns
 
-`Promise`<`T`\>
+`ClientConfig`
 
 ___
 
-### querySingleObject
+### queryDetections
 
-▸ `Static` **querySingleObject**<`T`\>(`aid`, `parser?`, `customModel?`): `Promise`<`T`\>
+▸ `Static` **queryDetections**<`T`\>(`aid`, `parser?`, `customModel?`, `config?`): `Promise`<`T`\>
 
 #### Type parameters
 
@@ -77,8 +65,59 @@ ___
 | Name | Type |
 | :------ | :------ |
 | `aid` | `string` |
-| `parser?` | [`Parser`](../modules.md#parser)<[`singleObjectResponse`](../interfaces/singleObjectResponse.md), `T`\> |
+| `parser?` | `Parser`<`DetectionItem`[], `T`\> |
 | `customModel?` | `Newable`<`T`\> |
+| `config?` | `ClientConfig` |
+
+#### Returns
+
+`Promise`<`T`\>
+
+___
+
+### queryObjects
+
+▸ `Static` **queryObjects**<`T`\>(`objectFilters`, `parser?`, `customModel?`, `config?`): `Promise`<`T`\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `objectFilters` | `ObjectFilters` |
+| `parser?` | `Parser`<`listObjectResponse`, `T`\> |
+| `customModel?` | `Newable`<`T`\> |
+| `config?` | `ClientConfig` |
+
+#### Returns
+
+`Promise`<`T`\>
+
+___
+
+### querySingleObject
+
+▸ `Static` **querySingleObject**<`T`\>(`aid`, `parser?`, `customModel?`, `config?`): `Promise`<`T`\>
+
+#### Type parameters
+
+| Name |
+| :------ |
+| `T` |
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `aid` | `string` |
+| `parser?` | `Parser`<`singleObjectResponse`, `T`\> |
+| `customModel?` | `Newable`<`T`\> |
+| `config?` | `ClientConfig` |
 
 #### Returns
 
