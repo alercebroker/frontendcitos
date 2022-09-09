@@ -58,7 +58,55 @@ export type DetectionItem = {
   parent_candid: string
 }
 
-export interface singleObjectResponse extends objectListItem {}
+export type probabilitiesResponse = {
+  classifier_name: string
+  classifier_version: string
+  class_name: string
+  probability: number
+  ranking: number
+}
+
+export type magstatsResponse = {
+  fid: number
+  ndet: number
+  magmean: number
+  magmedian: number
+  magmax: number
+  magmin: number
+  magsigma: number
+  maglast: number
+  magfirst: number
+  firstmjd: number
+  lastmjd: number
+  'ingestion-step': string
+}
+
+export type xmatchResponse = {
+  catid: string
+  oid_catalog: string
+  dist: number
+}
+
+export type featuresResponse = {
+  name: string
+  value: number
+  fid: number
+  version: string
+}
+
+export type singleObjectResponse = {
+  aid: string
+  oid: string[]
+  ndet: number
+  firstmjd: number
+  lastmjd: number
+  meanra: number
+  meandec: number
+  probabilities: probabilitiesResponse[]
+  magstats: magstatsResponse[]
+  xmatch: xmatchResponse[]
+  features: featuresResponse[]
+}
 
 export interface IAlertsClient {
   initClient(axiosInstance?: AxiosInstance): void
