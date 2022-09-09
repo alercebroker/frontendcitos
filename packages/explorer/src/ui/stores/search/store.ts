@@ -262,7 +262,16 @@ export const searchStore = (
       search();
     }
 
+    function resetInputErrors() {
+      errors.value.inputError = {
+        ra: undefined,
+        dec: undefined,
+        radius: undefined,
+      };
+    }
+
     function search() {
+      resetInputErrors();
       const [isValid, inputErrors] = validateInputFilters(filters.value);
       if (!isValid) {
         errors.value.inputError = inputErrors;
