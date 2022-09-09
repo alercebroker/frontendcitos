@@ -1,10 +1,12 @@
 import {
-    getObjectSingleUseCase
+    getObjectSingleUseCase,
+    getObjectLightCurveUseCase
   } from "@/app/object/use-cases";
   import { objectDetailsStore } from "./store";
   
   const objectDetailsStoreResolved = objectDetailsStore(
-    getObjectSingleUseCase
+    getObjectSingleUseCase,
+    getObjectLightCurveUseCase
   );
   
   export { objectDetailsStoreResolved as useObjectDetailsStore };

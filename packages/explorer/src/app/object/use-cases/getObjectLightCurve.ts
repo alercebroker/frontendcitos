@@ -2,17 +2,16 @@ import type { Callbacks, Command } from "@/common/use-case";
 import type { ObjectRepository } from "@/domain/objects/ports";
 import { isHttpError, isParseError } from "@alercebroker/http-client";
 
-export const getObjectSingleUseCase = (
+export const getObjectLightCurveUseCase = (
   repository: ObjectRepository
 ): Command => ({
-  execute: async <SingleObjectResponseEntity>(
+  execute: async <LightCurveEntity>(
     callbacks: Callbacks,
     payload: string
   ) => {
-    const result = await repository.getObject(payload);
+    const result = await repository.getLightCurve(payload);
     result.map((objectEntity) => {
       callbacks.handleSuccess(objectEntity);
-      console.log("in command", objectEntity)
     });
     const errorCallbacks = callbacks.handleError;
     result.mapErr((error) => {

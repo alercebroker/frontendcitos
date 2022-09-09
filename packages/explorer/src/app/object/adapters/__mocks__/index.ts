@@ -1,1 +1,1 @@
-export * from "./objectRepository";
+export * from "./objectRepositoryNoErrors";

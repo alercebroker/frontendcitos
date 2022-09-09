@@ -1,6 +1,12 @@
 import type { Command } from "@/common/use-case";
 import type {
-  ObjectEntity,
+  SingleObjectEntity,
+  MagStatEntity,
+  ProbabiilyEntity,
+  DetectionEntity,
+  NonDetectionEntity,
+  SingleObjectResponseEntity,
+  LightCurveEntity
 } from "@/domain/objects/entities";
 import type {
   HttpError,
@@ -19,11 +25,13 @@ export type Errors = {
 };
 
 export const objectDetailsStore = (
-  getObjectSingleUseCase: Command
+  getObjectSingleUseCase: Command,
+  getObjectLightCurveUseCase: Command,
 ) => {
   return defineStore("objectDetails", () => {
-    const objectDetails = ref<ObjectEntity>({
+    const objectDetails = ref<SingleObjectEntity>({
       aid: "",
+      oid: [],
       ra: 0,
       dec: 0,
       firstmjd: 0.0,
@@ -32,7 +40,16 @@ export const objectDetailsStore = (
       lastGreg: "",
       raHms: "",
       decHms: "",
+      ndet: 0,
     });
+    const objectMagStats = ref<MagStatEntity[]>([
+    ]);
+    const objectProbabilities = ref<ProbabiilyEntity[]>([
+    ]);
+    const objectDetections = ref<DetectionEntity[]>([
+    ]);
+    const objectNonDetections = ref<NonDetectionEntity[]>([
+    ])
 
     const errors = ref<Errors>({
       generic: null,
@@ -42,11 +59,38 @@ export const objectDetailsStore = (
       inputError: null,
     });
 
-    function getObject(targetAid: string) {
+    function getObjectBasicInfo(targetAid: string) {
       getObjectSingleUseCase.execute(
         {
-          handleSuccess: (data: ObjectEntity) => {
-            objectDetails.value = data
+          handleSuccess: (data: SingleObjectResponseEntity) => {
+            objectDetails.value = data.objectBasicInfo;
+            objectMagStats.value = data.magStats;
+            objectProbabilities.value = data.probabilities;
+          },
+          handleError: {
+            handleGenericError: (error: Error) => {
+              errors.value.generic = error;
+            },
+            handleHttpClientError: (error: HttpError) => {
+              errors.value.client = error;
+            },
+            handleHttpServerError: (error: HttpError) => {
+              errors.value.server = error;
+            },
+            handleParseError: (error: ParseError) => {
+              errors.value.parse = error;
+            },
+          },
+        },
+        targetAid
+      );
+    }
+    function getObjectLightCurve(targetAid: string) {
+      getObjectLightCurveUseCase.execute(
+        {
+          handleSuccess: (data: LightCurveEntity) => {
+            objectDetections.value = data.detections;
+            objectNonDetections.value = data.nonDetections
           },
           handleError: {
             handleGenericError: (error: Error) => {
@@ -69,8 +113,13 @@ export const objectDetailsStore = (
 
     return {
       objectDetails,
+      objectMagStats,
+      objectProbabilities,
+      objectDetections,
+      objectNonDetections,
       errors,
-      getObject,
+      getObjectBasicInfo,
+      getObjectLightCurve
     };
   });
 };
