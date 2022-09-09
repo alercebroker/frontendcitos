@@ -3,6 +3,8 @@ import {
   mjdToGreg,
   type ObjectEntity,
   type ObjectListFilters,
+  type SingleObjectResponseEntity,
+  type LightCurveEntity,
   decToHms,
 } from "@/domain/objects/entities";
 import type { ObjectRepository } from "@/domain/objects/ports";
@@ -24,8 +26,9 @@ import type {
 import { err, ok, type Result } from "neverthrow";
 
 export const objectRepository: ObjectRepository = {
-  getObject,
   getObjects,
+  getObject,
+  getLightCurve,
 };
 
 export const objectListParser: Parser<
@@ -87,6 +90,7 @@ export const objectSingleParser: Parser<
   },
 };
 
+
 async function getObjects(
   filters: ObjectListFilters
 ): Promise<Result<PaginatedListEntity<ObjectEntity>, ParseError | HttpError>> {
@@ -113,23 +117,30 @@ async function getObjects(
 
 async function getObject(
   id: string
-): Promise<Result<ObjectEntity, ParseError | HttpError>> {
-  try {
-    const config: ClientConfig = {
-      baseUrl:
-        import.meta.env.ALERTS_API_URL ||
-        "https://dev.api.alerce.online/alerts/v2",
-    };
-    const result = await AlertsClient.querySingleObject<ObjectEntity
-    >(id, objectSingleParser, undefined, config);
-    return ok(result);
-  } catch (error) {
-    if (error instanceof Error) {
-      if (isHttpError(error) || isParseError(error)) {
-        return err(error);
-      }
-    }
-    // Unknown error, just rethrow
-    throw error;
-  }
+): Promise<Result<SingleObjectResponseEntity, ParseError | HttpError>> {
+  throw new Error("Not Implemented");
+  // try {
+  //   const config: ClientConfig = {
+  //     baseUrl:
+  //       import.meta.env.ALERTS_API_URL ||
+  //       "https://dev.api.alerce.online/alerts/v2",
+  //   };
+  //   const result = await AlertsClient.querySingleObject<ObjectEntity
+  //   >(id, objectSingleParser, undefined, config);
+  //   return ok(result);
+  // } catch (error) {
+  //   if (error instanceof Error) {
+  //     if (isHttpError(error) || isParseError(error)) {
+  //       return err(error);
+  //     }
+  //   }
+  //   // Unknown error, just rethrow
+  //   throw error;
+  // }
+}
+
+async function getLightCurve(
+  id: string
+): Promise<Result<LightCurveEntity, HttpError | ParseError>> {
+  throw new Error("Not Implemented");
 }

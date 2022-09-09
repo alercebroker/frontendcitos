@@ -16,8 +16,6 @@
   onMounted(() => {
     objectDetailsStore.getObjectBasicInfo(id)
     objectDetailsStore.getObjectLightCurve(id)
-    console.log("on mount")
-    console.log(objectDetails.value)
   })
 
 </script>

@@ -12,7 +12,6 @@ export const getObjectSingleUseCase = (
     const result = await repository.getObject(payload);
     result.map((objectEntity) => {
       callbacks.handleSuccess(objectEntity);
-      console.log("in command", objectEntity)
     });
     const errorCallbacks = callbacks.handleError;
     result.mapErr((error) => {
