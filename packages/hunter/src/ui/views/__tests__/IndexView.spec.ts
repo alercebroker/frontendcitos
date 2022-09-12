@@ -1,4 +1,4 @@
-import { describe, it, beforeAll, expect, vi, beforeEach } from "vitest";
+import { describe, it, beforeAll, expect, vi } from "vitest";
 import { mount, flushPromises, VueWrapper } from "@vue/test-utils";
 import { installQuasar } from "@quasar/quasar-app-extension-testing-unit-vitest";
 import { installPinia } from "./utils/pinia";
@@ -19,7 +19,11 @@ describe("IndexView render test", () => {
   let indexView: VueWrapper;
   beforeAll(() => {
     setActivePinia(createPinia());
-    indexView = mount(IndexView, {});
+    indexView = mount(IndexView, {
+      global: {
+        plugins: [createPinia()],
+      },
+    });
   });
   it("mount", () => {
     expect(indexView).toBeTruthy();
