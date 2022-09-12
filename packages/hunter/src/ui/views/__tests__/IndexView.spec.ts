@@ -1,4 +1,4 @@
-import { describe, it, beforeAll, expect, vi } from "vitest";
+import { describe, it, beforeAll, expect, vi, beforeEach } from "vitest";
 import { mount, flushPromises, VueWrapper } from "@vue/test-utils";
 import { installQuasar } from "@quasar/quasar-app-extension-testing-unit-vitest";
 import { installPinia } from "./utils/pinia";
@@ -10,6 +10,7 @@ vi.mock("@/ui/components/ObjectResults.vue", () => ({
 }));
 import { useObjectStore } from "@/ui/stores";
 import { mockGetObjectsCommand } from "@/ui/stores/__mocks__";
+import { createPinia, setActivePinia } from "pinia";
 
 installQuasar();
 installPinia();
@@ -17,7 +18,10 @@ installPinia();
 describe("SearchComponent test", () => {
   let indexView: VueWrapper;
   beforeAll(() => {
-    indexView = mount(IndexView);
+    indexView = mount(IndexView, {});
+  });
+  beforeEach(() => {
+    setActivePinia(createPinia());
   });
   it("mount", () => {
     expect(indexView).toBeTruthy();

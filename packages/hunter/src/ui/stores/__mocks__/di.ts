@@ -3,6 +3,8 @@ import { Callbacks, Command } from "@/application/common";
 import { objectStoreFactory } from "../objects";
 import { PaginatedList } from "@/domain/entities/paginatedlist.entity";
 import { ObjectEntity } from "@/domain/entities/object.entity";
+import { LocalTokenHandler } from "@/application/common/tokenhandler";
+import { authStoreFactory } from "@alercebroker/component-library/src/utils/stores";
 
 const mockResponse: PaginatedList<ObjectEntity> = {
   total: 0,
@@ -32,3 +34,4 @@ export const mockGetObjectsCommand: Command = {
 };
 
 export const useObjectStore = objectStoreFactory(mockGetObjectsCommand);
+export const useAuth = authStoreFactory(LocalTokenHandler(), "url");

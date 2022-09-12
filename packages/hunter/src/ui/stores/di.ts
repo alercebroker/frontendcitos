@@ -9,4 +9,4 @@ const userStore = authStoreFactory(
 );
 const objectStore = objectStoreFactory(getObjectList);
 
-export { objectStore as useObjectStore, userStore as useAlerceAuth };
+export { objectStore as useObjectStore, userStore as useAuth };

@@ -10,10 +10,10 @@
 import { getActivePinia, StoreGeneric, storeToRefs } from "pinia";
 import { onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
-import { useAlerceAuth } from "../stores";
+import { useAuth } from "../stores";
 
 const route = useRoute();
-const alerceUserStore = useAlerceAuth(getActivePinia());
+const alerceUserStore = useAuth(getActivePinia());
 const { oauthLogin } = alerceUserStore;
 const { error } = storeToRefs(alerceUserStore as StoreGeneric);
 

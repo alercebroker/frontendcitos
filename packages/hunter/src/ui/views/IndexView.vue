@@ -15,21 +15,14 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, onMounted } from "vue";
-import { useAlerceAuth } from "../stores";
+import { onMounted } from "vue";
 import { getActivePinia } from "pinia";
 import SearchComponent from "../components/SearchComponent.vue";
 import ObjectResults from "../components/ObjectResults.vue";
 import ResultsTable from "../components/ResultsTable.vue";
-
+import { useAuth } from "@ui/stores";
 //remember to use stores next
-const { verifySession } = useAlerceAuth(getActivePinia());
-
-const data = reactive({
-  query: {},
-  queryResult: [],
-  objectSelected: null,
-});
+const { verifySession } = useAuth(getActivePinia());
 
 onMounted(async () => {
   await verifySession();
