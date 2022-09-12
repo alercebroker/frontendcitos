@@ -27,8 +27,7 @@
 <script setup lang="ts">
 import LoginModal from "@alercebroker/component-library/src/components/login-modal/LoginModal.vue";
 import { watch, ref, toRefs } from "vue";
-import { axiosConfigured } from "../axios";
-import { useAuthentication, useAlerceAuth } from "../stores";
+import { useAlerceAuth } from "../stores";
 import { storeToRefs, getActivePinia, StoreGeneric } from "pinia";
 
 //login logic
@@ -54,7 +53,9 @@ async function checkWindow(window: Window) {
 }
 
 async function oauthPopup() {
-  popup = await oauthLoginPopup("http://localhost:3000/oauth/");
+  popup = await oauthLoginPopup(
+    process.env.VUE_APP_OAUTH_CALLBACK_URL as string
+  );
   popupInterval = setInterval(checkWindow, 250, popup);
 }
 

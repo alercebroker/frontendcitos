@@ -22,15 +22,15 @@ export function authStoreFactory(
         const url = await _oauth.getUrl(callbackUrl);
         return window.open(url);
       } catch {
-        throwErrorWithMessage("Error getting OAuth URL");
+        setErrorMessage("Error getting OAuth URL");
       }
     }
 
     async function oauthLogin(code: string, state: string) {
       try {
-        return await _oauth.signIn(code, state);
+        await _oauth.signIn(code, state);
       } catch {
-        throwErrorWithMessage("Error logging in with Google OAuth");
+        setErrorMessage("Error logging in with Google OAuth");
       }
     }
 
@@ -42,7 +42,7 @@ export function authStoreFactory(
           user: username,
         };
       } catch (e) {
-        throwErrorWithMessage("Invalid username or password");
+        setErrorMessage("Invalid username or password");
       }
     }
 
@@ -63,25 +63,20 @@ export function authStoreFactory(
         };
         return user;
       } catch (e) {
-        throwErrorWithMessage("Session expired, please try logging again");
+        setErrorMessage("Session expired, please try logging again");
       }
     }
 
     const error = ref({
-      isDismissed: false,
+      isDismissed: true,
       message: "",
     });
 
     function setErrorMessage(message: string) {
       error.value = {
-        isDismissed: true,
+        isDismissed: false,
         message,
       };
-    }
-
-    function throwErrorWithMessage(message: string) {
-      setErrorMessage(message);
-      throw new Error(message);
     }
 
     function dismissError() {

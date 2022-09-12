@@ -15,7 +15,6 @@
     "@alercebroker/http-client": "^1.1.0-rc.16",
     "@quasar/extras": "^1.15.0",
     "@vue/test-utils": "^2.0.2",
-    "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "d3-celestial": "^0.7.35",
     "echarts": "^5.3.3",
