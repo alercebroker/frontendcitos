@@ -1,6 +1,6 @@
 {
   "name": "hunter",
-  "version": "1.1.0-rc.18",
+  "version": "1.1.0-rc.24",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --port 3000",
@@ -11,8 +11,8 @@
     "deploy": "bash ./scripts/deploy.sh"
   },
   "dependencies": {
-    "@alercebroker/component-library": "^1.1.0-rc.16",
-    "@alercebroker/http-client": "^1.1.0-rc.18",
+    "@alercebroker/component-library": "^1.1.0-rc.23",
+    "@alercebroker/http-client": "^1.1.0-rc.23",
     "@quasar/extras": "^1.15.0",
     "@vue/test-utils": "^2.0.2",
     "core-js": "^3.8.3",
@@ -26,6 +26,7 @@
     "vue-router": "^4.1.2"
   },
   "devDependencies": {
+    "@pinia/testing": "^0.0.14",
     "@quasar/quasar-app-extension-testing-unit-vitest": "^0.1.2",
     "@quasar/vite-plugin": "^1.1.1",
     "@types/jest": "^27.0.1",

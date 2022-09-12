@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.24](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.23...v1.1.0-rc.24) (2022-09-12)
+
+
+### Bug Fixes
+
+* modified absolute [@ui](https://github.com/ui) path to relative path ([6ce684d](https://github.com/alercebroker/frontendcitos/commit/6ce684d332b264871450f9552a7a0424eff2648b))
+
+
+
+
+
+# [1.1.0-rc.23](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.22...v1.1.0-rc.23) (2022-09-12)
+
+
+### Features
+
+* **auth:** all auth methods were implemented ([cc09603](https://github.com/alercebroker/frontendcitos/commit/cc09603f0c0eb53634dbb2ad52d8abf6f6cac929))
+* **refresh:** refresh logic added to authclient ([5226f4b](https://github.com/alercebroker/frontendcitos/commit/5226f4b425770309a25d64a7cf4dea358ffcc1f2))
+
+
+
+
+
+# [1.1.0-rc.22](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.21...v1.1.0-rc.22) (2022-09-09)
+
+**Note:** Version bump only for package hunter
+
+
+
+
+
 # [1.1.0-rc.18](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.17...v1.1.0-rc.18) (2022-09-02)
 
 **Note:** Version bump only for package hunter

@@ -1,6 +1,6 @@
 {
   "name": "@alercebroker/component-library",
-  "version": "1.1.0-rc.16",
+  "version": "1.1.0-rc.23",
   "repository": {
     "type": "git",
     "url": "https://github.com/alercebroker/frontendcitos.git",
@@ -20,8 +20,10 @@
     "docs-deploy": "bash ./scripts/deploy_docs.sh"
   },
   "dependencies": {
+    "@alercebroker/http-client": "^1.1.0-rc.23",
     "@quasar/extras": "^1.14.1",
     "echarts": "^5.3.3",
+    "pinia": "^2.0.22",
     "quasar": "^2.7.3",
     "ramda": "^0.28.0",
     "vue": "^3.2.37",

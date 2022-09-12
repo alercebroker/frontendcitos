@@ -3,7 +3,7 @@
     <q-toolbar class="bg-black text-white">
       <q-toolbar-title> SN Hunter </q-toolbar-title>
       <q-btn
-        v-if="!userLogged.isLogged"
+        v-if="!loggedUser.isLogged"
         flat
         dense
         icon="person"
@@ -12,74 +12,54 @@
         >Login</q-btn
       >
       <div v-else>
-        Welcome, {{ userLogged.user }}!
-        <q-btn flat dense size="md" icon="logout">Logout</q-btn>
+        Welcome, {{ loggedUser.user }}!
+        <q-btn flat dense size="md" icon="logout" @click="logout">Logout</q-btn>
       </div>
     </q-toolbar>
-    <!-- Login modal (move to component once tested)-->
-    <q-dialog v-model="loginModalOpened">
-      <q-card bordered class="q-pa-sm" style="min-width: 400px">
-        <q-card-section>
-          <div class="text-h6">Login</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <q-input dense v-model="username" autofocus placeholder="Username" />
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <q-input
-            dense
-            v-model="password"
-            autofocus
-            placeholder="Password"
-            type="password"
-          />
-        </q-card-section>
-        <q-card-actions align="around">
-          <q-btn
-            outline
-            color="primary"
-            label="Login"
-            style="width: 45%"
-            @click="login(username, password)"
-          />
-          <q-btn
-            outline
-            color="secondary"
-            label="Register"
-            style="width: 45%"
-          />
-        </q-card-actions>
-        <q-card-actions>
-          <q-btn outline icon="mdi-google" class="full-width"
-            >Login with Google</q-btn
-          >
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
-    <!-- end of modal -->
+    <LoginModal
+      :opened="loginModalOpened"
+      :login="credentialsLogin"
+      :loginWithGoogle="oauthPopup"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref, toRefs } from "vue";
-import { useAuthentication } from "../stores";
+import LoginModal from "@alercebroker/component-library/src/components/login-modal/LoginModal.vue";
+import { watch, ref, toRefs } from "vue";
+import { useAlerceAuth } from "../stores";
+import { storeToRefs, getActivePinia, StoreGeneric } from "pinia";
 
-const AUTH_URL = "https://dev.users.alerce.online";
 //login logic
 const loginModalOpened = ref(false);
-const loginCredentials = reactive({
-  username: "",
-  password: "",
-});
+const alerceUserStore = useAlerceAuth(getActivePinia());
+let popup: Window | null;
+let popupInterval: any;
 
-const { username, password } = toRefs(loginCredentials);
-const { userLogged, login } = useAuthentication();
+const { credentialsLogin, logout, oauthLoginPopup, verifySession } =
+  alerceUserStore;
+const { loggedUser } = storeToRefs(alerceUserStore as StoreGeneric);
 
-function loginWithGoogle() {
-  return;
+async function checkWindow(window: Window) {
+  if (!window.closed) return;
+  try {
+    console.log("Closed, verifying session...");
+    await verifySession();
+  } catch (e) {
+    console.error("Something went wrong...");
+  } finally {
+    clearInterval(popupInterval);
+  }
 }
+
+async function oauthPopup() {
+  popup = await oauthLoginPopup(
+    process.env.VUE_APP_OAUTH_CALLBACK_URL as string
+  );
+  popupInterval = setInterval(checkWindow, 250, popup);
+}
+
+watch(loggedUser, () => (loginModalOpened.value = false));
 </script>
 
 <style></style>

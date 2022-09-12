@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.23](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.22...v1.1.0-rc.23) (2022-09-12)
+
+
+### Features
+
+* **auth:** all auth methods were implemented ([cc09603](https://github.com/alercebroker/frontendcitos/commit/cc09603f0c0eb53634dbb2ad52d8abf6f6cac929))
+
+
+
+
+
 # [1.1.0-rc.16](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.15...v1.1.0-rc.16) (2022-08-30)
 
 

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.23](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.22...v1.1.0-rc.23) (2022-09-12)
+
+**Note:** Version bump only for package explorer
+
+
+
+
+
+# [1.1.0-rc.22](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.21...v1.1.0-rc.22) (2022-09-09)
+
+**Note:** Version bump only for package explorer
+
+
+
+
+
 # [1.1.0-rc.21](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.20...v1.1.0-rc.21) (2022-09-09)
 
 
