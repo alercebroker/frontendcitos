@@ -15,13 +15,11 @@ import { createPinia, setActivePinia } from "pinia";
 installQuasar();
 installPinia();
 
-describe("SearchComponent test", () => {
+describe("IndexView render test", () => {
   let indexView: VueWrapper;
   beforeAll(() => {
-    indexView = mount(IndexView, {});
-  });
-  beforeEach(() => {
     setActivePinia(createPinia());
+    indexView = mount(IndexView, {});
   });
   it("mount", () => {
     expect(indexView).toBeTruthy();
