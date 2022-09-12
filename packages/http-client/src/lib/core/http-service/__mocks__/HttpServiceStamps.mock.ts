@@ -49,6 +49,14 @@ export class HttpServiceStampsMocks implements IHttpService {
         resolve(parser.parseTo(res as unknown as T))
       })
     }
+    if (request.url == '/get_stamp') {
+      const res = new Blob([new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9])], {
+        type: 'image/png',
+      })
+      return new Promise((resolve) => {
+        resolve(parser.parseTo(res as unknown as T))
+      })
+    }
     throw new Error('unknown endpoint')
   }
   post<T, M>(_request: IHttpRequest, _parser: Parser<T, M>): Promise<M> {

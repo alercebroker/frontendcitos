@@ -18,12 +18,12 @@ export class StampsClientFacade {
     return client
   }
 
-  public static getAvroJson<T>(
+  public static async getAvroJson<T>(
     params: GetAvroParams,
     parser?: Parser<Avro, T>,
     customModel?: Newable<T>,
     config?: StampsClientConfig
-  ) {
+  ): Promise<T> {
     if (config)
       container
         .rebind<StampsClientConfig>(TYPES.StampsClientConfig)
@@ -31,6 +31,21 @@ export class StampsClientFacade {
     const client = container.get<IStampsClient>(TYPES.IStampsClient)
     client.initClient()
     const result = client.getAvroJson(params, parser, customModel)
+    return result
+  }
+
+  public static async getStamp<T>(
+    params: GetAvroParams,
+    parser?: Parser<Blob, T>,
+    config?: StampsClientConfig
+  ): Promise<T> {
+    if (config)
+      container
+        .rebind<StampsClientConfig>(TYPES.StampsClientConfig)
+        .toConstantValue(config)
+    const client = container.get<IStampsClient>(TYPES.IStampsClient)
+    client.initClient()
+    const result = client.getStamp(params, parser)
     return result
   }
 }

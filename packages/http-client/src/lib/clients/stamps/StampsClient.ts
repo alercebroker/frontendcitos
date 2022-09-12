@@ -23,6 +23,20 @@ export class StampsClient implements IStampsClient {
     this.httpService = httpService
   }
 
+  getStamp<T>(params: GetAvroParams, parser: Parser<Blob, T>): Promise<T> {
+    if (!parser) {
+      parser = {
+        parseTo: (res: Blob): T => {
+          return res as unknown as T
+        },
+      }
+    }
+    return this.httpService.get<Blob, T>(
+      { url: '/get_stamp', config: { params, responseType: 'blob' } },
+      parser
+    )
+  }
+
   getAvroJson<T>(
     params: GetAvroParams,
     parser?: Parser<Avro, T>,

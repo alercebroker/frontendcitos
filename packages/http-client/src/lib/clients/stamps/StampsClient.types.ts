@@ -21,4 +21,5 @@ export interface IStampsClient {
     parser?: Parser<Avro, T>,
     customModel?: Newable<T>
   ): Promise<T>
+  getStamp<T>(params: GetAvroParams, parser: Parser<Blob, T>): Promise<T>
 }
