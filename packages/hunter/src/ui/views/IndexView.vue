@@ -20,7 +20,7 @@ import { getActivePinia } from "pinia";
 import SearchComponent from "../components/SearchComponent.vue";
 import ObjectResults from "../components/ObjectResults.vue";
 import ResultsTable from "../components/ResultsTable.vue";
-import { useAuth } from "@ui/stores";
+import { useAuth } from "../stores";
 //remember to use stores next
 const { verifySession } = useAuth(getActivePinia());
 
