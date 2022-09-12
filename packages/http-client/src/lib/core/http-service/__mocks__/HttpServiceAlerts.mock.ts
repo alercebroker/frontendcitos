@@ -4,12 +4,12 @@ import {
   DetectionItem,
   listObjectResponse,
   singleObjectResponse,
-} from '../../clients/alerts/AlertsClient.types'
-import { HttpError } from '../error/http-error'
-import { IHttpRequest, IHttpService, Parser } from './HttpService.types'
+} from '../../../clients/alerts/AlertsClient.types'
+import { HttpError } from '../../error/http-error'
+import { IHttpRequest, IHttpService, Parser } from '../HttpService.types'
 
 @injectable()
-export class HttpServiceObjectMocks implements IHttpService {
+export class HttpServiceAlertsMocks implements IHttpService {
   private baseUrl: string
   private axiosInstance: AxiosInstance
   private accessToken: string
