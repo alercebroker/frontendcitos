@@ -1,6 +1,8 @@
-[@alercebroker/http-client](../README.md) / [Exports](../modules.md) / HttpError
+[@alercebroker/http-client](../README.md) / [Modules](../modules.md) / [types](../modules/types.md) / HttpError
 
 # Class: HttpError
+
+[types](../modules/types.md).HttpError
 
 HttpError class
 
@@ -12,30 +14,30 @@ HttpError class
 
 ## Implements
 
-- [`IHttpError`](../interfaces/IHttpError.md)
+- [`IHttpError`](../interfaces/types.IHttpError.md)
 
 ## Table of contents
 
 ### Constructors
 
-- [constructor](HttpError.md#constructor)
+- [constructor](types.HttpError.md#constructor)
 
 ### Properties
 
-- [detail](HttpError.md#detail)
-- [message](HttpError.md#message)
-- [name](HttpError.md#name)
-- [stack](HttpError.md#stack)
-- [status](HttpError.md#status)
-- [prepareStackTrace](HttpError.md#preparestacktrace)
-- [stackTraceLimit](HttpError.md#stacktracelimit)
+- [detail](types.HttpError.md#detail)
+- [message](types.HttpError.md#message)
+- [name](types.HttpError.md#name)
+- [stack](types.HttpError.md#stack)
+- [status](types.HttpError.md#status)
+- [prepareStackTrace](types.HttpError.md#preparestacktrace)
+- [stackTraceLimit](types.HttpError.md#stacktracelimit)
 
 ### Methods
 
-- [isClientError](HttpError.md#isclienterror)
-- [isServerError](HttpError.md#isservererror)
-- [captureStackTrace](HttpError.md#capturestacktrace)
-- [fromStatus](HttpError.md#fromstatus)
+- [isClientError](types.HttpError.md#isclienterror)
+- [isServerError](types.HttpError.md#isservererror)
+- [captureStackTrace](types.HttpError.md#capturestacktrace)
+- [fromStatus](types.HttpError.md#fromstatus)
 
 ## Constructors
 
@@ -73,7 +75,7 @@ ___
 
 #### Implementation of
 
-[IHttpError](../interfaces/IHttpError.md).[message](../interfaces/IHttpError.md#message)
+[IHttpError](../interfaces/types.IHttpError.md).[message](../interfaces/types.IHttpError.md#message)
 
 #### Inherited from
 
@@ -91,7 +93,7 @@ ___
 
 #### Implementation of
 
-[IHttpError](../interfaces/IHttpError.md).[name](../interfaces/IHttpError.md#name)
+[IHttpError](../interfaces/types.IHttpError.md).[name](../interfaces/types.IHttpError.md#name)
 
 #### Inherited from
 
@@ -109,7 +111,7 @@ ___
 
 #### Implementation of
 
-[IHttpError](../interfaces/IHttpError.md).[stack](../interfaces/IHttpError.md#stack)
+[IHttpError](../interfaces/types.IHttpError.md).[stack](../interfaces/types.IHttpError.md#stack)
 
 #### Inherited from
 
@@ -127,7 +129,7 @@ ___
 
 #### Implementation of
 
-[IHttpError](../interfaces/IHttpError.md).[status](../interfaces/IHttpError.md#status)
+[IHttpError](../interfaces/types.IHttpError.md).[status](../interfaces/types.IHttpError.md#status)
 
 #### Defined in
 
@@ -229,7 +231,7 @@ ___
 
 ### fromStatus
 
-▸ `Static` **fromStatus**(`status`, `detail?`, `message?`): [`HttpError`](HttpError.md)
+▸ `Static` **fromStatus**(`status`, `detail?`, `message?`): [`HttpError`](types.HttpError.md)
 
 #### Parameters
 
@@ -241,4 +243,4 @@ ___
 
 #### Returns
 
-[`HttpError`](HttpError.md)
+[`HttpError`](types.HttpError.md)

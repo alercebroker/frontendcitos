@@ -60,6 +60,10 @@ export class HttpServiceObjectMocks implements IHttpService {
           lastmjd: 1,
           meanra: 1,
           meandec: 1,
+          probabilities: [],
+          magstats: [],
+          xmatch: [],
+          features: [],
         },
       ]
       const listResponse: listObjectResponse = {
@@ -110,6 +114,10 @@ export class HttpServiceObjectMocks implements IHttpService {
         lastmjd: 1,
         meanra: 1,
         meandec: 1,
+        probabilities: [],
+        magstats: [],
+        xmatch: [],
+        features: [],
       }
       return new Promise((resolve) => {
         resolve(parser.parseTo(res as unknown as T))
