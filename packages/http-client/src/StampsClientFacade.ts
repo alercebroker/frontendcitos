@@ -24,9 +24,10 @@ export class StampsClientFacade {
     customModel?: Newable<T>,
     config?: StampsClientConfig
   ) {
-    container
-      .rebind<StampsClientConfig>(TYPES.StampsClientConfig)
-      .toConstantValue(config)
+    if (config)
+      container
+        .rebind<StampsClientConfig>(TYPES.StampsClientConfig)
+        .toConstantValue(config)
     const client = container.get<IStampsClient>(TYPES.IStampsClient)
     client.initClient()
     const result = client.getAvroJson(params, parser, customModel)

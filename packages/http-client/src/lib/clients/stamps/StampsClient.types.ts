@@ -2,7 +2,7 @@ import { AxiosInstance } from 'axios'
 import { Newable, Parser } from '../../../types'
 
 export type Avro = {
-  candidate: Object
+  candidate: Record<string, string | number>
 }
 
 export type ClientConfig = {

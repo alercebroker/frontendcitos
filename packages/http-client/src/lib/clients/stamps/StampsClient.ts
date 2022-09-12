@@ -28,7 +28,20 @@ export class StampsClient implements IStampsClient {
     parser?: Parser<Avro, T>,
     customModel?: Newable<T>
   ): Promise<T> {
-    throw new Error('Method not implemented.')
+    if (!parser) {
+      parser = {
+        parseTo: (res: Avro): T => {
+          if (customModel) {
+            return new customModel(res)
+          }
+          return res as unknown as T
+        },
+      }
+    }
+    return this.httpService.get<Avro, T>(
+      { url: '/get_avro_info', config: { params } },
+      parser
+    )
   }
 
   initClient(axiosInstance?: AxiosInstance): void {
