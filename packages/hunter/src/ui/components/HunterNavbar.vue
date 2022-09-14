@@ -27,12 +27,12 @@
 <script setup lang="ts">
 import LoginModal from "@alercebroker/component-library/src/components/login-modal/LoginModal.vue";
 import { watch, ref, toRefs } from "vue";
-import { useAlerceAuth } from "../stores";
+import { useAuth } from "../stores";
 import { storeToRefs, getActivePinia, StoreGeneric } from "pinia";
 
 //login logic
 const loginModalOpened = ref(false);
-const alerceUserStore = useAlerceAuth(getActivePinia());
+const alerceUserStore = useAuth(getActivePinia());
 let popup: Window | null;
 let popupInterval: any;
 

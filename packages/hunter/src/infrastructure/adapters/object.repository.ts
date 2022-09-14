@@ -13,6 +13,9 @@ import { AlertsClient } from "@alercebroker/http-client";
 
 import { err, ok, Result } from "neverthrow";
 import { DetectionEntity } from "@/domain/entities/detection.entity";
+import { LocalTokenHandler } from "@/application/common/tokenhandler";
+
+const tokenStore = LocalTokenHandler();
 
 function parseItems(items: objectListItem[]): ObjectEntity[] {
   return items.map((item) => ({
@@ -25,6 +28,11 @@ function parseItems(items: objectListItem[]): ObjectEntity[] {
     lastGreg: mjdToGreg(item.lastmjd),
     firstDetection: null,
   }));
+}
+
+function validateToken(access: string) {
+  if (access.length > 0) return access;
+  return undefined;
 }
 
 const BASE_URL = "https://dev.api.alerce.online/alerts/v2";
@@ -47,6 +55,8 @@ export const objectListParser: Parser<
 async function getObjects(
   filters: ObjectFilter
 ): Promise<Result<PaginatedList<ObjectEntity>, ParseError | HttpError>> {
+  const accessToken = validateToken(tokenStore.getToken().access);
+  console.log(accessToken);
   try {
     const result = await AlertsClient.queryObjects<PaginatedList<ObjectEntity>>(
       filters,
@@ -54,6 +64,7 @@ async function getObjects(
       undefined,
       {
         baseUrl: BASE_URL,
+        accessToken,
       }
     );
     return ok(result);
@@ -75,6 +86,7 @@ async function getDetections(
       undefined,
       {
         baseUrl: BASE_URL,
+        accessToken: validateToken(tokenStore.getToken().access),
       }
     );
     return ok(result);
