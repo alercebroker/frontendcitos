@@ -8,6 +8,7 @@ import {
   decToHms,
   type MagStatEntity,
   type ProbabiilyEntity,
+  type DetectionEntity,
 } from "@/domain/objects/entities";
 import type { ObjectRepository } from "@/domain/objects/ports";
 import {
@@ -26,8 +27,8 @@ import type {
   ClientConfig,
   magstatsResponse,
   probabilitiesResponse,
+  DetectionItem,
 } from "@alercebroker/http-client/build/main/types";
-import { result } from "lodash";
 import { err, ok, type Result } from "neverthrow";
 
 export const objectRepository: ObjectRepository = {
@@ -135,6 +136,46 @@ function parseProbabilities(probabilitiesList: probabilitiesResponse[]): Probabi
   });
 }
 
+export const lightCurveParser: Parser<
+  DetectionItem[],
+  LightCurveEntity
+> = {
+  parseTo: (
+    response: DetectionItem[]
+  ): LightCurveEntity => {
+    const result: LightCurveEntity = {
+      detections: parseDetections(response),
+      non_detections: []
+    };
+    return result;
+  },
+};
+
+function parseDetections(detectionList: DetectionItem[]): DetectionEntity[] {
+  return detectionList.map( (item) => {
+    const detectionEntity: DetectionEntity = {
+      aid: item.aid,
+      oid: item.oid,
+      tid: item.tid,
+      mjd: item.mjd,
+      candid: item.candid,
+      fid: item.fid,
+      isdiffpos: item.isdiffpos,
+      mag: item.mag,
+      e_mag: item.e_mag,
+      ra: item.ra,
+      dec: item.dec,
+      rb: item.rb,
+      rbversion: item.rbversion,
+      has_stamp: item.has_stamp,
+      corrected: item.corrected,
+      step_id_corr: item.step_id_corr,
+      parent_candid: item.parent_candid,
+    };
+    return detectionEntity;
+  });
+}
+
 async function getObjects(
   filters: ObjectListFilters
 ): Promise<Result<PaginatedListEntity<ObjectEntity>, ParseError | HttpError>> {
@@ -185,5 +226,22 @@ async function getObject(
 async function getLightCurve(
   id: string
 ): Promise<Result<LightCurveEntity, HttpError | ParseError>> {
-  throw new Error("Not Implemented");
+  try {
+    const config: ClientConfig = {
+      baseUrl:
+        import.meta.env.ALERTS_API_URL ||
+        "https://dev.api.alerce.online/alerts/v2",
+    };
+    const result = await AlertsClient.queryDetections<LightCurveEntity
+    >(id, lightCurveParser, undefined, config);
+    return ok(result);
+  } catch (error) {
+    if (error instanceof Error) {
+      if (isHttpError(error) || isParseError(error)) {
+        return err(error);
+      }
+    }
+    // Unknown error, just rethrow
+    throw error;
+  }
 }

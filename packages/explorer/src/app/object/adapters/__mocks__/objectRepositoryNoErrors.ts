@@ -146,7 +146,7 @@ export const objectRepository: ObjectRepository = {
               parent_candid: "nan"
             },
           ],
-          nonDetections: [
+          non_detections: [
             {
               tid: "ZTF",
               mjd: 59783.47290509986,

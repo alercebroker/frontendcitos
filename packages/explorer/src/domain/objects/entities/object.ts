@@ -84,5 +84,5 @@ export type SingleObjectEntity = {
 
 export type LightCurveEntity = {
   detections: DetectionEntity[];
-  nonDetections: NonDetectionEntity[];
+  non_detections: NonDetectionEntity[];
 }

@@ -89,7 +89,7 @@ export const objectDetailsStore = (
         {
           handleSuccess: (data: LightCurveEntity) => {
             objectDetections.value = data.detections;
-            objectNonDetections.value = data.nonDetections
+            objectNonDetections.value = data.non_detections
           },
           handleError: {
             handleGenericError: (error: Error) => {
