@@ -22,7 +22,7 @@
     {name: 'aid', field: 'aid', label: 'Object List', required: true},
   ];
   const objecsAidtList = computed( () => {
-    return results.value.items.map((item) => {item.aid})
+    return results.value.items.map((item) => {return {"aid": item.aid}})
   })
 
   function onRequest(requestProp: any): void {
@@ -39,7 +39,7 @@
   }
   onMounted(() => {
     searchStore.filters = { ...searchStore.filters, ...route.query };
-    searchStore.search();
+    searchStore.search(false);
   });
   function onRowClick(_evt: any, _row: any, index: number) {
     const row = searchStore.results.items[index];
@@ -49,17 +49,16 @@
 
 
 <template>
-  <q-page>
-    <q-table
-      v-model:pagination="paginationOpts"
-      dense
-      :rows="objecsAidtList"
-      :columns="columns_definition"
-      :rows-per-page-options="[20]"
-      @request="onRequest"
-      @row-click="onRowClick"
-    />
-  </q-page>
+  <q-table
+    v-model:pagination="paginationOpts"
+    data-test="resultsTable"
+    dense
+    :rows="objecsAidtList"
+    :columns="columns_definition"
+    :rows-per-page-options="[20]"
+    @request="onRequest"
+    @row-click="onRowClick"
+  />
 </template>
 
 <style lang="sass" scoped></style>

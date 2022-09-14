@@ -6,6 +6,7 @@
   import ObjectBasicInfo from '../components/object_details/objectBasicInfo.vue';
   import magStats from "../components/object_details/magStats.vue";
   import lightCurve from "../components/object_details/lightCurve.vue";
+  import SideBar from "../components/object_details/sideBar.vue";
 
   const route = useRoute();
   const id = route.params.objectId as string
@@ -21,6 +22,7 @@
 </script>
 
 <template>
+  <side-bar/>
   <q-page>
     <div class="row justify-around">
       <div class="col-md-4 col-sm-6 col-xs-12">

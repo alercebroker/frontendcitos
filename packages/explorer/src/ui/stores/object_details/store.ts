@@ -5,16 +5,15 @@ import type {
   ProbabiilyEntity,
   DetectionEntity,
   NonDetectionEntity,
-  SingleObjectResponseEntity,
+  ObjectBasicInfoEntity,
   LightCurveEntity
 } from "@/domain/objects/entities";
 import type {
   HttpError,
-  PaginatedListEntity,
   ParseError,
 } from "@alercebroker/http-client/build/main/types";
 import { defineStore } from "pinia";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 
 export type Errors = {
   generic: Error | null;
@@ -29,7 +28,7 @@ export const objectDetailsStore = (
   getObjectLightCurveUseCase: Command,
 ) => {
   return defineStore("objectDetails", () => {
-    const objectDetails = ref<SingleObjectEntity>({
+    const objectDetails = ref<ObjectBasicInfoEntity>({
       aid: "",
       oid: [],
       ra: 0,
@@ -62,9 +61,9 @@ export const objectDetailsStore = (
     function getObjectBasicInfo(targetAid: string) {
       getObjectSingleUseCase.execute(
         {
-          handleSuccess: (data: SingleObjectResponseEntity) => {
-            objectDetails.value = data.objectBasicInfo;
-            objectMagStats.value = data.magStats;
+          handleSuccess: (data: SingleObjectEntity) => {
+            objectDetails.value = data.object_basic_info;
+            objectMagStats.value = data.magstats;
             objectProbabilities.value = data.probabilities;
           },
           handleError: {

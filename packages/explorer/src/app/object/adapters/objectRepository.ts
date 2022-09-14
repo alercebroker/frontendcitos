@@ -3,9 +3,11 @@ import {
   mjdToGreg,
   type ObjectEntity,
   type ObjectListFilters,
-  type SingleObjectResponseEntity,
+  type SingleObjectEntity,
   type LightCurveEntity,
   decToHms,
+  type MagStatEntity,
+  type ProbabiilyEntity,
 } from "@/domain/objects/entities";
 import type { ObjectRepository } from "@/domain/objects/ports";
 import {
@@ -22,7 +24,10 @@ import type {
   ParseError,
   PaginatedListEntity,
   ClientConfig,
+  magstatsResponse,
+  probabilitiesResponse,
 } from "@alercebroker/http-client/build/main/types";
+import { result } from "lodash";
 import { err, ok, type Result } from "neverthrow";
 
 export const objectRepository: ObjectRepository = {
@@ -71,27 +76,64 @@ function parseItems(items: objectListItem[]): ObjectEntity[] {
 
 export const objectSingleParser: Parser<
   singleObjectResponse,
-  ObjectEntity
+  SingleObjectEntity
 > = {
   parseTo: (
     response: singleObjectResponse
-  ): ObjectEntity => {
-    const result: ObjectEntity = {
-      aid: response.aid,
-      ra: response.meanra,
-      dec: response.meandec,
-      ndet: response.ndet,
-      firstmjd: response.firstmjd,
-      lastmjd: response.lastmjd,
-      firstGreg: mjdToGreg(response.firstmjd),
-      lastGreg: mjdToGreg(response.lastmjd),
-      raHms: raToHms(response.meanra),
-      decHms: decToHms(response.meandec),
+  ): SingleObjectEntity => {
+    const result: SingleObjectEntity = {
+      object_basic_info: {
+        aid: response.aid,
+        oid: response.oid,
+        ra: response.meanra,
+        dec: response.meandec,
+        firstmjd: response.firstmjd,
+        lastmjd: response.lastmjd,
+        firstGreg: mjdToGreg(response.firstmjd),
+        lastGreg: mjdToGreg(response.lastmjd),
+        raHms: raToHms(response.meanra),
+        decHms: decToHms(response.meandec),
+        ndet: response.ndet,
+      },
+      magstats: parseMagstats(response.magstats),
+      probabilities: parseProbabilities(response.probabilities)
     };
     return result;
   },
 };
 
+function parseMagstats(magstatsList: magstatsResponse[]): MagStatEntity[] {
+  return magstatsList.map( (item) => {
+    const magStatEntity: MagStatEntity = {
+      fid: item.fid,
+      ndet: item.ndet,
+      magmean: item.magmean,
+      magmedian: item.magmedian,
+      magmax: item.magmax,
+      magmin: item.magmin,
+      magsigma: item.magsigma,
+      maglast: item.maglast,
+      magfirst: item.magfirst,
+      firstmjd: item.firstmjd,
+      lastmjd: item.lastmjd,
+      ingestion_step: item["ingestion-step"],
+    };
+    return magStatEntity;
+  });
+}
+
+function parseProbabilities(probabilitiesList: probabilitiesResponse[]): ProbabiilyEntity[] {
+  return probabilitiesList.map( (item) => {
+    const probabilityEntity: ProbabiilyEntity = {
+      classifier_name: item.classifier_name,
+      classifier_version: item.classifier_version,
+      class_name: item.class_name,
+      probability: item.probability,
+      ranking: item.ranking,
+    };
+    return probabilityEntity;
+  });
+}
 
 async function getObjects(
   filters: ObjectListFilters
@@ -119,26 +161,25 @@ async function getObjects(
 
 async function getObject(
   id: string
-): Promise<Result<SingleObjectResponseEntity, ParseError | HttpError>> {
-  throw new Error("Not Implemented");
-  // try {
-  //   const config: ClientConfig = {
-  //     baseUrl:
-  //       import.meta.env.ALERTS_API_URL ||
-  //       "https://dev.api.alerce.online/alerts/v2",
-  //   };
-  //   const result = await AlertsClient.querySingleObject<ObjectEntity
-  //   >(id, objectSingleParser, undefined, config);
-  //   return ok(result);
-  // } catch (error) {
-  //   if (error instanceof Error) {
-  //     if (isHttpError(error) || isParseError(error)) {
-  //       return err(error);
-  //     }
-  //   }
-  //   // Unknown error, just rethrow
-  //   throw error;
-  // }
+): Promise<Result<SingleObjectEntity, ParseError | HttpError>> {
+  try {
+    const config: ClientConfig = {
+      baseUrl:
+        import.meta.env.ALERTS_API_URL ||
+        "https://dev.api.alerce.online/alerts/v2",
+    };
+    const result = await AlertsClient.querySingleObject<SingleObjectEntity
+    >(id, objectSingleParser, undefined, config);
+    return ok(result);
+  } catch (error) {
+    if (error instanceof Error) {
+      if (isHttpError(error) || isParseError(error)) {
+        return err(error);
+      }
+    }
+    // Unknown error, just rethrow
+    throw error;
+  }
 }
 
 async function getLightCurve(

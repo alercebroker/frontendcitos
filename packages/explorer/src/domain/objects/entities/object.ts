@@ -12,7 +12,7 @@ export type ObjectEntity = {
   decHms: string;
 };
 
-export type SingleObjectEntity = {
+export type ObjectBasicInfoEntity = {
   aid: string;
   oid: string[];
   ra: number;
@@ -27,7 +27,7 @@ export type SingleObjectEntity = {
 };
 
 export type MagStatEntity = {
-  fid: 1 | 2;
+  fid: number;
   ndet: number;
   magmean: number;
   magmedian: number;
@@ -38,7 +38,7 @@ export type MagStatEntity = {
   magfirst: number;
   firstmjd: number;
   lastmjd: number;
-  ingestion_step: number;
+  ingestion_step: string;
 };
 
 export type ProbabiilyEntity = {
@@ -76,9 +76,9 @@ export type NonDetectionEntity = {
   diffmaglim: number;
 }
 
-export type SingleObjectResponseEntity = {
-  objectBasicInfo: SingleObjectEntity;
-  magStats: MagStatEntity[];
+export type SingleObjectEntity = {
+  object_basic_info: ObjectBasicInfoEntity;
+  magstats: MagStatEntity[];
   probabilities: ProbabiilyEntity[];
 }
 

@@ -14,14 +14,12 @@
 
 <template>
   <q-card flat bordered class="">
-    <q-card-content>
-      <light-curve-plot
-        :detections="objectDetections"
-        :non-detections="objectNonDetections"
-        :type="radioValue"
-        :dark="false"
-      ></light-curve-plot>
-    </q-card-content>
+    <light-curve-plot
+      :detections="objectDetections"
+      :non-detections="objectNonDetections"
+      :type="radioValue"
+      :dark="false"
+    ></light-curve-plot>
     <q-card-actions align='center'>
       <q-radio v-model="radioValue" size='xs' :val="'apparent'" label="apparent"></q-radio>
       <q-radio v-model="radioValue" size='xs' :val="'difference'" label="difference"></q-radio>

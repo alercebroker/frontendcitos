@@ -1,7 +1,7 @@
 import type {
   ObjectEntity,
   ObjectListFilters,
-  SingleObjectResponseEntity,
+  SingleObjectEntity,
   LightCurveEntity,
 } from "@/domain/objects/entities";
 import type { ObjectRepository } from "@/domain/objects/ports";
@@ -12,11 +12,11 @@ import { err, ok, type Result } from "neverthrow";
 export const objectRepository: ObjectRepository = {
   getObject: (
     id: string
-  ): Promise<Result<SingleObjectResponseEntity, HttpError | ParseError>> => {
+  ): Promise<Result<SingleObjectEntity, HttpError | ParseError>> => {
     return new Promise((resolve) => {
       resolve(
         ok({
-          objectBasicInfo: {
+          object_basic_info: {
             aid: "aid",
             oid: ["oid1", "oid2"],
             ra: 1,
@@ -29,7 +29,7 @@ export const objectRepository: ObjectRepository = {
             decHms: "hms",
             ndet: 1,
           },
-          magStats: [
+          magstats: [
             {
               fid: 1,
               ndet: 116,
@@ -42,7 +42,7 @@ export const objectRepository: ObjectRepository = {
               magfirst: 18.229092,
               firstmjd: 58366.44,
               lastmjd: 59542.28,
-              ingestion_step: 0.4333,
+              ingestion_step: "0.4333",
             },
             {
               fid: 2,
@@ -56,7 +56,7 @@ export const objectRepository: ObjectRepository = {
               magfirst: 17.64601,
               firstmjd: 58366.508,
               lastmjd: 59530.367,
-              ingestion_step: 0.1234,
+              ingestion_step: "0.1234",
             }
           ],
           probabilities: [
