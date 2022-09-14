@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.25](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.24...v1.1.0-rc.25) (2022-09-12)
+
+
+### Features
+
+* **client:** base structure for stamps client ([77244b8](https://github.com/alercebroker/frontendcitos/commit/77244b82a2500d0408bce468c218b5c51fd1d2ff))
+* **http-client:** add stamps client getAvroJson ([c6ec465](https://github.com/alercebroker/frontendcitos/commit/c6ec465b0247ddc6fc9e6eac18119a31be13ddae))
+
+
+
+
+
+# [1.1.0-rc.23](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.22...v1.1.0-rc.23) (2022-09-12)
+
+
+### Features
+
+* **auth:** all auth methods were implemented ([cc09603](https://github.com/alercebroker/frontendcitos/commit/cc09603f0c0eb53634dbb2ad52d8abf6f6cac929))
+* **refresh:** refresh logic added to authclient ([5226f4b](https://github.com/alercebroker/frontendcitos/commit/5226f4b425770309a25d64a7cf4dea358ffcc1f2))
+
+
+
+
+
 # [1.1.0-rc.22](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.21...v1.1.0-rc.22) (2022-09-09)
 
 

@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { Quasar, Dark } from "quasar";
 import VChart from "vue-echarts";
+import { router } from "./ui/router";
 
 import App from "./App.vue";
 
@@ -15,6 +16,7 @@ const app = createApp(App as any);
 app
   .use(createPinia())
   .use(Quasar, { plugins: {} })
+  .use(router)
   .component("v-chart", VChart);
 Dark.set(true);
 

@@ -10,14 +10,20 @@ vi.mock("@/ui/components/ObjectResults.vue", () => ({
 }));
 import { useObjectStore } from "@/ui/stores";
 import { mockGetObjectsCommand } from "@/ui/stores/__mocks__";
+import { createPinia, setActivePinia } from "pinia";
 
 installQuasar();
 installPinia();
 
-describe("SearchComponent test", () => {
+describe("IndexView render test", () => {
   let indexView: VueWrapper;
   beforeAll(() => {
-    indexView = mount(IndexView);
+    setActivePinia(createPinia());
+    indexView = mount(IndexView, {
+      global: {
+        plugins: [createPinia()],
+      },
+    });
   });
   it("mount", () => {
     expect(indexView).toBeTruthy();

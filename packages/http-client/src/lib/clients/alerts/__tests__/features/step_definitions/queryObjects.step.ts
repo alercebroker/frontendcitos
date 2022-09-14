@@ -2,7 +2,6 @@ import { strict } from 'assert'
 import { container } from '../../../../../../container/container'
 import { Given, When, Then } from '@cucumber/cucumber'
 import { TYPES } from '../../../../../../container/types'
-import { HttpServiceObjectMocks } from '../../../../../core/http-service/HttpService.mock'
 import { listObjectResponse } from '../../../AlertsClient.types'
 import {
   exampleQueryObjectsByAid,
@@ -10,10 +9,11 @@ import {
   exampleQueryObjectsByDate,
 } from '../../../__examples__/AlertsClient.example'
 import { isHttpError } from '../../../../../core/error/http-error'
+import { HttpServiceAlertsMocks } from '../../../../../core/http-service/__mocks__/HttpServiceAlerts.mock'
 
 Given('the API responds with success', function () {
   container.rebind('testType').toConstantValue('success')
-  container.rebind(TYPES.IHttpService).to(HttpServiceObjectMocks)
+  container.rebind(TYPES.IHttpService).to(HttpServiceAlertsMocks)
 })
 
 When('I make a call to queryObjects with aid', async function () {
@@ -35,13 +35,16 @@ When('I make a call to queryObjects with date filters', async function () {
   this.result = await exampleQueryObjectsByDate()
 })
 
-When('I make a call to queryObjects with coordinate filters', async function () {
-  this.result = await exampleQueryObjectsByConesearch()
-})
+When(
+  'I make a call to queryObjects with coordinate filters',
+  async function () {
+    this.result = await exampleQueryObjectsByConesearch()
+  }
+)
 
 Given('the API responds with error', function () {
-  container.rebind('testType').toConstantValue("serverError")
-  container.rebind(TYPES.IHttpService).to(HttpServiceObjectMocks)
+  container.rebind('testType').toConstantValue('serverError')
+  container.rebind(TYPES.IHttpService).to(HttpServiceAlertsMocks)
 })
 
 Then('I should get an error', function () {

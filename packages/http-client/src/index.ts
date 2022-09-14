@@ -1,5 +1,6 @@
 import { AlertsClientFacade } from './AlertsClientFacade'
 import { AuthClientFacade } from './AuthClientFacade'
+import { StampsClientFacade } from './StampsClientFacade'
 import { loadContainerModules } from './container/container'
 
 export * from './lib/core/http-service/HttpService'
@@ -12,4 +13,8 @@ export {
 
 loadContainerModules()
 
-export { AlertsClientFacade as AlertsClient, AuthClientFacade as AuthClient }
+export {
+  AlertsClientFacade as AlertsClient,
+  AuthClientFacade as AuthClient,
+  StampsClientFacade as StampsClient,
+}
