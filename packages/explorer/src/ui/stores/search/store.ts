@@ -280,7 +280,7 @@ export const searchStore = (
       resetInputErrors();
     }
 
-    function search() {
+    function search(redirect = true) {
       loading.value = true;
       resetErrors();
       const [isValid, inputErrors] = validateInputFilters(filters.value);
@@ -298,10 +298,12 @@ export const searchStore = (
               encode: false,
             });
             const queryStringJson = serializeParamsReverse(queryString);
-            router.push({
-              name: "results",
-              query: queryStringJson as LocationQueryRaw,
-            });
+            if ( redirect ) {
+              router.push({
+                name: "results",
+                query: queryStringJson as LocationQueryRaw,
+              });
+            }
           },
           handleError: {
             handleGenericError: (error: Error) => {
