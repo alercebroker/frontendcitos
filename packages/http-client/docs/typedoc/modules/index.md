@@ -9,6 +9,7 @@
 - [AlertsClient](../classes/index.AlertsClient.md)
 - [AuthClient](../classes/index.AuthClient.md)
 - [HttpService](../classes/index.HttpService.md)
+- [StampsClient](../classes/index.StampsClient.md)
 
 ### Functions
 

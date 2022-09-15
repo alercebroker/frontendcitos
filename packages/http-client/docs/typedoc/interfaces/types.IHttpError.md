@@ -25,7 +25,7 @@
 
 #### Defined in
 
-[src/lib/core/error/http-error.ts:10](https://github.com/alercebroker/frontendcitos/blob/469c68b/packages/http-client/src/lib/core/error/http-error.ts#L10)
+[src/lib/core/error/http-error.ts:10](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-error.ts#L10)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-[src/lib/core/error/http-error.ts:9](https://github.com/alercebroker/frontendcitos/blob/469c68b/packages/http-client/src/lib/core/error/http-error.ts#L9)
+[src/lib/core/error/http-error.ts:9](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-error.ts#L9)
 
 ___
 
@@ -45,7 +45,7 @@ ___
 
 #### Defined in
 
-[src/lib/core/error/http-error.ts:11](https://github.com/alercebroker/frontendcitos/blob/469c68b/packages/http-client/src/lib/core/error/http-error.ts#L11)
+[src/lib/core/error/http-error.ts:11](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-error.ts#L11)
 
 ___
 
@@ -55,4 +55,4 @@ ___
 
 #### Defined in
 
-[src/lib/core/error/http-error.ts:8](https://github.com/alercebroker/frontendcitos/blob/469c68b/packages/http-client/src/lib/core/error/http-error.ts#L8)
+[src/lib/core/error/http-error.ts:8](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-error.ts#L8)

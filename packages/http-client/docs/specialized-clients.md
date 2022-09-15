@@ -2,7 +2,7 @@
 
 Specialized clients provide direct connections with an API. Each method on the client is related to an endpoint in the API.
 
-Right now we have a single Specialized Client, the [Alerts Client](classes/AlertsClient.md) which is a client for the [Alerts API](https://api.alerce.online/alerts/v2).
+Right now we have a single Specialized Client, the [Alerts Client](typedoc/classes/index.AlertsClient.md) which is a client for the [Alerts API](https://api.alerce.online/alerts/v2).
 
 ## Alerts Client
 
