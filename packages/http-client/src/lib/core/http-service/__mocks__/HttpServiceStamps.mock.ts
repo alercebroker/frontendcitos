@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios'
 import { inject, injectable } from 'inversify'
 import { HttpError } from '../../error'
 import { IHttpRequest, IHttpService, Parser } from '../HttpService.types'
+import { Blob } from 'buffer'
 
 @injectable()
 export class HttpServiceStampsMocks implements IHttpService {

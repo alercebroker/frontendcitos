@@ -1,5 +1,6 @@
 import { When, Then } from '@cucumber/cucumber'
 import { strict } from 'assert'
+import { Blob } from 'buffer'
 import {
   exampleGetStamp,
   exampleGetStampToUrl,
@@ -10,6 +11,7 @@ When('I make a call to getStamp', async function () {
     const result = await exampleGetStamp()
     this.result = result
   } catch (exception) {
+    console.error(exception)
     this.err = exception
   }
 })

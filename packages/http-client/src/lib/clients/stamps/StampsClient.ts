@@ -3,6 +3,7 @@ import { inject, injectable } from 'inversify'
 import { TYPES } from '../../../container/types'
 import { IHttpService, Parser } from '../../core/http-service/HttpService.types'
 import { Newable } from '../../util.types'
+import { Blob } from 'buffer'
 import {
   Avro,
   ClientConfig,

@@ -1,5 +1,6 @@
 import { container } from './container/container'
 import { TYPES } from './container/types'
+import { Blob } from 'buffer'
 import {
   Avro,
   GetAvroParams,
