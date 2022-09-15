@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.26](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.25...v1.1.0-rc.26) (2022-09-15)
+
+
+### Features
+
+* **http-client:** add get stamp png ([4930119](https://github.com/alercebroker/frontendcitos/commit/4930119b1bf1f303091548ba2ad7b2d3ec50d2ae))
+
+
+
+
+
 # [1.1.0-rc.25](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.24...v1.1.0-rc.25) (2022-09-12)
 
 
