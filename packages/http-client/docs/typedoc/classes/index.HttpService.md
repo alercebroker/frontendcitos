@@ -50,7 +50,7 @@ http service class
 
 #### Defined in
 
-src/lib/core/http-service/HttpService.ts:24
+[src/lib/core/http-service/HttpService.ts:24](https://github.com/alercebroker/frontendcitos/blob/469c68b/packages/http-client/src/lib/core/http-service/HttpService.ts#L24)
 
 ___
 
@@ -60,7 +60,7 @@ ___
 
 #### Defined in
 
-src/lib/core/http-service/HttpService.ts:23
+[src/lib/core/http-service/HttpService.ts:23](https://github.com/alercebroker/frontendcitos/blob/469c68b/packages/http-client/src/lib/core/http-service/HttpService.ts#L23)
 
 ## Methods
 
