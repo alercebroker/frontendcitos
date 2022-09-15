@@ -3,6 +3,7 @@ import { inject, injectable } from 'inversify'
 import { TYPES } from '../../../container/types'
 import { IHttpService, Parser } from '../../core/http-service/HttpService.types'
 import { Newable } from '../../util.types'
+import { Blob } from 'buffer'
 import {
   Avro,
   ClientConfig,
@@ -21,6 +22,20 @@ export class StampsClient implements IStampsClient {
   ) {
     this.config = config
     this.httpService = httpService
+  }
+
+  getStamp<T>(params: GetAvroParams, parser: Parser<Blob, T>): Promise<T> {
+    if (!parser) {
+      parser = {
+        parseTo: (res: Blob): T => {
+          return res as unknown as T
+        },
+      }
+    }
+    return this.httpService.get<Blob, T>(
+      { url: '/get_stamp', config: { params, responseType: 'blob' } },
+      parser
+    )
   }
 
   getAvroJson<T>(
