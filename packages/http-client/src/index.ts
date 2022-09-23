@@ -1,8 +1,9 @@
+import { loadContainerModules } from './container/container'
+
+loadContainerModules()
 import { AlertsClientFacade } from './AlertsClientFacade'
 import { AuthClientFacade } from './AuthClientFacade'
 import { StampsClientFacade } from './StampsClientFacade'
-import { loadContainerModules } from './container/container'
-
 export * from './lib/core/http-service/HttpService'
 export { isHttpError } from './lib/core/error/http-error'
 export { isParseError } from './lib/core/error/parse-error'
@@ -10,8 +11,7 @@ export {
   serializeParams,
   serializeParamsReverse,
 } from './lib/clients/alerts/utils'
-
-loadContainerModules()
+export { b64Parser } from './lib/clients/stamps/utils'
 
 export {
   AlertsClientFacade as AlertsClient,
