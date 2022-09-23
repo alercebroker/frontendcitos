@@ -1,6 +1,6 @@
 {
   "name": "explorer",
-  "version": "1.1.0-rc.27",
+  "version": "1.1.0-rc.28",
   "private": true,
   "scripts": {
     "dev": "vite",
@@ -14,8 +14,8 @@
     "deploy": "bash ./scripts/deploy.sh"
   },
   "dependencies": {
-    "@alercebroker/component-library": "^1.1.0-rc.27",
-    "@alercebroker/http-client": "^1.1.0-rc.27",
+    "@alercebroker/component-library": "^1.1.0-rc.28",
+    "@alercebroker/http-client": "^1.1.0-rc.28",
     "@quasar/extras": "^1.14.3",
     "lodash.clonedeep": "^4.5.0",
     "neverthrow": "^4.4.2",

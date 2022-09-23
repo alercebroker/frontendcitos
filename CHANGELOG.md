@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.28](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.27...v1.1.0-rc.28) (2022-09-23)
+
+
+### Bug Fixes
+
+* changed FileReader to Buffer ([0fb6de3](https://github.com/alercebroker/frontendcitos/commit/0fb6de3f0695185763a7e7f7d1356691d39020f1))
+
+
+### Features
+
+* add get stamp with base64 parser ([df7273e](https://github.com/alercebroker/frontendcitos/commit/df7273efe9f4c9658e94056c195d79194c3e2edc))
+
+
+
+
+
 # [1.1.0-rc.27](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.26...v1.1.0-rc.27) (2022-09-15)
 
 **Note:** Version bump only for package root
