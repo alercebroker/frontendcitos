@@ -1,11 +1,9 @@
 import { Parser } from '../../../types'
+import { Buffer, Blob } from 'buffer'
 
 export const b64Parser: Parser<Blob, Promise<string>> = {
   parseTo: async (response) => {
-    return new Promise((resolve, _) => {
-      const reader = new FileReader()
-      reader.onloadend = () => resolve(reader.result.toString())
-      reader.readAsDataURL(response)
-    })
+    const buffer = Buffer.from(await response.arrayBuffer())
+    return 'data:' + response.type + ';base64,' + buffer.toString('base64')
   },
 }

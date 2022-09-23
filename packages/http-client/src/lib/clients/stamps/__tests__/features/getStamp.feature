@@ -6,11 +6,6 @@ Feature: Get Stamp in PNG format
     When I make a call to getStamp
     Then I should get a response with a binary object
 
-  Scenario: Query with an existing candid and custom parser to transform result to URL
-    Given the candid exists
-    When I make a call to getStamp with an URL parser
-    Then I should get a response with an URL string
-
   Scenario: Query with an existing candid and importing custom parser to transform result base64
     Given the candid exists
     When I make a call to getStamp with the imported base64 parser
