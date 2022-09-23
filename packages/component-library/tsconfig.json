@@ -1,6 +1,8 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "target": "esnext",
+  "module": "esnext",
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
@@ -13,5 +15,5 @@
     {
       "path": "./tsconfig.config.json"
     }
-  ],
+  ]
 }
