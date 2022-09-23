@@ -12,6 +12,9 @@ export type ClientConfig = {
 export type GetAvroParams = {
   candid: string
   survey_id: string
+  format: string
+  type: string
+  oid?: string
 }
 
 export interface IStampsClient {

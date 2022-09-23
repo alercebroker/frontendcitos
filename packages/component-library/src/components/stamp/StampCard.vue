@@ -58,6 +58,7 @@
             :viewtype="data.activeTool"
             :candid="selected.candid"
             :image-url="stampImage('science')"
+            :objectId="objectId"
           />
         </div>
         <div class="col-4">
@@ -66,6 +67,7 @@
             :viewtype="data.activeTool"
             :candid="selected.candid"
             :image-url="stampImage('template')"
+            :objectId="objectId"
           />
         </div>
         <div class="col-4">
@@ -74,6 +76,7 @@
             :viewtype="data.activeTool"
             :candid="selected.candid"
             :image-url="stampImage('difference')"
+            :objectId="objectId"
           />
         </div>
       </div>
@@ -133,13 +136,13 @@ function nextDetection() {
   iterator.next();
   data.selectedIndex = iterator.current();
   selected.value = props.detections[data.selectedIndex];
-};
+}
 
 function previousDetection() {
   iterator.prev();
   data.selectedIndex = iterator.current();
   selected.value = props.detections[data.selectedIndex];
-};
+}
 
 function changeSelect(element: any) {
   data.selectedIndex = iterator.moveTo(element);
@@ -154,13 +157,13 @@ function onAvroClick() {
 }
 
 function stampImage(type: string) {
-  return (candid: string | number, format: string) =>
-    stampUrl({
+  return async (candid: string, format: string) =>
+    await stampUrl({
       baseUrl: props.imageServiceUrl,
-      oid: props.objectId,
       candid,
       type,
       format,
+      surveyId: selected.value.tid,
     });
 }
 
