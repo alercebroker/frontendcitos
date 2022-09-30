@@ -7,6 +7,7 @@ import {
   singleObjectResponse,
   ClientConfig,
   DetectionItem,
+  lightcurveResponse,
 } from './lib/clients/alerts/AlertsClient.types'
 import { Parser } from './lib/core/http-service/HttpService.types'
 import { Newable } from './lib/util.types'
@@ -54,6 +55,18 @@ export class AlertsClientFacade {
     const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
     client.initClient()
     return client.queryDetections(aid, parser, customModel)
+  }
+  public static queryLightcurve<T>(
+    aid: string,
+    parser?: Parser<lightcurveResponse, T>,
+    customModel?: Newable<T>,
+    config?: ClientConfig
+  ): Promise<T> {
+    if (config)
+      container.rebind<ClientConfig>(TYPES.ClientConfig).toConstantValue(config)
+    const client = container.get<IAlertsClient>(TYPES.IAlertsClient)
+    client.initClient()
+    return client.queryLightcurve(aid, parser, customModel)
   }
   public static getClientConfig(): ClientConfig {
     return container.get<ClientConfig>(TYPES.ClientConfig)

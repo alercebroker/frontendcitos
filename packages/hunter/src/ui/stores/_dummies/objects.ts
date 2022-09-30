@@ -18,6 +18,7 @@ const objectFactory = (): ObjectEntity => {
       fid: 1,
       ra: randomRa,
       dec: randomDec,
+      tid: "ZTF",
     },
   };
 };

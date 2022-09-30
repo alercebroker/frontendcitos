@@ -5,7 +5,7 @@ export type ObjectView = {
   reported: string;
   score: number;
   fdtel: string;
-  fdmag: number;
+  fdmag: number | string;
   fdband: string;
   ra: number;
   dec: number;

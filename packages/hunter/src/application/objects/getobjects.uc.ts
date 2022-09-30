@@ -1,8 +1,8 @@
 import type { Callbacks, Command } from "@/application/common";
 import { CompleteObjectFilter } from "../common/types";
 import type { ObjectRespository } from "@/domain/ports/objects";
-import { isParseError, isHttpError } from "@alercebroker/http-client";
 import { ObjectEntity } from "@/domain/entities/object.entity";
+import { defaultErrorHandler } from "../common/errors";
 
 async function completeObjectsWithFirstDetection(
   repository: ObjectRespository,
@@ -11,11 +11,12 @@ async function completeObjectsWithFirstDetection(
   function completeObject(object: ObjectEntity): Promise<ObjectEntity> {
     return new Promise((resolve) => {
       repository.getDetections(object.aid).then((result) => {
-        const resultUnwrapped = result.unwrapOr([]);
+        const detectionList = result.unwrapOr([]);
         const objectCompleted = Object.assign({}, object);
-        objectCompleted.firstDetection = resultUnwrapped.length
-          ? resultUnwrapped[0]
+        objectCompleted.firstDetection = detectionList.length
+          ? detectionList[0]
           : null;
+        objectCompleted.obs = detectionList.length;
         resolve(objectCompleted);
       });
     });
@@ -42,21 +43,6 @@ export const getObjectsListUseCase = (
       // );
       callbacks.handleSuccess(objectListEntity);
     });
-    result.mapErr((error) => {
-      const {
-        handleGenericError,
-        handleHttpClientError,
-        handleHttpServerError,
-        handleParseError,
-      } = callbacks.handleErrors;
-      if (isHttpError(error)) {
-        if (error.isClientError() && handleHttpClientError)
-          handleHttpClientError(error);
-        else if (error.isServerError() && handleHttpServerError)
-          handleHttpServerError(error);
-      } else if (isParseError(error) && handleParseError)
-        handleParseError(error);
-      else handleGenericError(error);
-    });
+    result.mapErr(defaultErrorHandler(callbacks));
   },
 });

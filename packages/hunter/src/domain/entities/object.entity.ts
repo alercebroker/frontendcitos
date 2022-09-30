@@ -8,6 +8,7 @@ export type ObjectEntity = {
   lastmjd: number;
   firstGreg: string;
   lastGreg: string;
+  obs?: number;
   firstDetection: DetectionEntity | null;
 };
 

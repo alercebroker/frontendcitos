@@ -14,6 +14,7 @@ import { AlertsClient } from "@alercebroker/http-client";
 import { err, ok, Result } from "neverthrow";
 import { DetectionEntity } from "@/domain/entities/detection.entity";
 import { LocalTokenHandler } from "@/application/common/tokenhandler";
+import { LightCurveEntity } from "@/domain/entities/lightcurve.entity";
 
 const tokenStore = LocalTokenHandler();
 
@@ -96,9 +97,30 @@ async function getDetections(
   }
 }
 
+async function getLightcurve(
+  aid: string
+): Promise<Result<LightCurveEntity, ParseError | HttpError>> {
+  try {
+    const result = await AlertsClient.queryLightcurve<LightCurveEntity>(
+      aid,
+      undefined,
+      undefined,
+      {
+        baseUrl: BASE_URL,
+        accessToken: validateToken(tokenStore.getToken().access),
+      }
+    );
+    return ok(result);
+  } catch (e) {
+    if (e instanceof Error) return err(e);
+    throw e;
+  }
+}
+
 export const objectRepository: ObjectRespository = {
   getObjects,
   getDetections,
+  getLightcurve,
   getObject: function (
     id: string
   ): Promise<Result<ObjectEntity, ParseError | HttpError>> {

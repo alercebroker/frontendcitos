@@ -21,6 +21,7 @@ function getDetectionsSuccess(
     fid: 1,
     ra: 15,
     dec: 50,
+    tid: "ZTF",
   };
 
   if (aid !== "AID4321") {
@@ -96,4 +97,7 @@ export const mockObjectRepositoryFactory = (
   },
   getObjects:
     type === TestTypes.SUCCESS ? getObjectsSuccess : getObjectsFailure,
+  getLightcurve: (aid) => {
+    throw new Error("Not implemented");
+  },
 });

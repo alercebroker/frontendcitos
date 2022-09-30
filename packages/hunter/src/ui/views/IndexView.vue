@@ -25,6 +25,7 @@ import { useAuth } from "../stores";
 const { verifySession } = useAuth(getActivePinia());
 
 onMounted(async () => {
+  console.log("Index mounted!");
   await verifySession();
 });
 </script>

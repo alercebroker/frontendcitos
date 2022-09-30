@@ -5,6 +5,7 @@ import { PaginatedList } from "@/domain/entities/paginatedlist.entity";
 import { ObjectEntity } from "@/domain/entities/object.entity";
 import { LocalTokenHandler } from "@/application/common/tokenhandler";
 import { authStoreFactory } from "@alercebroker/component-library/src/utils/stores";
+import { LightCurveEntity } from "@/domain/entities/lightcurve.entity";
 
 const mockResponse: PaginatedList<ObjectEntity> = {
   total: 0,
@@ -27,11 +28,25 @@ const mockResponse: PaginatedList<ObjectEntity> = {
   ],
 };
 
+const mockLightcurve: LightCurveEntity = {
+  detections: [],
+  non_detections: [],
+};
+
 export const mockGetObjectsCommand: Command = {
   execute: vi.fn().mockImplementation((cb: Callbacks) => {
     cb.handleSuccess(mockResponse);
   }),
 };
 
-export const useObjectStore = objectStoreFactory(mockGetObjectsCommand);
+export const mockGetLightcurveCommand: Command = {
+  execute: vi.fn().mockImplementation((cb: Callbacks) => {
+    cb.handleSuccess(mockLightcurve);
+  }),
+};
+
+export const useObjectStore = objectStoreFactory(
+  mockGetObjectsCommand,
+  mockGetLightcurveCommand
+);
 export const useAuth = authStoreFactory(LocalTokenHandler(), "url");

@@ -58,6 +58,20 @@ export type DetectionItem = {
   parent_candid: string
 }
 
+export type NonDetectionItem = {
+  aid: string
+  oid: string
+  tid: string
+  mjd: number
+  fid: number
+  diffmaglim: number
+}
+
+export type lightcurveResponse = {
+  detections: DetectionItem[]
+  non_detections: NonDetectionItem[]
+}
+
 export type probabilitiesResponse = {
   classifier_name: string
   classifier_version: string
@@ -123,6 +137,11 @@ export interface IAlertsClient {
   queryDetections<T>(
     aid: string,
     parser?: Parser<DetectionItem[], T>,
+    customModel?: Newable<T>
+  ): Promise<T>
+  queryLightcurve<T>(
+    aid: string,
+    parser?: Parser<lightcurveResponse, T>,
     customModel?: Newable<T>
   ): Promise<T>
 }

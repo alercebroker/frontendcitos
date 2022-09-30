@@ -1,11 +1,15 @@
 import { Callbacks, Command } from "@/application/common";
 import type { CompleteObjectFilter } from "@/application/common/types";
+import { LightCurveEntity } from "@/domain/entities/lightcurve.entity";
 import { ObjectEntity } from "@/domain/entities/object.entity";
 import { PaginatedList } from "@/domain/entities/paginatedlist.entity";
 import { defineStore } from "pinia";
 import { ref, reactive } from "vue";
 
-export const objectStoreFactory = (searchObjectsUseCase: Command) => {
+export const objectStoreFactory = (
+  searchObjectsUseCase: Command,
+  getLightcurveUseCase: Command
+) => {
   return defineStore("objects", () => {
     //is this even necesary?
     const filters = ref<CompleteObjectFilter>({
@@ -32,18 +36,17 @@ export const objectStoreFactory = (searchObjectsUseCase: Command) => {
     const selected = ref<ObjectEntity>();
     const errorStatus = ref<any>(null);
 
-    const callbacks: Callbacks = {
-      handleSuccess(data: PaginatedList<ObjectEntity>) {
-        objectList.value = data;
-      },
-      handleErrors: {
-        handleGenericError(error) {
-          errorStatus.value = error;
-        },
-      },
-    };
-
     function searchByFilter(filter: CompleteObjectFilter) {
+      const callbacks: Callbacks = {
+        handleSuccess(data: PaginatedList<ObjectEntity>) {
+          objectList.value = data;
+        },
+        handleErrors: {
+          handleGenericError(error) {
+            errorStatus.value = error;
+          },
+        },
+      };
       filters.value = filter;
       searchObjectsUseCase.execute(callbacks, filter);
     }
@@ -58,6 +61,24 @@ export const objectStoreFactory = (searchObjectsUseCase: Command) => {
         (object) => object.aid === aid
       );
       selected.value = selectedObject;
+    }
+
+    const detections = ref<LightCurveEntity>({
+      detections: [],
+      non_detections: [],
+    });
+
+    function getDetections() {
+      getLightcurveUseCase.execute({
+        handleSuccess: (lightcurve) => {
+          detections.value = lightcurve;
+        },
+        handleErrors: {
+          handleGenericError(error) {
+            errorStatus.value = error;
+          },
+        },
+      });
     }
 
     return {
