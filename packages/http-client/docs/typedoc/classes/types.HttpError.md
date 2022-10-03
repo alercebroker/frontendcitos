@@ -65,7 +65,7 @@ Error.constructor
 
 #### Defined in
 
-src/lib/core/error/http-error.ts:19
+[src/lib/core/error/http-error.ts:19](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-error.ts#L19)
 
 ___
 
@@ -133,7 +133,7 @@ ___
 
 #### Defined in
 
-src/lib/core/error/http-error.ts:18
+[src/lib/core/error/http-error.ts:18](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-error.ts#L18)
 
 ___
 

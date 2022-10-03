@@ -87,7 +87,7 @@ The request might or might not be eventually acted upon, and may be disallowed w
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:45
+[src/lib/core/error/http-status-code.ts:45](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L45)
 
 ___
 
@@ -100,7 +100,7 @@ and are not being included again.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:82
+[src/lib/core/error/http-status-code.ts:82](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L82)
 
 ___
 
@@ -112,7 +112,7 @@ The server was acting as a gateway or proxy and received an invalid response fro
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:335
+[src/lib/core/error/http-status-code.ts:335](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L335)
 
 ___
 
@@ -125,7 +125,7 @@ The server cannot or will not process the request due to an apparent client erro
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:157
+[src/lib/core/error/http-status-code.ts:157](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L157)
 
 ___
 
@@ -138,7 +138,7 @@ such as an edit conflict between multiple simultaneous updates.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:213
+[src/lib/core/error/http-status-code.ts:213](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L213)
 
 ___
 
@@ -154,7 +154,7 @@ and receive a 100 Continue status code in response before sending the body. The 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:14
+[src/lib/core/error/http-status-code.ts:14](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L14)
 
 ___
 
@@ -166,7 +166,7 @@ The request has been fulfilled, resulting in the creation of a new resource.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:39
+[src/lib/core/error/http-status-code.ts:39](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L39)
 
 ___
 
@@ -178,7 +178,7 @@ The server cannot meet the requirements of the Expect request-header field.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:262
+[src/lib/core/error/http-status-code.ts:262](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L262)
 
 ___
 
@@ -190,7 +190,7 @@ The request failed due to failure of a previous request (e.g., a PROPPATCH).
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:289
+[src/lib/core/error/http-status-code.ts:289](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L289)
 
 ___
 
@@ -203,7 +203,7 @@ The user might not have the necessary permissions for a resource.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:178
+[src/lib/core/error/http-status-code.ts:178](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L178)
 
 ___
 
@@ -220,7 +220,7 @@ use the 302 status code as if it were the 303.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:110
+[src/lib/core/error/http-status-code.ts:110](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L110)
 
 ___
 
@@ -232,7 +232,7 @@ The server was acting as a gateway or proxy and did not receive a timely respons
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:346
+[src/lib/core/error/http-status-code.ts:346](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L346)
 
 ___
 
@@ -248,7 +248,7 @@ Most use cases do not require clients and search engines to purge the resource, 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:222
+[src/lib/core/error/http-status-code.ts:222](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L222)
 
 ___
 
@@ -260,7 +260,7 @@ The server does not support the HTTP protocol version used in the request
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:351
+[src/lib/core/error/http-status-code.ts:351](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L351)
 
 ___
 
@@ -273,7 +273,7 @@ and the response is a representation of the result of one or more instance-manip
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:88
+[src/lib/core/error/http-status-code.ts:88](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L88)
 
 ___
 
@@ -285,7 +285,7 @@ The server is unable to store the representation needed to complete the request.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:361
+[src/lib/core/error/http-status-code.ts:361](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L361)
 
 ___
 
@@ -297,7 +297,7 @@ A generic error message, given when an unexpected condition was encountered and 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:324
+[src/lib/core/error/http-status-code.ts:324](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L324)
 
 ___
 
@@ -311,7 +311,7 @@ teapots requested to brew coffee. This HTTP status is used as an Easter egg in s
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:269
+[src/lib/core/error/http-status-code.ts:269](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L269)
 
 ___
 
@@ -323,7 +323,7 @@ The request did not specify the length of its content, which is required by the 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:227
+[src/lib/core/error/http-status-code.ts:227](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L227)
 
 ___
 
@@ -335,7 +335,7 @@ The resource that is being accessed is locked.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:284
+[src/lib/core/error/http-status-code.ts:284](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L284)
 
 ___
 
@@ -347,7 +347,7 @@ The server detected an infinite loop while processing the request.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:366
+[src/lib/core/error/http-status-code.ts:366](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L366)
 
 ___
 
@@ -360,7 +360,7 @@ for example, a GET request on a form that requires data to be presented via POST
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:190
+[src/lib/core/error/http-status-code.ts:190](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L190)
 
 ___
 
@@ -372,7 +372,7 @@ The request was directed at a server that is not able to produce a response (for
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:274
+[src/lib/core/error/http-status-code.ts:274](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L274)
 
 ___
 
@@ -384,7 +384,7 @@ This and all future requests should be directed to the given URI.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:100
+[src/lib/core/error/http-status-code.ts:100](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L100)
 
 ___
 
@@ -398,7 +398,7 @@ to list files with different filename extensions, or to suggest word-sense disam
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:95
+[src/lib/core/error/http-status-code.ts:95](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L95)
 
 ___
 
@@ -411,7 +411,7 @@ depending on how many sub-requests were made.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:76
+[src/lib/core/error/http-status-code.ts:76](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L76)
 
 ___
 
@@ -425,7 +425,7 @@ to require agreement to Terms of Service before granting full Internet access vi
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:378
+[src/lib/core/error/http-status-code.ts:378](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L378)
 
 ___
 
@@ -439,7 +439,7 @@ but is returning a modified version of the origin's response.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:52
+[src/lib/core/error/http-status-code.ts:52](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L52)
 
 ___
 
@@ -451,7 +451,7 @@ The requested resource is capable of generating only content not acceptable acco
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:195
+[src/lib/core/error/http-status-code.ts:195](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L195)
 
 ___
 
@@ -463,7 +463,7 @@ Further extensions to the request are required for the server to fulfill it.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:371
+[src/lib/core/error/http-status-code.ts:371](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L371)
 
 ___
 
@@ -476,7 +476,7 @@ Subsequent requests by the client are permissible.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:184
+[src/lib/core/error/http-status-code.ts:184](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L184)
 
 ___
 
@@ -489,7 +489,7 @@ Usually this implies future availability (e.g., a new feature of a web-service A
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:330
+[src/lib/core/error/http-status-code.ts:330](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L330)
 
 ___
 
@@ -502,7 +502,7 @@ In such case, there is no need to retransmit the resource since the client still
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:124
+[src/lib/core/error/http-status-code.ts:124](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L124)
 
 ___
 
@@ -514,7 +514,7 @@ The server successfully processed the request and is not returning any content.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:57
+[src/lib/core/error/http-status-code.ts:57](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L57)
 
 ___
 
@@ -529,7 +529,7 @@ In a POST request, the response will contain an entity describing or containing 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:34
+[src/lib/core/error/http-status-code.ts:34](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L34)
 
 ___
 
@@ -543,7 +543,7 @@ or split a download into multiple simultaneous streams.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:70
+[src/lib/core/error/http-status-code.ts:70](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L70)
 
 ___
 
@@ -555,7 +555,7 @@ The request is larger than the server is willing or able to process. Previously 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:237
+[src/lib/core/error/http-status-code.ts:237](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L237)
 
 ___
 
@@ -569,7 +569,7 @@ Google Developers API uses this status if a particular developer has exceeded th
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:172
+[src/lib/core/error/http-status-code.ts:172](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L172)
 
 ___
 
@@ -583,7 +583,7 @@ So, for example, submitting a form to a permanently redirected resource may cont
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:151
+[src/lib/core/error/http-status-code.ts:151](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L151)
 
 ___
 
@@ -595,7 +595,7 @@ The server does not meet one of the preconditions that the requester put on the 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:232
+[src/lib/core/error/http-status-code.ts:232](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L232)
 
 ___
 
@@ -610,7 +610,7 @@ when meanwhile a third party has modified the state on the server, leading to a 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:302
+[src/lib/core/error/http-status-code.ts:302](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L302)
 
 ___
 
@@ -624,7 +624,7 @@ This prevents the client from timing out and assuming the request was lost.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:26
+[src/lib/core/error/http-status-code.ts:26](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L26)
 
 ___
 
@@ -636,7 +636,7 @@ The client must first authenticate itself with the proxy.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:200
+[src/lib/core/error/http-status-code.ts:200](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L200)
 
 ___
 
@@ -650,7 +650,7 @@ Called "Requested Range Not Satisfiable" previously.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:257
+[src/lib/core/error/http-status-code.ts:257](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L257)
 
 ___
 
@@ -663,7 +663,7 @@ or all the header fields collectively, are too large.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:313
+[src/lib/core/error/http-status-code.ts:313](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L313)
 
 ___
 
@@ -677,7 +677,7 @@ According to HTTP specifications:
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:207
+[src/lib/core/error/http-status-code.ts:207](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L207)
 
 ___
 
@@ -690,7 +690,7 @@ Unlike a 204 response, this response requires that the requester reset the docum
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:63
+[src/lib/core/error/http-status-code.ts:63](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L63)
 
 ___
 
@@ -705,7 +705,7 @@ the server has received the data and should issue a redirect with a separate GET
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:118
+[src/lib/core/error/http-status-code.ts:118](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L118)
 
 ___
 
@@ -718,7 +718,7 @@ Generally, this is a temporary state.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:341
+[src/lib/core/error/http-status-code.ts:341](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L341)
 
 ___
 
@@ -730,7 +730,7 @@ The requester has asked the server to switch protocols and the server has agreed
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:19
+[src/lib/core/error/http-status-code.ts:19](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L19)
 
 ___
 
@@ -742,7 +742,7 @@ No longer used. Originally meant "Subsequent requests should use the specified p
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:136
+[src/lib/core/error/http-status-code.ts:136](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L136)
 
 ___
 
@@ -757,7 +757,7 @@ For example, a POST request should be repeated using another POST request.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:144
+[src/lib/core/error/http-status-code.ts:144](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L144)
 
 ___
 
@@ -769,7 +769,7 @@ The user has sent too many requests in a given amount of time. Intended for use 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:307
+[src/lib/core/error/http-status-code.ts:307](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L307)
 
 ___
 
@@ -784,7 +784,7 @@ requested resource. See Basic access authentication and Digest access authentica
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:165
+[src/lib/core/error/http-status-code.ts:165](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L165)
 
 ___
 
@@ -797,7 +797,7 @@ that includes the requested resource. The code 451 was chosen as a reference to 
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:319
+[src/lib/core/error/http-status-code.ts:319](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L319)
 
 ___
 
@@ -809,7 +809,7 @@ The request was well-formed but was unable to be followed due to semantic errors
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:279
+[src/lib/core/error/http-status-code.ts:279](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L279)
 
 ___
 
@@ -822,7 +822,7 @@ For example, the client uploads an image as image/svg+xml, but the server requir
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:250
+[src/lib/core/error/http-status-code.ts:250](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L250)
 
 ___
 
@@ -834,7 +834,7 @@ The client should switch to a different protocol such as TLS/1.0, given in the U
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:294
+[src/lib/core/error/http-status-code.ts:294](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L294)
 
 ___
 
@@ -848,7 +848,7 @@ Called "Request-URI Too Long" previously.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:244
+[src/lib/core/error/http-status-code.ts:244](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L244)
 
 ___
 
@@ -862,7 +862,7 @@ Many HTTP clients (such as Mozilla and Internet Explorer) do not correctly handl
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:131
+[src/lib/core/error/http-status-code.ts:131](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L131)
 
 ___
 
@@ -874,4 +874,4 @@ Transparent content negotiation for the request results in a circular reference.
 
 #### Defined in
 
-src/lib/core/error/http-status-code.ts:356
+[src/lib/core/error/http-status-code.ts:356](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/error/http-status-code.ts#L356)

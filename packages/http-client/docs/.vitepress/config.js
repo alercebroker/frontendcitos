@@ -1,9 +1,13 @@
+import Mermaid from 'vitepress-plugin-mermaid'
+
 export default {
   title: 'Docs',
   description: 'The ALeRCE Typescript Library for HTTP Requests',
+  markdown: {
+    config: Mermaid,
+  },
   themeConfig: {
     nav: [{ text: 'Guide', link: '/index' }],
-
     sidebar: [
       {
         text: 'Usage Guide',
@@ -39,6 +43,18 @@ export default {
         items: [
           { text: 'Examples', link: '/getting-started' },
           { text: 'API', link: '/getting-started' },
+        ],
+      },
+      {
+        text: 'Auth API Client',
+        collapsible: true,
+        items: [
+          {
+            text: 'Credentials and OAuth2 explanation',
+            link: '/authentication',
+          },
+          { text: 'Examples', link: '/examples/AuthClient' },
+          { text: 'API', link: '/typedoc/classes/index.AuthClient' },
         ],
       },
     ],

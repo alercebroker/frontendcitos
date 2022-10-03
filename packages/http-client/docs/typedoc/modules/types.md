@@ -22,18 +22,27 @@
 
 - [ClientConfig](../interfaces/types.ClientConfig.md)
 - [IAlertsClient](../interfaces/types.IAlertsClient.md)
+- [IAuthClient](../interfaces/types.IAuthClient.md)
 - [IHttpError](../interfaces/types.IHttpError.md)
 - [IHttpService](../interfaces/types.IHttpService.md)
+- [IStampsClient](../interfaces/types.IStampsClient.md)
 
 ### Type Aliases
 
+- [AuthClientConfig](types.md#authclientconfig)
+- [Avro](types.md#avro)
+- [Credentials](types.md#credentials)
 - [DetectionItem](types.md#detectionitem)
 - [FailableParser](types.md#failableparser)
+- [GetAvroParams](types.md#getavroparams)
 - [IHttpRequest](types.md#ihttprequest)
 - [Newable](types.md#newable)
 - [ObjectFilters](types.md#objectfilters)
 - [PaginatedListEntity](types.md#paginatedlistentity)
 - [Parser](types.md#parser)
+- [SessionTokens](types.md#sessiontokens)
+- [StampsClientConfig](types.md#stampsclientconfig)
+- [UserSchema](types.md#userschema)
 - [featuresResponse](types.md#featuresresponse)
 - [listObjectResponse](types.md#listobjectresponse)
 - [magstatsResponse](types.md#magstatsresponse)
@@ -55,6 +64,59 @@ ___
 Re-exports [isParseError](index.md#isparseerror)
 
 ## Type Aliases
+
+### AuthClientConfig
+
+Ƭ **AuthClientConfig**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `accessToken?` | `string` |
+| `baseUrl?` | `string` |
+| `headers?` | { `Content-Type`: `string`  } |
+| `headers.Content-Type` | `string` |
+| `withCredentials` | `boolean` |
+
+#### Defined in
+
+[src/lib/clients/authentication/AuthClient.types.ts:14](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/authentication/AuthClient.types.ts#L14)
+
+___
+
+### Avro
+
+Ƭ **Avro**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `candidate` | `Record`<`string`, `string` \| `number`\> |
+
+#### Defined in
+
+[src/lib/clients/stamps/StampsClient.types.ts:4](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/stamps/StampsClient.types.ts#L4)
+
+___
+
+### Credentials
+
+Ƭ **Credentials**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `password` | `string` |
+| `username` | `string` |
+
+#### Defined in
+
+[src/lib/clients/authentication/AuthClient.types.ts:9](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/authentication/AuthClient.types.ts#L9)
+
+___
 
 ### DetectionItem
 
@@ -84,7 +146,7 @@ Re-exports [isParseError](index.md#isparseerror)
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:41
+[src/lib/clients/alerts/AlertsClient.types.ts:41](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L41)
 
 ___
 
@@ -117,7 +179,24 @@ FailableParser type
 
 #### Defined in
 
-src/lib/core/http-service/HttpService.types.ts:18
+[src/lib/core/http-service/HttpService.types.ts:18](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/http-service/HttpService.types.ts#L18)
+
+___
+
+### GetAvroParams
+
+Ƭ **GetAvroParams**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `candid` | `string` |
+| `survey_id` | `string` |
+
+#### Defined in
+
+[src/lib/clients/stamps/StampsClient.types.ts:12](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/stamps/StampsClient.types.ts#L12)
 
 ___
 
@@ -138,7 +217,7 @@ HttpRequest Interface
 
 #### Defined in
 
-src/lib/core/http-service/HttpService.types.ts:6
+[src/lib/core/http-service/HttpService.types.ts:6](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/http-service/HttpService.types.ts#L6)
 
 ___
 
@@ -154,7 +233,7 @@ ___
 
 #### Defined in
 
-src/lib/util.types.ts:1
+[src/lib/util.types.ts:1](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/util.types.ts#L1)
 
 ___
 
@@ -182,7 +261,7 @@ ___
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:5
+[src/lib/clients/alerts/AlertsClient.types.ts:5](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L5)
 
 ___
 
@@ -210,7 +289,7 @@ ___
 
 #### Defined in
 
-src/lib/util.types.ts:3
+[src/lib/util.types.ts:3](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/util.types.ts#L3)
 
 ___
 
@@ -235,7 +314,63 @@ parser type
 
 #### Defined in
 
-src/lib/core/http-service/HttpService.types.ts:23
+[src/lib/core/http-service/HttpService.types.ts:23](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/core/http-service/HttpService.types.ts#L23)
+
+___
+
+### SessionTokens
+
+Ƭ **SessionTokens**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `access` | `string` |
+| `refresh` | `string` |
+
+#### Defined in
+
+[src/lib/clients/authentication/AuthClient.types.ts:4](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/authentication/AuthClient.types.ts#L4)
+
+___
+
+### StampsClientConfig
+
+Ƭ **StampsClientConfig**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `baseUrl` | `string` |
+
+#### Defined in
+
+[src/lib/clients/stamps/StampsClient.types.ts:8](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/stamps/StampsClient.types.ts#L8)
+
+___
+
+### UserSchema
+
+Ƭ **UserSchema**: `Object`
+
+#### Type declaration
+
+| Name | Type |
+| :------ | :------ |
+| `email` | `string` |
+| `id` | `number` |
+| `institution` | `string` |
+| `last_name` | `string` |
+| `name` | `string` |
+| `research_group` | `string` |
+| `role` | `string` |
+| `username` | `string` |
+
+#### Defined in
+
+[src/lib/clients/authentication/AuthClient.types.ts:23](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/authentication/AuthClient.types.ts#L23)
 
 ___
 
@@ -254,7 +389,7 @@ ___
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:90
+[src/lib/clients/alerts/AlertsClient.types.ts:90](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L90)
 
 ___
 
@@ -276,7 +411,7 @@ ___
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:31
+[src/lib/clients/alerts/AlertsClient.types.ts:31](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L31)
 
 ___
 
@@ -303,7 +438,7 @@ ___
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:69
+[src/lib/clients/alerts/AlertsClient.types.ts:69](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L69)
 
 ___
 
@@ -325,7 +460,7 @@ ___
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:21
+[src/lib/clients/alerts/AlertsClient.types.ts:21](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L21)
 
 ___
 
@@ -345,7 +480,7 @@ ___
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:61
+[src/lib/clients/alerts/AlertsClient.types.ts:61](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L61)
 
 ___
 
@@ -371,7 +506,7 @@ ___
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:97
+[src/lib/clients/alerts/AlertsClient.types.ts:97](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L97)
 
 ___
 
@@ -389,4 +524,4 @@ ___
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:84
+[src/lib/clients/alerts/AlertsClient.types.ts:84](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L84)

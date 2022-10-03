@@ -19,7 +19,7 @@
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:132
+[src/lib/clients/alerts/AlertsClient.types.ts:132](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L132)
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 #### Defined in
 
-src/lib/clients/alerts/AlertsClient.types.ts:131
+[src/lib/clients/alerts/AlertsClient.types.ts:131](https://github.com/alercebroker/frontendcitos/blob/5c6beff/packages/http-client/src/lib/clients/alerts/AlertsClient.types.ts#L131)

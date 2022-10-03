@@ -12,6 +12,9 @@ export type ClientConfig = {
 export type GetAvroParams = {
   candid: string
   survey_id: string
+  format: string
+  type: string
+  oid?: string
 }
 
 export interface IStampsClient {
@@ -21,4 +24,5 @@ export interface IStampsClient {
     parser?: Parser<Avro, T>,
     customModel?: Newable<T>
   ): Promise<T>
+  getStamp<T>(params: GetAvroParams, parser: Parser<Blob, T>): Promise<T>
 }

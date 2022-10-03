@@ -20,17 +20,17 @@ const Template = (args) => ({
 
 export const Preview = Template.bind({});
 Preview.args = {
-  imageServiceUrl: "http://avro.alerce.online/get_stamp",
+  imageServiceUrl: "https://avro.alerce.online",
   detections: [
     {
       tid: "ztf",
       mjd: 58855.54229169991,
-      candid: "1101542291015015004",
+      candid: "1211286681015015007",
     },
     {
       tid: "ztf",
       mjd: 58859.481250000186,
-      candid: "1105481241015015001",
+      candid: "1213227041015015005",
     },
   ],
   objectId: "ZTF20aaelulu",

@@ -2,6 +2,7 @@ import { AxiosInstance } from 'axios'
 import { inject, injectable } from 'inversify'
 import { HttpError } from '../../error'
 import { IHttpRequest, IHttpService, Parser } from '../HttpService.types'
+import { Blob } from 'buffer'
 
 @injectable()
 export class HttpServiceStampsMocks implements IHttpService {
@@ -45,6 +46,14 @@ export class HttpServiceStampsMocks implements IHttpService {
           candid: '123456',
         },
       }
+      return new Promise((resolve) => {
+        resolve(parser.parseTo(res as unknown as T))
+      })
+    }
+    if (request.url == '/get_stamp') {
+      const res = new Blob([new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8, 9])], {
+        type: 'image/png',
+      })
       return new Promise((resolve) => {
         resolve(parser.parseTo(res as unknown as T))
       })
