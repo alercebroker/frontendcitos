@@ -4,7 +4,7 @@ import { LightCurveEntity } from "@/domain/entities/lightcurve.entity";
 import { ObjectEntity } from "@/domain/entities/object.entity";
 import { PaginatedList } from "@/domain/entities/paginatedlist.entity";
 import { defineStore } from "pinia";
-import { ref, reactive } from "vue";
+import { ref, watch } from "vue";
 
 export const objectStoreFactory = (
   searchObjectsUseCase: Command,
@@ -35,6 +35,10 @@ export const objectStoreFactory = (
 
     const selected = ref<ObjectEntity>();
     const errorStatus = ref<any>(null);
+    const lightcurve = ref<LightCurveEntity>({
+      detections: [],
+      non_detections: [],
+    });
 
     function searchByFilter(filter: CompleteObjectFilter) {
       const callbacks: Callbacks = {
@@ -63,31 +67,42 @@ export const objectStoreFactory = (
       selected.value = selectedObject;
     }
 
-    const detections = ref<LightCurveEntity>({
-      detections: [],
-      non_detections: [],
+    function _setLightcurve(_lightcurve: LightCurveEntity) {
+      console.log(_lightcurve);
+      lightcurve.value = _lightcurve;
+    }
+
+    watch(selected, (newSelected) => {
+      console.log("store watcher", newSelected);
+      if (newSelected) getDetections(newSelected.aid);
     });
 
-    function getDetections() {
-      getLightcurveUseCase.execute({
-        handleSuccess: (lightcurve) => {
-          detections.value = lightcurve;
-        },
-        handleErrors: {
-          handleGenericError(error) {
-            errorStatus.value = error;
+    function getDetections(aid: string) {
+      getLightcurveUseCase.execute(
+        {
+          handleSuccess: (lightcurve) => {
+            _setLightcurve(lightcurve);
+          },
+          handleErrors: {
+            handleGenericError(error) {
+              console.log(error);
+              errorStatus.value = error;
+            },
           },
         },
-      });
+        aid
+      );
     }
 
     return {
       filters,
       objectList,
+      lightcurve,
       selected,
       errorStatus,
       searchByFilter,
       selectObject,
+      getDetections,
       _setObjectList,
     };
   });

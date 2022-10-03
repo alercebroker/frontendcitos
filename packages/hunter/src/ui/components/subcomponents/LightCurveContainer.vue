@@ -3,7 +3,7 @@
     <q-card-content>
       <LightCurvePlot
         :type="plotType"
-        :detections="detections"
+        :detections="lightcurve.detections"
         :non-detections="[]"
       />
     </q-card-content>
@@ -25,11 +25,15 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 import LightCurvePlot from "@alercebroker/component-library/src/components/plot/LightCurvePlot.vue";
-import detections from "@alercebroker/component-library/src/stories/data/detection.json";
+import { useObjectStore } from "../../stores";
 
-const plotType = ref("apparent");
+const objectStore = useObjectStore();
+const { lightcurve } = storeToRefs(objectStore);
+
+const plotType = ref("difference");
 const plotOptions = [
   { label: "Apparent", value: "apparent" },
   { label: "Folded", value: "folded" },

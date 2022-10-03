@@ -32,7 +32,7 @@ onMounted(() => {
 });
 
 watch(
-  () => [props.type, props.period],
+  () => [props.type, props.period, props.detections, props.nonDetections],
   () => {
     localOptionsFactory();
   }
