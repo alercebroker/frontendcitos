@@ -16,7 +16,7 @@ async function completeObjectsWithFirstDetection(
         objectCompleted.firstDetection = detectionList.length
           ? detectionList[0]
           : null;
-        objectCompleted.obs = detectionList.length;
+        objectCompleted.obs = objectCompleted.ndet ?? detectionList.length;
         resolve(objectCompleted);
       });
     });

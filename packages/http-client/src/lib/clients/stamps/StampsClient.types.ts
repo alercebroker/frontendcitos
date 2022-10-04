@@ -7,6 +7,7 @@ export type Avro = {
 
 export type ClientConfig = {
   baseUrl: string
+  accessToken?: string
 }
 
 export type GetAvroParams = {

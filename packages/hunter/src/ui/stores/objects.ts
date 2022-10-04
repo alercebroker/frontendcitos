@@ -35,6 +35,7 @@ export const objectStoreFactory = (
 
     const selected = ref<ObjectEntity>();
     const errorStatus = ref<any>(null);
+    const isLoading = ref(false);
     const lightcurve = ref<LightCurveEntity>({
       detections: [],
       non_detections: [],
@@ -44,14 +45,17 @@ export const objectStoreFactory = (
       const callbacks: Callbacks = {
         handleSuccess(data: PaginatedList<ObjectEntity>) {
           objectList.value = data;
+          isLoading.value = false;
         },
         handleErrors: {
           handleGenericError(error) {
             errorStatus.value = error;
+            isLoading.value = false;
           },
         },
       };
       filters.value = filter;
+      isLoading.value = true;
       searchObjectsUseCase.execute(callbacks, filter);
     }
 
@@ -64,12 +68,13 @@ export const objectStoreFactory = (
       const selectedObject = objectList.value.items.find(
         (object) => object.aid === aid
       );
+      console.log(selected);
       selected.value = selectedObject;
     }
 
     function _setLightcurve(_lightcurve: LightCurveEntity) {
       console.log(_lightcurve);
-      lightcurve.value = _lightcurve;
+      lightcurve.value = _lightcurve ?? { detections: [], non_detections: [] };
     }
 
     watch(selected, (newSelected) => {
@@ -97,6 +102,7 @@ export const objectStoreFactory = (
     return {
       filters,
       objectList,
+      isLoading,
       lightcurve,
       selected,
       errorStatus,

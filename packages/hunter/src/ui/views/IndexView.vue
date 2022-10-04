@@ -15,8 +15,9 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
+import { onMounted, onBeforeMount } from "vue";
 import { getActivePinia } from "pinia";
+import { Loading } from "quasar";
 import SearchComponent from "../components/SearchComponent.vue";
 import ObjectResults from "../components/ObjectResults.vue";
 import ResultsTable from "../components/ResultsTable.vue";
@@ -24,9 +25,18 @@ import { useAuth } from "../stores";
 //remember to use stores next
 const { verifySession } = useAuth(getActivePinia());
 
+onBeforeMount(() => {
+  Loading.show();
+});
+
 onMounted(async () => {
-  console.log("Index mounted!");
-  await verifySession();
+  try {
+    await verifySession();
+  } catch (e) {
+    console.error("Unable to verify session");
+  } finally {
+    Loading.hide();
+  }
 });
 </script>
 

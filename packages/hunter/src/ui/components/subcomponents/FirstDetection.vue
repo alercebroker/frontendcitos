@@ -7,12 +7,18 @@
     <q-card-section>
       <div class="row">
         <div class="col">
-          <div class="text-subtitle2">RA: {{ selected?.ra ?? 0 }}</div>
-          <div class="text-subtitle2">DEC: {{ selected?.dec ?? 0 }}</div>
+          <div class="text-subtitle2">
+            RA: {{ selected?.ra.toFixed(5) ?? 0 }}
+          </div>
+          <div class="text-subtitle2">
+            DEC: {{ selected?.dec.toFixed(5) ?? 0 }}
+          </div>
         </div>
         <div class="col">
           <div class="text-subtitle2">MJD: {{ selected?.firstmjd }}</div>
-          <div class="text-subtitle2">Number of detections: {{ 4 }}</div>
+          <div class="text-subtitle2">
+            Number of detections: {{ selected?.obs }}
+          </div>
         </div>
       </div>
     </q-card-section>

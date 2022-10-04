@@ -57,8 +57,7 @@
             title="Science"
             :viewtype="data.activeTool"
             :candid="selected.candid"
-            :image-url="stampImage('science')"
-            :objectId="objectId"
+            :image-url="images.science"
           />
         </div>
         <div class="col-4">
@@ -66,8 +65,7 @@
             title="Template"
             :viewtype="data.activeTool"
             :candid="selected.candid"
-            :image-url="stampImage('template')"
-            :objectId="objectId"
+            :image-url="images.template"
           />
         </div>
         <div class="col-4">
@@ -75,8 +73,7 @@
             title="Difference"
             :viewtype="data.activeTool"
             :candid="selected.candid"
-            :image-url="stampImage('difference')"
-            :objectId="objectId"
+            :image-url="images.difference"
           />
         </div>
       </div>
@@ -104,7 +101,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 import { stampUrl } from "../../utils/urls";
 import { jdToDate } from "../../utils/dates";
 import { customIteratorFactory } from "../../utils/array";
@@ -129,19 +126,19 @@ const data = reactive({
   selectedIndex: 0,
   activeTool: "crosshair",
 });
-const selected: any = ref(props.detections[data.selectedIndex]);
+const selected = computed(() => {
+  return props.detections[data.selectedIndex] as any;
+});
 const iterator = customIteratorFactory(props.detections, data.selectedIndex);
 
 function nextDetection() {
   iterator.next();
   data.selectedIndex = iterator.current();
-  selected.value = props.detections[data.selectedIndex];
 }
 
 function previousDetection() {
   iterator.prev();
   data.selectedIndex = iterator.current();
-  selected.value = props.detections[data.selectedIndex];
 }
 
 function changeSelect(element: any) {
@@ -155,12 +152,20 @@ function selectTool(toolId: string) {
 function onAvroClick() {
   emit("avroClick", selected);
 }
+const images = computed(() => {
+  console.log(props.objectId);
+  return {
+    science: stampImage("science", props.objectId),
+    template: stampImage("template", props.objectId),
+    difference: stampImage("difference", props.objectId),
+  };
+});
 
-function stampImage(type: string) {
-  return async (candid: string, format: string) =>
-    await stampUrl({
+function stampImage(type: string, oid: string) {
+  return (candid: string | number, format: string) =>
+    stampUrl({
       baseUrl: props.imageServiceUrl,
-      candid,
+      candid: String(candid),
       type,
       format,
       surveyId: selected.value.tid,

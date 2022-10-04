@@ -61,6 +61,6 @@ export class StampsClient implements IStampsClient {
 
   initClient(axiosInstance?: AxiosInstance): void {
     const baseUrl = this.config.baseUrl
-    this.httpService.initClient(baseUrl, axiosInstance)
+    this.httpService.initClient(baseUrl, axiosInstance, this.config.accessToken)
   }
 }

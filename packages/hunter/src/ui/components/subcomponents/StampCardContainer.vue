@@ -2,8 +2,14 @@
   <q-card flat bordered>
     <q-card-content>
       <StampCard
-        image-service-url="http://avro.alerce.online/get_stamp"
-        :detections="[{ candid: '11' }]"
+        :image-service-url="
+          VUE_APP_STAMPS_API_URL ?? 'https://avro.alerce.online'
+        "
+        :detections="
+          selected?.firstDetection
+            ? [selected.firstDetection]
+            : [{ candid: 'none', telescope: 'ZTF' }]
+        "
         :object-id="selected ? selected.aid : 'ZTF20aaelulu'"
         :hide-tools="true"
       />
@@ -15,7 +21,16 @@
 import { storeToRefs } from "pinia";
 import { useObjectStore } from "@/ui/stores";
 import StampCard from "@alercebroker/component-library/src/components/stamp/StampCard.vue";
+import { computed, watch, ref } from "vue";
+
+const { VUE_APP_STAMPS_API_URL } = process.env;
 
 const objectStore = useObjectStore();
-const { selected } = storeToRefs(objectStore);
+const { selected, lightcurve } = storeToRefs(objectStore);
+const detections = computed(() => {
+  if (lightcurve.value.detections.length) {
+    return lightcurve.value.detections;
+  }
+  return [{ candid: "candeed" }];
+});
 </script>

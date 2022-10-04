@@ -4,8 +4,10 @@
       title="Objects"
       :rows="objectList.items.map(parseObjectForView)"
       :columns="columns"
+      v-model:pagination="tablePagination"
       row-key="name"
       @row-click="onRowClicked"
+      @update:pagination="onPaginationChange"
     >
       <template v-slot:body-cell-status>
         <q-td>
@@ -27,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, watch, reactive } from "vue";
+import { onMounted, ref } from "vue";
 import { storeToRefs } from "pinia";
 import { columns } from "./utils/constants";
 import { parseObjectForView } from "./utils/parser";
@@ -39,8 +41,18 @@ const objectStore = useObjectStore();
 const { selectObject, _setObjectList } = objectStore;
 const { objectList } = storeToRefs(objectStore);
 
+const tablePagination = ref({
+  page: 1,
+  rowsPerPage: 7,
+});
+
 function onRowClicked(_: Event, row: ObjectView) {
   selectObject(row.name);
+}
+
+function onPaginationChange(newPagination: any) {
+  //lazily load the detections when passing page
+  console.log(newPagination);
 }
 
 // delet this

@@ -23,6 +23,7 @@ function parseItems(items: objectListItem[]): ObjectEntity[] {
     aid: item.aid,
     ra: item.meanra,
     dec: item.meandec,
+    ndet: item.ndet,
     firstmjd: item.firstmjd,
     lastmjd: item.lastmjd,
     firstGreg: mjdToGreg(item.firstmjd),
@@ -36,7 +37,8 @@ function validateToken(access: string) {
   return undefined;
 }
 
-const BASE_URL = "https://dev.api.alerce.online/alerts/v2";
+const BASE_URL =
+  process.env.VUE_APP_ALERTS_API_URL ?? "https://api.alerce.online/alerts/v2";
 
 export const objectListParser: Parser<
   listObjectResponse,
@@ -60,7 +62,7 @@ async function getObjects(
   console.log(accessToken);
   try {
     const result = await AlertsClient.queryObjects<PaginatedList<ObjectEntity>>(
-      filters,
+      { ...filters, page_size: 200 },
       objectListParser,
       undefined,
       {

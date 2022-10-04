@@ -26,10 +26,15 @@
       </div>
     </q-card-section>
     <q-card-actions>
-      <q-btn outline class="full-width" @click="searchByFilter(data)"
+      <q-btn
+        outline
+        class="full-width"
+        @click="searchByFilter(data)"
+        :loading="isLoading"
         >Search</q-btn
       >
     </q-card-actions>
+    <span v-if="errorStatus">{{ errorStatus }}</span>
   </q-card>
 </template>
 
@@ -38,8 +43,11 @@ import { ref, reactive, toRefs, watch } from "vue";
 import { useObjectStore } from "../stores";
 import { CompleteObjectFilter } from "@/application/common/types.js";
 import { gregorianToMjd } from "@/application/common/utils";
+import { storeToRefs } from "pinia";
 
-const { searchByFilter } = useObjectStore();
+const objectStore = useObjectStore();
+const { searchByFilter } = objectStore;
+const { isLoading, errorStatus } = storeToRefs(objectStore);
 
 const data = reactive<CompleteObjectFilter>({
   telescope: "ZTF",
