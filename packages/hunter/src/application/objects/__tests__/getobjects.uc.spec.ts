@@ -19,7 +19,7 @@ describe("Success test", () => {
       handleSuccess: (data) => {
         // filters the detection which doesn't meet the criteria
         expect(data.items.length).toBe(2);
-        expect(data.items[0].firstDetection.candid).toEqual("candid1");
+        expect(data.items[0].aid).toEqual("AID4321");
       },
       handleErrors: {
         handleGenericError: vi.fn(),

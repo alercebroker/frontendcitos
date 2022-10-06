@@ -10,9 +10,10 @@ export const getDetectionsUseCase = (
     payload: { objects: ObjectEntity[]; from: number; to: number }
   ) => {
     const { objects, from, to } = payload;
-    if (objects.length <= 0) callbacks.handleSuccess([]);
+    if (objects.length <= from) callbacks.handleSuccess([]);
     let requests: Promise<void>[] = [];
     for (let i = from; i <= to; i++) {
+      if (objects.length <= i) return;
       if (objects[i].firstDetection) continue;
       requests = [
         ...requests,

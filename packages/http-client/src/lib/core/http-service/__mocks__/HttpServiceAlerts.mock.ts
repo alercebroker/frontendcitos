@@ -50,7 +50,7 @@ export class HttpServiceAlertsMocks implements IHttpService {
     throw new Error('Method not implemented.')
   }
   getSuccess<T, M>(request: IHttpRequest, parser: Parser<T, M>): Promise<M> {
-    if (request.url === '/objects') {
+    if (request.url === '/objects/') {
       const items: singleObjectResponse[] = [
         {
           aid: 'aid123',
