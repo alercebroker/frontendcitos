@@ -2,7 +2,7 @@
   "packages": [
     "packages/*"
   ],
-  "version": "1.1.0-rc.28",
+  "version": "1.1.0-rc.29",
   "useNx": true,
   "command": {
     "version": {
