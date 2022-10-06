@@ -1,5 +1,6 @@
 import { Callbacks, Command } from "@/application/common";
 import type { CompleteObjectFilter } from "@/application/common/types";
+import { populateFirstDetections } from "@/application/objects";
 import { LightCurveEntity } from "@/domain/entities/lightcurve.entity";
 import { ObjectEntity } from "@/domain/entities/object.entity";
 import { PaginatedList } from "@/domain/entities/paginatedlist.entity";
@@ -45,6 +46,7 @@ export const objectStoreFactory = (
       const callbacks: Callbacks = {
         handleSuccess(data: PaginatedList<ObjectEntity>) {
           objectList.value = data;
+          populateDetections(0, 15);
           isLoading.value = false;
         },
         handleErrors: {
@@ -68,17 +70,14 @@ export const objectStoreFactory = (
       const selectedObject = objectList.value.items.find(
         (object) => object.aid === aid
       );
-      console.log(selected);
       selected.value = selectedObject;
     }
 
     function _setLightcurve(_lightcurve: LightCurveEntity) {
-      console.log(_lightcurve);
       lightcurve.value = _lightcurve ?? { detections: [], non_detections: [] };
     }
 
     watch(selected, (newSelected) => {
-      console.log("store watcher", newSelected);
       if (newSelected) getDetections(newSelected.aid);
     });
 
@@ -90,12 +89,33 @@ export const objectStoreFactory = (
           },
           handleErrors: {
             handleGenericError(error) {
-              console.log(error);
               errorStatus.value = error;
             },
           },
         },
         aid
+      );
+    }
+
+    function populateDetections(from: number, to: number) {
+      if (objectList.value.items.length <= 0) return;
+      isLoading.value = true;
+      populateFirstDetections.execute(
+        {
+          handleSuccess: (populatedObjects: ObjectEntity[]) => {
+            objectList.value = {
+              ...objectList.value,
+              items: populatedObjects,
+            };
+            isLoading.value = false;
+          },
+          handleErrors: {
+            handleGenericError(error) {
+              errorStatus.value = error;
+            },
+          },
+        },
+        { objects: objectList.value.items, from, to }
       );
     }
 
@@ -109,6 +129,7 @@ export const objectStoreFactory = (
       searchByFilter,
       selectObject,
       getDetections,
+      populateDetections,
       _setObjectList,
     };
   });

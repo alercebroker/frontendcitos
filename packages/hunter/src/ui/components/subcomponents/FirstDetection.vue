@@ -17,7 +17,7 @@
         <div class="col">
           <div class="text-subtitle2">MJD: {{ selected?.firstmjd }}</div>
           <div class="text-subtitle2">
-            Number of detections: {{ selected?.obs }}
+            Number of detections: {{ selected?.ndet }}
           </div>
         </div>
       </div>
@@ -44,12 +44,4 @@ watch(
     selected.value = newSelected;
   }
 );
-
-// const props = defineProps({
-//   oid: { type: String, required: true },
-//   ra: { type: Number, required: true },
-//   dec: { type: Number, required: true },
-//   mjd: { type: Number, required: true },
-//   detectionsQuantity: { type: Number, required: true },
-// });
 </script>

@@ -31,10 +31,6 @@ export const getObjectsListUseCase = (
     const result = await repository.getObjects(payload);
     result.map(async (objectListEntity) => {
       // this kind of filtering will bug for sure
-      objectListEntity.items = await completeObjectsWithFirstDetection(
-        repository,
-        objectListEntity.items
-      );
       // .filter(
       //   (object) =>
       //     object.firstDetection &&

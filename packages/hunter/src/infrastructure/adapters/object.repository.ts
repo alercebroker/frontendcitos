@@ -59,7 +59,6 @@ async function getObjects(
   filters: ObjectFilter
 ): Promise<Result<PaginatedList<ObjectEntity>, ParseError | HttpError>> {
   const accessToken = validateToken(tokenStore.getToken().access);
-  console.log(accessToken);
   try {
     const result = await AlertsClient.queryObjects<PaginatedList<ObjectEntity>>(
       { ...filters, page_size: 200 },

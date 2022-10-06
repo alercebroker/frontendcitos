@@ -24,7 +24,7 @@ function appendScript(lib: string, onload?: () => void): Promise<void> {
 }
 </script>
 <script setup lang="ts">
-import { ref, onMounted, reactive, watch, defineEmits } from "vue";
+import { ref, onBeforeMount, reactive, watch, defineEmits } from "vue";
 import { draw } from "./utils/draw";
 
 const props = defineProps({
@@ -44,7 +44,7 @@ const data = reactive({
 });
 const emit = defineEmits(["objectSelected", "mounted"]);
 
-onMounted(async () => {
+onBeforeMount(async () => {
   await appendScript("https://code.jquery.com/jquery-1.12.1.min.js");
   await appendScript(
     "https://aladin.cds.unistra.fr/AladinLite/api/v3/latest/aladin.js",
@@ -57,8 +57,12 @@ onMounted(async () => {
           showFov: true,
           showCoordinates: true,
         });
-        data.objectSelected = findObjectByOid(props.initObjectId);
+        const objectSelected = findObjectByOid(props.initObjectId);
         updateCatalog(props.objects);
+        if (objectSelected) {
+          data.objectSelected = objectSelected;
+          onObjectSelected(objectSelected);
+        }
         aladin.value.setProjection("AIT");
         aladin.value.view.reticleCache.onwheel = onReticleZoom;
         emit("mounted");

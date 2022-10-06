@@ -1,7 +1,7 @@
 export type ObjectView = {
   name: string;
   date: string;
-  obs: number;
+  ndet: number;
   reported: string;
   score: number;
   fdtel: string;

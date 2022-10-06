@@ -153,7 +153,6 @@ function onAvroClick() {
   emit("avroClick", selected);
 }
 const images = computed(() => {
-  console.log(props.objectId);
   return {
     science: stampImage("science", props.objectId),
     template: stampImage("template", props.objectId),

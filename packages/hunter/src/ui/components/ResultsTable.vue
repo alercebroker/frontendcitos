@@ -6,6 +6,7 @@
       :columns="columns"
       v-model:pagination="tablePagination"
       row-key="name"
+      :loading="isLoading"
       @row-click="onRowClicked"
       @update:pagination="onPaginationChange"
     >
@@ -29,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { columns } from "./utils/constants";
 import { parseObjectForView } from "./utils/parser";
@@ -38,8 +39,8 @@ import { useObjectStore } from "../stores";
 import { ObjectView } from "./utils/types";
 
 const objectStore = useObjectStore();
-const { selectObject, _setObjectList } = objectStore;
-const { objectList } = storeToRefs(objectStore);
+const { selectObject, _setObjectList, populateDetections } = objectStore;
+const { objectList, isLoading } = storeToRefs(objectStore);
 
 const tablePagination = ref({
   page: 1,
@@ -50,17 +51,16 @@ function onRowClicked(_: Event, row: ObjectView) {
   selectObject(row.name);
 }
 
-function onPaginationChange(newPagination: any) {
+async function onPaginationChange(newPagination: {
+  page: number;
+  rowsPerPage: number;
+}) {
   //lazily load the detections when passing page
-  console.log(newPagination);
+  const { rowsPerPage, page } = newPagination;
+  const from = (page - 1) * rowsPerPage;
+  const to = page * rowsPerPage - 1;
+  populateDetections(from, to);
 }
-
-// delet this
-onMounted(() => {
-  setTimeout(() => {
-    _setObjectList(dummyObjects);
-  }, 2000);
-});
 </script>
 
 <style>

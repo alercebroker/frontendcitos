@@ -11,7 +11,7 @@ export function parseObjectForView(object: ObjectEntity): ObjectView {
   return {
     name: object.aid,
     date: object.firstGreg,
-    obs: object.obs ?? 0,
+    ndet: object.ndet ?? 0,
     reported: "",
     score: 50.0,
     fdtel: String(object.firstDetection?.tid ?? "unknown"),

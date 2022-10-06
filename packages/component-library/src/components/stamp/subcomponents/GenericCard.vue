@@ -57,7 +57,6 @@ onUpdated(() => {
     .imageUrl(props.candid, "fits")
     .then((result: Blob) => {
       imageDownload.value = () => {
-        console.log("blob", result);
         let downloadUrl = window.URL.createObjectURL(result);
         let a = document.createElement("a");
         a.href = downloadUrl;
