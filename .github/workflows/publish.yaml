@@ -117,5 +117,9 @@ jobs:
         env:
           EXPLORER_BUCKET_NAME: ${{ secrets.EXPLORER_BUCKET_NAME }}
           HUNTER_BUCKET_NAME: ${{ secrets.HUNTER_BUCKET_NAME }}
+          VUE_APP_AUTH_API_URL: ${{ secrets.VUE_APP_AUTH_API_URL }}
+          VUE_APP_ALERTS_API_URL: ${{ secrets.VUE_APP_ALERTS_API_URL }}
+          VUE_APP_STAMPS_API_URL: ${{ secrets.VUE_APP_STAMPS_API_URL }}
+          VUE_APP_OAUTH_CALLBACK_URL: ${{ secrets.VUE_APP_OAUTH_CALLBACK_URL }}
         run: |
           npx lerna run deploy --since ${{ needs.publish.outputs.previous_tag }}
