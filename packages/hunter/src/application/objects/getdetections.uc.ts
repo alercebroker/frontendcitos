@@ -10,24 +10,24 @@ export const getDetectionsUseCase = (
     payload: { objects: ObjectEntity[]; from: number; to: number }
   ) => {
     const { objects, from, to } = payload;
-    if (objects.length <= from) callbacks.handleSuccess([]);
-    let requests: Promise<void>[] = [];
-    for (let i = from; i <= to; i++) {
-      if (objects.length <= i) return;
-      if (objects[i].firstDetection) continue;
-      requests = [
-        ...requests,
-        new Promise((resolve) => {
-          repository.getDetections(objects[i].aid).then((result) => {
+    if (objects.length <= from)
+      callbacks.handleErrors.handleGenericError(
+        new Error("Request out of range")
+      );
+
+    const requests: Promise<void>[] = objects
+      .map((obj, currentIndex) => {
+        if (currentIndex > to || currentIndex < from) return null;
+        return new Promise<void>((resolve) => {
+          repository.getDetections(obj.aid).then((result) => {
             const detectionList = result.unwrapOr([]);
-            objects[i].firstDetection = detectionList.length
-              ? detectionList[0]
-              : null;
+            obj.firstDetection = detectionList.length ? detectionList[0] : null;
             resolve();
           });
-        }),
-      ];
-    }
+        });
+      })
+      .filter((item): item is Promise<void> => item !== null);
+
     await Promise.allSettled(requests);
     callbacks.handleSuccess(payload.objects);
   },
