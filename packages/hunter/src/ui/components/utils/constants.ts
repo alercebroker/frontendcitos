@@ -18,10 +18,10 @@ export const columns = [
     align: "center",
   },
   {
-    name: "obs",
+    name: "ndet",
     label: "# Obs",
     align: "center",
-    field: "obs",
+    field: "ndet",
   },
   {
     name: "fdtel",

@@ -14,6 +14,11 @@ interface TokenHandler {
 export function LocalTokenHandler(): TokenHandler {
   function getToken(): Tokens {
     const [token, _] = useLocalStorage("authToken");
+    if (token.value === "")
+      return {
+        access: "",
+        refresh: "",
+      };
     return JSON.parse(token.value) as Tokens;
   }
 

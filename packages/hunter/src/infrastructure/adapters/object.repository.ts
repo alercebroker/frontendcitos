@@ -13,12 +13,17 @@ import { AlertsClient } from "@alercebroker/http-client";
 
 import { err, ok, Result } from "neverthrow";
 import { DetectionEntity } from "@/domain/entities/detection.entity";
+import { LocalTokenHandler } from "@/application/common/tokenhandler";
+import { LightCurveEntity } from "@/domain/entities/lightcurve.entity";
+
+const tokenStore = LocalTokenHandler();
 
 function parseItems(items: objectListItem[]): ObjectEntity[] {
   return items.map((item) => ({
     aid: item.aid,
     ra: item.meanra,
     dec: item.meandec,
+    ndet: item.ndet,
     firstmjd: item.firstmjd,
     lastmjd: item.lastmjd,
     firstGreg: mjdToGreg(item.firstmjd),
@@ -27,7 +32,13 @@ function parseItems(items: objectListItem[]): ObjectEntity[] {
   }));
 }
 
-const BASE_URL = "https://dev.api.alerce.online/alerts/v2";
+function validateToken(access: string) {
+  if (access.length > 0) return access;
+  return undefined;
+}
+
+const BASE_URL =
+  process.env.VUE_APP_ALERTS_API_URL ?? "https://api.alerce.online/alerts/v2";
 
 export const objectListParser: Parser<
   listObjectResponse,
@@ -47,13 +58,15 @@ export const objectListParser: Parser<
 async function getObjects(
   filters: ObjectFilter
 ): Promise<Result<PaginatedList<ObjectEntity>, ParseError | HttpError>> {
+  const accessToken = validateToken(tokenStore.getToken().access);
   try {
     const result = await AlertsClient.queryObjects<PaginatedList<ObjectEntity>>(
-      filters,
+      { ...filters, page_size: 200 },
       objectListParser,
       undefined,
       {
         baseUrl: BASE_URL,
+        accessToken,
       }
     );
     return ok(result);
@@ -75,6 +88,7 @@ async function getDetections(
       undefined,
       {
         baseUrl: BASE_URL,
+        accessToken: validateToken(tokenStore.getToken().access),
       }
     );
     return ok(result);
@@ -84,9 +98,30 @@ async function getDetections(
   }
 }
 
+async function getLightcurve(
+  aid: string
+): Promise<Result<LightCurveEntity, ParseError | HttpError>> {
+  try {
+    const result = await AlertsClient.queryLightcurve<LightCurveEntity>(
+      aid,
+      undefined,
+      undefined,
+      {
+        baseUrl: BASE_URL,
+        accessToken: validateToken(tokenStore.getToken().access),
+      }
+    );
+    return ok(result);
+  } catch (e) {
+    if (e instanceof Error) return err(e);
+    throw e;
+  }
+}
+
 export const objectRepository: ObjectRespository = {
   getObjects,
   getDetections,
+  getLightcurve,
   getObject: function (
     id: string
   ): Promise<Result<ObjectEntity, ParseError | HttpError>> {

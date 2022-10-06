@@ -65,6 +65,7 @@ export class AuthClient implements IAuthClient {
     this._httpService.setAccessToken(session.access)
 
     return new Promise(async (resolve, reject) => {
+      if (session.access === '') reject('Not active session found')
       try {
         const response = await this.getCurrentUser()
         resolve([response, session])

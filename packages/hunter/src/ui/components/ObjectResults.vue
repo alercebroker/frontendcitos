@@ -32,10 +32,6 @@ import LightCurveContainer from "./subcomponents/LightCurveContainer.vue";
 import StampCardContainer from "./subcomponents/StampCardContainer.vue";
 import AladinContainer from "./subcomponents/AladinContainer.vue";
 import CelestialContainer from "./subcomponents/CelestialContainer.vue";
-
-//deletos from here
-
-//to here
 </script>
 
 <style scoped>

@@ -2,6 +2,7 @@
   <q-card class="col-8" style="height: 100%">
     <q-card-content horizontal>
       <AladinViewer
+        v-if="selected"
         :objects="objectListFormatted"
         :init-object-id="objectSelectedId ?? ''"
         div-id="aladin-two"

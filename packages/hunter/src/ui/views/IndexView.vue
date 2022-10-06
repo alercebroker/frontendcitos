@@ -9,23 +9,40 @@
       </div>
     </div>
     <div class="col-7">
-      <ObjectResults />
+      <div class="q-pa-xs" style="height: 100%" v-if="!selected">
+        <InfoComponent />
+      </div>
+      <ObjectResults v-bind:hidden="!Boolean(selected)" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { onMounted } from "vue";
-import { getActivePinia } from "pinia";
+import { onMounted, onBeforeMount } from "vue";
+import { getActivePinia, storeToRefs } from "pinia";
+import { Loading } from "quasar";
 import SearchComponent from "../components/SearchComponent.vue";
 import ObjectResults from "../components/ObjectResults.vue";
 import ResultsTable from "../components/ResultsTable.vue";
-import { useAuth } from "../stores";
-//remember to use stores next
+import InfoComponent from "../components/InfoComponent.vue";
+import { useAuth, useObjectStore } from "../stores";
+
 const { verifySession } = useAuth(getActivePinia());
+const objectStore = useObjectStore();
+const { selected } = storeToRefs(objectStore);
+
+onBeforeMount(() => {
+  Loading.show();
+});
 
 onMounted(async () => {
-  await verifySession();
+  try {
+    await verifySession();
+  } catch (e) {
+    console.error("Unable to verify session");
+  } finally {
+    Loading.hide();
+  }
 });
 </script>
 

@@ -26,26 +26,34 @@
       </div>
     </q-card-section>
     <q-card-actions>
-      <q-btn outline class="full-width" @click="searchByFilter(data)"
+      <q-btn
+        outline
+        class="full-width"
+        @click="searchByFilter(data)"
+        :loading="isLoading"
         >Search</q-btn
       >
     </q-card-actions>
+    <span v-if="errorStatus">{{ errorStatus }}</span>
   </q-card>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, toRefs, watch } from "vue";
+import { ref, reactive, toRefs, watch, onMounted } from "vue";
 import { useObjectStore } from "../stores";
 import { CompleteObjectFilter } from "@/application/common/types.js";
 import { gregorianToMjd } from "@/application/common/utils";
+import { storeToRefs } from "pinia";
 
-const { searchByFilter } = useObjectStore();
+const objectStore = useObjectStore();
+const { searchByFilter } = objectStore;
+const { isLoading, errorStatus } = storeToRefs(objectStore);
 
 const data = reactive<CompleteObjectFilter>({
   telescope: "ZTF",
   firstmjd: [],
   lastmjd: [],
-  report: "Supernova",
+  report: "Non Reported",
   magnitude: {
     min: 5,
     max: 50,
@@ -55,13 +63,17 @@ const data = reactive<CompleteObjectFilter>({
 const { telescope, firstmjd, lastmjd, report, magnitude } = toRefs(data);
 
 const telescopeOptions = ["ZTF", "ATLAS"];
-const reportOptions = ["Supernova", "Bogus", "None", "Other"];
+const reportOptions = ["Reported", "Non Reported"];
 const date = ref({ label: "Last 24 hours", diff: 1 });
 const dateOptions = [
   { label: "Last 24 hours", diff: 1 },
   { label: "Last 48 hours", diff: 2 },
   { label: "Last week", diff: 7 },
 ];
+
+onMounted(() => {
+  searchByFilter(data);
+});
 
 watch(
   date,

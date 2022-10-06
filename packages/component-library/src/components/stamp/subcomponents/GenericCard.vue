@@ -12,6 +12,7 @@
           icon="cloud_download"
           size="sm"
           @click="imageDownload"
+          :disable="downloadError"
         ></q-btn>
       </div>
     </q-card-section>
@@ -27,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { onUpdated, ref } from "vue";
 import CrosshairImage from "./CrosshairImage.vue";
 import ZoomImage from "./ZoomImage.vue";
 
@@ -41,23 +42,34 @@ const props = defineProps({
 
 const image = ref("");
 const imageDownload = ref();
+const downloadError = ref(false);
 
-onMounted(() => {
-  props.imageUrl(props.candid, "png").then((result: string) => {
-    image.value = result;
-  });
-  props.imageUrl(props.candid, "fits").then((result: Blob) => {
-    imageDownload.value = () => {
-      console.log("blob", result);
-      let downloadUrl = window.URL.createObjectURL(result);
-      let a = document.createElement("a");
-      a.href = downloadUrl;
-      a.download = `${props.objectId}_${props.candid}_${props.title}.fits.gz`;
-      document.body.appendChild(a);
-      a.click();
-      URL.revokeObjectURL(downloadUrl);
-    };
-  });
+onUpdated(() => {
+  props
+    .imageUrl(props.candid, "png")
+    .then((result: string) => {
+      image.value = result;
+    })
+    .catch((e: Error) => {
+      image.value = "";
+    });
+  props
+    .imageUrl(props.candid, "fits")
+    .then((result: Blob) => {
+      imageDownload.value = () => {
+        let downloadUrl = window.URL.createObjectURL(result);
+        let a = document.createElement("a");
+        a.href = downloadUrl;
+        a.download = `${props.objectId}_${props.candid}_${props.title}.fits.gz`;
+        document.body.appendChild(a);
+        a.click();
+        URL.revokeObjectURL(downloadUrl);
+        downloadError.value = false;
+      };
+    })
+    .catch((e: Error) => {
+      downloadError.value = true;
+    });
 });
 </script>
 

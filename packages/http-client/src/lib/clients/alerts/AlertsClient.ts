@@ -6,6 +6,7 @@ import {
   ClientConfig,
   DetectionItem,
   IAlertsClient,
+  lightcurveResponse,
   listObjectResponse,
   ObjectFilters,
   singleObjectResponse,
@@ -27,7 +28,7 @@ export class AlertsClient implements IAlertsClient {
 
   initClient(axiosInstance?: AxiosInstance) {
     const baseUrl = this.config.baseUrl || 'https://api.alerce.online/alerts/v2'
-    this.httpService.initClient(baseUrl, axiosInstance)
+    this.httpService.initClient(baseUrl, axiosInstance, this.config.accessToken)
   }
 
   queryObjects<T>(
@@ -47,7 +48,7 @@ export class AlertsClient implements IAlertsClient {
     }
     return this.httpService.get<listObjectResponse, T>(
       {
-        url: '/objects',
+        url: '/objects/',
         config: {
           params: objectFilters,
           paramsSerializer: serializeParams,
@@ -89,6 +90,25 @@ export class AlertsClient implements IAlertsClient {
     return this.httpService.get<DetectionItem[], T>(
       {
         url: `/objects/${aid}/detections`,
+      },
+      parser
+    )
+  }
+
+  queryLightcurve<T>(
+    aid: string,
+    parser?: Parser<lightcurveResponse, T>,
+    customModel?: Newable<T>
+  ): Promise<T> {
+    if (!parser) {
+      parser = {
+        parseTo: (res: lightcurveResponse): T =>
+          customModel ? new customModel(res) : (res as unknown as T),
+      }
+    }
+    return this.httpService.get<lightcurveResponse, T>(
+      {
+        url: `/objects/${aid}/lightcurve`,
       },
       parser
     )

@@ -3,6 +3,7 @@ export type DetectionEntity = {
   candid: string;
   mag: number;
   fid: number;
+  tid: string;
   ra: number;
   dec: number;
 };

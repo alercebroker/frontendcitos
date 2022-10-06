@@ -1,11 +1,11 @@
 export type ObjectView = {
   name: string;
   date: string;
-  obs: number;
+  ndet: number;
   reported: string;
   score: number;
   fdtel: string;
-  fdmag: number;
+  fdmag: number | string;
   fdband: string;
   ra: number;
   dec: number;
