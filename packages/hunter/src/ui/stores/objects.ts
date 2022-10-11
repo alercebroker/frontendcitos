@@ -43,6 +43,7 @@ export const objectStoreFactory = (
     });
 
     function searchByFilter(filter: CompleteObjectFilter) {
+      errorStatus.value = null;
       const callbacks: Callbacks = {
         handleSuccess(data: PaginatedList<ObjectEntity>) {
           objectList.value = data;
