@@ -58,7 +58,7 @@ const data = reactive<CompleteObjectFilter>({
   report: "Non Reported",
   magnitude: {
     min: 5,
-    max: 50,
+    max: 49,
   },
 });
 
