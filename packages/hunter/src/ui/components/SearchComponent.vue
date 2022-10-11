@@ -20,10 +20,12 @@
       <div class="col-4">
         <q-select v-model="date" :options="dateOptions" label="Date" />
       </div>
-      <div class="col-8 q-pl-md q-pt-md">
-        Magnitude: {{ magnitude.min }} - {{ magnitude.max }}
-        <q-range v-model="magnitude" :min="0" :max="75" />
-      </div>
+      <!--
+        <div class="col-8 q-pl-md q-pt-md">
+          Magnitude: {{ magnitude.min }} - {{ magnitude.max }}
+          <q-range v-model="magnitude" :min="0" :max="75" />
+        </div>
+      -->
     </q-card-section>
     <q-card-actions>
       <q-btn
@@ -50,7 +52,7 @@ const { searchByFilter } = objectStore;
 const { isLoading, errorStatus } = storeToRefs(objectStore);
 
 const data = reactive<CompleteObjectFilter>({
-  telescope: "ZTF",
+  telescope: "All Telescopes",
   firstmjd: [],
   lastmjd: [],
   report: "Non Reported",
@@ -62,7 +64,7 @@ const data = reactive<CompleteObjectFilter>({
 
 const { telescope, firstmjd, lastmjd, report, magnitude } = toRefs(data);
 
-const telescopeOptions = ["ZTF", "ATLAS"];
+const telescopeOptions = ["All Telescopes", "ZTF", "ATLAS"];
 const reportOptions = ["Reported", "Non Reported"];
 const date = ref({ label: "Last 24 hours", diff: 1 });
 const dateOptions = [
