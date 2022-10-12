@@ -11,6 +11,8 @@ import {
   type singleObjectResponse,
 } from "@alercebroker/http-client/build/main/types";
 import { objects } from "./listObjectResponse.mock";
+import { object } from "./singleObjectResponse.mock";
+import { lightCurve } from "./lightcurveObjectResponse.mock";
 
 let __testType: string;
 
@@ -23,11 +25,25 @@ class AlertsClientMock implements IAlertsClient {
     throw new Error("Method not implemented.");
   }
   queryDetections<T>(
-    aid: string,
-    parser?: Parser<DetectionItem[], T> | undefined,
-    customModel?: Newable<T> | undefined
+    _aid: string,
+    _parser?: Parser<DetectionItem[], T> | undefined,
+    _customModel?: Newable<T> | undefined
   ): Promise<T> {
-    throw new Error("Method not implemented.");
+    return new Promise<T>((resolve, reject) => {
+      if (__testType === "success") {
+        resolve(lightCurve as unknown as T);
+      }
+      if (__testType === "clientError") {
+        reject(HttpError.fromStatus(400));
+      }
+      if (__testType === "serverError") {
+        reject(HttpError.fromStatus(500));
+      }
+      if (__testType === "parseError") {
+        reject(new ParseError("El parser se chingó"));
+      }
+      reject(new Error("A la chingada"));
+    });
   }
   queryObjects<T>(
     _objectFilters: ObjectFilters,
@@ -51,11 +67,25 @@ class AlertsClientMock implements IAlertsClient {
     });
   }
   querySingleObject<T>(
-    aid: string,
-    parser?: Parser<singleObjectResponse, T>,
-    customModel?: Newable<T>
+    _aid: string,
+    _parser?: Parser<singleObjectResponse, T>,
+    _customModel?: Newable<T>
   ): Promise<T> {
-    throw new Error("Method not implemented.");
+    return new Promise<T>((resolve, reject) => {
+      if (__testType === "success") {
+        resolve(object as unknown as T);
+      }
+      if (__testType === "clientError") {
+        reject(HttpError.fromStatus(400));
+      }
+      if (__testType === "serverError") {
+        reject(HttpError.fromStatus(500));
+      }
+      if (__testType === "parseError") {
+        reject(new ParseError("El parser se chingó"));
+      }
+      reject(new Error("A la chingada"));
+    });
   }
 }
 
@@ -85,6 +115,18 @@ class AlertsClient {
     const result = client.querySingleObject(aid, parser, customModel);
     return result;
   }
+
+  public static queryDetections<T>(
+    aid: string,
+    parser?: Parser<DetectionItem[], T>,
+    customModel?: Newable<T>,
+    _config?: ClientConfig
+  ): Promise<T> {
+    const client = new AlertsClientMock();
+    const result = client.queryDetections(aid, parser, customModel);
+    return result;
+  }
+
   public static getClientConfig(): ClientConfig {
     return {};
   }
