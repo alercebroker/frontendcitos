@@ -116,10 +116,10 @@ export type singleObjectResponse = {
   lastmjd: number
   meanra: number
   meandec: number
-  probabilities: probabilitiesResponse[]
-  magstats: magstatsResponse[]
-  xmatch: xmatchResponse[]
-  features: featuresResponse[]
+  probabilities: probabilitiesResponse[] | null
+  magstats: magstatsResponse[] | null
+  xmatch: xmatchResponse[] | null
+  features: featuresResponse[] | null
 }
 
 export interface IAlertsClient {
