@@ -4,6 +4,7 @@ import {
   type ClientConfig,
   type DetectionItem,
   type IAlertsClient,
+  type lightcurveResponse,
   type listObjectResponse,
   type Newable,
   type ObjectFilters,
@@ -24,9 +25,9 @@ class AlertsClientMock implements IAlertsClient {
   initClient() {
     throw new Error("Method not implemented.");
   }
-  queryDetections<T>(
+  queryLightcurve<T>(
     _aid: string,
-    _parser?: Parser<DetectionItem[], T> | undefined,
+    _parser?: Parser<lightcurveResponse, T> | undefined,
     _customModel?: Newable<T> | undefined
   ): Promise<T> {
     return new Promise<T>((resolve, reject) => {
@@ -116,14 +117,14 @@ class AlertsClient {
     return result;
   }
 
-  public static queryDetections<T>(
+  public static queryLightcurve<T>(
     aid: string,
-    parser?: Parser<DetectionItem[], T>,
+    parser?: Parser<lightcurveResponse, T>,
     customModel?: Newable<T>,
     _config?: ClientConfig
   ): Promise<T> {
     const client = new AlertsClientMock();
-    const result = client.queryDetections(aid, parser, customModel);
+    const result = client.queryLightcurve(aid, parser, customModel);
     return result;
   }
 
