@@ -85,7 +85,6 @@ export const objectSingleParser: Parser<
   parseTo: (
     response: singleObjectResponse
   ): SingleObjectEntity => {
-    console.log("en parse", response)
     const result: SingleObjectEntity = {
       object_basic_info: {
         aid: response.aid,
