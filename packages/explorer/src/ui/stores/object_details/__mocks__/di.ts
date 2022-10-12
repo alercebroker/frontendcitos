@@ -4,9 +4,9 @@ import {
 } from "@/app/object/use-cases/__mocks__";
 import { objectDetailsStore } from "../store";
 
-const searchStoreResolved = objectDetailsStore(
+const objectDetailsStoreResolved = objectDetailsStore(
   getObjectSingleUseCase,
   getObjectLightCurveUseCase  
 );
 
-export { searchStoreResolved as useSearchStore };
+export { objectDetailsStoreResolved as useObjectDetailsStore };
