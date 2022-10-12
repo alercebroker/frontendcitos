@@ -6,6 +6,11 @@ import {
   ParseError,
   type singleObjectResponse,
 } from "@alercebroker/http-client/build/main/types";
+import {
+  raToHms,
+  decToHms,
+  mjdToGreg,
+} from "@/domain/objects/entities";
 vi.mock("@alercebroker/http-client", () => mockedModule);
 
 describe("Search Single Objects Success", () => {
@@ -82,13 +87,17 @@ describe("Parse Single Object response to Single Object Entity", () => {
       xmatch: [],
       features: [],
     };
-    // no ser pajero
+
     const parsed = objectSingleParser.parseTo(apiResponse);
     expect(parsed).toBeTypeOf("object");
-    expect(parsed.magstats).toBeTypeOf("object");
-    expect(parsed.object_basic_info).toBeTypeOf("object");
-    expect(parsed.probabilities).toBeTypeOf("object");
-  });
+    expect(parsed.object_basic_info.aid).toBe("aid");
+    expect(parsed.object_basic_info.firstGreg).toBe(mjdToGreg(apiResponse.firstmjd));
+    expect(parsed.object_basic_info.lastGreg).toBe(mjdToGreg(apiResponse.lastmjd));
+    expect(parsed.object_basic_info.raHms).toBe(raToHms(apiResponse.meanra));
+    expect(parsed.object_basic_info.decHms).toBe(decToHms(apiResponse.meandec));
+    expect(parsed.magstats.length).toBe(1);
+    expect(parsed.probabilities.length).toBe(1);
+  });raToHms
 
   it("Should parse a response missing probabilities and/or magstats", () => {
     const apiResponse: singleObjectResponse = {
@@ -104,10 +113,15 @@ describe("Parse Single Object response to Single Object Entity", () => {
       xmatch: null,
       features: null,
     };
+
     const parsed = objectSingleParser.parseTo(apiResponse);
     expect(parsed).toBeTypeOf("object");
-    expect(parsed.magstats).toBeTypeOf("object");
-    expect(parsed.object_basic_info).toBeTypeOf("object");
-    expect(parsed.probabilities).toBeTypeOf("object");
+    expect(parsed.object_basic_info.aid).toBe("aid");
+    expect(parsed.object_basic_info.firstGreg).toBe(mjdToGreg(apiResponse.firstmjd));
+    expect(parsed.object_basic_info.lastGreg).toBe(mjdToGreg(apiResponse.lastmjd));
+    expect(parsed.object_basic_info.raHms).toBe(raToHms(apiResponse.meanra));
+    expect(parsed.object_basic_info.decHms).toBe(decToHms(apiResponse.meandec));
+    expect(parsed.magstats.length).toBe(0);
+    expect(parsed.probabilities.length).toBe(0);
   });
 });
