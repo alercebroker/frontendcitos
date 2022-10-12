@@ -5,7 +5,7 @@ import { isHttpError, isParseError } from "@alercebroker/http-client";
 export const getObjectLightCurveUseCase = (
   repository: ObjectRepository
 ): Command => ({
-  execute: async <LightCurveEntity>(
+  execute: async (
     callbacks: Callbacks,
     payload: string
   ) => {
