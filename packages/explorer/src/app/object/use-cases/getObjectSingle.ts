@@ -5,7 +5,7 @@ import { isHttpError, isParseError } from "@alercebroker/http-client";
 export const getObjectSingleUseCase = (
   repository: ObjectRepository
 ): Command => ({
-  execute: async <SingleObjectResponseEntity>(
+  execute: async (
     callbacks: Callbacks,
     payload: string
   ) => {
