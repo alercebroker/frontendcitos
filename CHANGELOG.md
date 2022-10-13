@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0-rc.33](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.32...v1.1.0-rc.33) (2022-10-13)
+
+
+### Bug Fixes
+
+* typo in objectDetailsStore mock ([81d3d8a](https://github.com/alercebroker/frontendcitos/commit/81d3d8ae355a9adc787285ef25399e84145beb6f))
+
+
+### Features
+
+* initial development for the store ([9220ba0](https://github.com/alercebroker/frontendcitos/commit/9220ba04e76b8f8d6b7079b5b2bb2536e04dc0d0))
+
+
+
+
+
 # [1.1.0-rc.32](https://github.com/alercebroker/frontendcitos/compare/v1.1.0-rc.31...v1.1.0-rc.32) (2022-10-11)
 
 **Note:** Version bump only for package root

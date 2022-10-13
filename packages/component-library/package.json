@@ -1,6 +1,6 @@
 {
   "name": "@alercebroker/component-library",
-  "version": "1.1.0-rc.29",
+  "version": "1.1.0-rc.33",
   "repository": {
     "type": "git",
     "url": "https://github.com/alercebroker/frontendcitos.git",
@@ -20,7 +20,7 @@
     "docs-deploy": "bash ./scripts/deploy_docs.sh"
   },
   "dependencies": {
-    "@alercebroker/http-client": "^1.1.0-rc.29",
+    "@alercebroker/http-client": "^1.1.0-rc.33",
     "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
     "@esbuild-plugins/node-modules-polyfill": "^0.1.4",
     "@quasar/extras": "^1.14.1",
