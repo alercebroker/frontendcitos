@@ -3,8 +3,17 @@ import { objectRepository } from "../../adapters/objectRepository";
 import { convertGregUseCase } from "./convertGreg";
 import { convertMjdUseCase } from "./convertMjd";
 import { getObjectListUseCase } from "./getObjectList";
-import { getObjectSingleUseCase } from "../getObjectSingle";
-import { getObjectLightCurveUseCase } from "./getObjectLightCurve";
+import { 
+  getObjectSingleUseCase,
+  __setTestType as objectTestType,
+} from "./getObjectSingle";
+import { 
+  getObjectLightCurveUseCase,
+  __setTestType as lightCurveTestType
+} from "./getObjectLightCurve";
+
+objectTestType("success")
+lightCurveTestType("success")
 
 const getObjectListUseCaseResolved = getObjectListUseCase(objectRepository);
 const getObjectSingleUseCaseResolved = getObjectSingleUseCase(objectRepository);
