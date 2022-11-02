@@ -4,6 +4,7 @@ loadContainerModules()
 import { AlertsClientFacade } from './AlertsClientFacade'
 import { AuthClientFacade } from './AuthClientFacade'
 import { StampsClientFacade } from './StampsClientFacade'
+import { ReportsClientFacade } from './ReportsClientFacade'
 export * from './lib/core/http-service/HttpService'
 export { isHttpError } from './lib/core/error/http-error'
 export { isParseError } from './lib/core/error/parse-error'
@@ -17,4 +18,5 @@ export {
   AlertsClientFacade as AlertsClient,
   AuthClientFacade as AuthClient,
   StampsClientFacade as StampsClient,
+  ReportsClientFacade as ReportsClient,
 }
