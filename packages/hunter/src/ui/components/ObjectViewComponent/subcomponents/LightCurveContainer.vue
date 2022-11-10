@@ -28,7 +28,7 @@
 import { ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import LightCurvePlot from "@alercebroker/component-library/src/components/plot/LightCurvePlot.vue";
-import { useObjectStore } from "../../stores";
+import { useObjectStore } from "../../../stores";
 
 const objectStore = useObjectStore();
 const { lightcurve } = storeToRefs(objectStore);

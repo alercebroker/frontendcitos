@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import LoginModal from "@alercebroker/component-library/src/components/login-modal/LoginModal.vue";
 import { watch, ref, toRefs } from "vue";
-import { useAuth } from "../stores";
+import { useAuth } from "../../stores";
 import { storeToRefs, getActivePinia, StoreGeneric } from "pinia";
 
 //login logic

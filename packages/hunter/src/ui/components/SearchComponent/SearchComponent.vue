@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, toRefs, watch, onMounted } from "vue";
-import { useObjectStore } from "../stores";
+import { useObjectStore } from "../../stores";
 import { CompleteObjectFilter } from "@/application/common/types.js";
 import { gregorianToMjd } from "@/application/common/utils";
 import { storeToRefs } from "pinia";

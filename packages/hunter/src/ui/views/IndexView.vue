@@ -5,14 +5,14 @@
         <SearchComponent />
       </div>
       <div class="q-pa-xs">
-        <ResultsTable />
+        <ResultsTableComponent />
       </div>
     </div>
     <div class="col-7">
       <div class="q-pa-xs" style="height: 100%" v-if="!selected">
         <InfoComponent />
       </div>
-      <ObjectResults v-bind:hidden="!Boolean(selected)" />
+      <ObjectViewComponent v-bind:hidden="!Boolean(selected)" />
     </div>
   </div>
 </template>
@@ -21,10 +21,10 @@
 import { onMounted, onBeforeMount } from "vue";
 import { getActivePinia, storeToRefs } from "pinia";
 import { Loading } from "quasar";
-import SearchComponent from "../components/SearchComponent.vue";
-import ObjectResults from "../components/ObjectResults.vue";
-import ResultsTable from "../components/ResultsTable.vue";
-import InfoComponent from "../components/InfoComponent.vue";
+import { SearchComponent } from "../components/SearchComponent";
+import { ObjectViewComponent } from "../components/ObjectViewComponent";
+import { ResultsTableComponent } from "../components/ResultsTable";
+import { InfoComponent } from "../components/InfoComponent";
 import { useAuth, useObjectStore } from "../stores";
 
 const { verifySession } = useAuth(getActivePinia());

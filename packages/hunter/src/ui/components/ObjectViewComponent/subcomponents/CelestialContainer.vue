@@ -11,7 +11,7 @@
 
 <script lang="ts" setup>
 import { ref, watch } from "vue";
-import { useObjectStore } from "../../stores";
+import { useObjectStore } from "../../../stores";
 import CelestialView from "./CelestialView.vue";
 
 const selectedRef = ref();

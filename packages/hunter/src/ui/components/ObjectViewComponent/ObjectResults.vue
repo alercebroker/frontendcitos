@@ -27,11 +27,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import FirstDetection from "./subcomponents/FirstDetection.vue";
-import LightCurveContainer from "./subcomponents/LightCurveContainer.vue";
-import StampCardContainer from "./subcomponents/StampCardContainer.vue";
-import AladinContainer from "./subcomponents/AladinContainer.vue";
-import CelestialContainer from "./subcomponents/CelestialContainer.vue";
+import {
+  FirstDetectionContainer,
+  LightCurveContainer,
+  StampCardContainer,
+  AladinContainer,
+  CelestialContainer,
+} from "./subcomponents";
 </script>
 
 <style scoped>

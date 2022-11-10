@@ -15,7 +15,7 @@
 import { computed } from "vue";
 import { storeToRefs } from "pinia";
 import AladinViewer from "@alercebroker/component-library/src/components/aladin/AladinViewer.vue";
-import { useObjectStore } from "../../stores";
+import { useObjectStore } from "../../../stores";
 import { ObjectEntity } from "@/domain/entities/object.entity";
 
 const objectStore = useObjectStore();

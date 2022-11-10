@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import IndexView from "./ui/views/IndexView.vue";
-import HunterNavbar from "./ui/components/HunterNavbar.vue";
+import { HunterNavbar } from "./ui/components/Navbar";
 </script>
 
 <template>

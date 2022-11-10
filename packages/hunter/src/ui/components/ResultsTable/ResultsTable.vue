@@ -32,11 +32,10 @@
 <script setup lang="ts">
 import { onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
-import { columns } from "./utils/constants";
-import { parseObjectForView } from "./utils/parser";
-import { objects as dummyObjects } from "../stores/_dummies/objects";
-import { useObjectStore } from "../stores";
-import { ObjectView } from "./utils/types";
+import { columns } from "../utils/constants";
+import { parseObjectForView } from "../utils/parser";
+import { useObjectStore } from "../../stores";
+import { ObjectView } from "../utils/types";
 
 const objectStore = useObjectStore();
 const { selectObject, _setObjectList, populateDetections } = objectStore;

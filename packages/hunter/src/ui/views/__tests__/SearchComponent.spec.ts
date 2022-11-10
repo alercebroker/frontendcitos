@@ -2,7 +2,7 @@ import { describe, it, beforeAll, expect, vi } from "vitest";
 import { mount, VueWrapper } from "@vue/test-utils";
 import { installQuasar } from "@quasar/quasar-app-extension-testing-unit-vitest";
 import { installPinia } from "./utils/pinia";
-import SearchComponent from "@/ui/components/SearchComponent.vue";
+import { SearchComponent } from "@/ui/components/SearchComponent";
 
 vi.mock("@/ui/stores");
 import { mockGetObjectsCommand } from "@/ui/stores/__mocks__";
@@ -22,5 +22,5 @@ describe("SearchComponent test", () => {
     const button = searchComponent.findComponent("button");
     await button.trigger("click");
     expect(mockGetObjectsCommand.execute).toHaveBeenCalled();
-  })
+  });
 });
